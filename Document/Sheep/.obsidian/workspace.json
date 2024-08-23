@@ -8,18 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "7912d75a8ba9a14f",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "기획/양.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "e03d6bf03651f933",
             "type": "leaf",
             "state": {
@@ -30,9 +18,33 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "0f72b412e3db4d73",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "기획/Movement 오브젝트.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d95996a8784b7b48",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "기획/0.기획서.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -98,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "작업 일지/2024-08-22.md",
+                "file": "기획/0.기획서.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "작업 일지/2024-08-22.md",
+                "file": "기획/0.기획서.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "작업 일지/2024-08-22.md"
+                "file": "기획/0.기획서.md"
               }
             }
           }
@@ -159,28 +171,34 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "e03d6bf03651f933",
+  "active": "d95996a8784b7b48",
   "lastOpenFiles": [
-    "기획/돌연변이.md",
-    "기획/양.md",
-    "기획/양털조각.md",
-    "기획/작업.md",
-    "기획/Movement 오브젝트.md",
     "기획/Tilted 오브젝트.md",
+    "기획/Movement 오브젝트.md",
+    "기획/작업.md",
+    "기획/양털조각.md",
+    "기획/양.md",
+    "기획/돌연변이.md",
+    "작업 일지/2024-08-23.md",
     "작업 일지/2024-08-22.md",
-    "작업 일지/2024-06-26.md",
-    "기획/1.게임 플로우.md",
-    "기획/0.메모.md",
-    "기획/고양이.md",
+    "작업 일정/작업 계획.md",
+    "작업 일정/작업 목록.md",
+    "기획/1.게임 플레이 플로우.md",
     "기획/2.게임 스토리.md",
+    "기획/0.기획서.md",
+    "작업 일정",
+    "고양이.md",
     "기획/냥.md",
+    "기획/고양이.md",
+    "무제 파일.md",
+    "구조",
+    "작업 일지/2024-06-26.md",
     "-이미지/Pasted image 20240618223047.png",
     "-이미지/Pasted image 20240822225156.png",
     "Pasted image 20240822222738.png",
     "Pasted image 20240822222717.png",
     "Pasted image 20240822222713.png",
     "작업 일지",
-    "무제 파일.md",
     "기획",
     "작업 일지",
     "이미지/Pasted image 20240618222936.png",
