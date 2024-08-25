@@ -41,6 +41,7 @@ public class InputController : Singleton<InputController>
     private void OnDisable()
     {
         _inputControl.Disable();
+        
     }
 
     /// <summary>
