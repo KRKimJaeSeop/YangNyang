@@ -11,29 +11,28 @@ public class PlayerCharacter : CharacterBase
 
     }
 
-    private Vector2 _movementAmount;
+    private Vector2 movementAmount;
     [SerializeField]
     private Rigidbody2D _rb2D;
     [SerializeField]
     private float controllMoveSpeed = 10;
 
-    private StateMachine<State> stateMachine;
+    private StateMachine<State> fsm;
 
     private void Start()
     {
-        stateMachine = new StateMachine<State>();
-        stateMachine.Initialize(this);
-        // 상태 추가 이부분 상위클래스에 abstract로 만들기.
-        stateMachine.AddState(State.Idle, Idle_Enter, Idle_Execute, Idle_Exit);
-        stateMachine.AddState(State.Move, Move_Enter, Move_Execute, Move_Exit);
-        stateMachine.AddState(State.Work, Work_Enter, Work_Execute, Work_Exit);
-        stateMachine.SetInitState(State.Idle);
+        fsm = new StateMachine<State>();
+        fsm.Initialize(this);
+        InitializeStates();
+        fsm.SetInitState(State.Idle);
     }
+  
 
     private void OnEnable()
     {
         FloatingJoystick.OnUpdateMovement += OnJoystickMove;
     }
+
     private void OnDisable()
     {
         FloatingJoystick.OnUpdateMovement -= OnJoystickMove;
@@ -41,82 +40,87 @@ public class PlayerCharacter : CharacterBase
 
     private void Update()
     {
-        stateMachine.Update();
+        fsm.Update();
+    }
+
+    protected override void InitializeStates()
+    {
+        fsm.AddState(State.Idle, Idle_Enter, Idle_Execute, Idle_Exit);
+        fsm.AddState(State.Move, Move_Enter, Move_Execute, Move_Exit);
+        fsm.AddState(State.Work, Work_Enter, Work_Execute, Work_Exit);
     }
 
     void OnJoystickMove(Vector2 movementAmount)
     {
-        _movementAmount = movementAmount;
+        this.movementAmount = movementAmount;
     }
 
 
     #region State.Idle
     private void Idle_Enter()
     {
-        Debug.Log("Entering Idle State");
-    
+        //Debug.Log("Entering Idle State");    
         //GetComponent<Animator>().SetTrigger("Idle");
     }
 
     private void Idle_Execute()
     {
-        Debug.Log("Executing Idle State");
-        if (_movementAmount != Vector2.zero)
+        //Debug.Log("Executing Idle State");
+        if (movementAmount != Vector2.zero)
         {
-            stateMachine.ChangeState(State.Move);
+            fsm.ChangeState(State.Move);
         }
     }
 
     private void Idle_Exit()
     {
-        Debug.Log("Exiting Idle State");
+        //Debug.Log("Exiting Idle State");
     }
     #endregion
 
     #region State.Move
     private void Move_Enter()
     {
-        Debug.Log("Entering Move State");
+        //Debug.Log("Entering Move State");
         //GetComponent<Animator>().SetTrigger("Move");
     }
 
     private void Move_Execute()
     {
-        Debug.Log("Executing Move State");
+        //Debug.Log("Executing Move State");
         // 이동 로직 추가
-        if (_movementAmount == Vector2.zero)
+        if (movementAmount == Vector2.zero)
         {
             _rb2D.velocity = Vector2.zero;
-            stateMachine.ChangeState(State.Idle);
+            fsm.ChangeState(State.Idle);
             return;
         }
 
-        _rb2D.velocity = _movementAmount * controllMoveSpeed;
+        _rb2D.velocity = movementAmount * controllMoveSpeed;
     }
 
     private void Move_Exit()
     {
-        Debug.Log("Exiting Move State");
+        //Debug.Log("Exiting Move State");
     }
     #endregion
 
     #region State.Work
     private void Work_Enter()
     {
-        Debug.Log("Entering Work State");
+        //Debug.Log("Entering Work State");
         //GetComponent<Animator>().SetTrigger("Idle");
     }
 
     private void Work_Execute()
     {
-        Debug.Log("Executing Work State");      
+        //Debug.Log("Executing Work State");      
     }
 
     private void Work_Exit()
     {
-        Debug.Log("Exiting Work State");
-    }
-
+        //Debug.Log("Exiting Work State");
+    }      
     #endregion
 
 }

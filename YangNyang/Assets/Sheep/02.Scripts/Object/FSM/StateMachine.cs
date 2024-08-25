@@ -6,9 +6,9 @@ public class StateMachine<T> where T : Enum
 {
     private MonoBehaviour owner;
     private T currentState;
-    private Dictionary<T, Action> stateEnterActions;
-    private Dictionary<T, Action> stateExecuteActions;
-    private Dictionary<T, Action> stateExitActions;
+    private Dictionary<T, Action> stateEnterActions = new Dictionary<T, Action>();
+    private Dictionary<T, Action> stateExecuteActions = new Dictionary<T, Action>();
+    private Dictionary<T, Action> stateExitActions = new Dictionary<T, Action>();
 
     public T GetCurrentState()
     {
@@ -18,10 +18,8 @@ public class StateMachine<T> where T : Enum
     public void Initialize(MonoBehaviour owner)
     {
         this.owner = owner;
-        stateEnterActions = new Dictionary<T, Action>();
-        stateExecuteActions = new Dictionary<T, Action>();
-        stateExitActions = new Dictionary<T, Action>();
     }
+
     public void SetInitState(T initialState)
     {
         currentState = initialState;
