@@ -12,7 +12,6 @@ public class InputController : Singleton<InputController>
     [SerializeField, ReadOnly, Tooltip("한개의 인풋 입력 중 여부.")]
     private bool _isDragging;
     [SerializeField, ReadOnly, Tooltip("두개의 인풋 입력 중 여부.")]
-    private bool _isPinching;
     private Vector2 _previousPrimaryPosition;
     private float _previousPinchDistance;
     private float _pinchDistance;
@@ -95,15 +94,11 @@ public class InputController : Singleton<InputController>
             //Debug.Log($"[PrimaryContact] - Start Primary Touch. position = {_inputControl.Play.PrimaryPosition.ReadValue<Vector2>()}");
             Vector2 position = _inputControl.Play.PrimaryPosition.ReadValue<Vector2>();
 
-            //_isDragging = true;
-            //_previousPrimaryPosition = position;
-            //OnPrimaryContactStart?.Invoke(position);
+        
             StartDragging(position);
         }
         else if (_inputControl.Play.PrimaryContact.WasReleasedThisFrame())
         {
-            //Debug.Log("[PrimaryContact] - End Primary Touch");
-
             // 드래깅 해제.
             EndDragging();
         }
@@ -113,15 +108,12 @@ public class InputController : Singleton<InputController>
         if (_inputControl.Play.SecondaryContact.WasPressedThisFrame())
         {
             Debug.Log($"[SecondaryContact] - Start Secondary Touch. position = {_inputControl.Play.SecondaryPosition.ReadValue<Vector2>()}");
-            _isPinching = true;
-
             // 드래깅 해제.
             EndDragging();
         }
         else if (_inputControl.Play.SecondaryContact.WasReleasedThisFrame())
         {
             Debug.Log("[SecondaryContact] - End Secondary Touch");
-            _isPinching = false;
         }
         #endregion
 
@@ -157,49 +149,7 @@ public class InputController : Singleton<InputController>
 
                 _previousPrimaryPosition = position;
             }
-
-            //핀치는 사용하지 않는다.
-            //#if !UNITY_EDITOR
-            //            if (_isPinching == true)
-            //            {
-            //                Debug.Log($"[Pinch] primary = {_inputControl.Play.PrimaryPosition.ReadValue<Vector2>()}, secondary = {_inputControl.Play.SecondaryPosition.ReadValue<Vector2>()}");
-            //                // 터치
-            //                _pinchDistance = Vector2.Distance(_inputControl.Play.PrimaryPosition.ReadValue<Vector2>()
-            //                    , _inputControl.Play.SecondaryPosition.ReadValue<Vector2>());
-
-            //                // ---- Detection
-            //                // Zoom out
-            //                if (_pinchDistance > _previousPinchDistance)
-            //                {
-            //                    PlayCameraController.Instance.Zoom(1);
-            //                }
-            //                // Zoom in
-            //                else if (_pinchDistance < _previousPinchDistance)
-            //                {
-            //                    PlayCameraController.Instance.Zoom(-1);
-            //                }
-
-            //                _previousPinchDistance = _pinchDistance;
-            //            }
-            //#endif
-            //        }
-
-            //#if UNITY_EDITOR // Eiditor에서는 pinch는 마우스 휠로 대체하여 확인한다.
-            //        if (_isPinching == true)
-            //        {
-            //            float weelValue = _inputControl.Play.MouseWheel.ReadValue<float>();
-            //            // Zoom out
-            //            if (weelValue < 0) // Scroll up
-            //            {
-            //                PlayCameraController.Instance.Zoom(1);
-            //            }
-            //            // Zoom in
-            //            else if (weelValue > 0) // Scroll down
-            //            {
-            //                PlayCameraController.Instance.Zoom(-1);
-            //            }
-            //        }
-            //#endif
+          
             #endregion
         }
     }
@@ -208,7 +158,6 @@ public class InputController : Singleton<InputController>
     /// </summary>
     public void ReleaseInputStates()
     {
-        _isPinching = false;
         EndDragging();
     }
 

@@ -1,6 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
+/// <summary>
+/// 필드에 배치된 오브젝트들을 관리한다.
+/// </summary>
 public class FieldObjectManager : Singleton<FieldObjectManager>
 {
     [SerializeField]
@@ -15,14 +19,20 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     //[SerializeField]
     public Transform sheepArrivalPosition;
 
-    private WaitForSeconds wfs = new WaitForSeconds(3f);
+    [SerializeField]
+    public Button testBtn;
 
+    private WaitForSeconds wfs = new WaitForSeconds(1f);
+
+    private void Awake()
+    {
+        ObjectPool.Instance.LoadPoolItem("StandardSheep", standardSheep.gameObject, 10);
+        ObjectPool.Instance.LoadPoolItem("ADSheep", ADSheep.gameObject, 10);
+        ObjectPool.Instance.LoadPoolItem("EventSheep", EventSheep.gameObject, 10);
+        testBtn.onClick.AddListener(() => SpawnSheep(1));
+    }
     void Start()
     {
-        ObjectPool.Instance.LoadPoolItem("StandardSheep", standardSheep.gameObject, 3);
-        ObjectPool.Instance.LoadPoolItem("ADSheep", ADSheep.gameObject, 3);
-        ObjectPool.Instance.LoadPoolItem("EventSheep", EventSheep.gameObject, 3);
-
         StartCoroutine(SpawnSheepCoroutine());
     }
 
@@ -30,8 +40,8 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     {
         while (true)
         {
-            
-            SpawnSheep(Random.Range(1,4));
+
+            SpawnSheep(Random.Range(1, 4));
             yield return wfs;
         }
     }
@@ -54,13 +64,8 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
                 break;
 
         }
-
         var go = (ObjectPool.Instance.Pop(spawnObject)).GetComponent<StandardSheep>();
         go.Spawn(sheepSpawnPosition.position);
-        //go.MoveToPosition(sheepArrivalPosition.position, Random.Range(2, 7), () =>
-        //{
-        //    ObjectPool.Instance.Push(spawnObject, go.gameObject);
-        //});
-      
+
     }
 }

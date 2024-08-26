@@ -16,6 +16,7 @@ public class FieldObject : MonoBehaviour
 
     protected virtual void Awake()
     {
+        gameObject.SetActive(true);
         _transform = this.transform;
         _rb2D = this.GetComponent<Rigidbody2D>();
 
@@ -25,7 +26,9 @@ public class FieldObject : MonoBehaviour
     public void SetPosition(Vector2 position)
     {
         if (_rb2D != null)
-            _rb2D.position = position;
+        {
+            _rb2D.MovePosition(position);
+        }
         else
             _transform.position = position;
     }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ADSheep : StandardSheep
 {
-   
+    public override void Interact()
+    {
+        base.Interact();
+        Debug.Log("±§∞Ì Ω√√ª");
+    }
 }
  

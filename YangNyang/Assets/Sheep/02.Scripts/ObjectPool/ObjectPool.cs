@@ -142,7 +142,7 @@ public class ObjectPool : Singleton<ObjectPool>
             return false;
         }
 
-        Debug.Log($"Push [{item.name}]");
+       // Debug.Log($"Push [{item.name}]");
         pool.Push(item, setParent);
         return true;
     }
@@ -161,7 +161,7 @@ public class ObjectPool : Singleton<ObjectPool>
             return null;
         }
 
-        Debug.Log($"Pop [{poolName}]");
+      //  Debug.Log($"Pop [{poolName}]");
         return pool.Pop();
     }
 }
