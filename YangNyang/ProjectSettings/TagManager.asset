@@ -47,6 +47,9 @@ TagManager:
   - name: Player
     uniqueID: 3658401445
     locked: 0
+  - name: WorldGizmo
+    uniqueID: 3996003117
+    locked: 0
   - name: Joystick
     uniqueID: 3400633903
     locked: 0

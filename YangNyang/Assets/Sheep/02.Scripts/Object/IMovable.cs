@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,5 +9,5 @@ using UnityEngine;
 /// </summary>
 public interface IMovable
 {
-    void MoveToPosition(Vector2 targetPosition, float moveSpeed);
+    Tween MoveToPosition(Vector2 targetPosition, float moveSpeed, Action callback = null);
 }

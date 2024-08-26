@@ -94,7 +94,7 @@ public class ObjectPool : Singleton<ObjectPool>
         goPool.transform.SetParent(_transform, false);
         var pool = goPool.AddComponent<PooledObject>();
         _dicPool.Add(poolName, pool);
-        pool.Initialze(poolName, prefab, preloadNumber);
+        pool.Initialize(poolName, prefab, preloadNumber);
     }
 
 
@@ -142,6 +142,7 @@ public class ObjectPool : Singleton<ObjectPool>
             return false;
         }
 
+        Debug.Log($"Push [{item.name}]");
         pool.Push(item, setParent);
         return true;
     }
@@ -160,6 +161,7 @@ public class ObjectPool : Singleton<ObjectPool>
             return null;
         }
 
+        Debug.Log($"Pop [{poolName}]");
         return pool.Pop();
     }
 }

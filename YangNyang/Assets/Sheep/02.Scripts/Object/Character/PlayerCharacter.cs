@@ -1,32 +1,31 @@
 using UnityEngine;
 
-public class PlayerCharacter : CharacterBase
+public class PlayerCharacter : CharacterObject
 {
-    public enum State
+    public enum PlayerState
     {
         None,
         Idle,
         Move,
         Work,
-
     }
 
     private Vector2 movementAmount;
-    [SerializeField]
-    private Rigidbody2D _rb2D;
+
     [SerializeField]
     private float controllMoveSpeed = 10;
 
-    private StateMachine<State> fsm;
+    private StateMachine<PlayerState> fsm;
 
-    private void Start()
+    protected override void Awake()
     {
-        fsm = new StateMachine<State>();
+        base.Awake();
+        fsm = new StateMachine<PlayerState>();
         fsm.Initialize(this);
         InitializeStates();
-        fsm.SetInitState(State.Idle);
+        fsm.SetInitState(PlayerState.Idle);     
     }
-  
+
 
     private void OnEnable()
     {
@@ -45,9 +44,9 @@ public class PlayerCharacter : CharacterBase
 
     protected override void InitializeStates()
     {
-        fsm.AddState(State.Idle, Idle_Enter, Idle_Execute, Idle_Exit);
-        fsm.AddState(State.Move, Move_Enter, Move_Execute, Move_Exit);
-        fsm.AddState(State.Work, Work_Enter, Work_Execute, Work_Exit);
+        fsm.AddState(PlayerState.Idle, Idle_Enter, Idle_Execute, Idle_Exit);
+        fsm.AddState(PlayerState.Move, Move_Enter, Move_Execute, Move_Exit);
+        fsm.AddState(PlayerState.Work, Work_Enter, Work_Execute, Work_Exit);
     }
 
     void OnJoystickMove(Vector2 movementAmount)
@@ -68,7 +67,7 @@ public class PlayerCharacter : CharacterBase
         //Debug.Log("Executing Idle State");
         if (movementAmount != Vector2.zero)
         {
-            fsm.ChangeState(State.Move);
+            fsm.ChangeState(PlayerState.Move);
         }
     }
 
@@ -92,7 +91,7 @@ public class PlayerCharacter : CharacterBase
         if (movementAmount == Vector2.zero)
         {
             _rb2D.velocity = Vector2.zero;
-            fsm.ChangeState(State.Idle);
+            fsm.ChangeState(PlayerState.Idle);
             return;
         }
 
@@ -120,7 +119,7 @@ public class PlayerCharacter : CharacterBase
     private void Work_Exit()
     {
         //Debug.Log("Exiting Work State");
-    }      
+    }
     #endregion
 
 }

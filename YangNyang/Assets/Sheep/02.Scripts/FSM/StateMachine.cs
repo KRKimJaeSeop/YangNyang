@@ -36,6 +36,8 @@ public class StateMachine<T> where T : Enum
     {
         if (!EqualityComparer<T>.Default.Equals(currentState, newState))
         {
+            Debug.Log($"{nameof(ChangeState)} :: {currentState} => {newState}");
+
             stateExitActions[currentState]?.Invoke();
             currentState = newState;
             stateEnterActions[currentState]?.Invoke();

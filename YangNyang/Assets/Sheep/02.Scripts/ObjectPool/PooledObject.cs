@@ -28,7 +28,7 @@ public class PooledObject : MonoBehaviour
         _listObject.Clear();
         IsLoaded = false;
     }
-    public void Initialze(string poolName, GameObject prefab, int preloadNumber)
+    public void Initialize(string poolName, GameObject prefab, int preloadNumber)
     {
         _name = poolName;
         _prefab = prefab;
