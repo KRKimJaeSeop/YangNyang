@@ -1,10 +1,9 @@
 using DG.Tweening;
+using FieldObjectType;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Wool : FieldObject, IMovable
+public class Wool : FieldObject, IMovable, IInteractable
 {
     /// <summary>
     /// 지정된 속도로 지정된 위치로 던져지듯 연출하며 이동된다.
@@ -17,4 +16,20 @@ public class Wool : FieldObject, IMovable
         return null;
     }
 
+    public void EnterInteraction()
+    {
+        ObjectPool.Instance.Push(gameObject.name, this.gameObject);
+        // 주워짐
+    }
+
+    public void ExitInteraction()
+    {
+
+    }
+
+    public InteractObjectInfo GetObjectInfo()
+    {
+        return new InteractObjectInfo(FieldObjectType.Type.Wool, InstanceID);
+
+    }
 }

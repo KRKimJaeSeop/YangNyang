@@ -1,12 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ADSheep : StandardSheep
 {
-    public override void Interact()
+    public override void EnterInteraction()
     {
-        base.Interact();
+        base.EnterInteraction();
         Debug.Log("±§∞Ì Ω√√ª");
     }
 }

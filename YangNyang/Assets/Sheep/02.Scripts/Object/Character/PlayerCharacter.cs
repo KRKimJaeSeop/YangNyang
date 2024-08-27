@@ -10,12 +10,14 @@ public class PlayerCharacter : CharacterObject
         Work,
     }
 
-    private Vector2 movementAmount;
+    public bool IsWorkable { get => fsm.GetCurrentState() != PlayerState.Work; }
 
+    private Vector2 movementAmount;
     [SerializeField]
     private float controllMoveSpeed = 10;
-
     private StateMachine<PlayerState> fsm;
+
+    public InteractObjectInfo currentInteractObjectInfo;
 
     protected override void Awake()
     {
@@ -23,7 +25,7 @@ public class PlayerCharacter : CharacterObject
         fsm = new StateMachine<PlayerState>();
         fsm.Initialize(this);
         InitializeStates();
-        fsm.SetInitState(PlayerState.Idle);     
+        fsm.SetInitState(PlayerState.Idle);
     }
 
 
@@ -41,22 +43,41 @@ public class PlayerCharacter : CharacterObject
     {
         fsm.Update();
     }
+    #region 충돌처리만 한다. IInteractable를 사용하여 상호작용오브젝트의 종류가 늘어도 이부분은 수정할 필요 없다.
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IInteractable interactable = collision.GetComponent<IInteractable>();
-        if (interactable != null)
+        IInteractable interactableObject = collision.GetComponent<IInteractable>();
+        if (interactableObject != null && currentInteractObjectInfo.IsEmpty())
         {
-            interactable.Interact();
+            Interact(interactableObject.GetObjectInfo());
+            interactableObject.EnterInteraction();            
         }
+      
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        IInteractable interactable = collision.GetComponent<IInteractable>();
-        if (interactable != null)
+        IInteractable interactableObject = collision.GetComponent<IInteractable>();
+        if (interactableObject != null && 
+            currentInteractObjectInfo.IsSameObject(interactableObject.GetObjectInfo()))
         {
-            interactable.Interact();
+            currentInteractObjectInfo.SetEmpty();
+            interactableObject.ExitInteraction();
         }
+       
     }
+    #endregion
+
+    /// <summary>
+    /// 받은 InteractObjectInfo에 따라 플레이어의 상호작용을 결정한다.
+    /// </summary>
+    /// <param name="_info"></param>
+    private void Interact(InteractObjectInfo _info)
+    {
+        currentInteractObjectInfo = _info;
+        // currentInteractObjectInfo 에 따라 다른 행동을 하도록 한다.
+    }
+
+
 
     protected override void InitializeStates()
     {
@@ -64,6 +85,8 @@ public class PlayerCharacter : CharacterObject
         fsm.AddState(PlayerState.Move, Move_Enter, Move_Execute, Move_Exit);
         fsm.AddState(PlayerState.Work, Work_Enter, Work_Execute, Work_Exit);
     }
+
+
 
     void OnJoystickMove(Vector2 movementAmount)
     {
@@ -129,13 +152,16 @@ public class PlayerCharacter : CharacterObject
 
     private void Work_Execute()
     {
-        //Debug.Log("Executing Work State");      
+        //Debug.Log("Executing Work State");
+        _rb2D.velocity = movementAmount * controllMoveSpeed;
     }
 
     private void Work_Exit()
     {
         //Debug.Log("Exiting Work State");
     }
+
+
     #endregion
 
 }

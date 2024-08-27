@@ -1,4 +1,5 @@
 using DG.Tweening;
+using FieldObjectType;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -63,15 +64,26 @@ public class StandardSheep : CharacterObject, IInteractable
         fsm.ChangeState(SheepState.Move);
     }
 
+    public InteractObjectInfo GetObjectInfo()
+    {
+        return new InteractObjectInfo(FieldObjectType.Type.Sheep, InstanceID);
+    }
+
     /// <summary>
     /// 플레이어와 닿을 시 Work 상태로 전환한다.
     /// </summary>
-    public virtual void Interact()
+    public virtual void EnterInteraction()
     {
+        Debug.Log("양 작업 시작");
         fsm.ChangeState(SheepState.Work);
-        Debug.Log("작업.");
-
     }
+
+    public void ExitInteraction()
+    {
+        Debug.Log("양 작업 탈출");
+        fsm.ChangeState(SheepState.Move);
+    }
+
 
     #region State.None 
     private void None_Enter()
@@ -104,7 +116,7 @@ public class StandardSheep : CharacterObject, IInteractable
 
     private void Idle_Execute()
     {
-    
+
     }
 
     private void Idle_Exit()
@@ -132,11 +144,11 @@ public class StandardSheep : CharacterObject, IInteractable
         {
             // rigidBody의 포지션의 계산이 느린것같다. 정확한 원인은 모르겠다.
             // SetPosition이 제대로 되기 전에 이부분의함수가 시작돼서, 제 위치로 세팅될때까지 기다렸다가 Move를 시작한다.
-            Vector2 collectSpawnPosition= FieldObjectManager.Instance.sheepSpawnPosition.position;
+            Vector2 collectSpawnPosition = FieldObjectManager.Instance.sheepSpawnPosition.position;
             yield return new WaitUntil(() => _rb2D.position == collectSpawnPosition);
 
             // 목표 지점까지 이동시켜라.
-            moveTween = MoveToPosition(targetPosition, 1, () =>
+            moveTween = MoveToPosition(targetPosition, 5, () =>
             {
                 fsm.ChangeState(SheepState.None);
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);
@@ -145,7 +157,7 @@ public class StandardSheep : CharacterObject, IInteractable
 
 
         // 이동 중 코루틴으로 시간마다 멈출지 말지 검사.
-        while (Vector2.Distance(transform.position, targetPosition) > 0.1f)
+        while (true)
         {
             // 0.5초마다 검사
             yield return new WaitForSeconds(1f);
@@ -180,13 +192,14 @@ public class StandardSheep : CharacterObject, IInteractable
     {
         Debug.Log("일하는중~");
         moveTween.Pause();
-        StartCoroutine(WorkToMoveCoroutine());
+        GetComponent<SpriteRenderer>().color = Color.red;
+        //StartCoroutine(WorkToMoveCoroutine());
     }
 
     private IEnumerator WorkToMoveCoroutine()
     {
         yield return new WaitForSeconds(5);
-        fsm.ChangeState(SheepState.Move);
+        //fsm.ChangeState(SheepState.Move);
     }
 
     private void Work_Execute()
@@ -197,7 +210,11 @@ public class StandardSheep : CharacterObject, IInteractable
     private void Work_Exit()
     {
         // Work 상태 종료 시 행동
+        GetComponent<SpriteRenderer>().color = Color.white;
+        moveTween.Play();
     }
+
+
 
 
     #endregion

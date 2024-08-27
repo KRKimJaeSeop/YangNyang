@@ -10,30 +10,36 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     [SerializeField]
     private StandardSheep standardSheep;
     [SerializeField]
-    private StandardSheep ADSheep;
+    private StandardSheep adSheep;
     [SerializeField]
-    private StandardSheep EventSheep;
+    private StandardSheep eventSheep;
+    [SerializeField]
+    private Wool wool;
 
     //[SerializeField]
     public Transform sheepSpawnPosition;
     //[SerializeField]
     public Transform sheepArrivalPosition;
 
-    [SerializeField]
-    public Button testBtn;
 
     private WaitForSeconds wfs = new WaitForSeconds(1f);
 
     private void Awake()
     {
         ObjectPool.Instance.LoadPoolItem("StandardSheep", standardSheep.gameObject, 10);
-        ObjectPool.Instance.LoadPoolItem("ADSheep", ADSheep.gameObject, 10);
-        ObjectPool.Instance.LoadPoolItem("EventSheep", EventSheep.gameObject, 10);
-        testBtn.onClick.AddListener(() => SpawnSheep(1));
+        ObjectPool.Instance.LoadPoolItem("ADSheep", adSheep.gameObject, 10);
+        ObjectPool.Instance.LoadPoolItem("EventSheep", eventSheep.gameObject, 10);
+        ObjectPool.Instance.LoadPoolItem("Wool", wool.gameObject, 10);
     }
     void Start()
     {
         StartCoroutine(SpawnSheepCoroutine());
+        for (int i = 0; i < 10; i++)
+        {
+            var go = ObjectPool.Instance.Pop("Wool").GetComponent<Wool>();
+            go.EnableGameObject();
+            go.SetPosition(new Vector2(-5, 0));
+        }
     }
 
     IEnumerator SpawnSheepCoroutine()
