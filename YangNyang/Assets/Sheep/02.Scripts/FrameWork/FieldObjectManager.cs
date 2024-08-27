@@ -8,13 +8,13 @@ using UnityEngine.UI;
 public class FieldObjectManager : Singleton<FieldObjectManager>
 {
     [SerializeField]
-    private StandardSheep standardSheep;
+    private StandardSheep _standardSheep;
     [SerializeField]
-    private StandardSheep adSheep;
+    private StandardSheep _adSheep;
     [SerializeField]
-    private StandardSheep eventSheep;
+    private StandardSheep _eventSheep;
     [SerializeField]
-    private Wool wool;
+    private Wool _wool;
 
     //[SerializeField]
     public Transform sheepSpawnPosition;
@@ -22,14 +22,14 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     public Transform sheepArrivalPosition;
 
 
-    private WaitForSeconds wfs = new WaitForSeconds(1f);
+    private WaitForSeconds _wfs = new WaitForSeconds(2f);
 
     private void Awake()
     {
-        ObjectPool.Instance.LoadPoolItem("StandardSheep", standardSheep.gameObject, 10);
-        ObjectPool.Instance.LoadPoolItem("ADSheep", adSheep.gameObject, 10);
-        ObjectPool.Instance.LoadPoolItem("EventSheep", eventSheep.gameObject, 10);
-        ObjectPool.Instance.LoadPoolItem("Wool", wool.gameObject, 10);
+        ObjectPool.Instance.LoadPoolItem("StandardSheep", _standardSheep.gameObject, 10);
+        ObjectPool.Instance.LoadPoolItem("ADSheep", _adSheep.gameObject, 10);
+        ObjectPool.Instance.LoadPoolItem("EventSheep", _eventSheep.gameObject, 10);
+        ObjectPool.Instance.LoadPoolItem("Wool", _wool.gameObject, 10);
     }
     void Start()
     {
@@ -48,7 +48,7 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         {
 
             SpawnSheep(Random.Range(1, 4));
-            yield return wfs;
+            yield return _wfs;
         }
     }
 

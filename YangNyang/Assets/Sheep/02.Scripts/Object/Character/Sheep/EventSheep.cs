@@ -8,6 +8,6 @@ public class EventSheep : StandardSheep
     public override void EnterInteraction()
     {
         base.EnterInteraction();
-        //Debug.Log("광고 시청");
+        Debug.Log("이벤트 실행");
     }
 }

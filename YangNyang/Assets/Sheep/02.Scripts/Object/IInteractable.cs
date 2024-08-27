@@ -21,9 +21,9 @@ public struct InteractObjectInfo
         objectType = Type.None;
         instanceID = 0;
     }
-    public bool IsSameObject(InteractObjectInfo compareObject)
+    public bool IsSameIDObject(InteractObjectInfo compareObject)
     {
-        return (objectType == compareObject.objectType && instanceID == compareObject.instanceID);
+        return (instanceID == compareObject.instanceID);
     }
 }
 /// <summary>

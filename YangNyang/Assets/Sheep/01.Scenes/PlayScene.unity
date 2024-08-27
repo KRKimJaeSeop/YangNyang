@@ -2468,10 +2468,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51243c931f649d4408efaa832126524d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standardSheep: {fileID: 7471044097657458750, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
-  adSheep: {fileID: 3395783266087033771, guid: 3811ae678ada36243a532a0be90ebd0b, type: 3}
-  eventSheep: {fileID: 5562888887764152414, guid: 8858ef176d09bf242809596e918e2bcd, type: 3}
-  wool: {fileID: 2431642905290955303, guid: d24e748bd65e266468b15834b719cf3c, type: 3}
+  _standardSheep: {fileID: 7471044097657458750, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
+  _adSheep: {fileID: 3395783266087033771, guid: 3811ae678ada36243a532a0be90ebd0b, type: 3}
+  _eventSheep: {fileID: 5562888887764152414, guid: 8858ef176d09bf242809596e918e2bcd, type: 3}
+  _wool: {fileID: 2431642905290955303, guid: d24e748bd65e266468b15834b719cf3c, type: 3}
   sheepSpawnPosition: {fileID: 195016318}
   sheepArrivalPosition: {fileID: 1866796859}
 --- !u!1 &1536352387
@@ -2719,7 +2719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f67eace85869f45b69e80456d9a9e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speechBubble: {fileID: 0}
+  _spriteRenderer: {fileID: 1230802318}
+  _speechBubble: {fileID: 0}
   controllMoveSpeed: 10
   currentInteractObjectInfo:
     objectType: 0
@@ -3447,7 +3448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7508826283307100971, guid: 047f3854622f9f14b86c05c3fdb91880, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 585.0012
+      value: 585.00214
       objectReference: {fileID: 0}
     - target: {fileID: 8227986132590660070, guid: 047f3854622f9f14b86c05c3fdb91880, type: 3}
       propertyPath: m_UiScaleMode

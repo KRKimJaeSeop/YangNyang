@@ -1,6 +1,7 @@
+using System.Collections;
 using UnityEngine;
 
-public class PlayerCharacter : CharacterObject 
+public class PlayerCharacter : CharacterObject
 {
     public enum PlayerState
     {
@@ -10,14 +11,14 @@ public class PlayerCharacter : CharacterObject
         Work,
     }
 
-    public bool IsWorkable { get => fsm.GetCurrentState() != PlayerState.Work; }
-
-    private Vector2 movementAmount;
-    [SerializeField]
-    private float controllMoveSpeed = 10;
     private StateMachine<PlayerState> fsm;
-
+    [SerializeField, Tooltip("조이스틱 조작시 이동속도")]
+    private float controllMoveSpeed = 10;
+    private Vector2 movementAmount;
+    // 상호작용중인 IInteractable 게임오브젝트의 정보
     public InteractObjectInfo currentInteractObjectInfo;
+
+
 
     protected override void Awake()
     {
@@ -27,7 +28,12 @@ public class PlayerCharacter : CharacterObject
         InitializeStates();
         fsm.SetInitState(PlayerState.Idle);
     }
-
+    protected override void InitializeStates()
+    {
+        fsm.AddState(PlayerState.Idle, Idle_Enter, Idle_Execute, Idle_Exit);
+        fsm.AddState(PlayerState.Move, Move_Enter, Move_Execute, Move_Exit);
+        fsm.AddState(PlayerState.Work, Work_Enter, Work_Execute, Work_Exit);
+    }
 
     private void OnEnable()
     {
@@ -39,13 +45,22 @@ public class PlayerCharacter : CharacterObject
         FloatingJoystick.OnUpdateMovement -= OnJoystickMove;
     }
 
+    void OnJoystickMove(Vector2 movementAmount)
+    {
+        this.movementAmount = movementAmount;
+    }
+
     private void Update()
     {
         fsm.Update();
     }
 
-    #region 충돌 처리 메소드. 
+    #region 충돌 처리 메소드.
 
+    /// <summary>
+    /// 플레이어가 트리거 콜라이더에 들어가거나 머무르거나 나갈 때
+    /// IInteractable 인터페이스를 구현한 객체와의 상호작용만을 처리한다.
+    /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (currentInteractObjectInfo.IsEmpty())
@@ -59,12 +74,12 @@ public class PlayerCharacter : CharacterObject
         }
 
     }
-  
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         IInteractable interactableObject = collision.GetComponent<IInteractable>();
         if (interactableObject != null &&
-             currentInteractObjectInfo.IsSameObject(interactableObject.GetObjectInfo()))
+             currentInteractObjectInfo.IsSameIDObject(interactableObject.GetObjectInfo()))
         {
             StayInteraction(interactableObject.GetObjectInfo());
             interactableObject.StayInteraction();
@@ -76,52 +91,58 @@ public class PlayerCharacter : CharacterObject
     {
         IInteractable interactableObject = collision.GetComponent<IInteractable>();
         if (interactableObject != null &&
-            currentInteractObjectInfo.IsSameObject(interactableObject.GetObjectInfo()))
+            currentInteractObjectInfo.IsSameIDObject(interactableObject.GetObjectInfo()))
         {
             ExitInteraction(interactableObject.GetObjectInfo());
             interactableObject.ExitInteraction();
         }
     }
 
-  
+
 
     /// <summary>
-    /// 받은 InteractObjectInfo에 따라 플레이어의 상호작용을 결정한다.
+    /// OnTrigger~에서 받은 InteractObjectInfo에 따라 플레이어의 상호작용을 결정한다.
     /// </summary>
     /// <param name="_info"></param>
     private void EnterInteract(InteractObjectInfo _info)
     {
         currentInteractObjectInfo = _info;
-        // currentInteractObjectInfo 에 따라 다른 행동을 하도록 한다.
+        switch (_info.objectType)
+        {
+            case FieldObjectType.Type.WorkableSheep:
+                fsm.ChangeState(PlayerState.Work);
+                break;
+            case FieldObjectType.Type.UnWorkableSheep:
+                break;
+            default:
+                break;
+        }
     }
     public void StayInteraction(InteractObjectInfo _info)
     {
-        Debug.Log($"플레이어 작업 중");
-
+        if(currentInteractObjectInfo.instanceID == _info.instanceID)
+        {
+            if (currentInteractObjectInfo.objectType != _info.objectType)
+            {
+                fsm.ChangeState(PlayerState.Idle);
+            }
+        }
     }
     public void ExitInteraction(InteractObjectInfo _info)
     {
         currentInteractObjectInfo = _info;
-        currentInteractObjectInfo.SetEmpty();
+        switch (_info.objectType)
+        {
+            case FieldObjectType.Type.WorkableSheep:
+                fsm.ChangeState(PlayerState.Idle);
+                break;
+            default:
+                break;
+        }
 
+        currentInteractObjectInfo.SetEmpty();
     }
     #endregion
-
-
-
-    protected override void InitializeStates()
-    {
-        fsm.AddState(PlayerState.Idle, Idle_Enter, Idle_Execute, Idle_Exit);
-        fsm.AddState(PlayerState.Move, Move_Enter, Move_Execute, Move_Exit);
-        fsm.AddState(PlayerState.Work, Work_Enter, Work_Execute, Work_Exit);
-    }
-
-
-
-    void OnJoystickMove(Vector2 movementAmount)
-    {
-        this.movementAmount = movementAmount;
-    }
 
 
     #region State.Idle
@@ -155,8 +176,7 @@ public class PlayerCharacter : CharacterObject
 
     private void Move_Execute()
     {
-        //Debug.Log("Executing Move State");
-        // 이동 로직 추가
+        // 이동 조작 없을 시 Idle로 전환한다.
         if (movementAmount == Vector2.zero)
         {
             _rb2D.velocity = Vector2.zero;
@@ -176,19 +196,17 @@ public class PlayerCharacter : CharacterObject
     #region State.Work
     private void Work_Enter()
     {
-        //Debug.Log("Entering Work State");
-        //GetComponent<Animator>().SetTrigger("Idle");
+        _spriteRenderer.color = Color.red;
     }
 
     private void Work_Execute()
     {
-        //Debug.Log("Executing Work State");
         _rb2D.velocity = movementAmount * controllMoveSpeed;
     }
 
     private void Work_Exit()
     {
-        //Debug.Log("Exiting Work State");
+        _spriteRenderer.color = Color.white;
     }
 
 

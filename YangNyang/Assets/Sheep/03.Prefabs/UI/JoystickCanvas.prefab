@@ -89,14 +89,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 636a4985d4624ff4aa9ce5a533b1e448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imgJoystick: {fileID: 499569154079234874}
-  imgKnob: {fileID: 3389616902505509446}
-  originalJoystickSizeDelta: {x: 250, y: 250}
-  originalKnobSizeDelta: {x: 150, y: 150}
-  onShow:
+  _imgJoystick: {fileID: 499569154079234874}
+  _imgKnob: {fileID: 3389616902505509446}
+  _originalJoystickSizeDelta: {x: 250, y: 250}
+  _originalKnobSizeDelta: {x: 150, y: 150}
+  _onShow:
     m_PersistentCalls:
       m_Calls: []
-  onHide:
+  _onHide:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &3144844662909083274

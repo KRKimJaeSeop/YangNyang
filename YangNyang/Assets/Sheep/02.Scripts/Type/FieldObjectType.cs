@@ -4,8 +4,9 @@ namespace FieldObjectType
     {
         None = 0,
         Player = 1,
-        Sheep = 2,
-        Wool = 3,
+        WorkableSheep = 2,
+        UnWorkableSheep = 3,
+        Wool = 4,
     }
 
 }

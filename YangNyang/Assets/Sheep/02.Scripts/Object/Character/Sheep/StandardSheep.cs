@@ -1,5 +1,4 @@
 using DG.Tweening;
-using FieldObjectType;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -19,37 +18,39 @@ public class StandardSheep : CharacterObject, IInteractable
         Work,
     }
 
-    private StateMachine<SheepState> fsm;
-    private Coroutine IdleCoroutine;
-    private Coroutine moveCoroutine;
+    private StateMachine<SheepState> _fsm;
     // Idle상태를 한번이라도 했다면  true가 된다.
-    private bool hasBeenIdle = false;
-    private Tween moveTween;
+    private bool _hasBeenIdle = false;
+    private Coroutine _IdleCoroutine;
+    private Coroutine _moveCoroutine;
+    private Tween _moveTween;    
+    // 작업 코루틴
+    private Coroutine _workCoroutine;
+    private float _workTime = 3f;
+    // 작업 중간에 탈출하지않고, 완전히 작업을 완료한 경우에만 false가 된다.
+    private bool _isWorkable;
 
-
-    public int instanceId;
     protected override void Awake()
     {
         base.Awake();
-        fsm = new StateMachine<SheepState>();
-        fsm.Initialize(this);
+        _fsm = new StateMachine<SheepState>();
+        _fsm.Initialize(this);
         InitializeStates();
-        fsm.SetInitState(SheepState.None);
-        instanceId = InstanceID;
+        _fsm.SetInitState(SheepState.None);
 
-    }
-    private void Update()
-    {
-        fsm.Update();
     }
     protected override void InitializeStates()
     {
-        fsm.AddState(SheepState.None, None_Enter, None_Execute, None_Exit);
-        fsm.AddState(SheepState.Idle, Idle_Enter, Idle_Execute, Idle_Exit);
-        fsm.AddState(SheepState.Move, Move_Enter, Move_Execute, Move_Exit);
-        fsm.AddState(SheepState.Work, Work_Enter, Work_Execute, Work_Exit);
+        _fsm.AddState(SheepState.None, None_Enter, None_Execute, None_Exit);
+        _fsm.AddState(SheepState.Idle, Idle_Enter, Idle_Execute, Idle_Exit);
+        _fsm.AddState(SheepState.Move, Move_Enter, Move_Execute, Move_Exit);
+        _fsm.AddState(SheepState.Work, Work_Enter, Work_Execute, Work_Exit);
     }
 
+    private void Update()
+    {
+        _fsm.Update();
+    }
 
     /// <summary>
     /// 지정된 위치에 스폰된다.
@@ -60,14 +61,18 @@ public class StandardSheep : CharacterObject, IInteractable
     {
         EnableGameObject(cbDisable);
         SetPosition(position);
-        hasBeenIdle = false;
-        fsm.ChangeState(SheepState.Move);
+        _hasBeenIdle = false;
+        _isWorkable = true;
+        _fsm.ChangeState(SheepState.Move);
     }
 
     #region IInteractable
     public InteractObjectInfo GetObjectInfo()
     {
-        return new InteractObjectInfo(FieldObjectType.Type.Sheep, InstanceID);
+        var currentType = _isWorkable ?
+            FieldObjectType.Type.WorkableSheep : FieldObjectType.Type.UnWorkableSheep;
+
+        return new InteractObjectInfo(currentType, InstanceID);
     }
 
     /// <summary>
@@ -75,19 +80,19 @@ public class StandardSheep : CharacterObject, IInteractable
     /// </summary>
     public virtual void EnterInteraction()
     {
-        Debug.Log($"[{instanceId}] 양 작업 시작");
-        fsm.ChangeState(SheepState.Work);
+        if (_isWorkable)
+        {
+            _fsm.ChangeState(SheepState.Work);
+        }
     }
     public void StayInteraction()
     {
-        Debug.Log($"[{instanceId}] 양 작업 중");
 
     }
 
     public void ExitInteraction()
     {
-        Debug.Log($"[{instanceId}] 양 작업 탈출");
-        fsm.ChangeState(SheepState.Move);
+        _fsm.ChangeState(SheepState.Move);
     }
     #endregion
 
@@ -109,15 +114,15 @@ public class StandardSheep : CharacterObject, IInteractable
     #region State.Idle
     private void Idle_Enter()
     {
-        hasBeenIdle = true;
+        _hasBeenIdle = true;
         // 일정 시간 후 Move 상태로 전환한다.
-        IdleCoroutine = StartCoroutine(IdleToMoveCoroutine());
+        _IdleCoroutine = StartCoroutine(IdleToMoveCoroutine());
     }
 
     private IEnumerator IdleToMoveCoroutine()
     {
         yield return new WaitForSeconds(Random.value * 2);
-        fsm.ChangeState(SheepState.Move);
+        _fsm.ChangeState(SheepState.Move);
     }
 
     private void Idle_Execute()
@@ -127,9 +132,9 @@ public class StandardSheep : CharacterObject, IInteractable
 
     private void Idle_Exit()
     {
-        StopCoroutine(IdleToMoveCoroutine());
-        IdleCoroutine = null;
-        moveTween.Play();
+        StopCoroutine(_IdleCoroutine);
+        _IdleCoroutine = null;
+        _moveTween.Play();
     }
     #endregion
 
@@ -137,7 +142,7 @@ public class StandardSheep : CharacterObject, IInteractable
     private void Move_Enter()
     {
         // 목적지로 이동 시작
-        moveCoroutine = StartCoroutine(MoveCoroutine());
+        _moveCoroutine = StartCoroutine(MoveCoroutine());
     }
 
     private IEnumerator MoveCoroutine()
@@ -146,7 +151,7 @@ public class StandardSheep : CharacterObject, IInteractable
 
         // hasBeenIdle는 한번이라도 확률에 의해 이 코루틴을 탈출해서 Idle상태가 됐었다면 true가 되기 때문에,
         // MoveTween의 중복실행을 막는다.
-        if (!hasBeenIdle)
+        if (!_hasBeenIdle)
         {
             // rigidBody의 포지션의 계산이 느린것같다. 정확한 원인은 모르겠다.
             // SetPosition이 제대로 되기 전에 이부분의함수가 시작돼서, 제 위치로 세팅될때까지 기다렸다가 Move를 시작한다.
@@ -154,9 +159,9 @@ public class StandardSheep : CharacterObject, IInteractable
             yield return new WaitUntil(() => _rb2D.position == collectSpawnPosition);
 
             // 목표 지점까지 이동시켜라.
-            moveTween = MoveToPosition(targetPosition, 5, () =>
+            _moveTween = MoveToPosition(targetPosition, 5, () =>
             {
-                fsm.ChangeState(SheepState.None);
+                _fsm.ChangeState(SheepState.None);
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);
             });
         }
@@ -168,10 +173,10 @@ public class StandardSheep : CharacterObject, IInteractable
             // 0.5초마다 검사
             yield return new WaitForSeconds(1f);
             // 확률적으로 Idle 상태로 전환
-            if ((!hasBeenIdle) && Random.value < 0.1f) // 10% 확률로 Idle 상태로 전환
+            if ((!_hasBeenIdle) && Random.value < 0.1f) // 10% 확률로 Idle 상태로 전환
             {
-                moveTween.Pause();
-                fsm.ChangeState(SheepState.Idle);
+                _moveTween.Pause();
+                _fsm.ChangeState(SheepState.Idle);
                 yield break;
             }
         }
@@ -184,10 +189,10 @@ public class StandardSheep : CharacterObject, IInteractable
 
     private void Move_Exit()
     {
-        if (moveCoroutine != null)
+        if (_moveCoroutine != null)
         {
-            StopCoroutine(moveCoroutine);
-            moveCoroutine = null;
+            StopCoroutine(_moveCoroutine);
+            _moveCoroutine = null;
         }
     }
     #endregion
@@ -195,16 +200,16 @@ public class StandardSheep : CharacterObject, IInteractable
     #region State.Work
     private void Work_Enter()
     {
-        Debug.Log("일하는중~");
-        moveTween.Pause();
-        GetComponent<SpriteRenderer>().color = Color.red;
-        //StartCoroutine(WorkToMoveCoroutine());
+        _moveTween.Pause();
+        _spriteRenderer.color = Color.red;
+        _workCoroutine = StartCoroutine(WorkProcess());
     }
-
-    private IEnumerator WorkToMoveCoroutine()
+    private IEnumerator WorkProcess()
     {
-        yield return new WaitForSeconds(5);
-        //fsm.ChangeState(SheepState.Move);
+        yield return new WaitForSeconds(_workTime);
+        //작업 끝날 시 Idle로 전환한다.
+        _isWorkable = false;
+        _fsm.ChangeState(SheepState.Move);
     }
 
     private void Work_Execute()
@@ -215,12 +220,13 @@ public class StandardSheep : CharacterObject, IInteractable
     private void Work_Exit()
     {
         // Work 상태 종료 시 행동
-        GetComponent<SpriteRenderer>().color = Color.white;
-        moveTween.Play();
+        _spriteRenderer.color = Color.white;
+        _moveTween.Play();
+
+        // 코루틴 테스트
+        StopCoroutine(_workCoroutine);
+        _workCoroutine = null;
     }
-
-
-
 
     #endregion
 }

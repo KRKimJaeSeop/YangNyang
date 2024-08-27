@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0a438e45c059f6498f93610e3254309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speechBubble: {fileID: 0}
-  instanceId: 0
+  _spriteRenderer: {fileID: 6605216626103922150}
+  _speechBubble: {fileID: 0}
 --- !u!61 &1047288387668556183
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -20,19 +20,19 @@ public class FloatingJoystick : MonoBehaviour
 
     [Header("[Settings]")]
     [SerializeField, Tooltip("본체 이미지")]
-    private Image imgJoystick;
+    private Image _imgJoystick;
     [SerializeField, Tooltip("손잡이 이미지")]
-    private Image imgKnob;
+    private Image _imgKnob;
 
     [SerializeField, Tooltip("1080x2340 기준 sizeDelta")]
-    private Vector2 originalJoystickSizeDelta;
+    private Vector2 _originalJoystickSizeDelta;
     [SerializeField, Tooltip("1080x2340 기준 sizeDelta")]
-    private Vector2 originalKnobSizeDelta;
+    private Vector2 _originalKnobSizeDelta;
 
     [SerializeField, Tooltip("조이스틱 보여질 때 이벤트")]
-    private UnityEvent onShow;
+    private UnityEvent _onShow;
     [SerializeField, Tooltip("조이스틱 숨겨질 때 이벤트")]
-    private UnityEvent onHide;
+    private UnityEvent _onHide;
 
     private RectTransform _trJoystick;
     private RectTransform _trKnob;
@@ -49,8 +49,8 @@ public class FloatingJoystick : MonoBehaviour
     {
         SetRectTransform();
 
-        _trJoystick = imgJoystick.rectTransform;
-        _trKnob = imgKnob.rectTransform;
+        _trJoystick = _imgJoystick.rectTransform;
+        _trKnob = _imgKnob.rectTransform;
 
     }
     private void Start()
@@ -89,13 +89,13 @@ public class FloatingJoystick : MonoBehaviour
 
         var resolutionDifferencePercent = ((Screen.width + Screen.height) / (1080f + 2340f)) * 100; // new Vector2(Screen.width / 1080f, Screen.height / 2340f) * 100;
 
-        imgJoystick.rectTransform.anchorMin = Vector2.zero;
-        imgJoystick.rectTransform.anchorMax = Vector2.zero;
-        imgJoystick.rectTransform.sizeDelta = originalJoystickSizeDelta * resolutionDifferencePercent * 0.01f;
+        _imgJoystick.rectTransform.anchorMin = Vector2.zero;
+        _imgJoystick.rectTransform.anchorMax = Vector2.zero;
+        _imgJoystick.rectTransform.sizeDelta = _originalJoystickSizeDelta * resolutionDifferencePercent * 0.01f;
 
-        imgKnob.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-        imgKnob.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-        imgKnob.rectTransform.sizeDelta = originalKnobSizeDelta * resolutionDifferencePercent * 0.01f;
+        _imgKnob.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        _imgKnob.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        _imgKnob.rectTransform.sizeDelta = _originalKnobSizeDelta * resolutionDifferencePercent * 0.01f;
     }
     private void HandleStart(Vector2 screenPosition)
     {
@@ -105,7 +105,7 @@ public class FloatingJoystick : MonoBehaviour
         _trKnob.anchoredPosition = Vector2.zero;
 
         EnableJoystick(true);
-        onShow?.Invoke();
+        _onShow?.Invoke();
         OnUpdateMovement?.Invoke(_movementAmount);
     }
     private void HandleMove(Vector2 screenPosition, Vector2 previousScreenPosition)
@@ -133,14 +133,14 @@ public class FloatingJoystick : MonoBehaviour
         _trKnob.anchoredPosition = Vector2.zero;
 
         EnableJoystick(false);
-        onHide?.Invoke();
+        _onHide?.Invoke();
         OnUpdateMovement?.Invoke(_movementAmount);
     }
     public void EnableJoystick(bool enable)
     {
         IsEnabled = enable;
-        imgJoystick.enabled = enable;
-        imgKnob.enabled = enable;
+        _imgJoystick.enabled = enable;
+        _imgKnob.enabled = enable;
     }
 
     /// <summary>

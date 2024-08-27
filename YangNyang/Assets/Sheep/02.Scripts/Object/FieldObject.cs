@@ -9,7 +9,10 @@ public class FieldObject : MonoBehaviour
     protected Transform _transform;
     protected Rigidbody2D _rb2D;
     // 종료시 콜백.
-    protected Action cbDisable;
+    protected Action _cbDisable;
+
+    [SerializeField]
+    protected SpriteRenderer _spriteRenderer;
 
     public int InstanceID { get; private set; }
 
@@ -40,11 +43,11 @@ public class FieldObject : MonoBehaviour
     public void EnableGameObject(Action cbDisable = null)
     {
         this.gameObject.SetActive(true);
-        this.cbDisable = cbDisable;
+        this._cbDisable = cbDisable;
     }
     public void DisableGameObject()
     {
-        cbDisable?.Invoke();
+        _cbDisable?.Invoke();
         this.gameObject.SetActive(false);
     }
 

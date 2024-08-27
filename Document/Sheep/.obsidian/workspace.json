@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "기획/1.게임 플레이 플로우.md",
+                "file": "작업 일지/2024-08-27.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "기획/1.게임 플레이 플로우.md",
+                "file": "작업 일지/2024-08-27.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "기획/1.게임 플레이 플로우.md",
+                "file": "작업 일지/2024-08-27.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "기획/1.게임 플레이 플로우.md"
+                "file": "작업 일지/2024-08-27.md"
               }
             }
           }
@@ -161,17 +161,17 @@
   },
   "active": "d95996a8784b7b48",
   "lastOpenFiles": [
-    "작업 일지/2024-08-27.md",
-    "작업 일정/작업 목록.md",
-    "작업 일정/작업 계획.md",
     "작업 일지/2024-08-26.md",
-    "기획/1.게임 플레이 플로우.md",
-    "기획/0.기획서.md",
-    "기획/2.게임 스토리.md",
     "작업 일지/2024-08-25.md",
     "작업 일지/2024-08-24.md",
     "작업 일지/2024-08-23.md",
     "작업 일지/2024-08-22.md",
+    "작업 일지/2024-08-27.md",
+    "기획/1.게임 플레이 플로우.md",
+    "작업 일정/작업 목록.md",
+    "작업 일정/작업 계획.md",
+    "기획/0.기획서.md",
+    "기획/2.게임 스토리.md",
     "작업 일정",
     "기획/0.메모.md",
     "기획/1.게임 플로우.md",

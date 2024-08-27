@@ -12,12 +12,12 @@ public abstract class CharacterObject : FieldObject, IMovable
     #endregion
 
     [SerializeField]
-    private GameObject speechBubble;
+    private GameObject _speechBubble;
     //public AnimationStateController AnimStateController { get { return animStateController; } }
 
 
     /// <summary>
-    /// 필요한 상태들을 정의한다.
+    /// 필요한 상태와 각 상태마다 실행할 함수를 초기화한다.
     /// </summary>
     protected abstract void InitializeStates();
 
