@@ -64,6 +64,7 @@ public class StandardSheep : CharacterObject, IInteractable
         fsm.ChangeState(SheepState.Move);
     }
 
+    #region IInteractable
     public InteractObjectInfo GetObjectInfo()
     {
         return new InteractObjectInfo(FieldObjectType.Type.Sheep, InstanceID);
@@ -74,16 +75,21 @@ public class StandardSheep : CharacterObject, IInteractable
     /// </summary>
     public virtual void EnterInteraction()
     {
-        Debug.Log("양 작업 시작");
+        Debug.Log($"[{instanceId}] 양 작업 시작");
         fsm.ChangeState(SheepState.Work);
+    }
+    public void StayInteraction()
+    {
+        Debug.Log($"[{instanceId}] 양 작업 중");
+
     }
 
     public void ExitInteraction()
     {
-        Debug.Log("양 작업 탈출");
+        Debug.Log($"[{instanceId}] 양 작업 탈출");
         fsm.ChangeState(SheepState.Move);
     }
-
+    #endregion
 
     #region State.None 
     private void None_Enter()
@@ -162,9 +168,8 @@ public class StandardSheep : CharacterObject, IInteractable
             // 0.5초마다 검사
             yield return new WaitForSeconds(1f);
             // 확률적으로 Idle 상태로 전환
-            if ((!hasBeenIdle) && Random.value < 0.2f) // 20% 확률로 Idle 상태로 전환
+            if ((!hasBeenIdle) && Random.value < 0.1f) // 10% 확률로 Idle 상태로 전환
             {
-                Debug.Log("잠깐 멈춰");
                 moveTween.Pause();
                 fsm.ChangeState(SheepState.Idle);
                 yield break;

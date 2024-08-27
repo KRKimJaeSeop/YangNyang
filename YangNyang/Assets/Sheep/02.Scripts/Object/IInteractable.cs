@@ -38,12 +38,18 @@ public interface IInteractable
     InteractObjectInfo GetObjectInfo();
 
     /// <summary>
-    /// 플레이어와 닿았을때 실행시킬 함수다.
+    /// 플레이어와 처음 접촉한 순간 실행 될 함수다.
     /// </summary>
     void EnterInteraction();
 
     /// <summary>
-    /// 플레이어와 떨어질때 실행시킬 함수다.
+    /// 플레이어와 접촉하는 중에 계속 실행 될 함수다.
+    /// </summary>
+    void StayInteraction();
+
+
+    /// <summary>
+    /// 플레이어와 접촉이 처음 해제되는 순간 실행 될 함수다.
     /// </summary>
     void ExitInteraction();
 

@@ -8,6 +8,6 @@ public class EventSheep : StandardSheep
     public override void EnterInteraction()
     {
         base.EnterInteraction();
-        Debug.Log("±§∞Ì Ω√√ª");
+        //Debug.Log("±§∞Ì Ω√√ª");
     }
 }

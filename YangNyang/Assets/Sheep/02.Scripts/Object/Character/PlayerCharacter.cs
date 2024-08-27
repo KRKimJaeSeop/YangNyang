@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCharacter : CharacterObject
+public class PlayerCharacter : CharacterObject 
 {
     public enum PlayerState
     {
@@ -43,39 +43,69 @@ public class PlayerCharacter : CharacterObject
     {
         fsm.Update();
     }
-    #region 충돌처리만 한다. IInteractable를 사용하여 상호작용오브젝트의 종류가 늘어도 이부분은 수정할 필요 없다.
+
+    #region 충돌 처리 메소드. 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IInteractable interactableObject = collision.GetComponent<IInteractable>();
-        if (interactableObject != null && currentInteractObjectInfo.IsEmpty())
+        if (currentInteractObjectInfo.IsEmpty())
         {
-            Interact(interactableObject.GetObjectInfo());
-            interactableObject.EnterInteraction();            
+            IInteractable interactableObject = collision.GetComponent<IInteractable>();
+            if (interactableObject != null)
+            {
+                EnterInteract(interactableObject.GetObjectInfo());
+                interactableObject.EnterInteraction();
+            }
         }
-      
+
     }
+  
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        IInteractable interactableObject = collision.GetComponent<IInteractable>();
+        if (interactableObject != null &&
+             currentInteractObjectInfo.IsSameObject(interactableObject.GetObjectInfo()))
+        {
+            StayInteraction(interactableObject.GetObjectInfo());
+            interactableObject.StayInteraction();
+        }
+
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         IInteractable interactableObject = collision.GetComponent<IInteractable>();
-        if (interactableObject != null && 
+        if (interactableObject != null &&
             currentInteractObjectInfo.IsSameObject(interactableObject.GetObjectInfo()))
         {
-            currentInteractObjectInfo.SetEmpty();
+            ExitInteraction(interactableObject.GetObjectInfo());
             interactableObject.ExitInteraction();
         }
-       
     }
-    #endregion
+
+  
 
     /// <summary>
     /// 받은 InteractObjectInfo에 따라 플레이어의 상호작용을 결정한다.
     /// </summary>
     /// <param name="_info"></param>
-    private void Interact(InteractObjectInfo _info)
+    private void EnterInteract(InteractObjectInfo _info)
     {
         currentInteractObjectInfo = _info;
         // currentInteractObjectInfo 에 따라 다른 행동을 하도록 한다.
     }
+    public void StayInteraction(InteractObjectInfo _info)
+    {
+        Debug.Log($"플레이어 작업 중");
+
+    }
+    public void ExitInteraction(InteractObjectInfo _info)
+    {
+        currentInteractObjectInfo = _info;
+        currentInteractObjectInfo.SetEmpty();
+
+    }
+    #endregion
 
 
 

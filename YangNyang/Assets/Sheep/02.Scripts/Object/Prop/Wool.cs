@@ -21,6 +21,11 @@ public class Wool : FieldObject, IMovable, IInteractable
         ObjectPool.Instance.Push(gameObject.name, this.gameObject);
         // ÁÖ¿öÁü
     }
+    public void StayInteraction()
+    {
+
+    }
+
 
     public void ExitInteraction()
     {
