@@ -1,5 +1,4 @@
 using DG.Tweening;
-using FieldObjectType;
 using System;
 using UnityEngine;
 
@@ -12,12 +11,19 @@ public class Wool : FieldObject, IMovable, IInteractable
     /// <param name="moveSpeed"></param>
     public Tween MoveToPosition(Vector2 targetPosition, float moveSpeed, Action callback = null)
     {
+        callback = () =>
+        {
+            _collider2D.isTrigger = true;
+
+        };
+
         //dotween 실행 후 떨어지기
-        return null;
+        return transform.DOJump(targetPosition, moveSpeed, 1, 1).OnComplete(() => { _collider2D.isTrigger = true; });
     }
 
     public void EnterInteraction()
     {
+        _collider2D.isTrigger = false;
         ObjectPool.Instance.Push(gameObject.name, this.gameObject);
         // 주워짐
     }

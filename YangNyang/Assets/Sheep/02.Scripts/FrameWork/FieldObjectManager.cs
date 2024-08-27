@@ -1,6 +1,6 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// 필드에 배치된 오브젝트들을 관리한다.
@@ -20,9 +20,13 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     public Transform sheepSpawnPosition;
     //[SerializeField]
     public Transform sheepArrivalPosition;
+    [SerializeField]
+    private Transform _woolDropBottomLeftCorner;
+    [SerializeField]
+    private Transform _woolDropTopRightCorner;
 
-
-    private WaitForSeconds _wfs = new WaitForSeconds(2f);
+    public int jumpPower=10;
+    private WaitForSeconds _wfs = new WaitForSeconds(1f);
 
     private void Awake()
     {
@@ -34,12 +38,7 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     void Start()
     {
         StartCoroutine(SpawnSheepCoroutine());
-        for (int i = 0; i < 10; i++)
-        {
-            var go = ObjectPool.Instance.Pop("Wool").GetComponent<Wool>();
-            go.EnableGameObject();
-            go.SetPosition(new Vector2(-5, 0));
-        }
+  
     }
 
     IEnumerator SpawnSheepCoroutine()
@@ -74,4 +73,17 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         go.Spawn(sheepSpawnPosition.position);
 
     }
+
+    public void SpawnWool(Vector2 startPosition)
+    {
+        float randomX = Random.Range(_woolDropBottomLeftCorner.position.x, _woolDropTopRightCorner.position.x);
+        float randomY = Random.Range(_woolDropBottomLeftCorner.position.y, _woolDropTopRightCorner.position.y);
+
+        var go = (ObjectPool.Instance.Pop("Wool")).GetComponent<Wool>();
+        go.EnableGameObject();
+         //go.SetPosition(startPosition);
+        go.transform.position = startPosition;
+        go.MoveToPosition(new Vector2(randomX, randomY), jumpPower);
+    }
+
 }

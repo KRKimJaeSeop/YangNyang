@@ -208,13 +208,23 @@ public class StandardSheep : CharacterObject, IInteractable
     {
         yield return new WaitForSeconds(_workTime);
         //작업 끝날 시 Idle로 전환한다.
-        _isWorkable = false;
-        _fsm.ChangeState(SheepState.Move);
+        WorkCompletet();
     }
+    private void WorkCompletet()
+    {
+        // 양털 뽑기
+        FieldObjectManager.Instance.SpawnWool(this.transform.position);
 
+        // 양털 벗은 이미지로 변환
+
+        //상태 전환
+        _isWorkable = false;
+        _fsm.ChangeState(SheepState.Move);       
+    }
     private void Work_Execute()
     {
         // Work 상태에서의 행동
+        
     }
 
     private void Work_Exit()

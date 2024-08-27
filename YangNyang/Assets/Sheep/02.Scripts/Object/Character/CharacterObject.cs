@@ -29,6 +29,7 @@ public abstract class CharacterObject : FieldObject, IMovable
     /// <param name="time"></param>
     public Tween MoveToPosition(Vector2 targetPosition, float time, Action callback = null)
     {
+
         return transform.DOMove(targetPosition, time).SetEase(Ease.Linear).OnComplete(() => { callback(); });
     }
 

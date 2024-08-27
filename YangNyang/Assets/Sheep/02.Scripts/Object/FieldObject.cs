@@ -8,6 +8,8 @@ public class FieldObject : MonoBehaviour
 {
     protected Transform _transform;
     protected Rigidbody2D _rb2D;
+    [SerializeField]
+    protected Collider2D _collider2D;
     // 종료시 콜백.
     protected Action _cbDisable;
 
