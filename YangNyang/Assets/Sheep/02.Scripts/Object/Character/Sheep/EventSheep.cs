@@ -8,6 +8,6 @@ public class EventSheep : StandardSheep
     public override void EnterSingleInteraction()
     {
         base.EnterSingleInteraction();
-        Debug.Log("이벤트 실행");
+        //Debug.Log("이벤트 실행");
     }
 }

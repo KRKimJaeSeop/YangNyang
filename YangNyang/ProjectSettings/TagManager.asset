@@ -50,6 +50,9 @@ TagManager:
   - name: WorldGizmo
     uniqueID: 3996003117
     locked: 0
+  - name: Interactable
+    uniqueID: 3372811513
+    locked: 0
   - name: Joystick
     uniqueID: 3400633903
     locked: 0
