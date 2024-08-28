@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class EventSheep : StandardSheep
 {
-    public override void EnterInteraction()
+    public override void EnterSingleInteraction()
     {
-        base.EnterInteraction();
+        base.EnterSingleInteraction();
         Debug.Log("이벤트 실행");
     }
 }

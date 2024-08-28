@@ -25,7 +25,6 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     [SerializeField]
     private Transform _woolDropTopRightCorner;
 
-    public int jumpPower=10;
     private WaitForSeconds _wfs = new WaitForSeconds(1f);
 
     private void Awake()
@@ -33,7 +32,7 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         ObjectPool.Instance.LoadPoolItem("StandardSheep", _standardSheep.gameObject, 10);
         ObjectPool.Instance.LoadPoolItem("ADSheep", _adSheep.gameObject, 10);
         ObjectPool.Instance.LoadPoolItem("EventSheep", _eventSheep.gameObject, 10);
-        ObjectPool.Instance.LoadPoolItem("Wool", _wool.gameObject, 10);
+        ObjectPool.Instance.LoadPoolItem("Wool", _wool.gameObject, 100);
     }
     void Start()
     {
@@ -74,16 +73,20 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
 
     }
 
-    public void SpawnWool(Vector2 startPosition)
+    public void SpawnWool(Vector2 startPosition,int amount)
     {
-        float randomX = Random.Range(_woolDropBottomLeftCorner.position.x, _woolDropTopRightCorner.position.x);
-        float randomY = Random.Range(_woolDropBottomLeftCorner.position.y, _woolDropTopRightCorner.position.y);
+        for (int i = 0; i < amount; i++)
+        {
+            float randomX = Random.Range(_woolDropBottomLeftCorner.position.x, _woolDropTopRightCorner.position.x);
+            float randomY = Random.Range(_woolDropBottomLeftCorner.position.y, _woolDropTopRightCorner.position.y);
 
-        var go = (ObjectPool.Instance.Pop("Wool")).GetComponent<Wool>();
-        go.EnableGameObject();
-         //go.SetPosition(startPosition);
-        go.transform.position = startPosition;
-        go.MoveToPosition(new Vector2(randomX, randomY), jumpPower);
+            var go = (ObjectPool.Instance.Pop("Wool")).GetComponent<Wool>();
+            go.EnableGameObject();
+            //go.SetPosition(startPosition);
+            go.transform.position = startPosition;
+            go.MoveToPosition(new Vector2(randomX, randomY), 6);
+        }
+     
     }
 
 }

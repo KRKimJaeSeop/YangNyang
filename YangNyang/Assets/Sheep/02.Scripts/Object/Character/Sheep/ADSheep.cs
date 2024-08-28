@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ADSheep : StandardSheep
 {
-    public override void EnterInteraction()
+    public override void EnterSingleInteraction()
     {
-        base.EnterInteraction();
+        base.EnterSingleInteraction();
         Debug.Log("±§∞Ì Ω√√ª");
     }
 }

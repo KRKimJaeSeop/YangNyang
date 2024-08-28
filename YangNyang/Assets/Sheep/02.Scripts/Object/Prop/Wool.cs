@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Wool : FieldObject, IMovable, IInteractable
 {
+    private bool _isInteractable;
+
     /// <summary>
     /// 지정된 속도로 지정된 위치로 던져지듯 연출하며 이동된다.
     /// </summary>
@@ -11,29 +13,37 @@ public class Wool : FieldObject, IMovable, IInteractable
     /// <param name="moveSpeed"></param>
     public Tween MoveToPosition(Vector2 targetPosition, float moveSpeed, Action callback = null)
     {
-        callback = () =>
-        {
-            _collider2D.isTrigger = true;
-
-        };
-
         //dotween 실행 후 떨어지기
-        return transform.DOJump(targetPosition, moveSpeed, 1, 1).OnComplete(() => { _collider2D.isTrigger = true; });
+        return transform.DOJump(targetPosition, moveSpeed, 1, 1).SetEase(Ease.OutQuad).OnComplete(() => { _isInteractable = true; });
     }
 
-    public void EnterInteraction()
+    public void EnterSingleInteraction()
     {
-        _collider2D.isTrigger = false;
-        ObjectPool.Instance.Push(gameObject.name, this.gameObject);
-        // 주워짐
+        GetWool();
     }
-    public void StayInteraction()
+    public void EnterMultipleInteraction()
     {
+        GetWool();
+    }
+    private void GetWool()
+    {
+        if (_isInteractable)
+        {
+            _isInteractable = false;
+            transform.DOMove(new Vector2(-5.61f, 6.57f), 1).SetEase(Ease.InBack).OnComplete(() =>
+            {
+                ObjectPool.Instance.Push(gameObject.name, this.gameObject);
+            });
+        }
+    }
 
+    public void StaySingleInteraction()
+    {
+      
     }
 
 
-    public void ExitInteraction()
+    public void ExitSingleInteraction()
     {
 
     }

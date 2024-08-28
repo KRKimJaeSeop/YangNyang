@@ -38,19 +38,25 @@ public interface IInteractable
     InteractObjectInfo GetObjectInfo();
 
     /// <summary>
-    /// 플레이어와 처음 접촉한 순간 실행 될 함수다.
+    /// 플레이어와 처음 접촉한 순간 실행 될 함수다. 동시에 하나의 객체만 실행될 수 있다.
     /// </summary>
-    void EnterInteraction();
+    void EnterSingleInteraction();
 
     /// <summary>
-    /// 플레이어와 접촉하는 중에 계속 실행 될 함수다.
+    ///  플레이어와 처음 접촉한 순간 실행 될 함수다. 동시에 여러 개의 객체에서 실행될 수 있다.
     /// </summary>
-    void StayInteraction();
+    void EnterMultipleInteraction();
 
 
     /// <summary>
-    /// 플레이어와 접촉이 처음 해제되는 순간 실행 될 함수다.
+    /// 플레이어와 접촉하는 중에 계속 실행 될 함수다. 동시에 하나의 객체만 실행될 수 있다.
     /// </summary>
-    void ExitInteraction();
+    void StaySingleInteraction();
+
+
+    /// <summary>
+    /// 플레이어와 접촉이 처음 해제되는 순간 실행 될 함수다. 동시에 하나의 객체만 실행될 수 있다.
+    /// </summary>
+    void ExitSingleInteraction();
 
 }

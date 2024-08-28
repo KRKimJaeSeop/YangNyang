@@ -23,10 +23,10 @@ public class StandardSheep : CharacterObject, IInteractable
     private bool _hasBeenIdle = false;
     private Coroutine _IdleCoroutine;
     private Coroutine _moveCoroutine;
-    private Tween _moveTween;    
+    private Tween _moveTween;
     // 작업 코루틴
     private Coroutine _workCoroutine;
-    private float _workTime = 3f;
+    private float _workTime = 0.5f;
     // 작업 중간에 탈출하지않고, 완전히 작업을 완료한 경우에만 false가 된다.
     private bool _isWorkable;
 
@@ -78,19 +78,26 @@ public class StandardSheep : CharacterObject, IInteractable
     /// <summary>
     /// 플레이어와 닿을 시 Work 상태로 전환한다.
     /// </summary>
-    public virtual void EnterInteraction()
+    public virtual void EnterSingleInteraction()
     {
         if (_isWorkable)
         {
             _fsm.ChangeState(SheepState.Work);
         }
     }
-    public void StayInteraction()
+    /// <summary>
+    /// 플레이어와 닿았지만 다른 양과 작업중일 시.
+    /// </summary>
+    public void EnterMultipleInteraction()
+    {
+        // 지나갑니다~
+    }
+    public void StaySingleInteraction()
     {
 
     }
 
-    public void ExitInteraction()
+    public void ExitSingleInteraction()
     {
         _fsm.ChangeState(SheepState.Move);
     }
@@ -213,18 +220,18 @@ public class StandardSheep : CharacterObject, IInteractable
     private void WorkCompletet()
     {
         // 양털 뽑기
-        FieldObjectManager.Instance.SpawnWool(this.transform.position);
+        FieldObjectManager.Instance.SpawnWool(this.transform.position, Random.Range(4, 10));
 
         // 양털 벗은 이미지로 변환
 
         //상태 전환
         _isWorkable = false;
-        _fsm.ChangeState(SheepState.Move);       
+        _fsm.ChangeState(SheepState.Move);
     }
     private void Work_Execute()
     {
         // Work 상태에서의 행동
-        
+
     }
 
     private void Work_Exit()
