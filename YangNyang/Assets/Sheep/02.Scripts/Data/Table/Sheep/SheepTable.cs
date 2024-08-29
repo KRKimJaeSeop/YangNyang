@@ -81,7 +81,7 @@ public class SheepTable : BaseTable
             case Sheep.Type.Standard:
                 tbUnit = StandardSheepTableUnit.Create(GenerateNewID(), sheepType, name);
                 break;
-            case Sheep.Type.Buff:
+            case Sheep.Type.WorkBuff:
                 tbUnit = BuffSheepTableUnit.Create(GenerateNewID(), sheepType, name);
                 break;
             default:

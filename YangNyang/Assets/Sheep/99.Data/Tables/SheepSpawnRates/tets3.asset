@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9e7b86ff2e3bee4aac72cebd3163063, type: 3}
-  m_Name: SheepTable
+  m_Script: {fileID: 11500000, guid: 67533b6ead2ed7646869284967cba9d8, type: 3}
+  m_Name: tets3
   m_EditorClassIdentifier: 
   loadJson: 0
   pathJson: 
   lastLoadedTime: 
-  list:
-  - {fileID: 11400000, guid: c1ed62570f0ec3748902794dd7df7688, type: 2}
-  - {fileID: 11400000, guid: 23c7e70a91a670546985da93f9d3571f, type: 2}
-  - {fileID: 11400000, guid: 3562a6def8d184b499f3d5edcd03bc59, type: 2}
+  id: 0
+  icon: {fileID: 0}
+  minExp: 0
+  sheeps: []

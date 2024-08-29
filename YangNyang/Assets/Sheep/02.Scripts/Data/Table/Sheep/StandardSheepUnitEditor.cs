@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class SheepUnitEditor : ChildAssetEditorWindow
+public class StandardSheepUnitEditor : ChildAssetEditorWindow
 {
     [Serializable]
     public class ShowProperty
@@ -39,8 +39,6 @@ public class SheepUnitEditor : ChildAssetEditorWindow
 
             UpdateProperties();
             CommonEditorUI.DrawSeparator(Color.black);
-            //UpdateEnemies();
-            //CommonEditorUI.DrawSeparator(Color.black);
 
             _soUnit.ApplyModifiedProperties(); // Remember to apply modified properties
         }

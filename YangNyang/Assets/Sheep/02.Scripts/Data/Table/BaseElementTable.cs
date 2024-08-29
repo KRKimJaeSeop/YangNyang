@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// id, 아이콘 등 고유의 속성을 가진 테이블이다.
+/// </summary>
 public class BaseElementTable : BaseTable
 {
     public int id;

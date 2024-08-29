@@ -16,11 +16,20 @@ public class EditorMenu : MonoBehaviour
         // 에디터 윈도우 생성
         var window = EditorWindow.GetWindow<CurrencyEditor>(false, "Currency Editor");
     }
-    [MenuItem("[Sheep]/Sheep Editor", false, 101)]
+
+    [MenuItem("[Sheep]/Sheep/Sheep Editor", false, 102)]
     static void OpenSheepEditor()
     {
         // 에디터 윈도우 생성
         var window = EditorWindow.GetWindow<SheepEditor>(false, "Sheep Editor");
+    }
+
+    [MenuItem("[Sheep]/Sheep/Sheep Spawn Rate Editor", false, 103)]
+    static void OpenSheepSpawnRateCallEditor()
+    {
+        // 에디터 윈도우 생성
+        var window = EditorWindow.GetWindow<SheepSpawnRateEditor>(false, "Sheep Spawn Rate Editor");
+        //window.minSize = WINDOWS_MIN_SIZE;
     }
 
 }
