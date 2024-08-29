@@ -32,4 +32,12 @@ public class EditorMenu : MonoBehaviour
         //window.minSize = WINDOWS_MIN_SIZE;
     }
 
+    [MenuItem("[Sheep]/Storage Editor", false, 9999)]
+    private static void OpenEditorWindow()
+    {
+        // 에디터 윈도우 생성
+        var window = EditorWindow.GetWindow<StorageEditor>(false, "Storage Editor");
+        //window.Show();
+    }
+
 }
