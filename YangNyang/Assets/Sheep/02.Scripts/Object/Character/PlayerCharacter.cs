@@ -113,10 +113,10 @@ public class PlayerCharacter : CharacterObject
         currentInteractObjectInfo = _info;
         switch (_info.objectType)
         {
-            case FieldObjectType.Type.WorkableSheep:
+            case FieldObject.Type.WorkableSheep:
                 fsm.ChangeState(PlayerState.Work);
                 break;
-            case FieldObjectType.Type.UnWorkableSheep:
+            case FieldObject.Type.UnWorkableSheep:
                 break;
             default:
                 break;
@@ -137,7 +137,7 @@ public class PlayerCharacter : CharacterObject
         currentInteractObjectInfo = _info;
         switch (_info.objectType)
         {
-            case FieldObjectType.Type.WorkableSheep:
+            case FieldObject.Type.WorkableSheep:
                 fsm.ChangeState(PlayerState.Idle);
                 break;
             default:

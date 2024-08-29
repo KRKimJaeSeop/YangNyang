@@ -63,7 +63,7 @@ public class CurrencyTable : BaseTable
         return list.Find(item => (item.type == Type));
     }
 
-    public Currency.Type GetCurrencyCode(int id)
+   public Currency.Type GetCurrencyType(int id)
     {
         var tbUnit = GetUnit(id);
         if (tbUnit != null)

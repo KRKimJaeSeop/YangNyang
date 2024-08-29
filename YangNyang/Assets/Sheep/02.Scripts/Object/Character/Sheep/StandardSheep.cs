@@ -70,7 +70,7 @@ public class StandardSheep : CharacterObject, IInteractable
     public InteractObjectInfo GetObjectInfo()
     {
         var currentType = _isWorkable ?
-            FieldObjectType.Type.WorkableSheep : FieldObjectType.Type.UnWorkableSheep;
+            FieldObject.Type.WorkableSheep : FieldObject.Type.UnWorkableSheep;
 
         return new InteractObjectInfo(currentType, InstanceID);
     }

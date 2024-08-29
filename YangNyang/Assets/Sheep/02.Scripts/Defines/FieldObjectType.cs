@@ -1,4 +1,4 @@
-namespace FieldObjectType
+namespace FieldObject
 {
     public enum Type
     {

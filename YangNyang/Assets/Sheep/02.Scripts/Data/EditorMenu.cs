@@ -16,5 +16,11 @@ public class EditorMenu : MonoBehaviour
         // 에디터 윈도우 생성
         var window = EditorWindow.GetWindow<CurrencyEditor>(false, "Currency Editor");
     }
+    [MenuItem("[Sheep]/Sheep Editor", false, 101)]
+    static void OpenSheepEditor()
+    {
+        // 에디터 윈도우 생성
+        var window = EditorWindow.GetWindow<SheepEditor>(false, "Sheep Editor");
+    }
 
 }

@@ -2,7 +2,7 @@ using DG.Tweening;
 using System;
 using UnityEngine;
 
-public class Wool : FieldObject, IMovable, IInteractable
+public class Wool : BaseFieldObject, IMovable, IInteractable
 {
     private bool _isInteractable;
 
@@ -50,7 +50,7 @@ public class Wool : FieldObject, IMovable, IInteractable
 
     public InteractObjectInfo GetObjectInfo()
     {
-        return new InteractObjectInfo(FieldObjectType.Type.Wool, InstanceID);
+        return new InteractObjectInfo(FieldObject.Type.Wool, InstanceID);
 
     }
 }

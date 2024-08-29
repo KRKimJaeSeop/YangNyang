@@ -39,9 +39,12 @@ public abstract class ChildAssetEditorWindow : EditorWindow
     {
         if (string.IsNullOrEmpty(_assetPath))
         {
-            Debug.Log($"{GetType()}::{nameof(CheckAndLoadAsset)}: title = {this.titleContent.text}");
+            Debug.Log($"{GetType()}::{nameof(CheckAndLoadAssetWithID)}: title = {this.titleContent.text}");
+            string[] values = this.titleContent.text.Split('&');
+            string name = values[0];
+            int id = int.Parse(values[1]);
 
-            _assetPath = $"{path}{this.titleContent.text}.asset";
+            _assetPath = $"{path}{name}.asset";
             LoadAsset(_assetPath);
         }
     }

@@ -1,24 +1,24 @@
 using System;
-using Type = FieldObjectType.Type;
+using Type = FieldObject.Type;
 
 [Serializable]
 public struct InteractObjectInfo
 {
-    public Type objectType;
+    public FieldObject.Type objectType;
     public int instanceID;
 
-    public InteractObjectInfo(Type _objectType, int _instanceID)
+    public InteractObjectInfo(FieldObject.Type _objectType, int _instanceID)
     {
         objectType = _objectType;
         instanceID = _instanceID;
     }
     public bool IsEmpty()
     {
-        return (objectType == Type.None && instanceID == 0);
+        return (objectType == FieldObject.Type.None && instanceID == 0);
     }
     public void SetEmpty()
     {
-        objectType = Type.None;
+        objectType = FieldObject.Type.None;
         instanceID = 0;
     }
     public bool IsSameIDObject(InteractObjectInfo compareObject)

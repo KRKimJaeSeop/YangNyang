@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 필드에 배치되는 물리를 가진 오브젝트다.
 /// </summary>
-public class FieldObject : MonoBehaviour
+public class BaseFieldObject : MonoBehaviour
 {
     protected Transform _transform;
     protected Rigidbody2D _rb2D;

@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 말풍선,상태머신,애니메이션을 쓰는 캐릭터의 오브젝트의 부모다.
 /// </summary>
-public abstract class CharacterObject : FieldObject, IMovable
+public abstract class CharacterObject : BaseFieldObject, IMovable
 {
     #region Animation States
     public readonly string ANIM_IDLE = "Idle";

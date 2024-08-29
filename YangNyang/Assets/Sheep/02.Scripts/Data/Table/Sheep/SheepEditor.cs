@@ -5,9 +5,9 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-public class CurrencyEditor : EditorWindow
+public class SheepEditor : EditorWindow
 {
-    private const string EDITORPREFS_CURRENCY_EDITOR = "Sheep_CurrencyEditor";
+    private const string EDITORPREFS_VISITOR_EDITOR = "Sheep_SheepEditor";
 
     [Serializable]
     public class ShowProperty
@@ -26,23 +26,35 @@ public class CurrencyEditor : EditorWindow
     private Vector2 _scrollPos;
     private EditorDataProperty _editorData = new EditorDataProperty();
 
-    private CurrencyTable _table;
+    private SheepTable _table;
     private SerializedObject _soTable;
-    private CurrencyTableUnit _tbUnit;
+    private SheepTableUnit _tbUnit;
     private ReorderableList _reorderable;
 
-    private Currency.Type _newCurrencyType = Currency.Type.None;
+    private Sheep.Type _currType = Sheep.Type.None;
+    private string _newUnitName = string.Empty;
 
+    //[MenuItem("Sample/Sample Editor", false, 3)]
+    //static void ShowEditorWindow()
+    //{
+    //    // 에디터 윈도우 생성
+    //    SheepEditorWindow window = (SheepEditorWindow)GetWindow(typeof(SheepEditorWindow));
+    //}
 
     void OnEnable()
     {
-        if (EditorPrefs.HasKey(EDITORPREFS_CURRENCY_EDITOR))
+        if (EditorPrefs.HasKey(EDITORPREFS_VISITOR_EDITOR))
         {
-            string strData = EditorPrefs.GetString(EDITORPREFS_CURRENCY_EDITOR);
+            string strData = EditorPrefs.GetString(EDITORPREFS_VISITOR_EDITOR);
             _editorData = JsonUtility.FromJson<EditorDataProperty>(strData);
 
             LoadAsset(_editorData.tablePath);
         }
+
+        //// "target" can be any class derrived from ScriptableObject 
+        //// (could be EditorWindow, MonoBehaviour, etc)
+        //ScriptableObject target = this;
+        //_soTarget = new SerializedObject(target);
     }
 
     void OnGUI()
@@ -56,9 +68,9 @@ public class CurrencyEditor : EditorWindow
         {
             _soTable.Update();
 
-            UpdateProperties();
+            UpdatePlayModeProperties();
             CommonEditorUI.DrawSeparator(Color.black);
-            UpdateTable();
+            UpdateSheepTable();
             CommonEditorUI.DrawSeparator(Color.black);
 
             _soTable.ApplyModifiedProperties(); // Remember to apply modified properties
@@ -71,14 +83,14 @@ public class CurrencyEditor : EditorWindow
     private void SaveEditorData()
     {
         string strData = JsonUtility.ToJson(_editorData);
-        EditorPrefs.SetString(EDITORPREFS_CURRENCY_EDITOR, strData);
+        EditorPrefs.SetString(EDITORPREFS_VISITOR_EDITOR, strData);
     }
 
 
     #region File Menu
     bool LoadAsset(string path)
     {
-        _table = AssetDatabase.LoadAssetAtPath(path, typeof(CurrencyTable)) as CurrencyTable;
+        _table = AssetDatabase.LoadAssetAtPath(path, typeof(SheepTable)) as SheepTable;
         if (_table != null)
         {
             // set serialized object
@@ -94,9 +106,9 @@ public class CurrencyEditor : EditorWindow
         }
         return true;
     }
-    void OpenTable()
+    void OpenSheepListTable()
     {
-        string absPath = EditorUtility.OpenFilePanel("Select Currency Table", "", "asset");
+        string absPath = EditorUtility.OpenFilePanel("Select Sheep Table", "", "asset");
         if (absPath.StartsWith(Application.dataPath))
         {
             string relPath = absPath.Substring(Application.dataPath.Length - "Assets".Length);
@@ -121,16 +133,16 @@ public class CurrencyEditor : EditorWindow
 
         using (new EditorGUILayout.HorizontalScope())
         {
-            if (GUILayout.Button("Open Currency Table Asset"))
+            if (GUILayout.Button("Open Sheep Table Asset"))
             {
-                OpenTable();
+                OpenSheepListTable();
             }
             if (_table != null)
             {
-                if (GUILayout.Button("Select Currency Table Asset"))
+                if (GUILayout.Button("Select Sheep Table Asset"))
                 {
                     //EditorUtility.FocusProjectWindow();
-                    //Selection.activeObject = _tbCurrency;
+                    //Selection.activeObject = _tbSheep;
                     EditorGUIUtility.PingObject(_table);
                 }
             }
@@ -139,7 +151,7 @@ public class CurrencyEditor : EditorWindow
     #endregion
 
     #region Properties
-    private void UpdateProperties()
+    private void UpdatePlayModeProperties()
     {
         using (var check = new EditorGUI.ChangeCheckScope())
         {
@@ -151,10 +163,10 @@ public class CurrencyEditor : EditorWindow
         if (_editorData.show.properties == false)
             return;
 
-        UpdateCurrencyProperties();
+        UpdateSheepProperties();
     }
 
-    private void UpdateCurrencyProperties()
+    private void UpdateSheepProperties()
     {
         using (var check = new EditorGUI.ChangeCheckScope())
         {
@@ -170,8 +182,8 @@ public class CurrencyEditor : EditorWindow
     }
     #endregion
 
-    #region Table
-    void SetList(CurrencyTable table, SerializedObject so)
+    #region Sheep Table
+    void SetList(SheepTable table, SerializedObject so)
     {
         _tbUnit = null;
 
@@ -185,14 +197,14 @@ public class CurrencyEditor : EditorWindow
         _reorderable.drawHeaderCallback =
             (Rect rect) =>
             {
-                EditorGUI.LabelField(rect, "<Currencies>");
+                EditorGUI.LabelField(rect, "<Sheeps>");
             };
         _reorderable.drawElementCallback =
             (Rect rect, int index, bool isActive, bool isFocused) =>
             {
                 //rect.height = EditorGUIUtility.singleLineHeight;
                 //rect.y += EditorGUIUtility.standardVerticalSpacing;
-                //var element = _reorderbleCurrency.serializedProperty.GetArrayElementAtIndex(index);
+                //var element = _reorderbleSheep.serializedProperty.GetArrayElementAtIndex(index);
                 //EditorGUI.PropertyField(rect, element); // GUIContent.none : 앞의 라벨을 붙이지 않는다.
 
                 float totalWidth = rect.width;
@@ -206,16 +218,17 @@ public class CurrencyEditor : EditorWindow
                 EditorGUI.PropertyField(rect, element, GUIContent.none); // GUIContent.none : 앞의 라벨을 붙이지 않는다.
                 if (element.objectReferenceValue != null) // 오브젝트 값이 있다면.
                 {
-                    var tbUnit = element.objectReferenceValue as CurrencyTableUnit;
+                    var tbUnit = element.objectReferenceValue as SheepTableUnit;
 
                     rect.x += (rect.width + 20);
                     rect.width = 80;
                     if (GUI.Button(rect, "Edit"))
                     {
-                        // 여러개의 창이 뜰 수 있도록 CreateWindow를 사용한다.
-                        // Unit 창에서 타이틀 string으로 파싱할 수 있도록 한다.
-                        CurrencyUnitEditor unitWindow = CreateWindow<CurrencyUnitEditor>($"{tbUnit.name}");
-                        unitWindow.Show();
+                        //// 여러개의 창이 뜰 수 있도록 CreateWindow를 사용한다.
+                        //// Unit 창에서 타이틀 string으로 파싱할 수 있도록 한다.
+                        //SheepUnitEditor unitWindow = CreateWindow<SheepUnitEditor>($"{tbUnit.name}&{tbUnit.id}");
+                        //unitWindow.Show();
+                        CreateChildWindow(tbUnit);
                     }
                 }
             };
@@ -226,9 +239,9 @@ public class CurrencyEditor : EditorWindow
                 var element = _reorderable.serializedProperty.GetArrayElementAtIndex(list.index);
                 if (element.objectReferenceValue != null) // 오브젝트 값이 있다면.
                 {
-                    _tbUnit = element.objectReferenceValue as CurrencyTableUnit;
+                    _tbUnit = element.objectReferenceValue as SheepTableUnit;
 
-                    //EditorWindow win = GetWindow<FacilityLayoutUnitEditorWindow>(true, "FacilityLayout Unit Editor");
+                    //EditorWindow win = GetWindow<SheepLayoutUnitEditorWindow>(true, "SheepLayout Unit Editor");
                     //win.SendEvent(EditorGUIUtility.CommandEvent("Paste"));
                 }
             };
@@ -243,13 +256,13 @@ public class CurrencyEditor : EditorWindow
                     if (element.objectReferenceValue != null) // 오브젝트 값이 있다면.
                     {
                         //// refresh
-                        //ResetFacilityLayoutSerializedObject();
+                        //ResetSheepLayoutSerializedObject();
                     }
                 }
             };
     }
 
-    private void UpdateTable()
+    private void UpdateSheepTable()
     {
         using (var check = new EditorGUI.ChangeCheckScope())
         {
@@ -263,23 +276,26 @@ public class CurrencyEditor : EditorWindow
 
 
         GUILayout.Label("<Create>");
+        _currType = (Sheep.Type)EditorGUILayout.EnumPopup("Sheep Type", _currType);
         using (new EditorGUILayout.HorizontalScope())
         {
-            _newCurrencyType = (Currency.Type)EditorGUILayout.EnumPopup("Currency Type", _newCurrencyType);
-            using (new EditorGUI.DisabledScope(_newCurrencyType == Currency.Type.None))
+            _newUnitName = EditorGUILayout.TextField("Asset Name", _newUnitName);
+            using (new EditorGUI.DisabledScope(string.IsNullOrWhiteSpace(_newUnitName)))
             {
                 if (GUILayout.Button("Create"))
                 {
-                    if (_table.AddNewUnit(_newCurrencyType.ToString(), _newCurrencyType) != null)
+                    if (_table.AddNewUnit(_currType, _newUnitName) != null)
                         EditorUtility.SetDirty(_table);
                     else
                         EditorGUILayout.HelpBox("생성에 실패하였습니다.", MessageType.Error);
+
+                    _newUnitName = string.Empty;
                 }
             }
         }
-        if (_newCurrencyType != Currency.Type.None)
+        if (!string.IsNullOrWhiteSpace(_newUnitName))
         {
-            EditorGUILayout.HelpBox("주의: 이미 존재하고 있는 타입이 있다면 새로운 파일로 대체됩니다."
+            EditorGUILayout.HelpBox("주의: 이미 존재하고 있는 이름과 같다면 새로운 파일로 대체됩니다."
             , MessageType.Warning);
         }
 
@@ -314,6 +330,31 @@ public class CurrencyEditor : EditorWindow
         {
             EditorGUILayout.HelpBox("선택되어 있는 아이템이 없습니다.", MessageType.Info);
         }
+    }
+
+    void CreateChildWindow(SheepTableUnit tbUnit)
+    {
+        // 여러개의 창이 뜰 수 있도록 CreateWindow를 사용한다.
+        // Unit 창에서 타이틀 string으로 파싱할 수 있도록 한다.
+        ChildAssetEditorWindow window = null;
+        switch (tbUnit.type)
+        {
+            case Sheep.Type.None:
+                break;          
+            case Sheep.Type.Standard:
+                window = CreateWindow<SheepUnitEditor>($"{tbUnit.name}&{tbUnit.id}");
+                break;
+            case Sheep.Type.Buff:
+                window = CreateWindow<SheepUnitEditor>($"{tbUnit.name}&{tbUnit.id}");
+                break;
+            default:
+                break;
+        }
+
+        if (window != null)
+            window.Show();
+        else
+            Debug.LogError($"유효하지 않는 방문객종류(Sheep Type) 입니다. tbUnit.type={tbUnit.type}");
     }
     #endregion
 }
