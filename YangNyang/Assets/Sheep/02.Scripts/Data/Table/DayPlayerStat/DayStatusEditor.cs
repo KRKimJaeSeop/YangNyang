@@ -92,7 +92,7 @@ public class DayStatusEditor : EditorWindow
     }
     void OpenTable()
     {
-        string absPath = EditorUtility.OpenFilePanel("Select VisitorCall Table", "", "asset");
+        string absPath = EditorUtility.OpenFilePanel("Select Day Status Table", "", "asset");
         if (absPath.StartsWith(Application.dataPath))
         {
             string relPath = absPath.Substring(Application.dataPath.Length - "Assets".Length);
@@ -131,36 +131,6 @@ public class DayStatusEditor : EditorWindow
         }
     }
     #endregion
-
-    #region Properties
-    private void UpdateProperties()
-    {
-        using (var check = new EditorGUI.ChangeCheckScope())
-        {
-            _editorData.show.properties = GUILayout.Toggle(_editorData.show.properties, "[Properties]");
-
-            if (check.changed)
-                SaveEditorData();
-        }
-        if (_editorData.show.properties == false)
-            return;
-
-        //  UpdateAutoCallProperties();
-    }
-
-    private void UpdateAutoCallProperties()
-    {
-        using (var check = new EditorGUI.ChangeCheckScope())
-        {
-            EditorGUILayout.PropertyField(_soTable.FindProperty("List"), true);
-
-            if (check.changed)
-                EditorUtility.SetDirty(_table);
-        }
-    }
-    #endregion
-
-
 
     #region Table
     void SetList(DayStatusTable table, SerializedObject so)

@@ -8,11 +8,11 @@ public class SheepSpawnRateTable : BaseTable
 {
     [Header("[SheepSpawnRateTable]")]
     [SerializeField, Tooltip("수동 호출")]
-    private List<SheepSpawnRateTableUnit> List = new List<SheepSpawnRateTableUnit>();
+    private List<SheepSpawnRateTableUnit> list = new List<SheepSpawnRateTableUnit>();
 
     public List<SheepSpawnRateTableUnit> GetList()
     {
-        return List;
+        return list;
     }
 
     /// <summary>

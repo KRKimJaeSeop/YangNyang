@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class SheepEditor : EditorWindow
 {
-    private const string EDITORPREFS_VISITOR_EDITOR = "Sheep_SheepEditor";
+    private const string EDITORPREFS_SHEEP_EDITOR = "Sheep_SheepEditor";
 
     [Serializable]
     public class ShowProperty
@@ -43,9 +43,9 @@ public class SheepEditor : EditorWindow
 
     void OnEnable()
     {
-        if (EditorPrefs.HasKey(EDITORPREFS_VISITOR_EDITOR))
+        if (EditorPrefs.HasKey(EDITORPREFS_SHEEP_EDITOR))
         {
-            string strData = EditorPrefs.GetString(EDITORPREFS_VISITOR_EDITOR);
+            string strData = EditorPrefs.GetString(EDITORPREFS_SHEEP_EDITOR);
             _editorData = JsonUtility.FromJson<EditorDataProperty>(strData);
 
             LoadAsset(_editorData.tablePath);
@@ -83,7 +83,7 @@ public class SheepEditor : EditorWindow
     private void SaveEditorData()
     {
         string strData = JsonUtility.ToJson(_editorData);
-        EditorPrefs.SetString(EDITORPREFS_VISITOR_EDITOR, strData);
+        EditorPrefs.SetString(EDITORPREFS_SHEEP_EDITOR, strData);
     }
 
 

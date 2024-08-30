@@ -97,7 +97,7 @@ public class SheepSpawnRateEditor : EditorWindow
     }
     void OpenTable()
     {
-        string absPath = EditorUtility.OpenFilePanel("Select VisitorCall Table", "", "asset");
+        string absPath = EditorUtility.OpenFilePanel("Select Sheep Spawn Rate Table", "", "asset");
         if (absPath.StartsWith(Application.dataPath))
         {
             string relPath = absPath.Substring(Application.dataPath.Length - "Assets".Length);
@@ -143,7 +143,7 @@ public class SheepSpawnRateEditor : EditorWindow
     {
         _tbUnit = null;
 
-        SerializedProperty listProperty = so.FindProperty("List");
+        SerializedProperty listProperty = so.FindProperty("list");
         /// <summary>
         /// ReorderableList 
         /// - https://unityindepth.tistory.com/56

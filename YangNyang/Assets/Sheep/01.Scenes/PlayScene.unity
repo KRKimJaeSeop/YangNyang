@@ -834,6 +834,8 @@ MonoBehaviour:
   _currency: {fileID: 11400000, guid: 929bee8ac682b924c9e6e406cf811080, type: 2}
   _sheep: {fileID: 11400000, guid: 0e3c543d122d0954d8e771766e2a562e, type: 2}
   _sheepSpawnRate: {fileID: 11400000, guid: 37cb7b313484cc9409e4813e06df3d8e, type: 2}
+  _datyStatus: {fileID: 11400000, guid: b0f1c773ac2374f47b2fbe4421fa9dd5, type: 2}
+  _research: {fileID: 11400000, guid: d4d11deba9e90364889ee11555a6ec8b, type: 2}
 --- !u!114 &506786521
 MonoBehaviour:
   m_ObjectHideFlags: 0

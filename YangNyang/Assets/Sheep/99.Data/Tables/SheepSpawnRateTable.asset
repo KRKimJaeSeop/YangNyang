@@ -15,6 +15,6 @@ MonoBehaviour:
   loadJson: 0
   pathJson: 
   lastLoadedTime: 
-  List:
+  list:
   - {fileID: 11400000, guid: 9468f25ad373f814887d79c0459d8b83, type: 2}
   - {fileID: 11400000, guid: bdcc5f34cff4c774cbda0ecb3f3f2238, type: 2}

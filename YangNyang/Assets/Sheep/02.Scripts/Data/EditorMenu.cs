@@ -37,14 +37,12 @@ public class EditorMenu : MonoBehaviour
     {
         // 에디터 윈도우 생성
         var window = EditorWindow.GetWindow<DayStatusEditor>(false, "Day Status Editor");
-        // 테이블 파일 띄우기
-        //Selection.activeObject = AssetDatabase.LoadAssetAtPath(TABLES_PATH + "DayStatusTable.asset", typeof(DayStatusTable));
     }
     [MenuItem("[Sheep]/Research Editor", false, 202)]
     static void SelectResearchTable()
     {
-        // 테이블 파일 띄우기
-        Selection.activeObject = AssetDatabase.LoadAssetAtPath(TABLES_PATH + "ResearchTable.asset", typeof(ResearchTable));
+        // 에디터 윈도우 생성
+        var window = EditorWindow.GetWindow<ResearchEditor>(false, "Research Editor");
     }
 
     [MenuItem("[Sheep]/Storage Editor", false, 9999)]
