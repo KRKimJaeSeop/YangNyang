@@ -27,7 +27,6 @@ public class SheepSpawnRateEditor : EditorWindow
 
     private SheepSpawnRateTable _table;
     private SerializedObject _soTable;
-    private SheepSpawnRateTableUnit _tbUnit;
     private ReorderableList _reorderable;
 
     private List<string> _categoryNames = new List<string>();
@@ -141,8 +140,6 @@ public class SheepSpawnRateEditor : EditorWindow
     #region Table
     void SetList(SheepSpawnRateTable table, SerializedObject so)
     {
-        _tbUnit = null;
-
         SerializedProperty listProperty = so.FindProperty("list");
         /// <summary>
         /// ReorderableList 

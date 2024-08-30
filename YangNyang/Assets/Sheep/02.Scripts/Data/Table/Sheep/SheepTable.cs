@@ -59,6 +59,8 @@ public class SheepTable : BaseTable
         return list.Find(item => (item.type == type));
     }
 
+
+
 #if UNITY_EDITOR
     public int GenerateNewID()
     {

@@ -17,7 +17,7 @@ MonoBehaviour:
   lastLoadedTime: 
   id: 1
   icon: {fileID: 0}
-  minExp: 0
+  requireLevel: 1
   sheeps:
   - id: 0
     weight: 0

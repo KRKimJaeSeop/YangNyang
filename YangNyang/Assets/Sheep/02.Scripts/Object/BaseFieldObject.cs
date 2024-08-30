@@ -4,11 +4,11 @@ using UnityEngine;
 /// <summary>
 /// 필드에 배치되는 물리를 가진 오브젝트다.
 /// </summary>
+ [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class BaseFieldObject : MonoBehaviour
 {
     protected Transform _transform;
     protected Rigidbody2D _rb2D;
-    [SerializeField]
     protected Collider2D _collider2D;
     // 종료시 콜백.
     protected Action _cbDisable;
@@ -24,6 +24,7 @@ public class BaseFieldObject : MonoBehaviour
         gameObject.SetActive(true);
         _transform = this.transform;
         _rb2D = this.GetComponent<Rigidbody2D>();
+        _collider2D = this.GetComponent<Collider2D>();
 
         InstanceID = this.gameObject.GetInstanceID();
     }

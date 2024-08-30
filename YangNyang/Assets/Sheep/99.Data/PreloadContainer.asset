@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f368a86e8845eb24299fd8aec4ebce54, type: 3}
+  m_Name: PreloadContainer
+  m_EditorClassIdentifier: 
+  list:
+  - name: StandardSheep
+    prefab: {fileID: 1895252174086673481, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
+    preloadNum: 30
+  - name: BuffSheep
+    prefab: {fileID: 8236735232467810648, guid: 3811ae678ada36243a532a0be90ebd0b, type: 3}
+    preloadNum: 10
+  - name: EventSheep
+    prefab: {fileID: 8236735232467810648, guid: 8858ef176d09bf242809596e918e2bcd, type: 3}
+    preloadNum: 10
+  - name: Wool
+    prefab: {fileID: 6370111236740729137, guid: d24e748bd65e266468b15834b719cf3c, type: 3}
+    preloadNum: 500

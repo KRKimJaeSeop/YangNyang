@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +8,8 @@ public class SheepSpawnRateTable : BaseTable
     [SerializeField, Tooltip("수동 호출")]
     private List<SheepSpawnRateTableUnit> list = new List<SheepSpawnRateTableUnit>();
 
+    private float _spawnInterval = 1.0f;
+    public float spawnInterval { get { return _spawnInterval; } }
     public List<SheepSpawnRateTableUnit> GetList()
     {
         return list;
@@ -19,9 +19,9 @@ public class SheepSpawnRateTable : BaseTable
     /// 경험치에 맞는 데이터 반환.
     /// </summary>
     /// <param name="callType"></param>
-    /// <param name="exp"></param>
+    /// <param name="level"></param>
     /// <returns></returns>
-    public SheepSpawnRateTableUnit GetUnit(long exp)
+    public SheepSpawnRateTableUnit GetUnit(long level)
     {
         var list = GetList();
         if (list != null)
@@ -29,20 +29,20 @@ public class SheepSpawnRateTable : BaseTable
             int index = 0;
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].Contains(exp))
+                if (list[i].Contains(level))
                     index = i;
                 else
                     break;
 
             }
 
-            Debug.Log($"방문객 호출 그룹 인덱스 : exp({exp}), index({index})");
-
             if (index >= 0)
                 return list[index];
         }
         return null;
     }
+
+
 
 #if UNITY_EDITOR
     public SheepSpawnRateTableUnit AddNewUnit(string name)

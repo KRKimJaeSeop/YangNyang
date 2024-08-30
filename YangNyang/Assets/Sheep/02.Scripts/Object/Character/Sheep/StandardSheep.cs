@@ -8,14 +8,10 @@ public class StandardSheep : CharacterObject, IInteractable
 {
     public enum SheepState
     {
-        // Spawn되기전 초기화만 됐을때, 목적지에 도착해서 Pull될 때의 상태이다.
-        None,
-        // 확률적으로 단 한번 Idle상태가 될 수 있다. 일정시간동안 이동을 멈추고, 다시 Move상태로 전환한다.
-        Idle,
-        // Spawn되고나서의 기본 상태다. 목적지를향해서 계속 이동하고, 단 한 번 확률적으로 Idle상태가 될 수 있다. 목적지에 도달하면 None으로 전환된다.
-        Move,
-        // 플레이어에게 충돌하면 전환된다. 플레이어가 이동해서 충돌에서 빠져나오거나, 정해진 Work시간이 지나면 Move로 전환된다.
-        Work,
+        None,// Spawn되기전 초기화만 됐을때, 목적지에 도착해서 Pull될 때의 상태이다.
+        Idle,// 확률적으로 단 한번 Idle상태가 될 수 있다. 일정시간동안 이동을 멈추고, 다시 Move상태로 전환한다.
+        Move,// Spawn되고나서의 기본 상태다. 목적지를향해서 계속 이동하고, 단 한 번 확률적으로 Idle상태가 될 수 있다. 목적지에 도달하면 None으로 전환된다.
+        Work,// 플레이어에게 충돌하면 전환된다. 플레이어가 이동해서 충돌에서 빠져나오거나, 정해진 Work시간이 지나면 Move로 전환된다.
     }
 
     private StateMachine<SheepState> _fsm;
@@ -154,7 +150,10 @@ public class StandardSheep : CharacterObject, IInteractable
 
     private IEnumerator MoveCoroutine()
     {
-        Vector2 targetPosition = FieldObjectManager.Instance.sheepArrivalPosition.position;
+        Vector2 spawnPosition =
+         FieldObjectManager.Instance.Places.GetPlacePosition(PlaceData.Type.SheepSpawn);
+        Vector2 targetPosition =
+            FieldObjectManager.Instance.Places.GetPlacePosition(PlaceData.Type.SheepExit);
 
         // hasBeenIdle는 한번이라도 확률에 의해 이 코루틴을 탈출해서 Idle상태가 됐었다면 true가 되기 때문에,
         // MoveTween의 중복실행을 막는다.
@@ -162,8 +161,7 @@ public class StandardSheep : CharacterObject, IInteractable
         {
             // rigidBody의 포지션의 계산이 느린것같다. 정확한 원인은 모르겠다.
             // SetPosition이 제대로 되기 전에 이부분의함수가 시작돼서, 제 위치로 세팅될때까지 기다렸다가 Move를 시작한다.
-            Vector2 collectSpawnPosition = FieldObjectManager.Instance.sheepSpawnPosition.position;
-            yield return new WaitUntil(() => _rb2D.position == collectSpawnPosition);
+            yield return new WaitUntil(() => _rb2D.position == spawnPosition);
 
             // 목표 지점까지 이동시켜라.
             _moveTween = MoveToPosition(targetPosition, 5, () =>

@@ -1,92 +1,110 @@
-using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// 필드에 배치된 오브젝트들을 관리한다.
-/// </summary>
+
 public class FieldObjectManager : Singleton<FieldObjectManager>
 {
     [SerializeField]
-    private StandardSheep _standardSheep;
-    [SerializeField]
-    private StandardSheep _adSheep;
-    [SerializeField]
-    private StandardSheep _eventSheep;
-    [SerializeField]
-    private Wool _wool;
+    private PlaceDataContainer _placeDataContainer;
+    public PlaceDataContainer Places { get { return _placeDataContainer; } }
 
-    //[SerializeField]
-    public Transform sheepSpawnPosition;
-    //[SerializeField]
-    public Transform sheepArrivalPosition;
     [SerializeField]
-    private Transform _woolDropBottomLeftCorner;
-    [SerializeField]
-    private Transform _woolDropTopRightCorner;
+    private PreloadContainer _preloadContainer;
+    public PreloadContainer PreloadContainer { get { return _preloadContainer; } }
 
-    private WaitForSeconds _wfs = new WaitForSeconds(1f);
+    private Coroutine _sheepSpawnCoroutine;
+    private Coroutine _buffSheepSpawnIntervalCorouinte;
+
+    private float _variableSheepSpawnInterval;
+
 
     private void Awake()
     {
-        ObjectPool.Instance.LoadPoolItem("StandardSheep", _standardSheep.gameObject, 10);
-        ObjectPool.Instance.LoadPoolItem("ADSheep", _adSheep.gameObject, 10);
-        ObjectPool.Instance.LoadPoolItem("EventSheep", _eventSheep.gameObject, 10);
-        ObjectPool.Instance.LoadPoolItem("Wool", _wool.gameObject, 100);
+        _preloadContainer.Preload();
+        InitializeSheepSpawnCoroutine(true);
     }
-    void Start()
+
+    #region Spawn
+
+    private void InitializeSheepSpawnCoroutine(bool isInitValue)
     {
-        StartCoroutine(SpawnSheepCoroutine());
-  
+        if (_sheepSpawnCoroutine != null)
+            StopCoroutine(_sheepSpawnCoroutine);
+        if (isInitValue)
+            _variableSheepSpawnInterval = GameDataManager.Instance.Tables.SheepSpawnRateTable.spawnInterval;
+
+        _sheepSpawnCoroutine = StartCoroutine(SpawnSheepCoroutine());
     }
+
+    /// <summary>
+    /// 양 스폰 시간 간격에 대해 변화를 준다.
+    /// </summary>
+    /// <param name="increasePercent">퍼센트로 적는다.(ex:30 , 50 , 90)</param>
+    /// <param name="buffSecond"></param>
+    public void SheepSpawnBuff(float increasePercent, float buffSecond)
+    {
+        if (_buffSheepSpawnIntervalCorouinte != null)
+        {
+            StopCoroutine(_buffSheepSpawnIntervalCorouinte);
+        }
+        _buffSheepSpawnIntervalCorouinte =
+            StartCoroutine(BuffSheepSpawnIntervalCorouinte(increasePercent, buffSecond));
+
+        InitializeSheepSpawnCoroutine(false);
+    }
+
+    IEnumerator BuffSheepSpawnIntervalCorouinte(float increasePercent, float buffSecond)
+    {
+        _variableSheepSpawnInterval =
+            GameDataManager.Instance.Tables.SheepSpawnRateTable.spawnInterval -
+            (GameDataManager.Instance.Tables.SheepSpawnRateTable.spawnInterval * (increasePercent / 100));
+
+        yield return new WaitForSeconds(buffSecond);
+
+        InitializeSheepSpawnCoroutine(true);
+    }
+
 
     IEnumerator SpawnSheepCoroutine()
     {
+        var _wfs = new WaitForSeconds(_variableSheepSpawnInterval);
+
         while (true)
         {
-
-            SpawnSheep(Random.Range(1, 4));
+            SpawnSheep();
             yield return _wfs;
         }
     }
 
-    void SpawnSheep(int sheepID)
+    private void SpawnSheep()
     {
-        var spawnObject = "";
-        switch (sheepID)
-        {
-            case 1:
-                spawnObject = "StandardSheep";
-                break;
-            case 2:
-                spawnObject = "ADSheep";
-                break;
-            case 3:
-                spawnObject = "EventSheep";
-                break;
-            default:
-                break;
+        var level = GameDataManager.Instance.Storages.User.ResearchLevel;
+        var tableUnit = GameDataManager.Instance.Tables.SheepSpawnRateTable.GetUnit(level);
+        Debug.Log($"{_variableSheepSpawnInterval}초 마다 {tableUnit.name} 중에서 골라서 생성"); ;
 
-        }
-        var go = (ObjectPool.Instance.Pop(spawnObject)).GetComponent<StandardSheep>();
-        go.Spawn(sheepSpawnPosition.position);
-
+        //var go = (ObjectPool.Instance.Pop(spawnObject)).GetComponent<StandardSheep>();
+        //go.Spawn(Places.GetPlacePosition(PlaceData.Type.SheepSpawn));
     }
 
-    public void SpawnWool(Vector2 startPosition,int amount)
+    public void SpawnWool(Vector2 startPosition, int amount)
     {
         for (int i = 0; i < amount; i++)
         {
-            float randomX = Random.Range(_woolDropBottomLeftCorner.position.x, _woolDropTopRightCorner.position.x);
-            float randomY = Random.Range(_woolDropBottomLeftCorner.position.y, _woolDropTopRightCorner.position.y);
+
+            float randomX = Random.Range(Places.GetPlacePosition
+                (PlaceData.Type.WoolDropZone_BottomLeftCorner).x,
+                Places.GetPlacePosition(PlaceData.Type.WoolDropZone_TopRightCorner).x);
+
+            float randomY = Random.Range(Places.GetPlacePosition
+             (PlaceData.Type.WoolDropZone_BottomLeftCorner).y,
+             Places.GetPlacePosition(PlaceData.Type.WoolDropZone_TopRightCorner).y);
 
             var go = (ObjectPool.Instance.Pop("Wool")).GetComponent<Wool>();
             go.EnableGameObject();
-            //go.SetPosition(startPosition);
             go.transform.position = startPosition;
             go.MoveToPosition(new Vector2(randomX, randomY), 6);
         }
-     
-    }
 
+    }
+    #endregion
 }

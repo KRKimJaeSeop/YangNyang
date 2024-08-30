@@ -8,14 +8,14 @@ public class SheepSpawnRateTableUnit : BaseElementTable
     public const string ASSET_PATH = "Assets/Sheep/99.Data/Tables/SheepSpawnRates/";
 
     [Header("[SheepSpawnRateTableUnit]")]
-    [Tooltip("최소 경험치")]
-    public long minExp;
+    [Tooltip("필요 레벨")]
+    public long requireLevel;
     [Tooltip("양 리스트")]
     public Sheep.Weight[] sheeps;
 
     public bool Contains(long exp)
     {
-        return (exp >= minExp);
+        return (exp >= requireLevel);
     }
 
 #if UNITY_EDITOR

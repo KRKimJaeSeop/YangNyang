@@ -10,6 +10,13 @@ public class EditorMenu : MonoBehaviour
     private const string TABLES_PATH = "Assets/Sheep/99.Data/Tables/";
 
 
+    [MenuItem("[Sheep]/Start Data", false, 11)]
+    static void SelectStartData()
+    {
+        Selection.activeObject = AssetDatabase.LoadAssetAtPath(TABLES_PATH + "StartDatas/StartupData.asset", typeof(StartData));
+
+    }
+
     [MenuItem("[Sheep]/Currency Editor", false, 101)]
     static void OpenCurrencyEditor()
     {
@@ -29,7 +36,6 @@ public class EditorMenu : MonoBehaviour
     {
         // 에디터 윈도우 생성
         var window = EditorWindow.GetWindow<SheepSpawnRateEditor>(false, "Sheep Spawn Rate Editor");
-        //window.minSize = WINDOWS_MIN_SIZE;
     }
 
     [MenuItem("[Sheep]/Day Status Editor", false, 201)]

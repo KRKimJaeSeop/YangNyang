@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ADSheep : StandardSheep
+public class BuffSheep : StandardSheep
 {
     public override void EnterSingleInteraction()
     {
