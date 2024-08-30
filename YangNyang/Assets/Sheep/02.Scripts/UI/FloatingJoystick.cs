@@ -112,8 +112,9 @@ public class FloatingJoystick : MonoBehaviour
     {
         Vector2 knobPosition;
         float maxMovement = _trJoystick.sizeDelta.x * 0.5f;
+        float maxMovementSqr = maxMovement * maxMovement; // 제곱된 최대 이동 거리
 
-        if (Vector2.Distance(screenPosition, _trJoystick.anchoredPosition) > maxMovement)
+        if ((screenPosition - _trJoystick.anchoredPosition).sqrMagnitude > maxMovementSqr)
         {
             knobPosition = (screenPosition - _trJoystick.anchoredPosition).normalized * maxMovement;
         }
