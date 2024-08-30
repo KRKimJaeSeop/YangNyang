@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adcc22e9612b2ee42b34897e401ccd76, type: 3}
   m_Name: CurrencyTable
   m_EditorClassIdentifier: 
-  id: 0
-  icon: {fileID: 0}
   loadJson: 0
   pathJson: 
   lastLoadedTime: 
   list:
   - {fileID: 11400000, guid: eb27febe20da1db49bceda3b980390f6, type: 2}
+  - {fileID: 11400000, guid: 469068f56b9331b4fb36d6035187e2f7, type: 2}

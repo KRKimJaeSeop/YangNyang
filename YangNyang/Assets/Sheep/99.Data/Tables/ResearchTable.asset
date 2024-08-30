@@ -9,13 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67533b6ead2ed7646869284967cba9d8, type: 3}
-  m_Name: test4
+  m_Script: {fileID: 11500000, guid: 4f208e3070f937042908fba99bb5148d, type: 3}
+  m_Name: ResearchTable
   m_EditorClassIdentifier: 
   loadJson: 0
   pathJson: 
   lastLoadedTime: 
-  id: 0
-  icon: {fileID: 0}
-  minExp: 0
-  sheeps: []
+  list:
+  - Level: 0
+    EXP: 0
+  - Level: 0
+    EXP: 0
+  - Level: 0
+    EXP: 0
+  - Level: 0
+    EXP: 0
+  - Level: 0
+    EXP: 0
+  - Level: 0
+    EXP: 0

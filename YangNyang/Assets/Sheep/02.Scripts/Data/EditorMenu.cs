@@ -32,6 +32,21 @@ public class EditorMenu : MonoBehaviour
         //window.minSize = WINDOWS_MIN_SIZE;
     }
 
+    [MenuItem("[Sheep]/Day Status Editor", false, 201)]
+    static void SelectDayStatusTable()
+    {
+        // 에디터 윈도우 생성
+        var window = EditorWindow.GetWindow<DayStatusEditor>(false, "Day Status Editor");
+        // 테이블 파일 띄우기
+        //Selection.activeObject = AssetDatabase.LoadAssetAtPath(TABLES_PATH + "DayStatusTable.asset", typeof(DayStatusTable));
+    }
+    [MenuItem("[Sheep]/Research Editor", false, 202)]
+    static void SelectResearchTable()
+    {
+        // 테이블 파일 띄우기
+        Selection.activeObject = AssetDatabase.LoadAssetAtPath(TABLES_PATH + "ResearchTable.asset", typeof(ResearchTable));
+    }
+
     [MenuItem("[Sheep]/Storage Editor", false, 9999)]
     private static void OpenEditorWindow()
     {

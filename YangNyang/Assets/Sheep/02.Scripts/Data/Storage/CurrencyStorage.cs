@@ -22,20 +22,6 @@ public class CurrencyStorage : BaseStorage
         {
             return new CurrencyData(this.code, this.amount);
         }
-        public bool SetDataFromDB(CurrencyData dbData)
-        {
-            if (dbData != null)
-            {
-                this.code = dbData.code;
-                this.amount = dbData.amount;
-                return true;
-            }
-            return false;
-        }
-        public CurrencyData ConvertToDBData()
-        {
-            return Clone() as CurrencyData;
-        }
     }
 
     [System.Serializable]
@@ -52,22 +38,7 @@ public class CurrencyStorage : BaseStorage
             clone.currencies = this.currencies.ConvertAll(item => (item.Clone() as CurrencyData));
             return clone;
         }
-        public bool SetDataFromDB(StorageData dbData)
-        {
-            if (dbData != null)
-            {
-                if (dbData.currencies != null)
-                {
-                    this.currencies = dbData.currencies.ConvertAll(item => (item.Clone() as CurrencyData));
-                }
-                return true;
-            }
-            return false;
-        }
-        public StorageData ConvertToDBData()
-        {
-            return Clone() as StorageData;
-        }
+       
     }
 
     private StorageData _data = new StorageData();
@@ -165,27 +136,9 @@ public class CurrencyStorage : BaseStorage
 
     public override void Initialize()
     {
-        //// 레벨업 가능 경험치를 미리 계산해 둔다. 
-        //HunterTable.HunterLevelTableUnit tbNextUnit = MMDataManager.Instance.Tables.Hunter.GetHunterLevelTableUnit(_data.level + 1);
-        //MaxExp = (tbNextUnit != null) ? tbNextUnit.exp : 0;
-        //if (MaxExp <= 0) // 최대 레벨이라면 현재 경험치를 0으로 세팅한다.
-        //{
-        //    _data.exp = 0;
-        //    SetDirty();
-        //}
+  
     }
 
-    //public bool IsEmpty()
-    //{
-    //    return _data.IsEmpty();
-    //}
-
-    public bool SetDataFromDB(StorageData dbData)
-    {
-        Clear(); // 파일 데이터 삭제, 시작 데이터 세팅
-        Initialize(); // 데이터 초기화
-        return _data.SetDataFromDB(dbData);
-    }
 
     #region Management
     public CurrencyData GetItem(Currency.Type code)

@@ -56,8 +56,6 @@ public class CurrencyEditor : EditorWindow
         {
             _soTable.Update();
 
-            UpdateProperties();
-            CommonEditorUI.DrawSeparator(Color.black);
             UpdateTable();
             CommonEditorUI.DrawSeparator(Color.black);
 
@@ -129,46 +127,13 @@ public class CurrencyEditor : EditorWindow
             {
                 if (GUILayout.Button("Select Currency Table Asset"))
                 {
-                    //EditorUtility.FocusProjectWindow();
-                    //Selection.activeObject = _tbCurrency;
                     EditorGUIUtility.PingObject(_table);
                 }
             }
         }
     }
     #endregion
-
-    #region Properties
-    private void UpdateProperties()
-    {
-        using (var check = new EditorGUI.ChangeCheckScope())
-        {
-            _editorData.show.properties = GUILayout.Toggle(_editorData.show.properties, "[Properties]");
-
-            if (check.changed)
-                SaveEditorData();
-        }
-        if (_editorData.show.properties == false)
-            return;
-
-        UpdateCurrencyProperties();
-    }
-
-    private void UpdateCurrencyProperties()
-    {
-        using (var check = new EditorGUI.ChangeCheckScope())
-        {
-            //EditorGUILayout.PropertyField(_soTable.FindProperty("adventureRequiredTrainingID"), true);
-            //EditorGUILayout.PropertyField(_soTable.FindProperty("adventureRequiredLanguageID"), true);
-            //EditorGUILayout.PropertyField(_soTable.FindProperty("adventureBGM"), true);
-            //EditorGUILayout.PropertyField(_soTable.FindProperty("adventureContinuePenaltyRate"), true);
-            //EditorGUILayout.PropertyField(_soTable.FindProperty("adventureContinuePrice"), true);
-
-            if (check.changed)
-                EditorUtility.SetDirty(_table);
-        }
-    }
-    #endregion
+   
 
     #region Table
     void SetList(CurrencyTable table, SerializedObject so)
@@ -190,11 +155,6 @@ public class CurrencyEditor : EditorWindow
         _reorderable.drawElementCallback =
             (Rect rect, int index, bool isActive, bool isFocused) =>
             {
-                //rect.height = EditorGUIUtility.singleLineHeight;
-                //rect.y += EditorGUIUtility.standardVerticalSpacing;
-                //var element = _reorderbleCurrency.serializedProperty.GetArrayElementAtIndex(index);
-                //EditorGUI.PropertyField(rect, element); // GUIContent.none : 앞의 라벨을 붙이지 않는다.
-
                 float totalWidth = rect.width;
                 rect.y += EditorGUIUtility.standardVerticalSpacing;
                 rect.height = EditorGUIUtility.singleLineHeight;
@@ -212,8 +172,6 @@ public class CurrencyEditor : EditorWindow
                     rect.width = 80;
                     if (GUI.Button(rect, "Edit"))
                     {
-                        // 여러개의 창이 뜰 수 있도록 CreateWindow를 사용한다.
-                        // Unit 창에서 타이틀 string으로 파싱할 수 있도록 한다.
                         CurrencyUnitEditor unitWindow = CreateWindow<CurrencyUnitEditor>($"{tbUnit.name}");
                         unitWindow.Show();
                     }
@@ -228,8 +186,6 @@ public class CurrencyEditor : EditorWindow
                 {
                     _tbUnit = element.objectReferenceValue as CurrencyTableUnit;
 
-                    //EditorWindow win = GetWindow<FacilityLayoutUnitEditorWindow>(true, "FacilityLayout Unit Editor");
-                    //win.SendEvent(EditorGUIUtility.CommandEvent("Paste"));
                 }
             };
         _reorderable.onChangedCallback =
@@ -243,7 +199,6 @@ public class CurrencyEditor : EditorWindow
                     if (element.objectReferenceValue != null) // 오브젝트 값이 있다면.
                     {
                         //// refresh
-                        //ResetFacilityLayoutSerializedObject();
                     }
                 }
             };

@@ -10,7 +10,9 @@ public class StorageEditor : EditorWindow
     [Serializable]
     public class ShowProperty
     {
-        public bool currency = true;
+        public bool currency = true; 
+        public bool preferences = true;
+        public bool user = true;
     }
     [Serializable]
     public class EditorDataProperty
@@ -26,6 +28,8 @@ public class StorageEditor : EditorWindow
 
 
     // ---- clones
+    public PreferenceStorage.StorageData clonePreference = null;
+    public UserStorage.StorageData cloneUser = null;
     public CurrencyStorage.StorageData cloneCurrency = null;
     // ----
 
@@ -71,6 +75,10 @@ public class StorageEditor : EditorWindow
         if (_soTarget != null)
             _soTarget.Update();
 
+        UpdatePreferences();
+        CommonEditorUI.DrawSeparator();
+        UpdateUser();
+        CommonEditorUI.DrawSeparator();
         UpdateCurrency();
         CommonEditorUI.DrawSeparator();
 
@@ -91,10 +99,110 @@ public class StorageEditor : EditorWindow
     #region EditorMenu
     private void RefreshAllData()
     {
+        RefreshPreferences();
+        RefreshUser();
         RefreshCurrency();
     }
-
     #endregion
+
+    #region Preferences
+    private void RefreshPreferences()
+    {
+        PreferenceStorage.StorageData data = _storageContainer.Preference.Data;
+        clonePreference = data.Clone() as PreferenceStorage.StorageData;
+        GUI.FocusControl(null);
+    }
+
+    private void UpdatePreferences()
+    {
+        using (var check = new EditorGUI.ChangeCheckScope())
+        {
+            _editorData.show.preferences = GUILayout.Toggle(_editorData.show.preferences, "[Preferences]");
+
+            if (check.changed)
+                SaveEditorData();
+        }
+        if (_editorData.show.preferences == false)
+            return;
+
+
+        SerializedProperty property = _soTarget.FindProperty("clonePreference");
+        if (property == null)
+            return;
+        EditorGUILayout.PropertyField(property, true);
+
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            if (GUILayout.Button("Refresh"))
+            {
+                RefreshPreferences();
+            }
+            if (GUILayout.Button("Apply"))
+            {
+                _storageContainer.Preference.Overwrite(clonePreference);
+            }
+            if (GUILayout.Button("Save"))
+            {
+                _storageContainer.Preference.Save();
+            }
+        }
+        if (GUILayout.Button("Clear data"))
+        {
+            _storageContainer.Preference.Clear();
+            RefreshPreferences();
+        }
+    }
+    #endregion
+
+
+    #region User
+    private void RefreshUser()
+    {
+        UserStorage.StorageData data = _storageContainer.User.Data;
+        cloneUser = data.Clone() as UserStorage.StorageData;
+        GUI.FocusControl(null);
+    }
+
+    private void UpdateUser()
+    {
+        using (var check = new EditorGUI.ChangeCheckScope())
+        {
+            _editorData.show.user = GUILayout.Toggle(_editorData.show.user, "[User]");
+
+            if (check.changed)
+                SaveEditorData();
+        }
+        if (_editorData.show.user == false)
+            return;
+
+        SerializedProperty property = _soTarget.FindProperty("cloneUser");
+        if (property == null)
+            return;
+        EditorGUILayout.PropertyField(property, true);
+
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            if (GUILayout.Button("Refresh"))
+            {
+                RefreshUser();
+            }
+            if (GUILayout.Button("Apply"))
+            {
+                _storageContainer.User.Overwrite(cloneUser);
+            }
+            if (GUILayout.Button("Save"))
+            {
+                _storageContainer.User.Save();
+            }
+        }
+        if (GUILayout.Button("Clear data"))
+        {
+            _storageContainer.User.Clear();
+            RefreshUser();
+        }
+    }
+    #endregion
+
 
     #region Currency
     private void RefreshCurrency()

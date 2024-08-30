@@ -15,7 +15,9 @@ MonoBehaviour:
   loadJson: 0
   pathJson: 
   lastLoadedTime: 
-  id: 0
+  id: 1
   icon: {fileID: 0}
   minExp: 0
-  sheeps: []
+  sheeps:
+  - id: 0
+    weight: 0

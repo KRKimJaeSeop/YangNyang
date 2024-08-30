@@ -9,7 +9,9 @@ public class StorageContainer : MonoBehaviour, IStorage
         // ---- None
         None = 0,
 
-        Currency = 1L << 0,
+        Prefereence = 1L << 1,
+        User = 1L << 2,
+        Currency = 1L << 3,
 
         All = long.MaxValue
     }
@@ -24,11 +26,16 @@ public class StorageContainer : MonoBehaviour, IStorage
     private StartData startData;
     [SerializeField, Tooltip("개발용 시작 데이터")]
     private StartData devStartData;
-    private CurrencyStorage _currency = new CurrencyStorage();
-
     public StartData StartData { get { return startData; } }
     public StartData DevStartData { get { return devStartData; } }
 
+    //===========
+    private PreferenceStorage _preference = new PreferenceStorage();
+    private UserStorage _user = new UserStorage();
+    private CurrencyStorage _currency = new CurrencyStorage();
+
+    public PreferenceStorage Preference { get { return _preference; } }
+    public UserStorage User { get { return _user; } }
     public CurrencyStorage Currency { get { return _currency; } }
 
 
@@ -76,6 +83,8 @@ public class StorageContainer : MonoBehaviour, IStorage
     public void RegisterStorages()
     {
         _storages.Clear();
+        RegisterStorage(_preference);
+        RegisterStorage(_user);
         RegisterStorage(_currency);
     }
 
@@ -108,7 +117,9 @@ public class StorageContainer : MonoBehaviour, IStorage
     /// <returns></returns>
     public bool IsStorageable()
     {
-        return (_currency.IsDirty);
+        return (_preference.IsDirty
+            || _user.IsDirty
+            || _currency.IsDirty);
     }
 
     /// <summary>
@@ -122,6 +133,10 @@ public class StorageContainer : MonoBehaviour, IStorage
         if (IsLoaded == false)
             return _savedTypes;
 
+        if (_preference.Save())
+            _savedTypes.Add((long)Type.Prefereence);
+        if (_user.Save())
+            _savedTypes.Add((long)Type.User);
         if (_currency.Save())
             _savedTypes.Add((long)Type.Currency);
 

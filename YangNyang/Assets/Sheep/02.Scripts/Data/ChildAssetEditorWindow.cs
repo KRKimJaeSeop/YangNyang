@@ -28,7 +28,6 @@ public abstract class ChildAssetEditorWindow : EditorWindow
             Debug.Log($"{GetType()}::{nameof(CheckAndLoadAssetWithID)}: title = {this.titleContent.text}");
             string[] values = this.titleContent.text.Split('&');
             string name = values[0];
-            int id = int.Parse(values[1]);
 
             _assetPath = $"{path}{name}.asset";
             LoadAsset(_assetPath);
@@ -42,7 +41,6 @@ public abstract class ChildAssetEditorWindow : EditorWindow
             Debug.Log($"{GetType()}::{nameof(CheckAndLoadAssetWithID)}: title = {this.titleContent.text}");
             string[] values = this.titleContent.text.Split('&');
             string name = values[0];
-            int id = int.Parse(values[1]);
 
             _assetPath = $"{path}{name}.asset";
             LoadAsset(_assetPath);
