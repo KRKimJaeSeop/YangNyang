@@ -7,7 +7,7 @@ namespace Sheep
     {
         None = 0,
         Standard = 1,
-        WorkBuff = 2,
+        Buff = 2,
         Event = 3,
     }
 

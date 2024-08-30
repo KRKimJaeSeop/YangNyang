@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 
@@ -15,27 +16,20 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     private Coroutine _sheepSpawnCoroutine;
     private Coroutine _buffSheepSpawnIntervalCorouinte;
 
+    // 버프 등 상황에 따라 바뀌는 양 스폰간격 변수.
     private float _variableSheepSpawnInterval;
+    // 양 스폰 테이블을 수시로 가져오지 않기 위해서 캐싱해둔다.
+    private int[] _sheepSpawnWeightsCache;
 
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         _preloadContainer.Preload();
         InitializeSheepSpawnCoroutine(true);
     }
 
-    #region Spawn
-
-    private void InitializeSheepSpawnCoroutine(bool isInitValue)
-    {
-        if (_sheepSpawnCoroutine != null)
-            StopCoroutine(_sheepSpawnCoroutine);
-        if (isInitValue)
-            _variableSheepSpawnInterval = GameDataManager.Instance.Tables.SheepSpawnRateTable.spawnInterval;
-
-        _sheepSpawnCoroutine = StartCoroutine(SpawnSheepCoroutine());
-    }
-
+    #region SheepSpawnIntervalBuff
     /// <summary>
     /// 양 스폰 시간 간격에 대해 변화를 준다.
     /// </summary>
@@ -64,7 +58,27 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         InitializeSheepSpawnCoroutine(true);
     }
 
+    #endregion
 
+    #region SheepSpawn
+    /// <summary>
+    /// 양 스폰 코루틴을 초기화시키고 다시 시작한다.
+    /// </summary>
+    /// <param name="isInitValue">스폰 간격 초기화 여부</param>
+    private void InitializeSheepSpawnCoroutine(bool isInitValue)
+    {
+        if (_sheepSpawnCoroutine != null)
+            StopCoroutine(_sheepSpawnCoroutine);
+        if (isInitValue)
+            _variableSheepSpawnInterval = GameDataManager.Instance.Tables.SheepSpawnRateTable.spawnInterval;
+
+        _sheepSpawnCoroutine = StartCoroutine(SpawnSheepCoroutine());
+    }
+
+    /// <summary>
+    /// 정해진 시간마다 양을 스폰한다.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator SpawnSheepCoroutine()
     {
         var _wfs = new WaitForSeconds(_variableSheepSpawnInterval);
@@ -76,15 +90,60 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         }
     }
 
+    /// <summary>
+    /// 테이블을 가져오고, 그 중 가중치를 사용해 랜덤한 양을 스폰한다.
+    /// </summary>
     private void SpawnSheep()
     {
         var level = GameDataManager.Instance.Storages.User.ResearchLevel;
-        var tableUnit = GameDataManager.Instance.Tables.SheepSpawnRateTable.GetUnit(level);
-        Debug.Log($"{_variableSheepSpawnInterval}초 마다 {tableUnit.name} 중에서 골라서 생성"); ;
+        var sheepUnit = GameDataManager.Instance.Tables.SheepSpawnRateTable.GetUnit(level);
 
-        //var go = (ObjectPool.Instance.Pop(spawnObject)).GetComponent<StandardSheep>();
-        //go.Spawn(Places.GetPlacePosition(PlaceData.Type.SheepSpawn));
+        if (sheepUnit != null && sheepUnit.sheepList != null && sheepUnit.sheepList.Length > 0)
+        {
+            // 캐싱이 안됐을 때에만 sheepList를 배열로 변환한다.
+            if (_sheepSpawnWeightsCache == null || _sheepSpawnWeightsCache.Length == 0)
+            {
+                _sheepSpawnWeightsCache = sheepUnit.sheepList.Select(sheep => sheep.weight).ToArray();
+            }
+            int[] weights = _sheepSpawnWeightsCache;
+            int randomIndex = GetRandomSheepByWeight(weights);
+            var selectedSheep = sheepUnit.sheepList[randomIndex];
+
+            var unit = GameDataManager.Instance.Tables.Sheep.GetUnit(selectedSheep.id);
+            Debug.Log($"ID: {unit.id} / type : {unit.type}");            
+            var go = (ObjectPool.Instance.Pop($"{unit.type}Sheep")).GetComponent<StandardSheep>();
+            go.Spawn(Places.GetPlacePosition(PlaceData.Type.SheepSpawn));
+        }
+
     }
+    /// <summary>
+    /// 가중치를 사용해서 랜덤한 정수를 뽑는다.
+    /// </summary>
+    /// <param name="weights"></param>
+    /// <returns></returns>
+    private int GetRandomSheepByWeight(int[] weights)
+    {
+        if (weights == null && weights.Length <= 0)
+            return -1;
+
+        int totalActionWeight = 0;
+        for (int i = 0; i < weights.Length; i++)
+            totalActionWeight += weights[i];
+
+        int randomNum = 0;
+        int randomValue = UnityEngine.Random.Range(0, totalActionWeight);
+        for (int i = 0; i < weights.Length; i++)
+        {
+            if (randomValue < weights[i])
+            {
+                randomNum = i;
+                break;
+            }
+            randomValue = randomValue - weights[i];
+        }
+        return randomNum;
+    }
+    #endregion
 
     public void SpawnWool(Vector2 startPosition, int amount)
     {
@@ -106,5 +165,4 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         }
 
     }
-    #endregion
 }

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,11 +10,12 @@ public class SheepSpawnRateTableUnit : BaseElementTable
     [Tooltip("필요 레벨")]
     public long requireLevel;
     [Tooltip("양 리스트")]
-    public Sheep.Weight[] sheeps;
+    public Sheep.Weight[] sheepList;
+ 
 
-    public bool Contains(long exp)
+    public bool Contains(long level)
     {
-        return (exp >= requireLevel);
+        return (level >= requireLevel);
     }
 
 #if UNITY_EDITOR
@@ -24,7 +24,7 @@ public class SheepSpawnRateTableUnit : BaseElementTable
         SheepSpawnRateTableUnit asset = ScriptableObject.CreateInstance<SheepSpawnRateTableUnit>();
 
         AssetDatabase.CreateAsset(asset, $"{ASSET_PATH}/{name}.asset");
-        EditorUtility.SetDirty(asset); 
+        EditorUtility.SetDirty(asset);
         AssetDatabase.SaveAssets();
 
         EditorUtility.FocusProjectWindow();
@@ -33,6 +33,6 @@ public class SheepSpawnRateTableUnit : BaseElementTable
         return asset;
     }
 
-  
+
 #endif
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class BaseElementTable : BaseTable
 {
+    [Header("[BaseElement]")]
     public int id;
     [Tooltip("아이콘 이미지")]
     public Sprite icon;

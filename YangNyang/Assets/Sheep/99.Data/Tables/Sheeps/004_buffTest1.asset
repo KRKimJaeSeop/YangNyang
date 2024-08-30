@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82d782a21f473fe44bb1efc7a36d9ff9, type: 3}
-  m_Name: 003_buffTest1
+  m_Name: 004_buffTest1
   m_EditorClassIdentifier: 
   loadJson: 0
   pathJson: 
   lastLoadedTime: 
-  id: 3
+  id: 4
   icon: {fileID: 0}
   type: 2

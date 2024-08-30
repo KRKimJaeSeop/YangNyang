@@ -335,7 +335,7 @@ public class SheepEditor : EditorWindow
             case Sheep.Type.Standard:
                 window = CreateWindow<StandardSheepUnitEditor>($"{tbUnit.name}&{tbUnit.id}");
                 break;
-            case Sheep.Type.WorkBuff:
+            case Sheep.Type.Buff:
                 window = CreateWindow<StandardSheepUnitEditor>($"{tbUnit.name}&{tbUnit.id}");
                 break;
             default:

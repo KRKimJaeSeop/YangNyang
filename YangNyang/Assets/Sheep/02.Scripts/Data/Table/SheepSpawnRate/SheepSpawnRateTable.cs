@@ -8,6 +8,7 @@ public class SheepSpawnRateTable : BaseTable
     [SerializeField, Tooltip("수동 호출")]
     private List<SheepSpawnRateTableUnit> list = new List<SheepSpawnRateTableUnit>();
 
+    [SerializeField]
     private float _spawnInterval = 1.0f;
     public float spawnInterval { get { return _spawnInterval; } }
     public List<SheepSpawnRateTableUnit> GetList()

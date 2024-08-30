@@ -83,8 +83,11 @@ public class SheepTable : BaseTable
             case Sheep.Type.Standard:
                 tbUnit = StandardSheepTableUnit.Create(GenerateNewID(), sheepType, name);
                 break;
-            case Sheep.Type.WorkBuff:
+            case Sheep.Type.Buff:
                 tbUnit = BuffSheepTableUnit.Create(GenerateNewID(), sheepType, name);
+                break;
+            case Sheep.Type.Event:
+                tbUnit = EventSheepTableUnit.Create(GenerateNewID(), sheepType, name);
                 break;
             default:
                 Debug.LogError($"{GetType()}::{nameof(AddNewUnit)} - 해당 타입을 생성할 작업이 되어 있지 않음. sheepType={sheepType}");
