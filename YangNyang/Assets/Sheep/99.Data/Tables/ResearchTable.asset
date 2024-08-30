@@ -16,15 +16,7 @@ MonoBehaviour:
   pathJson: 
   lastLoadedTime: 
   list:
-  - Level: 15
-    EXP: 0
-  - Level: 0
-    EXP: 0
-  - Level: 0
-    EXP: 0
-  - Level: 0
-    EXP: 0
-  - Level: 0
-    EXP: 0
-  - Level: 0
-    EXP: 0
+  - Level: 1
+    EXP: 1
+  - Level: 2
+    EXP: 2

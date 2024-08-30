@@ -55,5 +55,9 @@ public class DayStatusTable : BaseTable
         return true;
     }
 
+    public float GetWorkTime(int day)
+    {
+        return (list.Find(item => item.day == day)).workSpeed;
+    }
 
 }

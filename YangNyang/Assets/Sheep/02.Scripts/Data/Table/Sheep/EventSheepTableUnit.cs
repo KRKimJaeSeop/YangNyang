@@ -14,7 +14,7 @@ public class EventSheepTableUnit : SheepTableUnit
 
         AssetDatabase.CreateAsset(asset, $"{ASSET_PATH}{string.Format("{0:D3}", id)}_{name}.asset");
         asset.id = id;
-        asset.type = type;
+        asset.Type = type;
         EditorUtility.SetDirty(asset);
         AssetDatabase.SaveAssets();
 

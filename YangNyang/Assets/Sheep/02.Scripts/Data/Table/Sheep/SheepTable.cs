@@ -52,11 +52,11 @@ public class SheepTable : BaseTable
     }
     public List<SheepTableUnit> GetUnits(Sheep.Type type)
     {
-        return list.FindAll(item => (item.type == type));
+        return list.FindAll(item => (item.Type == type));
     }
     public SheepTableUnit GetUnit(Sheep.Type type)
     {
-        return list.Find(item => (item.type == type));
+        return list.Find(item => (item.Type == type));
     }
 
 

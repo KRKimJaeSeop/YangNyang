@@ -14,7 +14,7 @@ public class GameDataManager : Singleton<GameDataManager>
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-
+        Initialize();
     }
     public virtual bool Initialize()
     {
@@ -28,5 +28,9 @@ public class GameDataManager : Singleton<GameDataManager>
 
         IsInitialized = true;
         return true;
+    }
+    private void Update()
+    {
+        
     }
 }

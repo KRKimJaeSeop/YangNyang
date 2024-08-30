@@ -26,6 +26,8 @@ public class StandardSheep : CharacterObject, IInteractable
     // 작업 중간에 탈출하지않고, 완전히 작업을 완료한 경우에만 false가 된다.
     private bool _isWorkable;
 
+    private SheepTableUnit _tbUnit;
+
     protected override void Awake()
     {
         base.Awake();
@@ -53,8 +55,9 @@ public class StandardSheep : CharacterObject, IInteractable
     /// </summary>
     /// <param name="position"></param>
     /// <param name="cbDisable"></param>
-    public void Spawn(Vector2 position, Action cbDisable = null)
+    public void Spawn(int id, Vector2 position, Action cbDisable = null)
     {
+        _tbUnit = GameDataManager.Instance.Tables.Sheep.GetUnit(id);
         EnableGameObject(cbDisable);
         SetPosition(position);
         _hasBeenIdle = false;
@@ -124,7 +127,7 @@ public class StandardSheep : CharacterObject, IInteractable
 
     private IEnumerator IdleToMoveCoroutine()
     {
-        yield return new WaitForSeconds(Random.value * 2);
+        yield return new WaitForSeconds(_tbUnit.IdleTime);
         _fsm.ChangeState(SheepState.Move);
     }
 
@@ -164,7 +167,7 @@ public class StandardSheep : CharacterObject, IInteractable
             yield return new WaitUntil(() => _rb2D.position == spawnPosition);
 
             // 목표 지점까지 이동시켜라.
-            _moveTween = MoveToPosition(targetPosition, 5, () =>
+            _moveTween = MoveToPosition(targetPosition, _tbUnit.MoveSpeed, () =>
             {
                 _fsm.ChangeState(SheepState.None);
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);
@@ -178,7 +181,7 @@ public class StandardSheep : CharacterObject, IInteractable
             // 0.5초마다 검사
             yield return new WaitForSeconds(1f);
             // 확률적으로 Idle 상태로 전환
-            if ((!_hasBeenIdle) && Random.value < 0.1f) // 10% 확률로 Idle 상태로 전환
+            if ((!_hasBeenIdle) && Random.value < _tbUnit.IdleStateRate) // 10% 확률로 Idle 상태로 전환
             {
                 _moveTween.Pause();
                 _fsm.ChangeState(SheepState.Idle);
@@ -211,14 +214,18 @@ public class StandardSheep : CharacterObject, IInteractable
     }
     private IEnumerator WorkProcess()
     {
-        yield return new WaitForSeconds(_workTime);
+        var day = GameDataManager.Instance.Storages.User.Day;
+        var speed = GameDataManager.Instance.Tables.DatyStatus.GetWorkTime(day);
+        Debug.Log($"day: {day} / speed : {speed}");
+        yield return new WaitForSeconds(speed);
         //작업 끝날 시 Idle로 전환한다.
         WorkCompletet();
     }
     private void WorkCompletet()
     {
         // 양털 뽑기
-        FieldObjectManager.Instance.SpawnWool(this.transform.position, Random.Range(4, 10));
+        FieldObjectManager.Instance.SpawnWool
+            (this.transform.position, Random.Range(_tbUnit.MinWoolAmount, _tbUnit.MaxWoolAmount + 1));
 
         // 양털 벗은 이미지로 변환
 

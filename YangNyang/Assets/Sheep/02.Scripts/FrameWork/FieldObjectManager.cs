@@ -110,9 +110,9 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
             var selectedSheep = sheepUnit.sheepList[randomIndex];
 
             var unit = GameDataManager.Instance.Tables.Sheep.GetUnit(selectedSheep.id);
-            Debug.Log($"ID: {unit.id} / type : {unit.type}");            
-            var go = (ObjectPool.Instance.Pop($"{unit.type}Sheep")).GetComponent<StandardSheep>();
-            go.Spawn(Places.GetPlacePosition(PlaceData.Type.SheepSpawn));
+            //Debug.Log($"ID: {unit.id} / type : {unit.Type}");
+            var go = (ObjectPool.Instance.Pop($"{unit.Type}Sheep")).GetComponent<StandardSheep>();
+            go.Spawn(unit.id, Places.GetPlacePosition(PlaceData.Type.SheepSpawn));
         }
 
     }

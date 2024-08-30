@@ -17,4 +17,9 @@ MonoBehaviour:
   lastLoadedTime: 
   id: 6
   icon: {fileID: 0}
-  type: 3
+  _type: 3
+  _idleStateRate: 0.5
+  _idleTime: 0.5
+  _moveSpeed: 9
+  _minWoolAmount: 20
+  _maxWoolAmount: 30

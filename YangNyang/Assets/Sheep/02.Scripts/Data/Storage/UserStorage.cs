@@ -8,9 +8,9 @@ public class UserStorage : BaseStorage
     [System.Serializable]
     public class StorageData : ICloneable
     {
-        public long day;
+        public int day;
         public long researchLevel;
-        public long researchExp;
+        public ulong researchExp;
 
         public object Clone()
         {
@@ -28,16 +28,16 @@ public class UserStorage : BaseStorage
     protected StorageData _data = new StorageData();
 
     public StorageData Data { get { return _data; } }
-    public long Day { get { return _data.day; } }
+    public int Day { get { return _data.day; } }
     public long ResearchLevel { get { return _data.researchLevel; } }
-    public long ResearchExp { get { return _data.researchExp; } }
+    public ulong ResearchExp { get { return _data.researchExp; } }
 
     // ---- event
     public delegate void UpdateDayEvent();
     public static event UpdateDayEvent OnUpdateDay; // 날짜(회차) 업데이트 이벤트 
     public delegate void UpdateLevelEvent();
     public static event UpdateLevelEvent OnUpdateLevel; // 레벨 업데이트 이벤트 
-    public delegate void UpdateExpEvent(long exp, long amount);
+    public delegate void UpdateExpEvent(ulong exp, ulong amount);
     public static event UpdateExpEvent OnUpdateExp; // 경험치 업데이트 이벤트 
 
 
@@ -150,12 +150,12 @@ public class UserStorage : BaseStorage
     #endregion Level
 
     #region ResearchExp
-    public long IncreaseExp(long amount)
+    public ulong IncreaseExp(ulong amount)
     {
         if (amount == 0)
             return _data.researchExp;
 
-        long result = _data.researchExp;
+        ulong result = _data.researchExp;
         try
         {
             result = checked(result + amount);
@@ -171,20 +171,20 @@ public class UserStorage : BaseStorage
         OnUpdateExp?.Invoke(result, amount);
         return result;
     }
-    public (bool success, long value) DecreaseExp(long amount)
-    {
-        if (_data.researchExp < amount)
-            return (false, _data.researchExp);
+    //public (bool success, ulong value) DecreaseExp(ulong amount)
+    //{
+    //    if (_data.researchExp < amount)
+    //        return (false, _data.researchExp);
 
-        _data.researchExp -= amount;
-        if (_data.researchExp < 0)
-            _data.researchExp = 0;
+    //    _data.researchExp -= amount;
+    //    if (_data.researchExp < 0)
+    //        _data.researchExp = 0;
 
-        SetDirty();
-        OnUpdateExp?.Invoke(_data.researchExp, amount * -1);
+    //    SetDirty();
+    //    OnUpdateExp?.Invoke(_data.researchExp, amount * -1);
 
-        return (true, _data.researchExp);
-    }
+    //    return (true, _data.researchExp);
+    //}
     #endregion
 
 

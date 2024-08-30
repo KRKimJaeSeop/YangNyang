@@ -328,7 +328,7 @@ public class SheepEditor : EditorWindow
         // 여러개의 창이 뜰 수 있도록 CreateWindow를 사용한다.
         // Unit 창에서 타이틀 string으로 파싱할 수 있도록 한다.
         ChildAssetEditorWindow window = null;
-        switch (tbUnit.type)
+        switch (tbUnit.Type)
         {
             case Sheep.Type.None:
                 break;          
@@ -345,7 +345,7 @@ public class SheepEditor : EditorWindow
         if (window != null)
             window.Show();
         else
-            Debug.LogError($"유효하지 않는 방문객종류(Sheep Type) 입니다. tbUnit.type={tbUnit.type}");
+            Debug.LogError($"유효하지 않는 방문객종류(Sheep Type) 입니다. tbUnit.type={tbUnit.Type}");
     }
     #endregion
 }
