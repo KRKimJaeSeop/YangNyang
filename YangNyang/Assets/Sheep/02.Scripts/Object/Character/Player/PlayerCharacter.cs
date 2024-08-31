@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class PlayerCharacter : CharacterObject
 {
@@ -26,7 +28,15 @@ public class PlayerCharacter : CharacterObject
         fsm.Initialize(this);
         InitializeStates();
         fsm.SetInitState(PlayerState.Idle);
+
+        Addressables.LoadAssetAsync<Sprite>("고양이테스트").Completed += OnSpriteLoaded;
+
     }
+    private void OnSpriteLoaded(AsyncOperationHandle<Sprite> handle)
+    {
+        _spriteRenderer.sprite = handle.Result;
+    }
+
     protected override void InitializeStates()
     {
         fsm.AddState(PlayerState.Idle, Idle_Enter, Idle_Execute, Idle_Exit);

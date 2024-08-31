@@ -22,7 +22,6 @@ public class StandardSheep : CharacterObject, IInteractable
     private Tween _moveTween;
     // 작업 코루틴
     private Coroutine _workCoroutine;
-    private float _workTime = 0.5f;
     // 작업 중간에 탈출하지않고, 완전히 작업을 완료한 경우에만 false가 된다.
     private bool _isWorkable;
 

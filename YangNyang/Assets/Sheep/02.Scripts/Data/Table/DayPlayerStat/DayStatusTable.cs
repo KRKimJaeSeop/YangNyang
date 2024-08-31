@@ -21,7 +21,6 @@ public class DayStatusTable : BaseTable
         if (!IsValidList(list))
             return false;
 
-
         return base.Initialize();
     }
 
