@@ -1627,8 +1627,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c80642c163bc4444e9d6b8cf85d29df1, type: 2}
+  m_sharedMaterial: {fileID: 6438681259409155692, guid: c80642c163bc4444e9d6b8cf85d29df1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3331,6 +3331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textField1: {fileID: 1514756627}
   textField2: {fileID: 1437434421}
+  img: {fileID: 0}
   btn: {fileID: 130722878}
 --- !u!1 &1774172570
 GameObject:
@@ -4000,6 +4001,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 505145988207488317, guid: 3c41f04106281224cbd689fd521f112e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6344805487976442382, guid: 3c41f04106281224cbd689fd521f112e, type: 3}
       propertyPath: controllMoveSpeed
       value: 4
@@ -4052,6 +4057,10 @@ PrefabInstance:
     - target: {fileID: 4495832177173927536, guid: 047f3854622f9f14b86c05c3fdb91880, type: 3}
       propertyPath: m_Name
       value: JoystickCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4495832177173927536, guid: 047f3854622f9f14b86c05c3fdb91880, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5127739871296640590, guid: 047f3854622f9f14b86c05c3fdb91880, type: 3}
       propertyPath: m_Pivot.x
@@ -4135,7 +4144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7508826283307100971, guid: 047f3854622f9f14b86c05c3fdb91880, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 585.0022
+      value: 585.0023
       objectReference: {fileID: 0}
     - target: {fileID: 8227986132590660070, guid: 047f3854622f9f14b86c05c3fdb91880, type: 3}
       propertyPath: m_UiScaleMode

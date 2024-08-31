@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: RemoteTest
+  m_EditorClassIdentifier: 
+  m_GroupName: RemoteTest
+  m_Data:
+    m_SerializedData: []
+  m_GUID: b0aec691fe168b54f9967b1c138d6fad
+  m_SerializeEntries:
+  - m_GUID: 3c41f04106281224cbd689fd521f112e
+    m_Address: "\uACE0\uC591\uC774\uD504\uB9AC\uD339"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4ccb8f974f900f45aadc32bdc28b73c
+    m_Address: "\uACE0\uC591\uC774\uD14C\uC2A4\uD2B8"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed2f891ecfaf9f442ba42090d503b422
+    m_Address: "\uD050\uBE0C"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 845a310f44be8eb44ac009c193df3853, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 12aad4d4b76873b43a9c38b15c9723f4, type: 2}
+    - {fileID: 11400000, guid: c1bb72c2e9d4e2d488a5a6d969f13ea4, type: 2}

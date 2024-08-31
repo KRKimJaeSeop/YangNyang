@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
+using UnityEngine.AddressableAssets;
 using Button = UnityEngine.UI.Button;
+using Image = UnityEngine.UI.Image;
 
 public class DevUI : MonoBehaviour
 {
@@ -12,7 +10,8 @@ public class DevUI : MonoBehaviour
     private TMP_InputField textField1;
     [SerializeField]
     private TMP_InputField textField2;
-
+    [SerializeField]
+    private Image img;
     [SerializeField]
     private Button btn;
 
@@ -23,9 +22,10 @@ public class DevUI : MonoBehaviour
 
     private void OnClickTestBtn()
     {
-        var value1= float.Parse(textField1.text);
-        var value2= float.Parse(textField2.text);
-        FieldObjectManager.Instance.SheepSpawnBuff(value1, value2);
+        //var value1= float.Parse(textField1.text);
+        //var value2= float.Parse(textField2.text);
+        //FieldObjectManager.Instance.SheepSpawnBuff(value1, value2);
+        Addressables.InstantiateAsync(textField1.text,new Vector2(-8,0), Quaternion.identity);
     }
 
 }
