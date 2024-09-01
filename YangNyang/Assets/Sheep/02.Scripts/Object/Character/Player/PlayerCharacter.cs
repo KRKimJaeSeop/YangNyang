@@ -29,7 +29,8 @@ public class PlayerCharacter : CharacterObject
         InitializeStates();
         fsm.SetInitState(PlayerState.Idle);
 
-        Addressables.LoadAssetAsync<Sprite>("고양이테스트").Completed += OnSpriteLoaded;
+        //나중에 활성화
+       // Addressables.LoadAssetAsync<Sprite>("고양이테스트").Completed += OnSpriteLoaded;
 
     }
     private void OnSpriteLoaded(AsyncOperationHandle<Sprite> handle)
