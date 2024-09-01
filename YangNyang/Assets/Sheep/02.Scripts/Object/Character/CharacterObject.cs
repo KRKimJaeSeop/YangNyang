@@ -14,6 +14,9 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
 
     [SerializeField]
     protected GameObject _speechBubble;
+
+    [SerializeField]
+    protected Animator _animator;
     //public AnimationStateController AnimStateController { get { return animStateController; } }
 
     [SerializeField]
@@ -23,7 +26,14 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
     /// </summary>
     protected abstract void InitializeStates();
 
-
+    protected virtual void SetAnim_Work(bool isWork)
+    {
+        _animator.SetBool("IsWork", isWork);
+    }
+    protected virtual void SetAnim_Move(bool isMove)
+    {
+        _animator.SetBool("IsMove", isMove);
+    }
     /// <summary>
     /// 지정된 위치로 지정된 시간동안 걸어가듯 이동시키고 이동 후 콜백이 있다면 실행한다.
     /// </summary>

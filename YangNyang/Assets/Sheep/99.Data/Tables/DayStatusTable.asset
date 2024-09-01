@@ -17,7 +17,7 @@ MonoBehaviour:
   lastLoadedTime: 
   list:
   - day: 1
-    workSpeed: 2.5
+    workSpeed: 5
   - day: 2
     workSpeed: 2
   - day: 3

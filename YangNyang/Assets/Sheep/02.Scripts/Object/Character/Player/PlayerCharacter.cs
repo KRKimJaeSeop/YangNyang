@@ -162,6 +162,7 @@ public class PlayerCharacter : CharacterObject
     #region State.Idle
     private void Idle_Enter()
     {
+        base.SetAnim_Move(false);
         //Debug.Log("Entering Idle State");    
         //GetComponent<Animator>().SetTrigger("Idle");
     }
@@ -184,6 +185,7 @@ public class PlayerCharacter : CharacterObject
     #region State.Move
     private void Move_Enter()
     {
+        base.SetAnim_Move(true);
         //Debug.Log("Entering Move State");
         //GetComponent<Animator>().SetTrigger("Move");
     }
@@ -210,7 +212,8 @@ public class PlayerCharacter : CharacterObject
     #region State.Work
     private void Work_Enter()
     {
-        _spriteRenderer.color = Color.red;
+        base.SetAnim_Work(true);
+        //_spriteRenderer.color = Color.red;
     }
 
     private void Work_Execute()
@@ -220,7 +223,8 @@ public class PlayerCharacter : CharacterObject
 
     private void Work_Exit()
     {
-        _spriteRenderer.color = Color.white;
+        base.SetAnim_Work(false);
+        //_spriteRenderer.color = Color.white;
     }
 
 
