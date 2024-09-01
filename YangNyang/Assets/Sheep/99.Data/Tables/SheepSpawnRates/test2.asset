@@ -18,6 +18,8 @@ MonoBehaviour:
   id: 2
   icon: {fileID: 0}
   requireLevel: 2
-  sheeps:
-  - id: 0
+  sheepList:
+  - id: 1
     weight: 0
+  - id: 2
+    weight: 10

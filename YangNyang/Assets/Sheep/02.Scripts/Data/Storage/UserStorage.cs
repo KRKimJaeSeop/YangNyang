@@ -9,7 +9,7 @@ public class UserStorage : BaseStorage
     public class StorageData : ICloneable
     {
         public int day;
-        public long researchLevel;
+        public int researchLevel;
         public ulong researchExp;
 
         public object Clone()
@@ -29,13 +29,13 @@ public class UserStorage : BaseStorage
 
     public StorageData Data { get { return _data; } }
     public int Day { get { return _data.day; } }
-    public long ResearchLevel { get { return _data.researchLevel; } }
+    public int ResearchLevel { get { return _data.researchLevel; } }
     public ulong ResearchExp { get { return _data.researchExp; } }
 
     // ---- event
     public delegate void UpdateDayEvent();
     public static event UpdateDayEvent OnUpdateDay; // 날짜(회차) 업데이트 이벤트 
-    public delegate void UpdateLevelEvent();
+    public delegate void UpdateLevelEvent(int level);
     public static event UpdateLevelEvent OnUpdateLevel; // 레벨 업데이트 이벤트 
     public delegate void UpdateExpEvent(ulong exp, ulong amount);
     public static event UpdateExpEvent OnUpdateExp; // 경험치 업데이트 이벤트 
@@ -140,11 +140,14 @@ public class UserStorage : BaseStorage
 
 
     #region ResearchLevel
-    public long IncreaseLevel()
+    public long IncreaseLevel(int amount)
     {
-        _data.researchLevel++;
+        if (amount == 0)
+            return _data.researchLevel;
+
+        _data.researchLevel += amount;
         SetDirty();
-        OnUpdateLevel?.Invoke();
+        OnUpdateLevel?.Invoke(_data.researchLevel);
         return _data.researchLevel;
     }
     #endregion Level

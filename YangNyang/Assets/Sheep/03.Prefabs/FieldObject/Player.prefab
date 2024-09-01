@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 1344116509272740976}
   _speechBubble: {fileID: 0}
-  controllMoveSpeed: 10
+  controllMoveSpeed: 4
   currentInteractObjectInfo:
     objectType: 0
     instanceID: 0

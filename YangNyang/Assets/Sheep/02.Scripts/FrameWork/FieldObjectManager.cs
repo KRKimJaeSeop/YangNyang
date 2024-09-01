@@ -5,10 +5,18 @@ using UnityEngine;
 
 public class FieldObjectManager : Singleton<FieldObjectManager>
 {
+    // 양 스폰 테이블을 수시로 가져오지 않기 위해서 캐싱해둔다.
+    public struct SheepSpawnCache
+    {
+        public int id;
+        public int[] array;
+        public int totalWeight;
+        public SheepSpawnRateTableUnit tbUnit;
+    }
+
     [SerializeField]
     private PlaceDataContainer _placeDataContainer;
     public PlaceDataContainer Places { get { return _placeDataContainer; } }
-
     [SerializeField]
     private PreloadContainer _preloadContainer;
     public PreloadContainer PreloadContainer { get { return _preloadContainer; } }
@@ -18,8 +26,8 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
 
     // 버프 등 상황에 따라 바뀌는 양 스폰간격 변수.
     private float _variableSheepSpawnInterval;
-    // 양 스폰 테이블을 수시로 가져오지 않기 위해서 캐싱해둔다.
-    private int[] _sheepSpawnWeightsCache;
+    // 양 스폰테이블 캐시.
+    private SheepSpawnCache _sheepSpawnCache;
 
 
     private void Awake()
@@ -28,6 +36,15 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         _preloadContainer.Preload();
         InitializeSheepSpawnCoroutine(true);
     }
+    private void OnEnable()
+    {
+        UserStorage.OnUpdateLevel += SetSheepSpawnTableCache;
+    }
+    private void OnDisable()
+    {
+        UserStorage.OnUpdateLevel -= SetSheepSpawnTableCache;
+    }
+
 
     #region SheepSpawnIntervalBuff
     /// <summary>
@@ -74,7 +91,17 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
 
         _sheepSpawnCoroutine = StartCoroutine(SpawnSheepCoroutine());
     }
+    private void SetSheepSpawnTableCache(int currentLevel)
+    {
+        // 양스폰 확률 tbUnit을 받는다.
+        _sheepSpawnCache.tbUnit = GameDataManager.Instance.Tables.SheepSpawnRateTable.GetUnit(currentLevel);
+        // 받은 tbUnit으로 배열을 만든다.
+        _sheepSpawnCache.array = _sheepSpawnCache.tbUnit.sheepList.Select(sheep => sheep.weight).ToArray();
+        // 가중치의 총합을 계산하여 캐싱한다.
+        _sheepSpawnCache.totalWeight = _sheepSpawnCache.array.Sum();
+        _sheepSpawnCache.id = currentLevel;
 
+    }
     /// <summary>
     /// 정해진 시간마다 양을 스폰한다.
     /// </summary>
@@ -82,7 +109,7 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     IEnumerator SpawnSheepCoroutine()
     {
         var _wfs = new WaitForSeconds(_variableSheepSpawnInterval);
-
+        SetSheepSpawnTableCache(GameDataManager.Instance.Storages.User.ResearchLevel);
         while (true)
         {
             SpawnSheep();
@@ -91,26 +118,16 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     }
 
     /// <summary>
-    /// 테이블을 가져오고, 그 중 가중치를 사용해 랜덤한 양을 스폰한다.
+    /// 가중치를 사용해 랜덤한 양을 스폰한다.
     /// </summary>
     private void SpawnSheep()
     {
-        var level = GameDataManager.Instance.Storages.User.ResearchLevel;
-        var sheepUnit = GameDataManager.Instance.Tables.SheepSpawnRateTable.GetUnit(level);
-
-        if (sheepUnit != null && sheepUnit.sheepList != null && sheepUnit.sheepList.Length > 0)
+        if (_sheepSpawnCache.tbUnit != null)
         {
-            // 캐싱이 안됐을 때에만 sheepList를 배열로 변환한다.
-            if (_sheepSpawnWeightsCache == null || _sheepSpawnWeightsCache.Length == 0)
-            {
-                _sheepSpawnWeightsCache = sheepUnit.sheepList.Select(sheep => sheep.weight).ToArray();
-            }
-            int[] weights = _sheepSpawnWeightsCache;
-            int randomIndex = GetRandomSheepByWeight(weights);
-            var selectedSheep = sheepUnit.sheepList[randomIndex];
+            int randomIndex = GetRandomSheepByWeight(_sheepSpawnCache.array, _sheepSpawnCache.totalWeight);
+            var selectedSheep = _sheepSpawnCache.tbUnit.sheepList[randomIndex];
 
             var unit = GameDataManager.Instance.Tables.Sheep.GetUnit(selectedSheep.id);
-            //Debug.Log($"ID: {unit.id} / type : {unit.Type}");
             var go = (ObjectPool.Instance.Pop($"{unit.Type}Sheep")).GetComponent<StandardSheep>();
             go.Spawn(unit.id, Places.GetPlacePosition(PlaceData.Type.SheepSpawn));
         }
@@ -121,27 +138,21 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     /// </summary>
     /// <param name="weights"></param>
     /// <returns></returns>
-    private int GetRandomSheepByWeight(int[] weights)
+    private int GetRandomSheepByWeight(int[] weights, int totalWeight)
     {
-        if (weights == null && weights.Length <= 0)
+        if (weights == null || weights.Length <= 0)
             return -1;
 
-        int totalActionWeight = 0;
-        for (int i = 0; i < weights.Length; i++)
-            totalActionWeight += weights[i];
-
-        int randomNum = 0;
-        int randomValue = UnityEngine.Random.Range(0, totalActionWeight);
+        int randomValue = UnityEngine.Random.Range(0, totalWeight);
         for (int i = 0; i < weights.Length; i++)
         {
             if (randomValue < weights[i])
             {
-                randomNum = i;
-                break;
+                return i;
             }
-            randomValue = randomValue - weights[i];
+            randomValue -= weights[i];
         }
-        return randomNum;
+        return -1;
     }
     #endregion
 

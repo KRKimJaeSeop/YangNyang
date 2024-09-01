@@ -4021,10 +4021,6 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6344805487976442382, guid: 3c41f04106281224cbd689fd521f112e, type: 3}
-      propertyPath: controllMoveSpeed
-      value: 4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

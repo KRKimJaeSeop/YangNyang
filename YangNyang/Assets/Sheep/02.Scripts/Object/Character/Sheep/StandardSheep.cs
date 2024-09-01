@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 using Random = UnityEngine.Random;
 
 public class StandardSheep : CharacterObject, IInteractable
@@ -24,7 +25,7 @@ public class StandardSheep : CharacterObject, IInteractable
     private Coroutine _workCoroutine;
     // 작업 중간에 탈출하지않고, 완전히 작업을 완료한 경우에만 false가 된다.
     private bool _isWorkable;
-
+    
     private SheepTableUnit _tbUnit;
 
     protected override void Awake()
@@ -59,6 +60,7 @@ public class StandardSheep : CharacterObject, IInteractable
         _tbUnit = GameDataManager.Instance.Tables.Sheep.GetUnit(id);
         EnableGameObject(cbDisable);
         SetPosition(position);
+        _spriteResolver.SetCategoryAndLabel("Sheep", $"{_tbUnit.id}");
         _hasBeenIdle = false;
         _isWorkable = true;
         _fsm.ChangeState(SheepState.Move);

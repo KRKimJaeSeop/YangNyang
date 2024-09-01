@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using Button = UnityEngine.UI.Button;
 using Image = UnityEngine.UI.Image;
 
@@ -25,7 +24,8 @@ public class DevUI : MonoBehaviour
         //var value1= float.Parse(textField1.text);
         //var value2= float.Parse(textField2.text);
         //FieldObjectManager.Instance.SheepSpawnBuff(value1, value2);
-        Addressables.InstantiateAsync(textField1.text,new Vector2(-8,0), Quaternion.identity);
+        //Addressables.InstantiateAsync(textField1.text,new Vector2(-8,0), Quaternion.identity);
+        GameDataManager.Instance.Storages.User.IncreaseLevel(int.Parse(textField1.text));
     }
 
 }
