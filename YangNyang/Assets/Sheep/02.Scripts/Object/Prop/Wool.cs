@@ -33,6 +33,7 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
             transform.DOMove(new Vector2(-5.61f, 6.57f), 1).SetEase(Ease.InBack).OnComplete(() =>
             {
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);
+                DisableGameObject();
                 GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Wool, 10);
                 GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, 1000);
             });

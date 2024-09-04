@@ -13,8 +13,8 @@ public class BaseFieldObject : MonoBehaviour
     // 종료시 콜백.
     protected Action _cbDisable;
 
-    [SerializeField]
-    protected SpriteRenderer _spriteRenderer;
+    //[SerializeField]
+    //protected SpriteRenderer[] _spriteRenderers;
 
     public int InstanceID { get; private set; }
 
@@ -29,7 +29,7 @@ public class BaseFieldObject : MonoBehaviour
         InstanceID = this.gameObject.GetInstanceID();
     }
 
-    public void SetPosition(Vector2 position)
+    protected void SetPosition(Vector2 position)
     {
         if (_rb2D != null)
         {
@@ -39,6 +39,7 @@ public class BaseFieldObject : MonoBehaviour
             _transform.position = position;
     }
 
+ 
     /// <summary>
     /// 게임오브젝트를 활성화하고 콜백이있다면 비활성화할때 실행시킨다.
     /// </summary>

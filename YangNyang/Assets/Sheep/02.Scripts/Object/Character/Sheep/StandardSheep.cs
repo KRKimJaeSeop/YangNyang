@@ -210,7 +210,7 @@ public class StandardSheep : CharacterObject, IInteractable
     private void Work_Enter()
     {
         _moveTween.Pause();
-        _spriteRenderer.color = Color.red;
+        //_spriteRenderer.color = Color.red;
         _workCoroutine = StartCoroutine(WorkProcess());
     }
     private IEnumerator WorkProcess()
@@ -243,7 +243,7 @@ public class StandardSheep : CharacterObject, IInteractable
     private void Work_Exit()
     {
         // Work 상태 종료 시 행동
-        _spriteRenderer.color = Color.white;
+        //_spriteRenderer.color = Color.white;
         _moveTween.Play();
 
         // 코루틴 테스트

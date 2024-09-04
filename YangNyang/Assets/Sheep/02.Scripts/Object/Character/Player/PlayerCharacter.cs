@@ -15,6 +15,8 @@ public class PlayerCharacter : CharacterObject
     private StateMachine<PlayerState> fsm;
     [SerializeField, Tooltip("조이스틱 조작시 이동속도")]
     private float controllMoveSpeed = 10;
+    [SerializeField]
+    private GameObject catModel;
     private Vector2 movementAmount;
     // 상호작용중인 IInteractable 게임오브젝트의 정보
     public InteractObjectInfo currentInteractObjectInfo;
@@ -35,7 +37,7 @@ public class PlayerCharacter : CharacterObject
     }
     private void OnSpriteLoaded(AsyncOperationHandle<Sprite> handle)
     {
-        _spriteRenderer.sprite = handle.Result;
+        //_spriteRenderer.sprite = handle.Result;
     }
 
     protected override void InitializeStates()
@@ -57,7 +59,7 @@ public class PlayerCharacter : CharacterObject
 
     void OnJoystickMove(Vector2 movementAmount)
     {
-        this.movementAmount = movementAmount;
+        this.movementAmount = movementAmount;    
     }
 
     private void Update()
@@ -199,6 +201,14 @@ public class PlayerCharacter : CharacterObject
             _rb2D.velocity = Vector2.zero;
             fsm.ChangeState(PlayerState.Idle);
             return;
+        }
+        if (movementAmount.x < 0)
+        {
+            catModel.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        if (movementAmount.x > 0)
+        {
+            catModel.transform.localScale = new Vector3(1, 1, 1);
         }
 
         _rb2D.velocity = movementAmount * controllMoveSpeed;

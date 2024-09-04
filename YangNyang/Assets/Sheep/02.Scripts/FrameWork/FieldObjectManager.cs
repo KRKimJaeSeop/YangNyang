@@ -91,6 +91,7 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
 
         _sheepSpawnCoroutine = StartCoroutine(SpawnSheepCoroutine());
     }
+
     private void SetSheepSpawnTableCache(int currentLevel)
     {
         // 양스폰 확률 tbUnit을 받는다.
