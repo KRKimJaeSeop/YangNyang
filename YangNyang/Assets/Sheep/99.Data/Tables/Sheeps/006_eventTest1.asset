@@ -18,8 +18,8 @@ MonoBehaviour:
   id: 6
   icon: {fileID: 0}
   _type: 3
-  _idleStateRate: 0.5
-  _idleTime: 0.5
+  _idleStateRate: 0.2
+  _idleTime: 2
   _moveSpeed: 9
   _minWoolAmount: 20
   _maxWoolAmount: 30

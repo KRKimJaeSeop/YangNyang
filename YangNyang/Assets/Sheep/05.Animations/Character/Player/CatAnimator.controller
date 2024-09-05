@@ -168,7 +168,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cat_2DModel
+  m_Name: CatAnimator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: IsWork

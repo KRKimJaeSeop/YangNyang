@@ -35,7 +35,7 @@ public class StandardSheep : CharacterObject, IInteractable
         _fsm.Initialize(this);
         InitializeStates();
         _fsm.SetInitState(SheepState.None);
-
+        
     }
     protected override void InitializeStates()
     {
@@ -63,6 +63,7 @@ public class StandardSheep : CharacterObject, IInteractable
         _spriteResolver.SetCategoryAndLabel("Sheep", $"{_tbUnit.id}");
         _hasBeenIdle = false;
         _isWorkable = true;
+        _animator.SetFloat("BlinkSpeed",Random.Range(0.1f, 3f));
         _fsm.ChangeState(SheepState.Move);
     }
 
@@ -210,7 +211,7 @@ public class StandardSheep : CharacterObject, IInteractable
     private void Work_Enter()
     {
         _moveTween.Pause();
-        //_spriteRenderer.color = Color.red;
+        base.SetAnim_Work(true);
         _workCoroutine = StartCoroutine(WorkProcess());
     }
     private IEnumerator WorkProcess()
@@ -242,6 +243,8 @@ public class StandardSheep : CharacterObject, IInteractable
 
     private void Work_Exit()
     {
+        base.SetAnim_Work(false);
+
         // Work 상태 종료 시 행동
         //_spriteRenderer.color = Color.white;
         _moveTween.Play();

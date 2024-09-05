@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class PlayerCharacter : CharacterObject
@@ -15,9 +14,9 @@ public class PlayerCharacter : CharacterObject
     private StateMachine<PlayerState> fsm;
     [SerializeField, Tooltip("조이스틱 조작시 이동속도")]
     private float controllMoveSpeed = 10;
-    [SerializeField]
-    private GameObject catModel;
     private Vector2 movementAmount;
+    private Vector3 originScale;
+    private Vector3 flipScale;
     // 상호작용중인 IInteractable 게임오브젝트의 정보
     public InteractObjectInfo currentInteractObjectInfo;
 
@@ -31,8 +30,10 @@ public class PlayerCharacter : CharacterObject
         InitializeStates();
         fsm.SetInitState(PlayerState.Idle);
 
+        originScale = _transform.localScale;
+        flipScale = new Vector3(-(_transform.localScale.x), _transform.localScale.y, _transform.localScale.z);
         //나중에 활성화
-       // Addressables.LoadAssetAsync<Sprite>("고양이테스트").Completed += OnSpriteLoaded;
+        // Addressables.LoadAssetAsync<Sprite>("고양이테스트").Completed += OnSpriteLoaded;
 
     }
     private void OnSpriteLoaded(AsyncOperationHandle<Sprite> handle)
@@ -59,7 +60,7 @@ public class PlayerCharacter : CharacterObject
 
     void OnJoystickMove(Vector2 movementAmount)
     {
-        this.movementAmount = movementAmount;    
+        this.movementAmount = movementAmount;
     }
 
     private void Update()
@@ -204,11 +205,11 @@ public class PlayerCharacter : CharacterObject
         }
         if (movementAmount.x < 0)
         {
-            catModel.transform.localScale = new Vector3(-1, 1, 1);
+            _transform.localScale = flipScale;
         }
         if (movementAmount.x > 0)
         {
-            catModel.transform.localScale = new Vector3(1, 1, 1);
+            _transform.localScale = originScale;
         }
 
         _rb2D.velocity = movementAmount * controllMoveSpeed;
