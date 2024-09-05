@@ -870,8 +870,8 @@ ScriptedImporter:
     - name: Ear_L
       guid: d29bad445773952449875a0191101b97
       position: {x: 21.400612, y: 7.175995, z: 0}
-      rotation: {x: 0, y: 0, z: -0.9962607, w: -0.086398035}
-      length: 17.38807
+      rotation: {x: 0, y: 0, z: -0.99626076, w: -0.08639806}
+      length: 17.388065
       parentId: -1
       color:
         serializedVersion: 2
@@ -2787,7 +2787,7 @@ ScriptedImporter:
     - name: Ear_L
       guid: d29bad445773952449875a0191101b97
       position: {x: 29.094563, y: -0.0000047617673, z: 0}
-      rotation: {x: 0, y: 0, z: 0.16708028, w: 0.9859434}
+      rotation: {x: 0, y: 0, z: 0.16708025, w: 0.9859433}
       length: 17.388071
       parentId: 1
       color:
@@ -2985,7 +2985,7 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5165221, y: 0.16935147}
     boneReadOnly: 0
   sharedRigSpriteImportData: []
   sharedRigCharacterData:
@@ -2998,8 +2998,8 @@ ScriptedImporter:
   platformSettings: []
   mosaicLayers: 1
   characterMode: 1
-  documentPivot: {x: 0.5, y: 0}
-  documentAlignment: 7
+  documentPivot: {x: 0.5165221, y: 0.16935147}
+  documentAlignment: 9
   importHiddenLayers: 0
   layerMappingOption: 2
   generatePhysicsShape: 0

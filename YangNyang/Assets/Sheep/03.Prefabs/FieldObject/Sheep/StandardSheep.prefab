@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7471044097657458750}
   - component: {fileID: 8107051447903162712}
   - component: {fileID: 5889735988106297293}
+  - component: {fileID: 2867096379593639453}
   m_Layer: 0
   m_Name: StandardSheep
   m_TagString: Untagged
@@ -112,6 +113,18 @@ CapsuleCollider2D:
   m_Offset: {x: -0.6745101, y: 1.1192139}
   m_Size: {x: 1.1165626, y: 1.1165626}
   m_Direction: 0
+--- !u!210 &2867096379593639453
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895252174086673481}
+  m_Enabled: 1
+  m_SortingLayerID: -1308911493
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &3869663687553897286
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +196,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -922155783
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: a0006ddda2eb696489810adcb6fb3015, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -267,7 +280,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -922155783
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 526d4cb01a817e843bbbc37e83149f0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -353,7 +366,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -922155783
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 923e54260c449754189ad31a2b8ea6a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -412,7 +425,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 308711361067777224, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 308711361067777224, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayerID
@@ -420,7 +433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 453269455132370726, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 453269455132370726, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayerID
@@ -428,7 +441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2945764515141490721, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2945764515141490721, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayerID
@@ -436,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3420741077760806530, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3420741077760806530, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayerID
@@ -444,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3570699460470680596, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3570699460470680596, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingOrder
@@ -456,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4466002497776072312, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4466002497776072312, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingOrder
@@ -468,7 +481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4731646795441853088, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4731646795441853088, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayerID
@@ -480,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5394070807986175341, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5394070807986175341, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayerID
@@ -488,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5710544958054480033, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5710544958054480033, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayerID
@@ -536,7 +549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7247406820825221578, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7247406820825221578, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayerID
@@ -544,7 +557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8646444823433343354, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8646444823433343354, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       propertyPath: m_SortingLayerID
