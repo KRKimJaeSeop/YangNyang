@@ -1,0 +1,61 @@
+{
+    "1.2.137": {
+        "com.google.external-dependency-manager/CHANGELOG.md": "dd6a29a412594aadb37d9698db325eca",
+        "com.google.external-dependency-manager/ExternalDependencyManager": "46f5870ddbde4a6091f50656dcd5573e",
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor": "1f23cd25474841f6ad7555705b4807e9",
+        "com.google.external-dependency-manager/LICENSE.md": "f61a1c8e753b496bb696e77d7eedfb95",
+        "com.google.external-dependency-manager/README.md": "cbbebcaa6ecb4b9582dce440a386de75",
+        "com.google.external-dependency-manager/package.json": "9bed450d5c03481d87e61b61431cf00a"
+    },
+    "1.2.166": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.166": "9dfec94683154487ab08de0c50179674"
+    },
+    "1.2.167": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.167": "75c93e39c49442c9a6c4aea09cc5b982"
+    },
+    "1.2.168": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.168": "224d14327d134b0ea5ba8ce2deaa6768"
+    },
+    "1.2.169": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.169": "02ea964fdc804b098a302e49a57d8cd3"
+    },
+    "1.2.170": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.170": "cd46d4272b824509b5b5544ec9b34870"
+    },
+    "1.2.171": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.171": "8281940745814cc5b50954561f0e2582"
+    },
+    "1.2.172": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.172": "3f9604d812054a74a5726176ad683fb3"
+    },
+    "1.2.173": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.173": "fdeeb5a9eafe4d2bbd8a94a41eb5302e"
+    },
+    "1.2.174": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.174": "2a82085e2b06441b96c360b7fe97f98c"
+    },
+    "1.2.175": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.175": "ba0c697ad191428fac6b53f4ca8f8d4a"
+    },
+    "1.2.176": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.176": "864a72f7c7cf4153a532cc1277dbfbdb"
+    },
+    "1.2.177": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.177": "a768f4126d3b41ac900586e5a3b2d4a1"
+    },
+    "1.2.178": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.178": "3d894de101f34a4b9a7f42e13c7aa3a3"
+    },
+    "1.2.179": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.179": "e4b2f028f2e949cfac3ba5bbb128d139"
+    },
+    "1.2.180": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.180": "e8f303eb74064b86b1308e81afd52ce1"
+    },
+    "1.2.181": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.181": "d27fe564f10147d1bfded8244b25b494"
+    },
+    "1.2.182": {
+        "com.google.external-dependency-manager/ExternalDependencyManager/Editor/1.2.182": "60e9ce1be3474de5bdded37d1462e09b"
+    }
+}
