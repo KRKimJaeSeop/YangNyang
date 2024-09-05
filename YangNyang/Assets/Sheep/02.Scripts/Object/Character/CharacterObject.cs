@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
-using UnityEngine.U2D.Animation;
 
 /// <summary>
 /// 말풍선,상태머신,애니메이션을 쓰는 캐릭터의 오브젝트의 부모다.
@@ -19,8 +18,7 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
     protected Animator _animator;
     //public AnimationStateController AnimStateController { get { return animStateController; } }
 
-    [SerializeField]
-    protected SpriteResolver _spriteResolver;
+
     /// <summary>
     /// 필요한 상태와 각 상태마다 실행할 함수를 초기화한다.
     /// </summary>

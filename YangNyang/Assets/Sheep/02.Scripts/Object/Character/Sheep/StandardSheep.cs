@@ -15,17 +15,20 @@ public class StandardSheep : CharacterObject, IInteractable
         Work,// 플레이어에게 충돌하면 전환된다. 플레이어가 이동해서 충돌에서 빠져나오거나, 정해진 Work시간이 지나면 Move로 전환된다.
     }
 
+    [SerializeField]
+    protected SpriteResolver _spriteResolver;
     private StateMachine<SheepState> _fsm;
     // Idle상태를 한번이라도 했다면  true가 된다.
     private bool _hasBeenIdle = false;
     private Coroutine _IdleCoroutine;
     private Coroutine _moveCoroutine;
+    private WaitForSeconds _idleCheckInterval = new WaitForSeconds(1f);
     private Tween _moveTween;
+    private float _jumpPower = 0;
     // 작업 코루틴
     private Coroutine _workCoroutine;
     // 작업 중간에 탈출하지않고, 완전히 작업을 완료한 경우에만 false가 된다.
     private bool _isWorkable;
-    
     private SheepTableUnit _tbUnit;
 
     protected override void Awake()
@@ -35,7 +38,7 @@ public class StandardSheep : CharacterObject, IInteractable
         _fsm.Initialize(this);
         InitializeStates();
         _fsm.SetInitState(SheepState.None);
-        
+
     }
     protected override void InitializeStates()
     {
@@ -63,7 +66,8 @@ public class StandardSheep : CharacterObject, IInteractable
         _spriteResolver.SetCategoryAndLabel("Sheep", $"{_tbUnit.id}");
         _hasBeenIdle = false;
         _isWorkable = true;
-        _animator.SetFloat("BlinkSpeed",Random.Range(0.1f, 3f));
+        _animator.SetFloat("BlinkSpeed", Random.Range(0.1f, 3f));
+        _jumpPower = Random.Range(-1.0f, 1.0f);
         _fsm.ChangeState(SheepState.Move);
     }
 
@@ -168,22 +172,23 @@ public class StandardSheep : CharacterObject, IInteractable
             // SetPosition이 제대로 되기 전에 이부분의함수가 시작돼서, 제 위치로 세팅될때까지 기다렸다가 Move를 시작한다.
             yield return new WaitUntil(() => _rb2D.position == spawnPosition);
 
-            // 목표 지점까지 이동시켜라.
-            _moveTween = MoveToPosition(targetPosition, _tbUnit.MoveSpeed, () =>
+            _moveTween = transform.DOJump(targetPosition, _jumpPower, 1, _tbUnit.MoveSpeed).SetEase(Ease.Linear).OnComplete(() =>
             {
                 _fsm.ChangeState(SheepState.None);
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);
             });
+
         }
+
 
 
         // 이동 중 코루틴으로 시간마다 멈출지 말지 검사.
         while (true)
         {
             // 0.5초마다 검사
-            yield return new WaitForSeconds(1f);
+            yield return _idleCheckInterval;
             // 확률적으로 Idle 상태로 전환
-            if ((!_hasBeenIdle) && Random.value < _tbUnit.IdleStateRate) // 10% 확률로 Idle 상태로 전환
+            if ((!_hasBeenIdle) && Random.value < _tbUnit.IdleStateRate) // IdleStateRate 확률로 Idle 상태로 전환
             {
                 _moveTween.Pause();
                 _fsm.ChangeState(SheepState.Idle);
