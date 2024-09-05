@@ -2809,7 +2809,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _placeDataContainer: {fileID: 857161456}
   _preloadContainer: {fileID: 2003117954}
-  easesee: 1
 --- !u!1 &1506297194
 GameObject:
   m_ObjectHideFlags: 0
