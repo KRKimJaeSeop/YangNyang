@@ -13,6 +13,7 @@ public class StorageEditor : EditorWindow
         public bool currency = true; 
         public bool preferences = true;
         public bool user = true;
+        public bool unlockSheep = true;
     }
     [Serializable]
     public class EditorDataProperty
@@ -31,6 +32,7 @@ public class StorageEditor : EditorWindow
     public PreferenceStorage.StorageData clonePreference = null;
     public UserStorage.StorageData cloneUser = null;
     public CurrencyStorage.StorageData cloneCurrency = null;
+    public UnlockSheepStorage.StorageData cloneUnlockSheep = null;
     // ----
 
     private void OnEnable()
@@ -80,6 +82,8 @@ public class StorageEditor : EditorWindow
         UpdateUser();
         CommonEditorUI.DrawSeparator();
         UpdateCurrency();
+        CommonEditorUI.DrawSeparator();
+        UpdateUnlockSheep();
         CommonEditorUI.DrawSeparator();
 
         if (_soTarget != null)
@@ -248,6 +252,54 @@ public class StorageEditor : EditorWindow
         {
             _storageContainer.Currency.Clear();
             RefreshCurrency();
+        }
+    }
+    #endregion
+
+    #region UnlockSheep
+    private void RefreshUnlockSheep()
+    {
+        UnlockSheepStorage.StorageData data = _storageContainer.UnlockSheep.Data;
+        cloneUnlockSheep = data.Clone() as UnlockSheepStorage.StorageData;
+        GUI.FocusControl(null);
+    }
+
+    private void UpdateUnlockSheep()
+    {
+        using (var check = new EditorGUI.ChangeCheckScope())
+        {
+            _editorData.show.unlockSheep = GUILayout.Toggle(_editorData.show.unlockSheep, "[UnlockSheep]");
+
+            if (check.changed)
+                SaveEditorData();
+        }
+        if (_editorData.show.unlockSheep == false)
+            return;
+
+        SerializedProperty property = _soTarget.FindProperty("cloneUnlockSheep");
+        if (property == null)
+            return;
+        EditorGUILayout.PropertyField(property, true);
+
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            if (GUILayout.Button("Refresh"))
+            {
+                RefreshUnlockSheep();
+            }
+            if (GUILayout.Button("Apply"))
+            {
+                _storageContainer.UnlockSheep.Overwrite(cloneUnlockSheep);
+            }
+            if (GUILayout.Button("Save"))
+            {
+                _storageContainer.UnlockSheep.Save();
+            }
+        }
+        if (GUILayout.Button("Clear data"))
+        {
+            _storageContainer.UnlockSheep.Clear();
+            RefreshUnlockSheep();
         }
     }
     #endregion

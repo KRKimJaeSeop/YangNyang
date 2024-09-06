@@ -15,6 +15,9 @@ public class StartData : ScriptableObject
     private CurrencyStorage.StorageData _currency;
     public CurrencyStorage.StorageData Currency { get { return _currency; } }
 
+    [SerializeField]
+    private UnlockSheepStorage.StorageData _unlockSheep;
+    public UnlockSheepStorage.StorageData UnlockSheep { get { return _unlockSheep; } }
 
 
 
@@ -27,7 +30,8 @@ public class StartData : ScriptableObject
         if (folderPath.Length > 0)
         {
             File.WriteAllText($"{folderPath}/{nameof(_user)}.json", JsonUtility.ToJson(_user, true));            
-            File.WriteAllText($"{folderPath}/{nameof(_currency)}.json", JsonUtility.ToJson(_currency, true));            
+            File.WriteAllText($"{folderPath}/{nameof(_currency)}.json", JsonUtility.ToJson(_currency, true));
+            File.WriteAllText($"{folderPath}/{nameof(_unlockSheep)}.json", JsonUtility.ToJson(_unlockSheep, true));
         }
 #endif
     }

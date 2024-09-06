@@ -226,17 +226,20 @@ public class StandardSheep : CharacterObject, IInteractable
         Debug.Log($"day: {day} / speed : {speed}");
         yield return new WaitForSeconds(speed);
         //작업 끝날 시 Idle로 전환한다.
-        WorkCompletet();
+        WorkComplete();
     }
-    private void WorkCompletet()
+    private void WorkComplete()
     {
-        // 양털 뽑기
+        // 양털 아이템 뽑는다.
         FieldObjectManager.Instance.SpawnWool
             (this.transform.position, Random.Range(_tbUnit.MinWoolAmount, _tbUnit.MaxWoolAmount + 1));
-
-        // 양털 벗은 이미지로 변환
-
-        //상태 전환
+        // 양털 벗은 이미지로 변환한다.
+        _spriteResolver.SetCategoryAndLabel("Sheep", $"0");  
+        // 스토리지에 등록이 안됐다면 해금.
+        if (!GameDataManager.Instance.Storages.UnlockSheep.IsUnlockSheepID(_tbUnit.id))
+        {
+            GameDataManager.Instance.Storages.UnlockSheep.UnlockSheep(_tbUnit.id);
+        }
         _isWorkable = false;
         _fsm.ChangeState(SheepState.Move);
     }

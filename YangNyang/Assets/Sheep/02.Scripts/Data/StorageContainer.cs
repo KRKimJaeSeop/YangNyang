@@ -12,6 +12,7 @@ public class StorageContainer : MonoBehaviour, IStorage
         Prefereence = 1L << 1,
         User = 1L << 2,
         Currency = 1L << 3,
+        UnlockSheep = 1L << 4,
 
         All = long.MaxValue
     }
@@ -33,10 +34,12 @@ public class StorageContainer : MonoBehaviour, IStorage
     private PreferenceStorage _preference = new PreferenceStorage();
     private UserStorage _user = new UserStorage();
     private CurrencyStorage _currency = new CurrencyStorage();
+    private UnlockSheepStorage _unlockSheep = new UnlockSheepStorage();
 
     public PreferenceStorage Preference { get { return _preference; } }
     public UserStorage User { get { return _user; } }
     public CurrencyStorage Currency { get { return _currency; } }
+    public UnlockSheepStorage UnlockSheep { get { return _unlockSheep; } }
 
 
 
@@ -86,6 +89,7 @@ public class StorageContainer : MonoBehaviour, IStorage
         RegisterStorage(_preference);
         RegisterStorage(_user);
         RegisterStorage(_currency);
+        RegisterStorage(_unlockSheep);
     }
 
     public virtual void RegisterStorage(BaseStorage storage)
@@ -119,7 +123,8 @@ public class StorageContainer : MonoBehaviour, IStorage
     {
         return (_preference.IsDirty
             || _user.IsDirty
-            || _currency.IsDirty);
+            || _currency.IsDirty
+            || _unlockSheep.IsDirty);
     }
 
     /// <summary>
@@ -139,6 +144,8 @@ public class StorageContainer : MonoBehaviour, IStorage
             _savedTypes.Add((long)Type.User);
         if (_currency.Save())
             _savedTypes.Add((long)Type.Currency);
+        if (_unlockSheep.Save())
+            _savedTypes.Add((long)Type.UnlockSheep);
 
         return _savedTypes;
     }

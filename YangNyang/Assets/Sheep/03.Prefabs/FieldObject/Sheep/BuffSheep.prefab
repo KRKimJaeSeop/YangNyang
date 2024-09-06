@@ -72,11 +72,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &3722782840155570423 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 6605216626103922150, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
-  m_PrefabInstance: {fileID: 7494986772247031057}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8236735232467810648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1895252174086673481, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
@@ -94,6 +89,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd14d87e493a96f4e96f7fed3c81b91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 3722782840155570423}
   _speechBubble: {fileID: 0}
+  _animator: {fileID: 9213236691734545842}
   _spriteResolver: {fileID: 2892113450723869374}
+--- !u!95 &9213236691734545842 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1718254337264183459, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
+  m_PrefabInstance: {fileID: 7494986772247031057}
+  m_PrefabAsset: {fileID: 0}
