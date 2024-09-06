@@ -1180,6 +1180,9 @@ MonoBehaviour:
     - code: 401
       prefab: {fileID: 959308383515491214, guid: ad470123dcebb394283a3f0f2277d1bd, type: 3}
       isMultipleOpen: 0
+    - code: 302
+      prefab: {fileID: 3092978901653365892, guid: 1d028ef08f7d3a745b23e31c4e420e15, type: 3}
+      isMultipleOpen: 0
 --- !u!1 &571285795
 GameObject:
   m_ObjectHideFlags: 0

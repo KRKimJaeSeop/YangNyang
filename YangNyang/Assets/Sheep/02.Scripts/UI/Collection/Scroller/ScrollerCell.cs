@@ -9,10 +9,15 @@ namespace CollectionPanel
         [SerializeField, Tooltip("These are the UI elements that will be updated when the data changes")]
         private GameObject _uiContainer;
         [SerializeField]
-        private TextMeshProUGUI _testText;
-        [SerializeField]
-        private Image _blockOverlay;
+        private TextMeshProUGUI _testText; 
         private ScrollerData _data;
+        [SerializeField]
+        private Button _btn;
+
+        private void Awake()
+        {
+            _btn.onClick.AddListener(OnClickBtn);
+        }
 
         public void SetData(ScrollerData data)
         {
@@ -27,8 +32,12 @@ namespace CollectionPanel
                 return;
 
             _testText.text = $"{_data.id}";
-            _blockOverlay.gameObject.SetActive
-                (!GameDataManager.Instance.Storages.UnlockSheep.IsUnlockSheepID(_data.id));
+            //_blockOverlay.gameObject.SetActive
+            //    (!GameDataManager.Instance.Storages.UnlockSheep.IsUnlockSheepID(_data.id));
+        }
+        private void OnClickBtn()
+        {
+            UIManager.Instance.OpenCollectionDetailPanel(_data.id);
         }
     }
 }
