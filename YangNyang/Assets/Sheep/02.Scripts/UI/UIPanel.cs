@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -29,15 +30,18 @@ public class UIPanel : MonoBehaviour
             button.onClick.AddListener(OnClickClose);
         }
     }
- 
+
     public virtual void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
         this.gameObject.SetActive(true);
-
         _cbClose = cbClose;
         _results = null;
 
         Begin();
+    }
+    public void PunchAnimation(GameObject go)
+    {
+        go.transform.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 
     public virtual void Close()

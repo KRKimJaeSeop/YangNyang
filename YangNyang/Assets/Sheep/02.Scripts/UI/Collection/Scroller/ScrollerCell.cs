@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +7,15 @@ namespace CollectionPanel
     {
         [SerializeField, Tooltip("These are the UI elements that will be updated when the data changes")]
         private GameObject _uiContainer;
-        [SerializeField]
-        private TextMeshProUGUI _testText; 
         private ScrollerData _data;
         [SerializeField]
         private Button _btn;
+        [SerializeField]
+        private Image _icon;
+        [SerializeField]
+        private Material _lockSilhouette;
+
+        private bool _isUnlock = true;
 
         private void Awake()
         {
@@ -28,16 +31,24 @@ namespace CollectionPanel
 
         private void UpdateUI()
         {
-            if (_data == null)
-                return;
+            if (_data != null)
+            {
+                _isUnlock = GameDataManager.Instance.Storages.UnlockSheep.IsUnlockSheepID(_data.id);
+                _icon.sprite = GameDataManager.Instance.Tables.Sheep.GetUnit(_data.id).icon;
+                if (_isUnlock)
+                {
+                    _icon.material = null;
+                }
+                else
+                {
+                    _icon.material = _lockSilhouette;
+                }
+            }
 
-            _testText.text = $"{_data.id}";
-            //_blockOverlay.gameObject.SetActive
-            //    (!GameDataManager.Instance.Storages.UnlockSheep.IsUnlockSheepID(_data.id));
         }
         private void OnClickBtn()
         {
-            UIManager.Instance.OpenCollectionDetailPanel(_data.id);
+            UIManager.Instance.OpenCollectionDetailPanel(_data.id, _isUnlock);
         }
     }
 }

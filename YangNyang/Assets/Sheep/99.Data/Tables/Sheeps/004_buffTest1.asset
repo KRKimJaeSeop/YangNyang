@@ -16,7 +16,7 @@ MonoBehaviour:
   pathJson: 
   lastLoadedTime: 
   id: 4
-  icon: {fileID: 0}
+  icon: {fileID: -8386115851879952746, guid: 8835f5c56876eac43bea9d066ede3bbd, type: 3}
   _type: 2
   _idleStateRate: 0.2
   _idleTime: 2

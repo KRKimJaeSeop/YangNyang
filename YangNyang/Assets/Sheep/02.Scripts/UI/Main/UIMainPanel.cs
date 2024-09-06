@@ -109,6 +109,7 @@ public class UIMainPanel : UIPanel
     private void OnClickCollectionBtn()
     {
         UIManager.Instance.OpenCollectionPanel();
+        _redDot.SetActive(false);
     }
     private void OnClickShopBtn()
     {

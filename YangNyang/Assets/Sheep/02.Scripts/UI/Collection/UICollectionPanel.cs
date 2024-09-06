@@ -7,7 +7,8 @@ public class UICollectionPanel : UIPanel
 {
     [SerializeField, Header("[UICollectionPanel]")]
     private ScrollerView view;
-    
+
+
     protected override void Awake()
     {
         base.Awake();

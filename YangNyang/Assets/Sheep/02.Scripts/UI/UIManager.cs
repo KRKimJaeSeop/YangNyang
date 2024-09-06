@@ -256,7 +256,7 @@ public class UIManager : Singleton<UIManager>
         return component;
     }
 
-    public UICollectionDetailPanel OpenCollectionDetailPanel(int id, Action<object> cbClose = null)
+    public UICollectionDetailPanel OpenCollectionDetailPanel(int id, bool isUnolck, Action<object> cbClose = null)
     {
         // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
         //InputController.Instance.ReleaseInputStates();
@@ -266,7 +266,7 @@ public class UIManager : Singleton<UIManager>
         var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
         var component = go.GetComponent<UICollectionDetailPanel>();
         var openInfo = AddPanel((int)panelCode, component);
-        component.Open(id,panelInfo.canvas,
+        component.Open(id, isUnolck, panelInfo.canvas,
                (results) =>
                {
                    RemovePanel(openInfo);
