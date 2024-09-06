@@ -29,8 +29,7 @@ public class UIPanel : MonoBehaviour
             button.onClick.AddListener(OnClickClose);
         }
     }
-
-
+ 
     public virtual void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
         this.gameObject.SetActive(true);

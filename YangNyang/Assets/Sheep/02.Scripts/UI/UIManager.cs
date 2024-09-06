@@ -252,7 +252,7 @@ public class UIManager : Singleton<UIManager>
                    RemovePanel(openInfo);
                    ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
                    cbClose?.Invoke(results);
-                   Debug.Log($"{GetType()}::{nameof(OpenMainPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+                   Debug.Log($"{GetType()}::{nameof(OpenCollectionPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
                });
         Debug.Log($"{GetType()}::{nameof(OpenCollectionPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
         return component;
