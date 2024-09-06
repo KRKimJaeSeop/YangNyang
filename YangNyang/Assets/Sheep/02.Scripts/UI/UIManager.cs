@@ -227,10 +227,93 @@ public class UIManager : Singleton<UIManager>
             var openInfo = AddPanel((int)panelCode, component);
             component.Open(panelInfo.canvas);
         }
-         return null;
+        return null;
     }
 
     #endregion
 
+    #region Collection
+    /// <summary>
+    /// 메인 패널 오픈.
+    /// </summary>
+    public UICollectionPanel OpenCollectionPanel(Action<object> cbClose = null)
+    {
+        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
+        //InputController.Instance.ReleaseInputStates();
+
+        var panelCode = Code.Collection;
+        var panelInfo = GetPanelInfo(panelCode);
+        var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
+        var component = go.GetComponent<UICollectionPanel>();
+        var openInfo = AddPanel((int)panelCode, component);
+        component.Open(panelInfo.canvas,
+               (results) =>
+               {
+                   RemovePanel(openInfo);
+                   ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+                   cbClose?.Invoke(results);
+                   Debug.Log($"{GetType()}::{nameof(OpenMainPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+               });
+        Debug.Log($"{GetType()}::{nameof(OpenCollectionPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        return component;
+    }
+    #endregion
+
+    #region Option
+    /// <summary>
+    /// 옵션 패널 오픈.
+    /// </summary>
+    public UIOptionPanel OpenOptionPanel(Action<object> cbClose = null)
+    {
+        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
+        //InputController.Instance.ReleaseInputStates();
+
+        var panelCode = Code.Option;
+        var panelInfo = GetPanelInfo(panelCode);
+        var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
+        var component = go.GetComponent<UIOptionPanel>();
+        var openInfo = AddPanel((int)panelCode, component);
+        component.Open(panelInfo.canvas,
+             (results) =>
+             {
+                 RemovePanel(openInfo);
+                 ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+                 cbClose?.Invoke(results);
+                 Debug.Log($"{GetType()}::{nameof(OpenOptionPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+             });
+        Debug.Log($"{GetType()}::{nameof(OpenOptionPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        return component;
+    }
+    #endregion
+
+    #region Shop
+    /// <summary>
+    /// 상점 패널 오픈.
+    /// </summary>
+    public UIShopPanel OpenShopPanel(Action<object> cbClose = null)
+    {
+        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
+        //InputController.Instance.ReleaseInputStates();
+
+        var panelCode = Code.Shop;
+        var panelInfo = GetPanelInfo(panelCode);
+        var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
+        var component = go.GetComponent<UIShopPanel>();
+        var openInfo = AddPanel((int)panelCode, component);
+        component.Open(panelInfo.canvas,
+             (results) =>
+             {
+                 RemovePanel(openInfo);
+                 ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+                 cbClose?.Invoke(results);
+                 Debug.Log($"{GetType()}::{nameof(OpenShopPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+             });
+        Debug.Log($"{GetType()}::{nameof(OpenShopPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        return component;
+    }
+    #endregion
+
+
 }
+
 

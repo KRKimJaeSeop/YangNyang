@@ -1282,6 +1282,9 @@ MonoBehaviour:
   _woolText: {fileID: 4569127387145099407}
   _goldText: {fileID: 2993903496956576045}
   _redDot: {fileID: 7666892302128005904}
+  _shopBtn: {fileID: 6761676003244363742}
+  _collectionBtn: {fileID: 83382207508850517}
+  _optionBtn: {fileID: 4434977390580926064}
 --- !u!1 &5785133258915834969
 GameObject:
   m_ObjectHideFlags: 0

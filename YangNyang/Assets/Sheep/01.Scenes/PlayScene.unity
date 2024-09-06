@@ -1171,6 +1171,15 @@ MonoBehaviour:
     - code: 101
       prefab: {fileID: 5445488594869639110, guid: 4660b6c59ba62d64eb7fffc169d3555b, type: 3}
       isMultipleOpen: 0
+    - code: 301
+      prefab: {fileID: 1333176819910788522, guid: 3d6e48b81cfaa674d82bde09d8fa8aa6, type: 3}
+      isMultipleOpen: 0
+    - code: 201
+      prefab: {fileID: 6636849863080960283, guid: b244546c7ecc1f546b7c796592741382, type: 3}
+      isMultipleOpen: 0
+    - code: 401
+      prefab: {fileID: 959308383515491214, guid: ad470123dcebb394283a3f0f2277d1bd, type: 3}
+      isMultipleOpen: 0
 --- !u!1 &571285795
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,7 +4173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7508826283307100971, guid: 047f3854622f9f14b86c05c3fdb91880, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 585.00244
+      value: 585.0026
       objectReference: {fileID: 0}
     - target: {fileID: 8227986132590660070, guid: 047f3854622f9f14b86c05c3fdb91880, type: 3}
       propertyPath: m_UiScaleMode

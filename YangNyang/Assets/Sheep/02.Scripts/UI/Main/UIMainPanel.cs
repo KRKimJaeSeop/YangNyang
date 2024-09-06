@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class UIMainPanel : UIPanel
 {
+    [Header("Status Bar UI")]
     [SerializeField]
     private TextMeshProUGUI _dayText;
     [SerializeField]
@@ -15,9 +17,25 @@ public class UIMainPanel : UIPanel
     private TextMeshProUGUI _woolText;
     [SerializeField]
     private TextMeshProUGUI _goldText;
+    
+    [Header("Button Bar UI")]
+ 
+    [SerializeField]
+    private Button _shopBtn;
+    [SerializeField]
+    private Button _collectionBtn;
     [SerializeField]
     private GameObject _redDot;
+    [SerializeField]
+    private Button _optionBtn;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        _shopBtn.onClick.AddListener(OnClickShopBtn);
+        _collectionBtn.onClick.AddListener(OnClickCollectionBtn);
+        _optionBtn.onClick.AddListener(OnClickOptionBtn);
+    }
 
     private void OnEnable()
     {
@@ -27,8 +45,6 @@ public class UIMainPanel : UIPanel
         CurrencyStorage.OnUpdateCurrency += CurrencyStorage_OnUpdateCurrency;
         UnlockSheepStorage.OnUnlockSheep += UnlockSheepStorage_OnUnlockSheep;
     }
-
-
 
     private void OnDisable()
     {
@@ -65,11 +81,11 @@ public class UIMainPanel : UIPanel
 
     private void UserStorage_OnUpdateLevel(int level)
     {
-        _levelText.text = $"레벨:";
+        _levelText.text = $"레벨:{level}";
     }
     private void UserStorage_OnUpdateExp(ulong exp, ulong amount = 0)
     {
-        _expText.text = $"경험치:exp";
+        _expText.text = $"경험치:{exp}";
     }
     private void CurrencyStorage_OnUpdateCurrency(Currency.Type code, long total, long amount = 0)
     {
@@ -89,6 +105,18 @@ public class UIMainPanel : UIPanel
     private void UnlockSheepStorage_OnUnlockSheep(int id)
     {
         _redDot.SetActive(true);
+    }
+    private void OnClickCollectionBtn()
+    {
+        UIManager.Instance.OpenCollectionPanel();
+    }
+    private void OnClickShopBtn()
+    {
+        UIManager.Instance.OpenShopPanel();
+    }
+    private void OnClickOptionBtn()
+    {
+        UIManager.Instance.OpenOptionPanel();
     }
 
 
