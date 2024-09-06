@@ -31,12 +31,6 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     private SheepSpawnCache _sheepSpawnCache;
 
 
-    private void Awake()
-    {
-        Application.targetFrameRate = 60;
-        _preloadContainer.Preload();
-        InitializeSheepSpawnCoroutine(true);
-    }
     private void OnEnable()
     {
         UserStorage.OnUpdateLevel += SetSheepSpawnTableCache;
@@ -46,6 +40,11 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         UserStorage.OnUpdateLevel -= SetSheepSpawnTableCache;
     }
 
+    public void Initialize()
+    {
+        _preloadContainer.Preload();
+        InitializeSheepSpawnCoroutine(true);
+    }
 
     #region SheepSpawnIntervalBuff
     /// <summary>

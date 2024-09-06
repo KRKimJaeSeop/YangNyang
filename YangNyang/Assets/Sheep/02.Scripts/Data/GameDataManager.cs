@@ -14,11 +14,13 @@ public class GameDataManager : Singleton<GameDataManager>
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        Initialize();
     }
     public virtual bool Initialize()
     {
         IsInitialized = false;
+
+        if (IsInitialized)
+            return true;
 
         // table 초기화 (storage 로딩하기 전에 먼저 초기화 되어 있어야 한다.)
         if (!_tables.Initialize())
@@ -28,9 +30,5 @@ public class GameDataManager : Singleton<GameDataManager>
 
         IsInitialized = true;
         return true;
-    }
-    private void Update()
-    {
-        
     }
 }

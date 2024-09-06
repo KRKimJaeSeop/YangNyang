@@ -33,7 +33,7 @@ public class UserStorage : BaseStorage
     public ulong ResearchExp { get { return _data.researchExp; } }
 
     // ---- event
-    public delegate void UpdateDayEvent();
+    public delegate void UpdateDayEvent(int day);
     public static event UpdateDayEvent OnUpdateDay; // 날짜(회차) 업데이트 이벤트 
     public delegate void UpdateLevelEvent(int level);
     public static event UpdateLevelEvent OnUpdateLevel; // 레벨 업데이트 이벤트 
@@ -129,11 +129,11 @@ public class UserStorage : BaseStorage
 
 
     #region Day
-    public long IncreaseDay()
+    public long IncreaseDay(int amount)
     {
         _data.day++;
         SetDirty();
-        OnUpdateDay?.Invoke();
+        OnUpdateDay?.Invoke(amount);
         return _data.day;
     }
     #endregion Day
