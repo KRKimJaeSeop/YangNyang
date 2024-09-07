@@ -10,7 +10,7 @@ public class ResearchTable : BaseTable
     public class Unit
     {
         public int Level;
-        public ulong EXP;
+        public long EXP;
     }
 
     [Header("[DayPlayerStatTable]")]
@@ -55,6 +55,9 @@ public class ResearchTable : BaseTable
         return true;
     }
 
-
+    public long GetMaxExp(int level)
+    {
+       return list.Find((item) => item.Level == level).EXP;
+    }
 
 }

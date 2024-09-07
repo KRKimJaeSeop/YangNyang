@@ -17,6 +17,12 @@ MonoBehaviour:
   lastLoadedTime: 
   list:
   - Level: 1
-    EXP: 1
+    EXP: 100
   - Level: 2
-    EXP: 2
+    EXP: 200
+  - Level: 3
+    EXP: 300
+  - Level: 4
+    EXP: 400
+  - Level: 5
+    EXP: 0

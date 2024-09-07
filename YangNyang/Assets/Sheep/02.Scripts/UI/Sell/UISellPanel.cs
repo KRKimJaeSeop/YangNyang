@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UISellPanel : UIPanel
 {
     [SerializeField]
-    private Image _fillGauge;
+    private Image _woolFillGauge;
     [SerializeField]
     private TextMeshProUGUI _currentGoldText;
     private long _storageWoolAmount;
@@ -22,6 +22,13 @@ public class UISellPanel : UIPanel
         _cachedGold = GameDataManager.Instance.Storages.Currency.GetAmount(Currency.Type.Gold);
         _sellAmount = _storageWoolAmount / 100;
         SetUI();
+    }
+
+    private void SetUI()
+    {
+        _currentGoldText.text = $"{_cachedGold}";
+        _woolFillGauge.fillAmount = (float)((double)_cachedWool / _storageWoolAmount);
+
     }
 
     // 이 함수를 롱버튼의 UnityEvent에 등록한다.
@@ -41,12 +48,5 @@ public class UISellPanel : UIPanel
             }
             SetUI();
         }
-    }
-
-    private void SetUI()
-    {
-        _currentGoldText.text = $"{_cachedGold}";
-        _fillGauge.fillAmount = (float)((double)_cachedWool / _storageWoolAmount);
-
     }
 }

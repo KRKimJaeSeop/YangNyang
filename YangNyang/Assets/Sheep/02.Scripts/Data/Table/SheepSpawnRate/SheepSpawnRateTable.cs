@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SheepSpawnRateTable.asset", menuName = "[Sheep]/Table/SheepSpawnRate")]
@@ -46,9 +47,19 @@ public class SheepSpawnRateTable : BaseTable
 
 
 #if UNITY_EDITOR
+    public int GenerateNewID()
+    {
+        int max = 0;
+        List<SheepSpawnRateTableUnit> list = GetList();
+        if (list.Count > 0)
+        {
+            max = Mathf.Max(0, list.Max(item => item.id));
+        }
+        return max + 1;
+    }
     public SheepSpawnRateTableUnit AddNewUnit(string name)
     {
-        var tbUnit = SheepSpawnRateTableUnit.Create(name);
+        var tbUnit = SheepSpawnRateTableUnit.Create(name, GenerateNewID());
         var list = GetList();
         list.Add(tbUnit);
         return tbUnit;

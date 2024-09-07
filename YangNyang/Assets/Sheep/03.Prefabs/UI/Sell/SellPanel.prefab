@@ -707,10 +707,8 @@ MonoBehaviour:
       m_Calls: []
   closeButtons:
   - {fileID: 4527266943120484773}
-  _fillGauge: {fileID: 7219661218716253601}
+  _woolFillGauge: {fileID: 7219661218716253601}
   _currentGoldText: {fileID: 5454800763552888508}
-  _sellBtn: {fileID: 1384755690332155943}
-  _maxGold: 100000000
 --- !u!1 &7017488041741292904
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +721,7 @@ GameObject:
   - component: {fileID: 4440126212642999373}
   - component: {fileID: 7219661218716253601}
   m_Layer: 0
-  m_Name: FillGauge
+  m_Name: WoolFillGauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

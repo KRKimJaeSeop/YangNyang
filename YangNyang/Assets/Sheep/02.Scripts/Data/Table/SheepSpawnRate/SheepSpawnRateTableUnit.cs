@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ public class SheepSpawnRateTableUnit : BaseElementTable
     public long requireLevel;
     [Tooltip("양 리스트")]
     public Sheep.Weight[] sheepList;
- 
+
 
     public bool Contains(long level)
     {
@@ -19,11 +18,12 @@ public class SheepSpawnRateTableUnit : BaseElementTable
     }
 
 #if UNITY_EDITOR
-    static public SheepSpawnRateTableUnit Create(string name)
+    static public SheepSpawnRateTableUnit Create(string name, int id)
     {
         SheepSpawnRateTableUnit asset = ScriptableObject.CreateInstance<SheepSpawnRateTableUnit>();
-
-        AssetDatabase.CreateAsset(asset, $"{ASSET_PATH}/{name}.asset");
+        asset.id = id;
+        asset.requireLevel = id;
+        AssetDatabase.CreateAsset(asset, $"{ASSET_PATH}/{string.Format("{0:D3}", id)}_{name}.asset");
         EditorUtility.SetDirty(asset);
         AssetDatabase.SaveAssets();
 

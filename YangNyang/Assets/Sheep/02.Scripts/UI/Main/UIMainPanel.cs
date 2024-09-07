@@ -86,7 +86,7 @@ public class UIMainPanel : UIPanel
     {
         _levelText.text = $"레벨:{level}";
     }
-    private void UserStorage_OnUpdateExp(ulong exp, ulong amount = 0)
+    private void UserStorage_OnUpdateExp(long exp, long amount = 0)
     {
         _expText.text = $"경험치:{exp}";
     }

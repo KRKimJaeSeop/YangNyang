@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc74a3040593f54c87bfced8cec6dd8, type: 3}
   m_Name: DevStartupData
   m_EditorClassIdentifier: 
-  currency:
-    currencies:
-    - code: 1
-      amount: 333
-    - code: 2
-      amount: 444
+  _user:
+    day: 1
+    researchLevel: 1
+    researchExp: 0
+  _currency:
+    currencies: []
+  _unlockSheep:
+    unlockSheeps: 

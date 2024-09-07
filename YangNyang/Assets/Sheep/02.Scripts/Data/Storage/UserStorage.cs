@@ -10,7 +10,7 @@ public class UserStorage : BaseStorage
     {
         public int day;
         public int researchLevel;
-        public ulong researchExp;
+        public long researchExp;
 
         public object Clone()
         {
@@ -30,16 +30,17 @@ public class UserStorage : BaseStorage
     public StorageData Data { get { return _data; } }
     public int Day { get { return _data.day; } }
     public int ResearchLevel { get { return _data.researchLevel; } }
-    public ulong ResearchExp { get { return _data.researchExp; } }
+    public long ResearchExp { get { return _data.researchExp; } }
 
     // ---- event
     public delegate void UpdateDayEvent(int day);
     public static event UpdateDayEvent OnUpdateDay; // 날짜(회차) 업데이트 이벤트 
     public delegate void UpdateLevelEvent(int level);
     public static event UpdateLevelEvent OnUpdateLevel; // 레벨 업데이트 이벤트 
-    public delegate void UpdateExpEvent(ulong exp, ulong amount);
+    public delegate void UpdateExpEvent(long exp, long amount);
     public static event UpdateExpEvent OnUpdateExp; // 경험치 업데이트 이벤트 
 
+    private long _cachedMaxExp;
 
 
     #region IStorage
@@ -124,7 +125,7 @@ public class UserStorage : BaseStorage
 
     public override void Initialize()
     {
-
+        _cachedMaxExp = GameDataManager.Instance.Tables.Research.GetMaxExp(_data.researchLevel);
     }
 
 
@@ -147,47 +148,37 @@ public class UserStorage : BaseStorage
 
         _data.researchLevel += amount;
         SetDirty();
+        _cachedMaxExp = GameDataManager.Instance.Tables.Research.GetMaxExp(_data.researchLevel);
         OnUpdateLevel?.Invoke(_data.researchLevel);
         return _data.researchLevel;
     }
     #endregion Level
 
     #region ResearchExp
-    public ulong IncreaseExp(ulong amount)
+    public long IncreaseExp(long amount)
     {
         if (amount == 0)
             return _data.researchExp;
 
-        ulong result = _data.researchExp;
-        try
+        var result = _data.researchExp + amount;
+        if (result < _cachedMaxExp)
         {
-            result = checked(result + amount);
+            UpdateExp(amount);
         }
-        catch (OverflowException e)
+        else
         {
-            result = long.MaxValue;
-            Debug.LogWarning($"{GetType()}::{nameof(IncreaseExp)} : {e}, amount={amount}");
+            IncreaseLevel(1);
+            UpdateExp(-_data.researchExp);
         }
-
-        _data.researchExp = result;
-        SetDirty();
-        OnUpdateExp?.Invoke(result, amount);
-        return result;
+        return _data.researchExp;
     }
-    //public (bool success, ulong value) DecreaseExp(ulong amount)
-    //{
-    //    if (_data.researchExp < amount)
-    //        return (false, _data.researchExp);
 
-    //    _data.researchExp -= amount;
-    //    if (_data.researchExp < 0)
-    //        _data.researchExp = 0;
-
-    //    SetDirty();
-    //    OnUpdateExp?.Invoke(_data.researchExp, amount * -1);
-
-    //    return (true, _data.researchExp);
-    //}
+    private void UpdateExp(long amount)
+    {
+        _data.researchExp += amount;
+        SetDirty();
+        OnUpdateExp?.Invoke(_data.researchExp, amount);
+    }
     #endregion
 
 
