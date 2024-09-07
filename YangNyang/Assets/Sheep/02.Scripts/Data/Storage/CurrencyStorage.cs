@@ -252,5 +252,6 @@ public class CurrencyStorage : BaseStorage
         OnUpdateCurrency?.Invoke(code, data.amount, amount * -1);
         return (true, data.amount);
     }
+   
     #endregion
 }

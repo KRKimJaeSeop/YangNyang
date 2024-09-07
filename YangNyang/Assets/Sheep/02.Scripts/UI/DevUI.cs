@@ -44,7 +44,8 @@ public class DevUI : MonoBehaviour
         //var value2= float.Parse(textField2.text);
         //FieldObjectManager.Instance.SheepSpawnBuff(value1, value2);
         //Addressables.InstantiateAsync(textField1.text,new Vector2(-8,0), Quaternion.identity);
-        GameDataManager.Instance.Storages.User.IncreaseLevel(int.Parse(textField1.text));
+        //GameDataManager.Instance.Storages.User.IncreaseLevel(int.Parse(textField1.text));
+        PlaySceneManager.Instance.StartNewDay();
     }
     private void OnClick1()
     {
@@ -52,11 +53,11 @@ public class DevUI : MonoBehaviour
     }
     private void OnClick2()
     {
-        UIManager.Instance.OpenNotificationPanel();
+        UIManager.Instance.OpenNotificationPanel(textField1.text);
     }
     private void OnClick3()
     {
-        UIManager.Instance.OpenResultPanel();
+        UIManager.Instance.OpenResultPanel(textField1.text, textField2.text);
     }
     private void OnClick4()
     {

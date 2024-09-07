@@ -19,5 +19,5 @@ MonoBehaviour:
   icon: {fileID: 0}
   requireLevel: 2
   sheepList:
-  - id: 1
+  - id: 2
     weight: 10

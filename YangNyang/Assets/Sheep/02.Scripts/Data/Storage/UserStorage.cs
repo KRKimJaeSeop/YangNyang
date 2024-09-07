@@ -40,6 +40,7 @@ public class UserStorage : BaseStorage
     public delegate void UpdateExpEvent(long exp, long amount);
     public static event UpdateExpEvent OnUpdateExp; // 경험치 업데이트 이벤트 
 
+
     private long _cachedMaxExp;
 
 
@@ -132,9 +133,9 @@ public class UserStorage : BaseStorage
     #region Day
     public long IncreaseDay(int amount)
     {
-        _data.day++;
+        _data.day += amount;
         SetDirty();
-        OnUpdateDay?.Invoke(amount);
+        OnUpdateDay?.Invoke(_data.day);
         return _data.day;
     }
     #endregion Day

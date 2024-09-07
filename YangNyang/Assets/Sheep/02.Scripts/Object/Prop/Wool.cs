@@ -35,7 +35,6 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);
                 DisableGameObject();
                 GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Wool, 10);
-                GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, 1000);
             });
         }
     }

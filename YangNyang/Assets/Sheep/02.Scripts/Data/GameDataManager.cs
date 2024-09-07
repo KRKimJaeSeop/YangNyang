@@ -31,4 +31,13 @@ public class GameDataManager : Singleton<GameDataManager>
         IsInitialized = true;
         return true;
     }
+    public void SetDataPassedDay()
+    {
+        Storages.User.IncreaseDay(1);
+
+        Storages.Currency.Decrease
+            (Currency.Type.Wool, Storages.Currency.GetAmount(Currency.Type.Wool));
+        Storages.Currency.Decrease
+             (Currency.Type.Gold, Storages.Currency.GetAmount(Currency.Type.Gold));
+    }
 }

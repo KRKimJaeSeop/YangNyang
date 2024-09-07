@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlaySceneManager : Singleton<PlaySceneManager>
@@ -18,4 +16,11 @@ public class PlaySceneManager : Singleton<PlaySceneManager>
 
         UIManager.Instance.OpenMainPanel();
     }
+    public void StartNewDay()
+    {
+
+        GameDataManager.Instance.SetDataPassedDay();
+
+    }
+
 }

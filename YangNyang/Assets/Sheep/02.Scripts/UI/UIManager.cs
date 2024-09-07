@@ -247,7 +247,7 @@ public class UIManager : Singleton<UIManager>
     }
 
     public UIConfirmPanel OpenConfirmPanel(string title,
-        string content, 
+        string content,
         Canvas canvas = null,
         UnityAction<object> cbClose = null)
     {
@@ -271,7 +271,7 @@ public class UIManager : Singleton<UIManager>
         return component;
     }
 
-    public UINotificationPanel OpenNotificationPanel(Action<object> cbClose = null)
+    public UINotificationPanel OpenNotificationPanel(string content, Action<object> cbClose = null)
     {
         // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
         //InputController.Instance.ReleaseInputStates();
@@ -281,7 +281,7 @@ public class UIManager : Singleton<UIManager>
         var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
         var component = go.GetComponent<UINotificationPanel>();
         var openInfo = AddPanel((int)panelCode, component);
-        component.Open(panelInfo.canvas,
+        component.Open(content, panelInfo.canvas,
              (results) =>
              {
                  RemovePanel(openInfo);
@@ -293,7 +293,8 @@ public class UIManager : Singleton<UIManager>
         return component;
     }
 
-    public UIResultPanel OpenResultPanel(Action<object> cbClose = null)
+    public UIResultPanel OpenResultPanel(string title,
+        string content, Action<object> cbClose = null)
     {
         // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
         //InputController.Instance.ReleaseInputStates();
@@ -303,7 +304,7 @@ public class UIManager : Singleton<UIManager>
         var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
         var component = go.GetComponent<UIResultPanel>();
         var openInfo = AddPanel((int)panelCode, component);
-        component.Open(panelInfo.canvas,
+        component.Open(title,content, panelInfo.canvas,
              (results) =>
              {
                  RemovePanel(openInfo);
