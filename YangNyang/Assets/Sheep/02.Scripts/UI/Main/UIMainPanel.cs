@@ -17,11 +17,13 @@ public class UIMainPanel : UIPanel
     private TextMeshProUGUI _woolText;
     [SerializeField]
     private TextMeshProUGUI _goldText;
-    
+
     [Header("Button Bar UI")]
- 
+
     [SerializeField]
-    private Button _shopBtn;
+    private Button _sellBtn;
+    [SerializeField]
+    private Button _researchBtn;
     [SerializeField]
     private Button _collectionBtn;
     [SerializeField]
@@ -32,9 +34,10 @@ public class UIMainPanel : UIPanel
     protected override void Awake()
     {
         base.Awake();
-        _shopBtn.onClick.AddListener(OnClickShopBtn);
+        _sellBtn.onClick.AddListener(OnClickShopBtn);
         _collectionBtn.onClick.AddListener(OnClickCollectionBtn);
         _optionBtn.onClick.AddListener(OnClickOptionBtn);
+        _researchBtn.onClick.AddListener(OnClickResearchBtn);
     }
 
     private void OnEnable()
@@ -113,12 +116,15 @@ public class UIMainPanel : UIPanel
     }
     private void OnClickShopBtn()
     {
-        UIManager.Instance.OpenShopPanel();
+        UIManager.Instance.OpenSellPanel();
     }
     private void OnClickOptionBtn()
     {
         UIManager.Instance.OpenOptionPanel();
     }
-
+    private void OnClickResearchBtn()
+    {
+        UIManager.Instance.OpenResearchPanel();
+    }
 
 }

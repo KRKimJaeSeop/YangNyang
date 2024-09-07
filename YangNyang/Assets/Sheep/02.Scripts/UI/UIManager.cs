@@ -15,10 +15,11 @@ public class UIManager : Singleton<UIManager>
 
         // ---- PlayScene
         Main = 101,
-        Shop = 201,
+        Sell = 201,
         Collection = 301,
         CollectionDetail = 302,
         Option = 401,
+        Research = 501,
     }
 
     [Serializable]
@@ -308,19 +309,19 @@ public class UIManager : Singleton<UIManager>
     }
     #endregion
 
-    #region Shop
+    #region Sell
     /// <summary>
     /// 상점 패널 오픈.
     /// </summary>
-    public UIShopPanel OpenShopPanel(Action<object> cbClose = null)
+    public UISellPanel OpenSellPanel(Action<object> cbClose = null)
     {
         // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
         //InputController.Instance.ReleaseInputStates();
 
-        var panelCode = Code.Shop;
+        var panelCode = Code.Sell;
         var panelInfo = GetPanelInfo(panelCode);
         var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
-        var component = go.GetComponent<UIShopPanel>();
+        var component = go.GetComponent<UISellPanel>();
         var openInfo = AddPanel((int)panelCode, component);
         component.Open(panelInfo.canvas,
              (results) =>
@@ -328,13 +329,39 @@ public class UIManager : Singleton<UIManager>
                  RemovePanel(openInfo);
                  ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
                  cbClose?.Invoke(results);
-                 Debug.Log($"{GetType()}::{nameof(OpenShopPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+                 Debug.Log($"{GetType()}::{nameof(OpenSellPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
              });
-        Debug.Log($"{GetType()}::{nameof(OpenShopPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        Debug.Log($"{GetType()}::{nameof(OpenSellPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
         return component;
     }
     #endregion
 
+    #region Research
+    /// <summary>
+    /// 상점 패널 오픈.
+    /// </summary>
+    public UIResearchPanel OpenResearchPanel(Action<object> cbClose = null)
+    {
+        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
+        //InputController.Instance.ReleaseInputStates();
+
+        var panelCode = Code.Research;
+        var panelInfo = GetPanelInfo(panelCode);
+        var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
+        var component = go.GetComponent<UIResearchPanel>();
+        var openInfo = AddPanel((int)panelCode, component);
+        component.Open(panelInfo.canvas,
+             (results) =>
+             {
+                 RemovePanel(openInfo);
+                 ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+                 cbClose?.Invoke(results);
+                 Debug.Log($"{GetType()}::{nameof(OpenResearchPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+             });
+        Debug.Log($"{GetType()}::{nameof(OpenResearchPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        return component;
+    }
+    #endregion
 
 }
 

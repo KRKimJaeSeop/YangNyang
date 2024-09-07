@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "메모.md",
+                "file": "작업 일정/작업 목록.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "메모.md",
+                "file": "작업 일정/작업 목록.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "메모.md",
+                "file": "작업 일정/작업 목록.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "메모.md"
+                "file": "작업 일정/작업 목록.md"
               }
             }
           }
@@ -148,14 +148,14 @@
   },
   "active": "a9db82488c4ff9ae",
   "lastOpenFiles": [
-    "조사/아트 참고.md",
-    "조사/어드레서블.md",
+    "작업 일정/작업 계획.md",
     "작업 일지/2024-09-07.md",
+    "메모.md",
+    "조사/아트 참고.md",
+    "작업 일정/작업 목록.md",
+    "조사/어드레서블.md",
     "_이미지/Pasted image 20240907054249.png",
     "작업 일지/2024-09-06.md",
-    "작업 일정/작업 계획.md",
-    "작업 일정/작업 목록.md",
-    "메모.md",
     "기획/2.게임 스토리.md",
     "기획/돌연변이.md",
     "기획/Movement 오브젝트.md",
