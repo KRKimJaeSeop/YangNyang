@@ -11,12 +11,31 @@ public class DevUI : MonoBehaviour
     private TMP_InputField textField2;
     [SerializeField]
     private Image img;
+
     [SerializeField]
     private Button btn;
+
+    [SerializeField]
+    private Button btn1;
+    [SerializeField]
+    private Button btn2;
+    [SerializeField]
+    private Button btn3;
+    [SerializeField]
+    private Button btn4;
+    [SerializeField]
+    private Button btn5;
+
 
     private void Awake()
     {
         btn.onClick.AddListener(OnClickTestBtn);
+        btn1.onClick.AddListener(OnClick1);
+        btn2.onClick.AddListener(OnClick2);
+        btn3.onClick.AddListener(OnClick3);
+        btn4.onClick.AddListener(OnClick4);
+        btn5.onClick.AddListener(OnClick5);
+
     }
 
     private void OnClickTestBtn()
@@ -26,6 +45,42 @@ public class DevUI : MonoBehaviour
         //FieldObjectManager.Instance.SheepSpawnBuff(value1, value2);
         //Addressables.InstantiateAsync(textField1.text,new Vector2(-8,0), Quaternion.identity);
         GameDataManager.Instance.Storages.User.IncreaseLevel(int.Parse(textField1.text));
+    }
+    private void OnClick1()
+    {
+        UIManager.Instance.OpenConfirmPanel(textField1.text, textField2.text);
+    }
+    private void OnClick2()
+    {
+        UIManager.Instance.OpenNotificationPanel();
+    }
+    private void OnClick3()
+    {
+        UIManager.Instance.OpenResultPanel();
+    }
+    private void OnClick4()
+    {
+        if (textField1.text == string.Empty)
+        {
+            UIManager.Instance.OpenLoading();
+        }
+        else
+        {
+            UIManager.Instance.CloseLoading();
+
+        }
+    }
+    private void OnClick5()
+    {
+        if (textField1.text == string.Empty)
+        {
+            UIManager.Instance.OpenWaiting();
+        }
+        else
+        {
+            UIManager.Instance.CloseWaiting();
+
+        }
     }
 
 }

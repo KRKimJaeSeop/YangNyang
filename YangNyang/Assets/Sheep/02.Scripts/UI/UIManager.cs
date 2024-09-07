@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -12,6 +13,7 @@ public class UIManager : Singleton<UIManager>
         // ---- Common
         Confirm = 1,
         Notification = 2,
+        Result = 3,
 
         // ---- PlayScene
         Main = 101,
@@ -132,7 +134,11 @@ public class UIManager : Singleton<UIManager>
     {
         for (int i = _openedPanelInfos.Count - 1; i >= 0; i--)
         {
-            _openedPanelInfos[i].panel.Close();
+            var panelInfo = _openedPanelInfos[i];
+            if (panelInfo.code != (int)Code.Main)
+            {
+                panelInfo.panel.Close();
+            }
         }
     }
 
@@ -144,8 +150,12 @@ public class UIManager : Singleton<UIManager>
     {
         if (_openedPanelInfos.Count > 0)
         {
-            _openedPanelInfos[_openedPanelInfos.Count - 1].panel.Close();
-            return true;
+            var panelInfo = _openedPanelInfos[_openedPanelInfos.Count - 1];
+            if (panelInfo.code != (int)Code.Main)
+            {
+                panelInfo.panel.Close();
+                return true;
+            }
         }
         return false;
     }
@@ -213,6 +223,98 @@ public class UIManager : Singleton<UIManager>
         Debug.LogError($"{GetType()}::{nameof(GetPanelInfo)}: 해당 패널이 없음. Code({code})");
         return (null, null);
     }
+
+    #region Common
+    public void OpenWaiting()
+    {
+        if (goLoading != null)
+            goWaiting.SetActive(true);
+    }
+    public void CloseWaiting()
+    {
+        if (goWaiting != null)
+            goWaiting.SetActive(false);
+    }
+    public void OpenLoading()
+    {
+        if (goLoading != null)
+            goLoading.SetActive(true);
+    }
+    public void CloseLoading()
+    {
+        if (goLoading != null)
+            goLoading.SetActive(false);
+    }
+
+    public UIConfirmPanel OpenConfirmPanel(string title,
+        string content, 
+        Canvas canvas = null,
+        UnityAction<object> cbClose = null)
+    {
+        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
+        //InputController.Instance.ReleaseInputStates();
+
+        var panelCode = Code.Confirm;
+        var panelInfo = GetPanelInfo(panelCode);
+        var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
+        var component = go.GetComponent<UIConfirmPanel>();
+        var openInfo = AddPanel((int)panelCode, component);
+        component.Open(title, content, panelInfo.canvas,
+             (results) =>
+             {
+                 RemovePanel(openInfo);
+                 ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+                 cbClose?.Invoke(results);
+                 Debug.Log($"{GetType()}::{nameof(OpenConfirmPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+             });
+        Debug.Log($"{GetType()}::{nameof(OpenConfirmPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        return component;
+    }
+
+    public UINotificationPanel OpenNotificationPanel(Action<object> cbClose = null)
+    {
+        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
+        //InputController.Instance.ReleaseInputStates();
+
+        var panelCode = Code.Notification;
+        var panelInfo = GetPanelInfo(panelCode);
+        var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
+        var component = go.GetComponent<UINotificationPanel>();
+        var openInfo = AddPanel((int)panelCode, component);
+        component.Open(panelInfo.canvas,
+             (results) =>
+             {
+                 RemovePanel(openInfo);
+                 ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+                 cbClose?.Invoke(results);
+                 Debug.Log($"{GetType()}::{nameof(OpenNotificationPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+             });
+        Debug.Log($"{GetType()}::{nameof(OpenNotificationPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        return component;
+    }
+
+    public UIResultPanel OpenResultPanel(Action<object> cbClose = null)
+    {
+        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
+        //InputController.Instance.ReleaseInputStates();
+
+        var panelCode = Code.Result;
+        var panelInfo = GetPanelInfo(panelCode);
+        var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
+        var component = go.GetComponent<UIResultPanel>();
+        var openInfo = AddPanel((int)panelCode, component);
+        component.Open(panelInfo.canvas,
+             (results) =>
+             {
+                 RemovePanel(openInfo);
+                 ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+                 cbClose?.Invoke(results);
+                 Debug.Log($"{GetType()}::{nameof(OpenResultPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+             });
+        Debug.Log($"{GetType()}::{nameof(OpenResultPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        return component;
+    }
+    #endregion
 
     #region Main
     /// <summary>
@@ -338,7 +440,7 @@ public class UIManager : Singleton<UIManager>
 
     #region Research
     /// <summary>
-    /// 상점 패널 오픈.
+    /// 연구 패널 오픈.
     /// </summary>
     public UIResearchPanel OpenResearchPanel(Action<object> cbClose = null)
     {
