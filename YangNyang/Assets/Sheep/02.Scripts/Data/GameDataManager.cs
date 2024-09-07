@@ -1,4 +1,5 @@
 using UnityEngine;
+using static GameManager;
 
 public class GameDataManager : Singleton<GameDataManager>
 {
@@ -15,6 +16,15 @@ public class GameDataManager : Singleton<GameDataManager>
     {
         DontDestroyOnLoad(this.gameObject);
     }
+    private void OnEnable()
+    {
+        GameManager.OnGameClear += GameManager_OnGameClear;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnGameClear -= GameManager_OnGameClear;
+    }
+
     public virtual bool Initialize()
     {
         IsInitialized = false;
@@ -31,13 +41,23 @@ public class GameDataManager : Singleton<GameDataManager>
         IsInitialized = true;
         return true;
     }
-    public void SetDataPassedDay()
+ 
+    private void GameManager_OnGameClear(EndingType type)
     {
-        Storages.User.IncreaseDay(1);
-
-        Storages.Currency.Decrease
-            (Currency.Type.Wool, Storages.Currency.GetAmount(Currency.Type.Wool));
-        Storages.Currency.Decrease
-             (Currency.Type.Gold, Storages.Currency.GetAmount(Currency.Type.Gold));
+        switch (type)
+        {
+            case EndingType.CrazyLucky:
+                Storages.User.IncreaseDay(999);
+                break;
+            case EndingType.Birthday:
+                Storages.User.IncreaseDay(999);
+                break;
+            default:
+                Storages.User.IncreaseDay(1);
+                Storages.Currency.Decrease
+                     (Currency.Type.Gold, Storages.Currency.GetAmount(Currency.Type.Gold));
+                break;
+        }
+  
     }
 }

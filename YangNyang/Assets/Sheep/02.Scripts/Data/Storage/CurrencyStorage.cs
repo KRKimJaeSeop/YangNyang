@@ -48,8 +48,6 @@ public class CurrencyStorage : BaseStorage
     // ---- event
     public delegate void UpdateCurrencyEvent(Currency.Type code, long total, long amount);
     public static event UpdateCurrencyEvent OnUpdateCurrency;
-    public delegate void CollectCurrencyEvent(Currency.Type code, long total, long amount);
-    public static event CollectCurrencyEvent OnCollectCurrency;
 
 
     #region IStorage
@@ -229,7 +227,6 @@ public class CurrencyStorage : BaseStorage
 
         SetDirty();
         OnUpdateCurrency?.Invoke(code, result, amount);
-        OnCollectCurrency?.Invoke(code, result, amount);
         return result;
     }
 

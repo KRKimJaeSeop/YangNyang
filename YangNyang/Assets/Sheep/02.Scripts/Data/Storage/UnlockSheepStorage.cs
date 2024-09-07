@@ -99,6 +99,19 @@ public class UnlockSheepStorage : BaseStorage
 
     }
     
+    public bool IsUnlockAllSheep()
+    {
+        var sheeps = GameDataManager.Instance.Tables.Sheep.GetList();
+        foreach (var sheep in sheeps)
+        {
+            if (!_data.unlockSheeps.Contains(sheep.id))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /// <summary>
     /// 해당 id의 양의 해금여부를 반환한다.
     /// </summary>

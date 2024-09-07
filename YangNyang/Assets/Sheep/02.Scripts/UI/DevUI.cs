@@ -45,7 +45,7 @@ public class DevUI : MonoBehaviour
         //FieldObjectManager.Instance.SheepSpawnBuff(value1, value2);
         //Addressables.InstantiateAsync(textField1.text,new Vector2(-8,0), Quaternion.identity);
         //GameDataManager.Instance.Storages.User.IncreaseLevel(int.Parse(textField1.text));
-        PlaySceneManager.Instance.StartNewDay();
+        GameManager.Instance.GameClear();
     }
     private void OnClick1()
     {
