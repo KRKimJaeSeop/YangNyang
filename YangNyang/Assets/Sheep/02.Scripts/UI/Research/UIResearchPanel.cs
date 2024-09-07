@@ -24,10 +24,8 @@ public class UIResearchPanel : UIPanel
 
     public override void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
-        base.Open(canvas, cbClose);
-        _storageWoolAmount = GameDataManager.Instance.Storages.Currency.GetAmount(Currency.Type.Wool);
-        _cachedWool = _storageWoolAmount;
-        GetResearchLevelData();
+        base.Open(canvas, cbClose);       
+        InitializeResearchData();
     }
     private void OnEnable()
     {
@@ -40,12 +38,13 @@ public class UIResearchPanel : UIPanel
 
     private void UserStorage_OnUpdateLevel(int level)
     {
-        GetResearchLevelData();
+        InitializeResearchData();
     }
 
-
-    private void GetResearchLevelData()
+    private void InitializeResearchData()
     {
+        _storageWoolAmount = GameDataManager.Instance.Storages.Currency.GetAmount(Currency.Type.Wool);
+        _cachedWool = _storageWoolAmount;
         var currentLevel = GameDataManager.Instance.Storages.User.ResearchLevel;
         _maxExp = GameDataManager.Instance.Tables.Research.GetMaxExp(currentLevel);
         _exp = GameDataManager.Instance.Storages.User.ResearchExp;

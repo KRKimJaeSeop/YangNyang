@@ -21,6 +21,8 @@ public class UISellPanel : UIPanel
         _cachedWool = _storageWoolAmount;
         _cachedGold = GameDataManager.Instance.Storages.Currency.GetAmount(Currency.Type.Gold);
         _sellAmount = _storageWoolAmount / 100;
+        if (_sellAmount == 0)
+            _sellAmount = _storageWoolAmount;
         SetUI();
     }
 
