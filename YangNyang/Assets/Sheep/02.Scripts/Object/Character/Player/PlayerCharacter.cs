@@ -11,27 +11,26 @@ public class PlayerCharacter : CharacterObject
         Work,
     }
 
-    private StateMachine<PlayerState> fsm;
+    private StateMachine<PlayerState> _fsm;
     [SerializeField, Tooltip("조이스틱 조작시 이동속도")]
-    private float controllMoveSpeed = 10;
-    private Vector2 movementAmount;
-    private Vector3 originScale;
-    private Vector3 flipScale;
-    // 상호작용중인 IInteractable 게임오브젝트의 정보
-    public InteractObjectInfo currentInteractObjectInfo;
-
+    private float _controllMoveSpeed = 10;
+    private Vector2 _movementAmount;
+    private Vector3 _originScale;
+    private Vector3 _flipScale;
+    [SerializeField, Tooltip("상호작용중인 IInteractable 게임오브젝트의 정보")]
+    private InteractObjectInfo currentInteractObjectInfo;
 
 
     protected override void Awake()
     {
         base.Awake();
-        fsm = new StateMachine<PlayerState>();
-        fsm.Initialize(this);
+        _fsm = new StateMachine<PlayerState>();
+        _fsm.Initialize(this);
         InitializeStates();
-        fsm.SetInitState(PlayerState.Idle);
+        _fsm.SetInitState(PlayerState.Idle);
 
-        originScale = _transform.localScale;
-        flipScale = new Vector3(-(_transform.localScale.x), _transform.localScale.y, _transform.localScale.z);
+        _originScale = _transform.localScale;
+        _flipScale = new Vector3(-(_transform.localScale.x), _transform.localScale.y, _transform.localScale.z);
         //나중에 활성화
         // Addressables.LoadAssetAsync<Sprite>("고양이테스트").Completed += OnSpriteLoaded;
 
@@ -43,9 +42,9 @@ public class PlayerCharacter : CharacterObject
 
     protected override void InitializeStates()
     {
-        fsm.AddState(PlayerState.Idle, Idle_Enter, Idle_Execute, Idle_Exit);
-        fsm.AddState(PlayerState.Move, Move_Enter, Move_Execute, Move_Exit);
-        fsm.AddState(PlayerState.Work, Work_Enter, Work_Execute, Work_Exit);
+        _fsm.AddState(PlayerState.Idle, Idle_Enter, Idle_Execute, Idle_Exit);
+        _fsm.AddState(PlayerState.Move, Move_Enter, Move_Execute, Move_Exit);
+        _fsm.AddState(PlayerState.Work, Work_Enter, Work_Execute, Work_Exit);
     }
 
     private void OnEnable()
@@ -60,12 +59,12 @@ public class PlayerCharacter : CharacterObject
 
     void OnJoystickMove(Vector2 movementAmount)
     {
-        this.movementAmount = movementAmount;
+        this._movementAmount = movementAmount;
     }
 
     private void Update()
     {
-        fsm.Update();
+        _fsm.Update();
     }
 
     #region 충돌 처리 메소드.
@@ -128,7 +127,7 @@ public class PlayerCharacter : CharacterObject
         switch (_info.objectType)
         {
             case FieldObject.Type.WorkableSheep:
-                fsm.ChangeState(PlayerState.Work);
+                _fsm.ChangeState(PlayerState.Work);
                 break;
             case FieldObject.Type.UnWorkableSheep:
                 break;
@@ -142,7 +141,7 @@ public class PlayerCharacter : CharacterObject
         {
             if (currentInteractObjectInfo.objectType != _info.objectType)
             {
-                fsm.ChangeState(PlayerState.Idle);
+                _fsm.ChangeState(PlayerState.Idle);
             }
         }
     }
@@ -152,7 +151,7 @@ public class PlayerCharacter : CharacterObject
         switch (_info.objectType)
         {
             case FieldObject.Type.WorkableSheep:
-                fsm.ChangeState(PlayerState.Idle);
+                _fsm.ChangeState(PlayerState.Idle);
                 break;
             default:
                 break;
@@ -174,9 +173,9 @@ public class PlayerCharacter : CharacterObject
     private void Idle_Execute()
     {
         //Debug.Log("Executing Idle State");
-        if (movementAmount != Vector2.zero)
+        if (_movementAmount != Vector2.zero)
         {
-            fsm.ChangeState(PlayerState.Move);
+            _fsm.ChangeState(PlayerState.Move);
         }
     }
 
@@ -189,6 +188,8 @@ public class PlayerCharacter : CharacterObject
     #region State.Move
     private void Move_Enter()
     {
+        var a = Random.Range(1, 10);
+        _speechBubble.Show($"움직인당{a}");
         base.SetAnim_Move(true);
         //Debug.Log("Entering Move State");
         //GetComponent<Animator>().SetTrigger("Move");
@@ -197,22 +198,25 @@ public class PlayerCharacter : CharacterObject
     private void Move_Execute()
     {
         // 이동 조작 없을 시 Idle로 전환한다.
-        if (movementAmount == Vector2.zero)
+        if (_movementAmount == Vector2.zero)
         {
             _rb2D.velocity = Vector2.zero;
-            fsm.ChangeState(PlayerState.Idle);
+            _fsm.ChangeState(PlayerState.Idle);
             return;
         }
-        if (movementAmount.x < 0)
+        if (_movementAmount.x < 0)
         {
-            _transform.localScale = flipScale;
+            _transform.localScale = _flipScale;
+            // 이대로 애니메이션을 이미 만들어버려서..어쩔수없이 플립할때 말풍선도 같이 플립해주자.
+            _speechBubble.Flip(true);
         }
-        if (movementAmount.x > 0)
+        if (_movementAmount.x > 0)
         {
-            _transform.localScale = originScale;
+            _transform.localScale = _originScale;
+            _speechBubble.Flip(false);
         }
 
-        _rb2D.velocity = movementAmount * controllMoveSpeed;
+        _rb2D.velocity = _movementAmount * _controllMoveSpeed;
     }
 
     private void Move_Exit()
@@ -230,7 +234,7 @@ public class PlayerCharacter : CharacterObject
 
     private void Work_Execute()
     {
-        _rb2D.velocity = movementAmount * controllMoveSpeed;
+        _rb2D.velocity = _movementAmount * _controllMoveSpeed;
     }
 
     private void Work_Exit()

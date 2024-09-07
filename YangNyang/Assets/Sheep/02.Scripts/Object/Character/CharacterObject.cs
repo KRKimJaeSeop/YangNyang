@@ -12,7 +12,7 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
     #endregion
 
     [SerializeField]
-    protected GameObject _speechBubble;
+    protected SpeechBubble _speechBubble;
 
     [SerializeField]
     protected Animator _animator;
