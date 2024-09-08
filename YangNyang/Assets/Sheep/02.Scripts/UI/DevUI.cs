@@ -65,27 +65,30 @@ public class DevUI : MonoBehaviour
     }
     private void OnClick4()
     {
-        if (textField1.text == string.Empty)
-        {
-            UIManager.Instance.OpenLoading();
-        }
-        else
-        {
-            UIManager.Instance.CloseLoading();
+        //if (textField1.text == string.Empty)
+        //{
+        //    UIManager.Instance.OpenLoading();
+        //}
+        //else
+        //{
+        //    UIManager.Instance.CloseLoading();
 
-        }
+        //}
+        GameManager.Instance.TestEnter();
     }
     private void OnClick5()
     {
-        if (textField1.text == string.Empty)
-        {
-            UIManager.Instance.OpenWaiting();
-        }
-        else
-        {
-            UIManager.Instance.CloseWaiting();
+        //if (textField1.text == string.Empty)
+        //{
+        //    UIManager.Instance.OpenWaiting();
+        //}
+        //else
+        //{
+        //    UIManager.Instance.CloseWaiting();
 
-        }
+        //}
+        GameManager.Instance.TestExit();
+
     }
 
 }

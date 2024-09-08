@@ -22,10 +22,14 @@ public class UIResearchPanel : UIPanel
     // 한틱에 판매할 양(현재 양털의 0.01퍼센트)
     private long _researchAmount;
 
+
+
+
     public override void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
         base.Open(canvas, cbClose);
-        InitializeResearchData();
+        SetValues();
+        SetGauge();
     }
     private void OnEnable()
     {
@@ -38,10 +42,11 @@ public class UIResearchPanel : UIPanel
 
     private void UserStorage_OnUpdateLevel(int level)
     {
-        InitializeResearchData();
+        SetValues();
+        SetGauge();
     }
 
-    private void InitializeResearchData()
+    private void SetValues()
     {
         _storageWoolAmount = GameDataManager.Instance.Storages.Currency.GetAmount(Currency.Type.Wool);
         _cachedWool = _storageWoolAmount;
@@ -54,7 +59,6 @@ public class UIResearchPanel : UIPanel
             _researchAmount = _maxExp > 0 ? _maxExp : 1;
         }
         _currentLevelText.text = $"{currentLevel}LV";
-        SetGauge();
     }
 
     private void SetGauge()

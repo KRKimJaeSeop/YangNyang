@@ -9,12 +9,19 @@ public class DialogTableUnit : BaseElementTable
     {
         public enum ActionType
         {
-            Spawn,
-            Move,
-            Dialogue
+            None = 0,
+            Spawn = 1,
+            Move = 2,
+            Speech = 3,
         }
         public ActionType actionType;
 
+        public string ActorName;
+        public FieldObject.Type spawnType;
+        public Place.Type ActionPlace;
+        public string SpeechText;
+        // Ω∫≈‹ ¿Ã»ƒ ∏ÿ√ﬂ¥¬¡ˆ?
+        public bool isStop;
 
     }
 
@@ -23,6 +30,7 @@ public class DialogTableUnit : BaseElementTable
     public Dialog.Type type;
     [SerializeField]
     private StepUnit[] _steps;
+    public StepUnit[] Steps { get { return _steps; } }
 
 
 
@@ -45,6 +53,5 @@ public class DialogTableUnit : BaseElementTable
     }
 
 #endif
-
 
 }

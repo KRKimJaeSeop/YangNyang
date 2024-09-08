@@ -161,9 +161,9 @@ public class StandardSheep : CharacterObject, IInteractable
     private IEnumerator MoveCoroutine()
     {
         Vector2 spawnPosition =
-         FieldObjectManager.Instance.Places.GetPlacePosition(PlaceData.Type.SheepSpawn);
+         FieldObjectManager.Instance.Places.GetPlacePosition(Place.Type.SheepSpawn);
         Vector2 targetPosition =
-            FieldObjectManager.Instance.Places.GetPlacePosition(PlaceData.Type.SheepExit);
+            FieldObjectManager.Instance.Places.GetPlacePosition(Place.Type.SheepExit);
 
         // hasBeenIdle는 한번이라도 확률에 의해 이 코루틴을 탈출해서 Idle상태가 됐었다면 true가 되기 때문에,
         // MoveTween의 중복실행을 막는다.
@@ -171,7 +171,8 @@ public class StandardSheep : CharacterObject, IInteractable
         {
             // rigidBody의 포지션의 계산이 느린것같다. 정확한 원인은 모르겠다.
             // SetPosition이 제대로 되기 전에 이부분의함수가 시작돼서, 제 위치로 세팅될때까지 기다렸다가 Move를 시작한다.
-            yield return new WaitUntil(() => _rb2D.position == spawnPosition);
+            // 해결될때까지 무효
+            //yield return new WaitUntil(() => _rb2D.position == spawnPosition);
 
             _moveTween = transform.DOJump(targetPosition, _jumpPower, 1, _tbUnit.MoveSpeed).SetEase(Ease.Linear).OnComplete(() =>
             {

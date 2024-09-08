@@ -49,6 +49,37 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
 
     #region Manage
 
+
+    public T GetFieldObject<T>(int instanceID) where T : BaseFieldObject
+    {
+        if (_managedObjects.TryGetValue(instanceID, out BaseFieldObject go))
+        {
+            if (go is T typedObject)
+            {
+                return typedObject;
+            }
+            else
+            {
+                Debug.LogError($"Object with ID [{instanceID}] is not of type {typeof(T)}");
+                return null;
+            }
+        }
+        else
+        {
+            Debug.LogError($"Don't Manage [{instanceID}]");
+            return null;
+        }
+    }
+
+    public void DespawnAll()
+    {
+        foreach (var item in _managedObjects.ToList())
+        {
+            item.Value.Despawn();
+        }
+        Debug.Log("DespawnAll");
+    }
+
     public void DespawnByInstanceID(int instanceID)
     {
         if (_managedObjects.TryGetValue(instanceID, out BaseFieldObject go))
@@ -66,17 +97,16 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
 
     #region SpawnPlayer
 
-    public BaseFieldObject SpawnPlayer()
+    public BaseFieldObject SpawnPlayer(Place.Type spawnPlace = Place.Type.PlayerSpawn)
     {
         var go = (ObjectPool.Instance.Pop("Player")).GetComponent<PlayerCharacter>();
         _managedObjects.Add(go.InstanceID, go);
-        go.Spawn(_placeDataContainer.GetPlacePosition(PlaceData.Type.PlayerSpawn), () =>
+        go.Spawn(_placeDataContainer.GetPlacePosition(spawnPlace), () =>
         {
             _managedObjects.Remove(go.InstanceID);
         });
         return go;
     }
-
     #endregion
 
     #region SheepSpawnIntervalBuff
@@ -108,7 +138,6 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
 
         StartSheepSpawn(true);
     }
-
     #endregion
 
     #region SheepSpawn
@@ -165,44 +194,25 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     /// <summary>
     /// 가중치를 사용해 랜덤한 양을 스폰한다.
     /// </summary>
-    public BaseFieldObject SpawnSheep()
+    public BaseFieldObject SpawnSheep(Place.Type spawnPlace = Place.Type.SheepSpawn)
     {
         if (_sheepSpawnCache.tbUnit != null)
         {
-            int randomIndex = GetRandomSheepByWeight(_sheepSpawnCache.array, _sheepSpawnCache.totalWeight);
+            int randomIndex = 
+                GameDataManager.Instance.Tables.Sheep.GetRandomSheepByWeight(_sheepSpawnCache.array, _sheepSpawnCache.totalWeight);
             var selectedSheep = _sheepSpawnCache.tbUnit.sheepList[randomIndex];
             var unit = GameDataManager.Instance.Tables.Sheep.GetUnit(selectedSheep.id);
+
+
             var go = (ObjectPool.Instance.Pop($"{unit.Type}Sheep")).GetComponent<StandardSheep>();
             _managedObjects.Add(go.InstanceID, go);
-            go.Spawn(unit.id, Places.GetPlacePosition(PlaceData.Type.SheepSpawn), () =>
+            go.Spawn(unit.id, Places.GetPlacePosition(spawnPlace), () =>
             {
                 _managedObjects.Remove(go.InstanceID);
             });
             return go;
         }
         return null;
-    }
-
-    /// <summary>
-    /// 가중치를 사용해서 랜덤한 정수를 뽑는다.
-    /// </summary>
-    /// <param name="weights"></param>
-    /// <returns></returns>
-    private int GetRandomSheepByWeight(int[] weights, int totalWeight)
-    {
-        if (weights == null || weights.Length <= 0)
-            return -1;
-
-        int randomValue = UnityEngine.Random.Range(0, totalWeight);
-        for (int i = 0; i < weights.Length; i++)
-        {
-            if (randomValue < weights[i])
-            {
-                return i;
-            }
-            randomValue -= weights[i];
-        }
-        return -1;
     }
 
     #endregion

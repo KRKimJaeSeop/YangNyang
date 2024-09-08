@@ -19,6 +19,27 @@ MonoBehaviour:
   icon: {fileID: 0}
   type: 1
   _steps:
-  - actionType: 0
-  - actionType: 0
-  - actionType: 0
+  - actionType: 1
+    ActorName: "\uD50C\uB808\uC774\uC5B4"
+    spawnType: 1
+    ActionPlace: 6
+    SpeechText: 
+    isStop: 0
+  - actionType: 1
+    ActorName: "\uC5911"
+    spawnType: 2
+    ActionPlace: 7
+    SpeechText: 
+    isStop: 1
+  - actionType: 3
+    ActorName: "\uD50C\uB808\uC774\uC5B4"
+    spawnType: 2
+    ActionPlace: 3
+    SpeechText: "\uC548\uB155\uD558\uC138\uC694"
+    isStop: 0
+  - actionType: 3
+    ActorName: "\uC5911"
+    spawnType: 2
+    ActionPlace: 3
+    SpeechText: "\uC800\uB3C4 \uC548\uB155\uD558\uC138\uC694"
+    isStop: 1

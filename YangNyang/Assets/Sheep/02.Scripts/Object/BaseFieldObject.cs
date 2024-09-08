@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 필드에 배치되는 물리를 가진 오브젝트다.
 /// </summary>
- [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class BaseFieldObject : MonoBehaviour
 {
     protected Transform _transform;
@@ -31,15 +31,16 @@ public class BaseFieldObject : MonoBehaviour
 
     protected void SetPosition(Vector2 position)
     {
-        if (_rb2D != null)
-        {
-            _rb2D.MovePosition(position);
-        }
-        else
+        // 이게 더 빠르다고 알고있는데, 오히려 더 지연이 있어서 일단 주석처리하고 아래로 통일한다.
+        //if (_rb2D != null)
+        //{
+        //    _rb2D.position = position;
+        //}
+        //else
             _transform.position = position;
     }
 
- 
+
     /// <summary>
     /// 게임오브젝트를 활성화하고 콜백이있다면 비활성화할때 실행시킨다.
     /// </summary>

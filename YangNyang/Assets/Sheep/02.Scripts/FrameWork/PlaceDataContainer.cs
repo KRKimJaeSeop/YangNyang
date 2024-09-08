@@ -7,7 +7,7 @@ public class PlaceDataContainer : MonoBehaviour
     [Serializable]
     public struct PlaceDataUnit
     {
-        public PlaceData.Type type;
+        public Place.Type type;
         [SerializeField]
         private Transform _transform;
 
@@ -29,7 +29,7 @@ public class PlaceDataContainer : MonoBehaviour
     [SerializeField]
     private List<PlaceDataUnit> _placeDatas;
 
-    public Vector2 GetPlacePosition(PlaceData.Type type)
+    public Vector2 GetPlacePosition(Place.Type type)
     {
         var pleceDataUnit = _placeDatas.Find(item => (item.type == type));
         return pleceDataUnit.GetPosition();

@@ -14,19 +14,28 @@ public class UISellPanel : UIPanel
     private long _cachedGold;
     // 한틱에 판매할 양(현재 양털의 0.01퍼센트)
     private long _sellAmount;
+
     public override void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
         base.Open(canvas, cbClose);
+        SetValues();
+        SetGauge();
+    }
+    private void SetValues()
+    {
         _storageWoolAmount = GameDataManager.Instance.Storages.Currency.GetAmount(Currency.Type.Wool);
         _cachedWool = _storageWoolAmount;
         _cachedGold = GameDataManager.Instance.Storages.Currency.GetAmount(Currency.Type.Gold);
         _sellAmount = _storageWoolAmount / 100;
         if (_sellAmount == 0)
             _sellAmount = _storageWoolAmount > 0 ? _storageWoolAmount : 1;
-        SetUI();
+        if (_sellAmount > GameManager.Instance.TargetGoldAmount / 100)
+        {
+            _sellAmount = GameManager.Instance.TargetGoldAmount / 100;
+        }
     }
 
-    private void SetUI()
+    private void SetGauge()
     {
         _currentGoldText.text = $"{_cachedGold}";
         _woolFillGauge.fillAmount = _storageWoolAmount > 0 ? (float)((double)_cachedWool / _storageWoolAmount) : 0;
@@ -48,7 +57,7 @@ public class UISellPanel : UIPanel
                 _cachedWool = GameDataManager.Instance.Storages.Currency.Decrease(Currency.Type.Wool, _cachedWool).value;
                 _cachedGold = GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, remainingWool);
             }
-            SetUI();
+            SetGauge();
         }
     }
 }

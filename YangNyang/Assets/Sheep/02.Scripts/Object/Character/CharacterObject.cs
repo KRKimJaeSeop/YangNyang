@@ -39,13 +39,27 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
     /// <param name="time"></param>
     public Tween MoveToPosition(Vector2 targetPosition, float time, Action callback = null)
     {
-
-        return transform.DOMove(targetPosition, time).SetEase(Ease.Linear).OnComplete(() => { callback(); });
+        SetAnim_Move(true);
+        return transform.DOMove(targetPosition, time).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            SetAnim_Move(false);
+            callback?.Invoke();
+        });
+    }
+    public Tween MoveToPosition(Place.Type placeType, float time, Action callback = null)
+    {
+        SetAnim_Move(true);
+        var position = FieldObjectManager.Instance.Places.GetPlacePosition(placeType);
+        return transform.DOMove(position, time).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            SetAnim_Move(false);
+            callback?.Invoke();
+        });
     }
 
-    public void ShowSpeechBubble(string speechText, float showTime = 1f)
+    public void ShowSpeechBubble(string speechText, float showTime = 2f, bool isTypingAnim = false)
     {
-
+        _speechBubble.Show(speechText, showTime, isTypingAnim);
     }
 
 }

@@ -52,6 +52,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4929220304259259949, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929220304259259949, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929220304259259949, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4929220304259259949, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584323442048676972, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6584323442048676972, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7471044097657458750, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
     m_RemovedGameObjects: []
@@ -72,6 +96,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4206124581564828932 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5934797387791654933, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
+  m_PrefabInstance: {fileID: 7494986772247031057}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc540994aff8a6242a52a7ef9d2a8bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8236735232467810648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1895252174086673481, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
@@ -89,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd14d87e493a96f4e96f7fed3c81b91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speechBubble: {fileID: 0}
+  _speechBubble: {fileID: 4206124581564828932}
   _animator: {fileID: 9213236691734545842}
   _spriteResolver: {fileID: 2892113450723869374}
 --- !u!95 &9213236691734545842 stripped

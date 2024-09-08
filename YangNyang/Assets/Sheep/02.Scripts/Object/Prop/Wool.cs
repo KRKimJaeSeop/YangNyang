@@ -12,12 +12,12 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
         base.Spawn(startPosition, cbDisable);
 
         float randomX = Random.Range(FieldObjectManager.Instance.Places.GetPlacePosition
-        (PlaceData.Type.WoolDropZone_BottomLeftCorner).x,
-        FieldObjectManager.Instance.Places.GetPlacePosition(PlaceData.Type.WoolDropZone_TopRightCorner).x);
+        (Place.Type.WoolDropZone_BottomLeftCorner).x,
+        FieldObjectManager.Instance.Places.GetPlacePosition(Place.Type.WoolDropZone_TopRightCorner).x);
 
         float randomY = Random.Range(FieldObjectManager.Instance.Places.GetPlacePosition
-         (PlaceData.Type.WoolDropZone_BottomLeftCorner).y,
-         FieldObjectManager.Instance.Places.GetPlacePosition(PlaceData.Type.WoolDropZone_TopRightCorner).y);
+         (Place.Type.WoolDropZone_BottomLeftCorner).y,
+         FieldObjectManager.Instance.Places.GetPlacePosition(Place.Type.WoolDropZone_TopRightCorner).y);
 
         SetPosition(startPosition);
         MoveToPosition(new Vector2(randomX, randomY), 6);

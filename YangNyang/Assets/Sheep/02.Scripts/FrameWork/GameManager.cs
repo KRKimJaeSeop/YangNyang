@@ -14,12 +14,14 @@ public class GameManager : Singleton<GameManager>
         Birthday = 5,
 
     }
+    [SerializeField]
+    private long _targetGoldAmount;
+    public long TargetGoldAmount { get { return _targetGoldAmount; } }
+    private bool isGameClear = false;
     public delegate void GameClearEvent(EndingType endingType);
     public static event GameClearEvent OnGameClear;
 
-    [SerializeField]
-    private long _targetGoldAmount;
-    private bool isGameClear = false;
+
 
     private void Awake()
     {
@@ -117,6 +119,15 @@ public class GameManager : Singleton<GameManager>
         yield return new WaitForSeconds(5f);
         UIManager.Instance.CloseLoading();
         callback?.Invoke();
+    }
+
+    public void TestEnter()
+    {
+        DialogManager.Instance.EnterDialog(Dialog.Type.Tutorial);
+    }
+    public void TestExit()
+    {
+        DialogManager.Instance.ExitDialog();
     }
 
 }

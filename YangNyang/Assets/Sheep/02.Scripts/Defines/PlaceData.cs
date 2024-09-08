@@ -1,4 +1,4 @@
-namespace PlaceData
+namespace Place
 {
     public enum Type
     {
@@ -8,6 +8,8 @@ namespace PlaceData
         WoolDropZone_BottomLeftCorner = 3,
         WoolDropZone_TopRightCorner = 4,
         PlayerSpawn = 5,
+        OutSideLeftSpawn = 6,
+        OutSideRightSpawn = 7,
     }
 
 }

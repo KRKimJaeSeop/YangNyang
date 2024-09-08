@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -59,6 +58,10 @@ public class SheepTable : BaseTable
         return list.Find(item => (item.Type == type));
     }
 
+    public Sheep.Type GetSheepType(int id)
+    {
+        return list.Find(item => (item.id == id)).Type;
+    }
 
 
 #if UNITY_EDITOR
@@ -112,4 +115,26 @@ public class SheepTable : BaseTable
         return list[idx];
     }
 #endif
+
+    /// <summary>
+    /// 가중치를 사용해서 랜덤한 정수를 뽑는다.
+    /// </summary>
+    /// <param name="weights"></param>
+    /// <returns></returns>
+    public int GetRandomSheepByWeight(int[] weights, int totalWeight)
+    {
+        if (weights == null || weights.Length <= 0)
+            return -1;
+
+        int randomValue = UnityEngine.Random.Range(0, totalWeight);
+        for (int i = 0; i < weights.Length; i++)
+        {
+            if (randomValue < weights[i])
+            {
+                return i;
+            }
+            randomValue -= weights[i];
+        }
+        return -1;
+    }
 }

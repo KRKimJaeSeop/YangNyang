@@ -61,6 +61,8 @@ public class UIManager : Singleton<UIManager>
     private GameObject goWaiting;
     [SerializeField, Tooltip("로딩 화면")]
     private GameObject goLoading;
+    [SerializeField, Tooltip("페이드 인 아웃 애니메이션")]
+    private DialogOverlayUI DialogOverlayUI;
     [SerializeField]
     private List<PanelContainer> panelContainers;
 
@@ -245,6 +247,27 @@ public class UIManager : Singleton<UIManager>
         if (goLoading != null)
             goLoading.SetActive(false);
     }
+    public void OpenDialog()
+    {
+        if (DialogOverlayUI != null)
+        {
+            DialogOverlayUI.Open();
+                //gameObject.SetActive(true);
+            //FadeInOutAnimator.Play("Enter");
+        }
+         
+    }
+    public void CloseDialog()
+    {
+        if (DialogOverlayUI != null)
+        {
+            DialogOverlayUI.Close();
+                //gameObject.SetActive(false);
+            //FadeInOutAnimator.Play("Exit");
+        }
+
+    }
+
 
     public UIConfirmPanel OpenConfirmPanel(string title,
         string content,
@@ -304,7 +327,7 @@ public class UIManager : Singleton<UIManager>
         var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
         var component = go.GetComponent<UIResultPanel>();
         var openInfo = AddPanel((int)panelCode, component);
-        component.Open(title,content, panelInfo.canvas,
+        component.Open(title, content, panelInfo.canvas,
              (results) =>
              {
                  RemovePanel(openInfo);
