@@ -7,6 +7,7 @@ namespace PlaceData
         SheepExit = 2,
         WoolDropZone_BottomLeftCorner = 3,
         WoolDropZone_TopRightCorner = 4,
+        PlayerSpawn = 5,
     }
 
 }

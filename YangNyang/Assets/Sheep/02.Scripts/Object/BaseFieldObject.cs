@@ -44,12 +44,13 @@ public class BaseFieldObject : MonoBehaviour
     /// 게임오브젝트를 활성화하고 콜백이있다면 비활성화할때 실행시킨다.
     /// </summary>
     /// <param name="cbDisable"></param>
-    public void EnableGameObject(Action cbDisable = null)
+    public virtual void Spawn(Vector2 spawnPosition, Action cbDisable = null)
     {
         this.gameObject.SetActive(true);
+        SetPosition(spawnPosition);
         this._cbDisable = cbDisable;
     }
-    public void DisableGameObject()
+    public virtual void Despawn()
     {
         _cbDisable?.Invoke();
         this.gameObject.SetActive(false);

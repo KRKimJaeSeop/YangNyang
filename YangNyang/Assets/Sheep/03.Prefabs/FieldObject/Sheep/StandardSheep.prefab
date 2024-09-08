@@ -398,18 +398,21 @@ MonoBehaviour:
     - m_Name: 1
       m_Hash: 0
       m_Sprite: {fileID: 21300000, guid: 923e54260c449754189ad31a2b8ea6a3, type: 3}
-    - m_Name: 4
+    - m_Name: 3
       m_Hash: 0
       m_Sprite: {fileID: 21300000, guid: 898f886a39d714db5b90d2c36676c894, type: 3}
-    - m_Name: 6
+    - m_Name: 4
       m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: b475d8e7c0aa07d4e8e1122611f54b29, type: 3}
-    - m_Name: 0
-      m_Hash: 0
-      m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+      m_Sprite: {fileID: 21300000, guid: 4031e443ed973c04e9b055e5653cfe49, type: 3}
     - m_Name: 5
       m_Hash: 0
+      m_Sprite: {fileID: -30901059694595086, guid: 30f1ecf3b4a75f641988e755bb48b581, type: 3}
+    - m_Name: 6
+      m_Hash: 0
       m_Sprite: {fileID: 21300000, guid: 3c144b05a9875e84c8d917747898df7a, type: 3}
+    - m_Name: 7
+      m_Hash: 0
+      m_Sprite: {fileID: 21300000, guid: 4c3c953838802724b98781c97610a621, type: 3}
   m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ae5b9c942eb59124c984866295afae22, type: 3}
 --- !u!114 &4621066081452142511
 MonoBehaviour:

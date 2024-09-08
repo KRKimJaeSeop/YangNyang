@@ -60,9 +60,8 @@ public class StandardSheep : CharacterObject, IInteractable
     /// <param name="cbDisable"></param>
     public void Spawn(int id, Vector2 position, Action cbDisable = null)
     {
+        base.Spawn(position, cbDisable);
         _tbUnit = GameDataManager.Instance.Tables.Sheep.GetUnit(id);
-        EnableGameObject(cbDisable);
-        SetPosition(position);
         _spriteResolver.SetCategoryAndLabel("Sheep", $"{_tbUnit.id}");
         _hasBeenIdle = false;
         _isWorkable = true;
@@ -70,6 +69,8 @@ public class StandardSheep : CharacterObject, IInteractable
         _jumpPower = Random.Range(-1.0f, 1.0f);
         _fsm.ChangeState(SheepState.Move);
     }
+ 
+
 
     #region IInteractable
     public InteractObjectInfo GetObjectInfo()
@@ -174,6 +175,7 @@ public class StandardSheep : CharacterObject, IInteractable
 
             _moveTween = transform.DOJump(targetPosition, _jumpPower, 1, _tbUnit.MoveSpeed).SetEase(Ease.Linear).OnComplete(() =>
             {
+                Despawn();
                 _fsm.ChangeState(SheepState.None);
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);
             });
@@ -234,7 +236,7 @@ public class StandardSheep : CharacterObject, IInteractable
         FieldObjectManager.Instance.SpawnWool
             (this.transform.position, Random.Range(_tbUnit.MinWoolAmount, _tbUnit.MaxWoolAmount + 1));
         // 양털 벗은 이미지로 변환한다.
-        _spriteResolver.SetCategoryAndLabel("Sheep", $"0");  
+        _spriteResolver.SetCategoryAndLabel("Sheep", $"0");
         // 스토리지에 등록이 안됐다면 해금.
         if (!GameDataManager.Instance.Storages.UnlockSheep.IsUnlockSheepID(_tbUnit.id))
         {

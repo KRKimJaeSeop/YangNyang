@@ -45,13 +45,14 @@ public class GameManager : Singleton<GameManager>
 
     private void InitializeScene()
     {
+        UIManager.Instance.OpenLoading();
         Application.targetFrameRate = 60;
         GameDataManager.Instance.Initialize();
         FieldObjectManager.Instance.Initialize();
-
         UIManager.Instance.Preload();
-
+        FieldObjectManager.Instance.SpawnPlayer();
         UIManager.Instance.OpenMainPanel();
+        UIManager.Instance.CloseLoading();
     }
 
     private EndingType GetEndingType()

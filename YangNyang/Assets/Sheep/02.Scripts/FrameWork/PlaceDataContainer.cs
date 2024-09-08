@@ -13,7 +13,16 @@ public class PlaceDataContainer : MonoBehaviour
 
         public Vector2 GetPosition()
         {
-            return _transform.position;
+            try
+            {
+                return _transform.position;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 

@@ -1,10 +1,28 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Wool : BaseFieldObject, IMovable, IInteractable
 {
     private bool _isInteractable;
+
+    public override void Spawn(Vector2 startPosition , Action cbDisable = null)
+    {
+        base.Spawn(startPosition, cbDisable);
+
+        float randomX = Random.Range(FieldObjectManager.Instance.Places.GetPlacePosition
+        (PlaceData.Type.WoolDropZone_BottomLeftCorner).x,
+        FieldObjectManager.Instance.Places.GetPlacePosition(PlaceData.Type.WoolDropZone_TopRightCorner).x);
+
+        float randomY = Random.Range(FieldObjectManager.Instance.Places.GetPlacePosition
+         (PlaceData.Type.WoolDropZone_BottomLeftCorner).y,
+         FieldObjectManager.Instance.Places.GetPlacePosition(PlaceData.Type.WoolDropZone_TopRightCorner).y);
+
+        SetPosition(startPosition);
+        MoveToPosition(new Vector2(randomX, randomY), 6);
+    }
+ 
 
     /// <summary>
     /// 지정된 속도로 지정된 위치로 던져지듯 연출하며 이동된다.
@@ -33,7 +51,7 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
             transform.DOMove(new Vector2(-5.61f, 6.57f), 1).SetEase(Ease.InBack).OnComplete(() =>
             {
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);
-                DisableGameObject();
+                Despawn();
                 GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Wool, 10);
             });
         }

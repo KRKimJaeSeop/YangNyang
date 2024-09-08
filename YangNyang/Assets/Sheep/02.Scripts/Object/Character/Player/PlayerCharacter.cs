@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using Random = UnityEngine.Random;
 
 public class PlayerCharacter : CharacterObject
 {
@@ -188,8 +190,6 @@ public class PlayerCharacter : CharacterObject
     #region State.Move
     private void Move_Enter()
     {
-        var a = Random.Range(1, 10);
-        _speechBubble.Show($"움직인당{a}");
         base.SetAnim_Move(true);
         //Debug.Log("Entering Move State");
         //GetComponent<Animator>().SetTrigger("Move");

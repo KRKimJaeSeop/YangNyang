@@ -45,19 +45,23 @@ public class DevUI : MonoBehaviour
         //FieldObjectManager.Instance.SheepSpawnBuff(value1, value2);
         //Addressables.InstantiateAsync(textField1.text,new Vector2(-8,0), Quaternion.identity);
         //GameDataManager.Instance.Storages.User.IncreaseLevel(int.Parse(textField1.text));
-        GameManager.Instance.GameClear();
+        //GameManager.Instance.GameClear();
+        FieldObjectManager.Instance.DespawnByInstanceID(int.Parse(textField1.text));
     }
     private void OnClick1()
     {
-        UIManager.Instance.OpenConfirmPanel(textField1.text, textField2.text);
+        //UIManager.Instance.OpenConfirmPanel(textField1.text, textField2.text);
+        FieldObjectManager.Instance.StartSheepSpawn(false);
     }
     private void OnClick2()
     {
-        UIManager.Instance.OpenNotificationPanel(textField1.text);
+        FieldObjectManager.Instance.StartSheepSpawn(true);
+        //UIManager.Instance.OpenNotificationPanel(textField1.text);
     }
     private void OnClick3()
     {
-        UIManager.Instance.OpenResultPanel(textField1.text, textField2.text);
+        FieldObjectManager.Instance.StopSheepSpawn();
+        //UIManager.Instance.OpenResultPanel(textField1.text, textField2.text);
     }
     private void OnClick4()
     {
