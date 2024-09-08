@@ -24,7 +24,7 @@ public class UIResearchPanel : UIPanel
 
     public override void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
-        base.Open(canvas, cbClose);       
+        base.Open(canvas, cbClose);
         InitializeResearchData();
     }
     private void OnEnable()
@@ -51,7 +51,7 @@ public class UIResearchPanel : UIPanel
         _researchAmount = _maxExp / 100;
         if (_researchAmount > _maxExp)
         {
-            _researchAmount = _maxExp;
+            _researchAmount = _maxExp > 0 ? _maxExp : 1;
         }
         _currentLevelText.text = $"{currentLevel}LV";
         SetGauge();
@@ -59,11 +59,11 @@ public class UIResearchPanel : UIPanel
 
     private void SetGauge()
     {
-        _expFillGauge.fillAmount = (float)((double)_exp / _maxExp);
-        _woolFillGauge.fillAmount = (float)((double)_cachedWool / _storageWoolAmount);
+        _expFillGauge.fillAmount = _maxExp > 0 ? (float)((double)_exp / _maxExp) : 0;
+        _woolFillGauge.fillAmount = _storageWoolAmount > 0 ? (float)((double)_cachedWool / _storageWoolAmount) : 0;
         _expGaugeText.text = $"{_exp} / {_maxExp}";
-
     }
+
     // 이 함수를 롱버튼의 UnityEvent에 등록한다.
     public void Research()
     {
@@ -76,11 +76,11 @@ public class UIResearchPanel : UIPanel
             }
             else
             {
-                _exp = GameDataManager.Instance.Storages.User.IncreaseExp(_cachedWool);
+                long remainingWool = _cachedWool;
+                _exp = GameDataManager.Instance.Storages.User.IncreaseExp(remainingWool);
                 _cachedWool = GameDataManager.Instance.Storages.Currency.Decrease(Currency.Type.Wool, _cachedWool).value;
             }
             SetGauge();
         }
     }
-
 }

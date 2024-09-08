@@ -22,15 +22,14 @@ public class UISellPanel : UIPanel
         _cachedGold = GameDataManager.Instance.Storages.Currency.GetAmount(Currency.Type.Gold);
         _sellAmount = _storageWoolAmount / 100;
         if (_sellAmount == 0)
-            _sellAmount = _storageWoolAmount;
+            _sellAmount = _storageWoolAmount > 0 ? _storageWoolAmount : 1;
         SetUI();
     }
 
     private void SetUI()
     {
         _currentGoldText.text = $"{_cachedGold}";
-        _woolFillGauge.fillAmount = (float)((double)_cachedWool / _storageWoolAmount);
-
+        _woolFillGauge.fillAmount = _storageWoolAmount > 0 ? (float)((double)_cachedWool / _storageWoolAmount) : 0;
     }
 
     // 이 함수를 롱버튼의 UnityEvent에 등록한다.
@@ -40,13 +39,14 @@ public class UISellPanel : UIPanel
         {
             if (_cachedWool > _sellAmount)
             {
-                _cachedGold = GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, _sellAmount);
                 _cachedWool = GameDataManager.Instance.Storages.Currency.Decrease(Currency.Type.Wool, _sellAmount).value;
+                _cachedGold = GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, _sellAmount);
             }
             else
             {
-                _cachedGold = GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, _cachedWool);
+                long remainingWool = _cachedWool;
                 _cachedWool = GameDataManager.Instance.Storages.Currency.Decrease(Currency.Type.Wool, _cachedWool).value;
+                _cachedGold = GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, remainingWool);
             }
             SetUI();
         }

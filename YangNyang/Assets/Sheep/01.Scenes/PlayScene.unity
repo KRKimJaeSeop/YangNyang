@@ -4048,7 +4048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44437d068cbd455448995568a7f1c73d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetGoldAmount: 0
+  _targetGoldAmount: 1000
 --- !u!1 &1506297194
 GameObject:
   m_ObjectHideFlags: 0

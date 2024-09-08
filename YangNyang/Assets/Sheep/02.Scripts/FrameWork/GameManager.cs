@@ -98,6 +98,7 @@ public class GameManager : Singleton<GameManager>
         if (!isGameClear)
         {
             isGameClear = true;
+            UIManager.Instance.CloseAll();
             var endingType = GetEndingType();
             StartCoroutine(OnGameClearCoroutine(() =>
             {
