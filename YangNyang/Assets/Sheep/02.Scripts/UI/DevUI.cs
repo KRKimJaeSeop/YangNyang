@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using Button = UnityEngine.UI.Button;
@@ -46,7 +47,14 @@ public class DevUI : MonoBehaviour
         //Addressables.InstantiateAsync(textField1.text,new Vector2(-8,0), Quaternion.identity);
         //GameDataManager.Instance.Storages.User.IncreaseLevel(int.Parse(textField1.text));
         //GameManager.Instance.GameClear();
-        FieldObjectManager.Instance.DespawnByInstanceID(int.Parse(textField1.text));
+        //FieldObjectManager.Instance.DespawnByInstanceID(int.Parse(textField1.text));
+        //Debug.LogWarning("=========");
+        //foreach (var item in FieldObjectManager.Instance._managedObjects.ToList())
+        //{
+        //    Debug.Log(item.Key);
+        //}
+        //Debug.Break();
+
     }
     private void OnClick1()
     {

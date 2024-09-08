@@ -13,6 +13,7 @@ public class BaseFieldObject : MonoBehaviour
     // 종료시 콜백.
     protected Action _cbDisable;
 
+
     //[SerializeField]
     //protected SpriteRenderer[] _spriteRenderers;
 
@@ -25,19 +26,29 @@ public class BaseFieldObject : MonoBehaviour
         _transform = this.transform;
         _rb2D = this.GetComponent<Rigidbody2D>();
         _collider2D = this.GetComponent<Collider2D>();
-
         InstanceID = this.gameObject.GetInstanceID();
     }
 
     protected void SetPosition(Vector2 position)
     {
-        // 이게 더 빠르다고 알고있는데, 오히려 더 지연이 있어서 일단 주석처리하고 아래로 통일한다.
-        //if (_rb2D != null)
-        //{
-        //    _rb2D.position = position;
-        //}
-        //else
+        if (_rb2D != null)
+        {
+            if (gameObject.activeSelf == false)
+            {
+                _transform.position = position;
+            }
+            else
+            {
+                _rb2D.MovePosition(position);
+
+            }
+
+        }
+        else
+        //이부분 콜백하기
+        {
             _transform.position = position;
+        }
     }
 
 
@@ -47,8 +58,8 @@ public class BaseFieldObject : MonoBehaviour
     /// <param name="cbDisable"></param>
     public virtual void Spawn(Vector2 spawnPosition, Action cbDisable = null)
     {
-        this.gameObject.SetActive(true);
         SetPosition(spawnPosition);
+        this.gameObject.SetActive(true);
         this._cbDisable = cbDisable;
     }
     public virtual void Despawn()

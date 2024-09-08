@@ -22,7 +22,7 @@ public class TransformTest : MonoBehaviour
     {
         if (isRgMove)
         {
-            _rb2D.position = position;
+            _rb2D.MovePosition(position);
         }
         else
             transform.position = position;

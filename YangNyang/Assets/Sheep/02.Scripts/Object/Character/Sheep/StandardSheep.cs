@@ -58,7 +58,7 @@ public class StandardSheep : CharacterObject, IInteractable
     /// </summary>
     /// <param name="position"></param>
     /// <param name="cbDisable"></param>
-    public void Spawn(int id, Vector2 position, Action cbDisable = null)
+    public void Spawn(int id, Vector2 position, SheepState initState, Action cbDisable = null)
     {
         base.Spawn(position, cbDisable);
         _tbUnit = GameDataManager.Instance.Tables.Sheep.GetUnit(id);
@@ -67,9 +67,9 @@ public class StandardSheep : CharacterObject, IInteractable
         _isWorkable = true;
         _animator.SetFloat("BlinkSpeed", Random.Range(0.1f, 3f));
         _jumpPower = Random.Range(-1.0f, 1.0f);
-        _fsm.ChangeState(SheepState.Move);
+        _fsm.ChangeState(initState);
     }
- 
+
 
 
     #region IInteractable

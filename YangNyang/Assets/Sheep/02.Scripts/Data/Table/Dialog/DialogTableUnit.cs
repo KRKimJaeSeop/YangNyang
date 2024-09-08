@@ -16,7 +16,7 @@ public class DialogTableUnit : BaseElementTable
         }
         public ActionType actionType;
 
-        public string ActorName;
+        public string ActorNickName;
         public FieldObject.Type spawnType;
         public Place.Type ActionPlace;
         public string SpeechText;

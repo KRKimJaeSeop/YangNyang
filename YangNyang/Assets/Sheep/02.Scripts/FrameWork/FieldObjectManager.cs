@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static StandardSheep;
 
 public class FieldObjectManager : Singleton<FieldObjectManager>
 {
@@ -194,19 +195,35 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     /// <summary>
     /// 가중치를 사용해 랜덤한 양을 스폰한다.
     /// </summary>
-    public BaseFieldObject SpawnSheep(Place.Type spawnPlace = Place.Type.SheepSpawn)
+    public BaseFieldObject SpawnSheep(Place.Type spawnPlace = Place.Type.SheepSpawn, SheepState initState = SheepState.Move)
     {
         if (_sheepSpawnCache.tbUnit != null)
         {
-            int randomIndex = 
+            int randomIndex =
                 GameDataManager.Instance.Tables.Sheep.GetRandomSheepByWeight(_sheepSpawnCache.array, _sheepSpawnCache.totalWeight);
             var selectedSheep = _sheepSpawnCache.tbUnit.sheepList[randomIndex];
             var unit = GameDataManager.Instance.Tables.Sheep.GetUnit(selectedSheep.id);
 
 
             var go = (ObjectPool.Instance.Pop($"{unit.Type}Sheep")).GetComponent<StandardSheep>();
-            _managedObjects.Add(go.InstanceID, go);
-            go.Spawn(unit.id, Places.GetPlacePosition(spawnPlace), () =>
+            if (_managedObjects.ContainsKey(go.InstanceID))
+            {
+                //Debug.Log(go.InstanceID);
+                //Debug.Log("=========");
+                //foreach (var item in _managedObjects.ToList())
+                //{
+                //    Debug.Log(item.Key);
+                //}
+                ////Debug.Break();
+                ////이미 ID가 있을때?
+                // 여기 원인찾기 꼭!
+                return null;
+            }
+            else
+            {
+                _managedObjects.Add(go.InstanceID, go);
+            }
+            go.Spawn(unit.id, Places.GetPlacePosition(spawnPlace), initState, () =>
             {
                 _managedObjects.Remove(go.InstanceID);
             });

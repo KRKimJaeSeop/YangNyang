@@ -36,8 +36,6 @@ public class SpeechBubble : MonoBehaviour
         gameObject.SetActive(true);
         _text.text = speechText;
 
-        // TypingAnim 구현 필요
-
         if (_showCoroutine != null)
         {
             StopCoroutine(_showCoroutine);

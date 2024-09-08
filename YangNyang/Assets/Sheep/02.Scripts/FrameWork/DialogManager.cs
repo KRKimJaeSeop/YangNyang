@@ -69,39 +69,39 @@ public class DialogManager : Singleton<DialogManager>
                 spawnID = FieldObjectManager.Instance.SpawnPlayer(_tbUnit.Steps[stepIndex].ActionPlace).InstanceID;
                 break;
             case FieldObject.Type.WorkableSheep:
-                spawnID = FieldObjectManager.Instance.SpawnSheep(_tbUnit.Steps[stepIndex].ActionPlace).InstanceID;
+                spawnID = FieldObjectManager.Instance.SpawnSheep(_tbUnit.Steps[stepIndex].ActionPlace,StandardSheep.SheepState.Idle).InstanceID;
                 break;
             default:
                 OnClickNext();
                 break;
         }
-        _actors.Add(_tbUnit.Steps[stepIndex].ActorName, spawnID);
+        _actors.Add(_tbUnit.Steps[stepIndex].ActorNickName, spawnID);
         Debug.Log($"{stepIndex}번째 스폰했고");
     }
     private void ActionMove()
     {
-        if (_actors.TryGetValue(_tbUnit.Steps[stepIndex].ActorName, out int actorID))
+        if (_actors.TryGetValue(_tbUnit.Steps[stepIndex].ActorNickName, out int actorID))
         {
             FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID).
                 MoveToPosition(_tbUnit.Steps[stepIndex].ActionPlace, 1);
         }
         else
         {
-            Debug.LogError($"Don't Manage [{_tbUnit.Steps[stepIndex].ActorName}]");
+            Debug.LogError($"Don't Manage [{_tbUnit.Steps[stepIndex].ActorNickName}]");
             OnClickNext();
         }
         Debug.Log($"{stepIndex}번째 이동했고");
     }
     private void ActionSpeech()
     {
-        if (_actors.TryGetValue(_tbUnit.Steps[stepIndex].ActorName, out int actorID))
+        if (_actors.TryGetValue(_tbUnit.Steps[stepIndex].ActorNickName, out int actorID))
         {
             FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID).
                 ShowSpeechBubble(_tbUnit.Steps[stepIndex].SpeechText, 2);
         }
         else
         {
-            Debug.LogError($"Don't Manage [{_tbUnit.Steps[stepIndex].ActorName}]");
+            Debug.LogError($"Don't Manage [{_tbUnit.Steps[stepIndex].ActorNickName}]");
             OnClickNext();
         }
         Debug.Log($"{stepIndex}번째 얘기했고");
