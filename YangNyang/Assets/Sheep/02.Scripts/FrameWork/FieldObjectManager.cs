@@ -101,7 +101,7 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     public BaseFieldObject SpawnPlayer(Place.Type spawnPlace = Place.Type.PlayerSpawn)
     {
         var go = (ObjectPool.Instance.Pop("Player")).GetComponent<PlayerCharacter>();
-        _managedObjects.Add(go.InstanceID, go);
+        _managedObjects.TryAdd(go.InstanceID, go);
         go.Spawn(_placeDataContainer.GetPlacePosition(spawnPlace), () =>
         {
             _managedObjects.Remove(go.InstanceID);
@@ -206,7 +206,7 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
 
 
             var go = (ObjectPool.Instance.Pop($"{unit.Type}Sheep")).GetComponent<StandardSheep>();
-            _managedObjects.Add(go.InstanceID, go);
+            _managedObjects.TryAdd(go.InstanceID, go);
             go.Spawn(unit.id, Places.GetPlacePosition(spawnPlace), initState, () =>
             {
                 _managedObjects.Remove(go.InstanceID);
@@ -223,7 +223,7 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         for (int i = 0; i < amount; i++)
         {
             var go = (ObjectPool.Instance.Pop("Wool")).GetComponent<Wool>();
-            _managedObjects.Add(go.InstanceID, go);
+            _managedObjects.TryAdd(go.InstanceID, go);
             go.Spawn(startPosition, () =>
             {
                 _managedObjects.Remove(go.InstanceID);
