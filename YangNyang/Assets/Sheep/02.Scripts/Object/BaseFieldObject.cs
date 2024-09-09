@@ -17,16 +17,18 @@ public class BaseFieldObject : MonoBehaviour
     //[SerializeField]
     //protected SpriteRenderer[] _spriteRenderers;
 
+    [SerializeField]
+    private int instanceID;
     public int InstanceID { get; private set; }
 
 
     protected virtual void Awake()
     {
-        gameObject.SetActive(true);
         _transform = this.transform;
         _rb2D = this.GetComponent<Rigidbody2D>();
         _collider2D = this.GetComponent<Collider2D>();
         InstanceID = this.gameObject.GetInstanceID();
+        instanceID = InstanceID;
     }
 
     protected void SetPosition(Vector2 position)

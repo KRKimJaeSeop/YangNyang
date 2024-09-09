@@ -5655,13 +5655,13 @@ MonoBehaviour:
   list:
   - name: StandardSheep
     prefab: {fileID: 1895252174086673481, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
-    preloadNum: 20
+    preloadNum: 1
   - name: BuffSheep
     prefab: {fileID: 8236735232467810648, guid: 3811ae678ada36243a532a0be90ebd0b, type: 3}
-    preloadNum: 5
+    preloadNum: 0
   - name: EventSheep
     prefab: {fileID: 8236735232467810648, guid: 8858ef176d09bf242809596e918e2bcd, type: 3}
-    preloadNum: 5
+    preloadNum: 0
   - name: Wool
     prefab: {fileID: 6370111236740729137, guid: d24e748bd65e266468b15834b719cf3c, type: 3}
     preloadNum: 500

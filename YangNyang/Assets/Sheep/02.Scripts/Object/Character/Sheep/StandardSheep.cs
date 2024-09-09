@@ -172,7 +172,7 @@ public class StandardSheep : CharacterObject, IInteractable
             // rigidBody의 포지션의 계산이 느린것같다. 정확한 원인은 모르겠다.
             // SetPosition이 제대로 되기 전에 이부분의함수가 시작돼서, 제 위치로 세팅될때까지 기다렸다가 Move를 시작한다.
             // 해결될때까지 무효
-            //yield return new WaitUntil(() => _rb2D.position == spawnPosition);
+            yield return new WaitUntil(() => _rb2D.position == spawnPosition);
 
             _moveTween = _rb2D.DOJump(targetPosition, _jumpPower, 1, _tbUnit.MoveSpeed).SetEase(Ease.Linear).OnComplete(() =>
             {
@@ -218,6 +218,7 @@ public class StandardSheep : CharacterObject, IInteractable
     #region State.Work
     private void Work_Enter()
     {
+        Debug.Log("일 시작!");
         _moveTween.Pause();
         base.SetAnim_Work(true);
         _workCoroutine = StartCoroutine(WorkProcess());
@@ -263,6 +264,8 @@ public class StandardSheep : CharacterObject, IInteractable
         // 코루틴 테스트
         StopCoroutine(_workCoroutine);
         _workCoroutine = null;
+        Debug.Log("일 종료!");
+
     }
 
     #endregion

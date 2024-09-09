@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 public class Wool : BaseFieldObject, IMovable, IInteractable
 {
     private bool _isInteractable;
+    private Vector2 dropPoint;
 
     public override void Spawn(Vector2 startPosition , Action cbDisable = null)
     {
@@ -18,9 +19,9 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
         float randomY = Random.Range(FieldObjectManager.Instance.Places.GetPlacePosition
          (Place.Type.WoolDropZone_BottomLeftCorner).y,
          FieldObjectManager.Instance.Places.GetPlacePosition(Place.Type.WoolDropZone_TopRightCorner).y);
-
-        SetPosition(startPosition);
-        MoveToPosition(new Vector2(randomX, randomY), 6);
+        
+        dropPoint.Set(randomX, randomY);
+        MoveToPosition(dropPoint, 6);
     }
  
 
@@ -31,8 +32,7 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
     /// <param name="moveSpeed"></param>
     public Tween MoveToPosition(Vector2 targetPosition, float moveSpeed, Action callback = null)
     {
-        //dotween 실행 후 떨어지기
-        return _rb2D.DOJump(targetPosition, moveSpeed, 1, 1).SetEase(Ease.OutQuad).OnComplete(() => { _isInteractable = true; });
+        return _transform.DOJump(targetPosition, moveSpeed, 1, 1).SetEase(Ease.OutQuad).OnComplete(() => { _isInteractable = true; });
     }
 
     public void EnterSingleInteraction()
@@ -51,9 +51,13 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
             _rb2D.DOMove(new Vector2(-5.61f, 6.57f), 1).SetEase(Ease.InBack).OnComplete(() =>
             {
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);
-                Despawn();
                 GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Wool, 10);
+                Despawn();
             });
+        }
+        else
+        {
+
         }
     }
 
