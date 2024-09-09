@@ -37,13 +37,13 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
 
     public void EnterSingleInteraction()
     {
-        GetWool();
+        PickUpWool();
     }
     public void EnterMultipleInteraction()
     {
-        GetWool();
+        PickUpWool();
     }
-    private void GetWool()
+    private void PickUpWool()
     {
         if (_isInteractable)
         {
@@ -54,10 +54,6 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
                 GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Wool, 10);
                 Despawn();
             });
-        }
-        else
-        {
-
         }
     }
 

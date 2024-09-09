@@ -154,6 +154,8 @@ public class StandardSheep : CharacterObject, IInteractable
     #region State.Move
     private void Move_Enter()
     {
+        SetAnim_Move(true);
+
         // 목적지로 이동 시작
         _moveCoroutine = StartCoroutine(MoveCoroutine());
     }
@@ -203,6 +205,7 @@ public class StandardSheep : CharacterObject, IInteractable
     private void Move_Execute()
     {
         // Move 상태에서의 행동
+
     }
 
     private void Move_Exit()
@@ -212,6 +215,8 @@ public class StandardSheep : CharacterObject, IInteractable
             StopCoroutine(_moveCoroutine);
             _moveCoroutine = null;
         }
+        SetAnim_Move(false);
+
     }
     #endregion
 
@@ -220,7 +225,7 @@ public class StandardSheep : CharacterObject, IInteractable
     {
         Debug.Log("일 시작!");
         _moveTween.Pause();
-        base.SetAnim_Work(true);
+        SetAnim_Work(true);
         _workCoroutine = StartCoroutine(WorkProcess());
     }
     private IEnumerator WorkProcess()
@@ -255,8 +260,8 @@ public class StandardSheep : CharacterObject, IInteractable
 
     private void Work_Exit()
     {
-        base.SetAnim_Work(false);
-
+        SetAnim_Work(false);
+            
         // Work 상태 종료 시 행동
         //_spriteRenderer.color = Color.white;
         _moveTween.Play();
