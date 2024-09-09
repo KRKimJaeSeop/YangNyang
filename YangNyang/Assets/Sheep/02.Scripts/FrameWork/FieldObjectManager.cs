@@ -35,11 +35,15 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
     private void OnEnable()
     {
         UserStorage.OnUpdateLevel += SetSheepSpawnTableCache;
+        DialogManager.OnDialogEnter += DialogManager_OnDialogEnter;
     }
+
+
 
     private void OnDisable()
     {
         UserStorage.OnUpdateLevel -= SetSheepSpawnTableCache;
+        DialogManager.OnDialogEnter -= DialogManager_OnDialogEnter;
     }
 
     public void Initialize()
@@ -93,7 +97,19 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
             Debug.LogError($"Don't Manage [{instanceID}]");
         }
     }
-
+    private void DialogManager_OnDialogEnter(bool isStart)
+    {
+        DespawnAll();
+        if (isStart)
+        {
+            StopSheepSpawn();
+        }
+        else
+        {
+            SpawnPlayer();
+            StartSheepSpawn(false);
+        }
+    }
     #endregion
 
     #region SpawnPlayer

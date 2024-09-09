@@ -17,8 +17,7 @@ public class PlayerCharacter : CharacterObject
     [SerializeField, Tooltip("조이스틱 조작시 이동속도")]
     private float _controllMoveSpeed = 10;
     private Vector2 _movementAmount;
-    private Vector3 _originScale;
-    private Vector3 _flipScale;
+  
     [SerializeField, Tooltip("상호작용중인 IInteractable 게임오브젝트의 정보")]
     private InteractObjectInfo currentInteractObjectInfo;
 
@@ -31,8 +30,6 @@ public class PlayerCharacter : CharacterObject
         InitializeStates();
         _fsm.SetInitState(PlayerState.Idle);
 
-        _originScale = _transform.localScale;
-        _flipScale = new Vector3(-(_transform.localScale.x), _transform.localScale.y, _transform.localScale.z);
         //나중에 활성화
         // Addressables.LoadAssetAsync<Sprite>("고양이테스트").Completed += OnSpriteLoaded;
 
@@ -68,7 +65,6 @@ public class PlayerCharacter : CharacterObject
     {
         _fsm.Update();
     }
-
     #region 충돌 처리 메소드.
 
     /// <summary>
@@ -206,14 +202,11 @@ public class PlayerCharacter : CharacterObject
         }
         if (_movementAmount.x < 0)
         {
-            _transform.localScale = _flipScale;
-            // 이대로 애니메이션을 이미 만들어버려서..어쩔수없이 플립할때 말풍선도 같이 플립해주자.
-            _speechBubble.Flip(true);
+            Flip(true);
         }
         if (_movementAmount.x > 0)
         {
-            _transform.localScale = _originScale;
-            _speechBubble.Flip(false);
+            Flip(false);
         }
 
         _rb2D.velocity = _movementAmount * _controllMoveSpeed;

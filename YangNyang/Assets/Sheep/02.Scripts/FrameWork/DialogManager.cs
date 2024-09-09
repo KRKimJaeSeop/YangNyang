@@ -9,13 +9,15 @@ public class DialogManager : Singleton<DialogManager>
     private DialogTableUnit _tbUnit;
     private int stepIndex = 0;
 
+    public delegate void DialogEnter(bool isStart);
+    public static event DialogEnter OnDialogEnter;
+
     private Dictionary<string, int> _actors = new();
 
 
     public void EnterDialog(Type type)
     {
-        FieldObjectManager.Instance.DespawnAll();
-        FieldObjectManager.Instance.StopSheepSpawn();
+        OnDialogEnter?.Invoke(true);
         UIManager.Instance.OpenDialog();
         stepIndex = 0;
         _tbUnit = GameDataManager.Instance.Tables.Dialog.GetUnit(type);
@@ -122,10 +124,8 @@ public class DialogManager : Singleton<DialogManager>
     public void ExitDialog()
     {
         _actors.Clear();
-        FieldObjectManager.Instance.DespawnAll();
         UIManager.Instance.CloseDialog();
-        FieldObjectManager.Instance.SpawnPlayer();
-        FieldObjectManager.Instance.StartSheepSpawn(false);
+        OnDialogEnter?.Invoke(false);
     }
 
 }

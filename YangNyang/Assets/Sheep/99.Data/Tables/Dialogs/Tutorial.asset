@@ -17,15 +17,14 @@ MonoBehaviour:
   lastLoadedTime: 
   id: 1
   icon: {fileID: 0}
+  localName:
+    table: 0
+    key: 
+  localDescription:
+    table: 0
+    key: 
   type: 1
   _steps:
-  - UnitActionType: 0
-    ActorNickName: 
-    SpawnType: 0
-    ActionPlace: 0
-    ActionTime: 0
-    SpeechText: 
-    IsStop: 0
   - UnitActionType: 1
     ActorNickName: "\uCF00\uC778\uC778\uB2D8"
     SpawnType: 1
@@ -37,87 +36,20 @@ MonoBehaviour:
     ActorNickName: "\uCF00\uC778\uC778\uB2D8"
     SpawnType: 0
     ActionPlace: 5
-    ActionTime: 0
-    SpeechText: 
-    IsStop: 0
-  - UnitActionType: 2
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
-    SpawnType: 0
-    ActionPlace: 5
     ActionTime: 2
     SpeechText: 
-    IsStop: 1
-  - UnitActionType: 3
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
-    SpawnType: 0
-    ActionPlace: 0
-    ActionTime: 1
-    SpeechText: "\uC548\uB155\uD558\uC2ED\uB2C8\uAE4C"
-    IsStop: 1
-  - UnitActionType: 3
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
-    SpawnType: 0
-    ActionPlace: 0
-    ActionTime: 2
-    SpeechText: "\uB9CC\uC57D \uC774\uB807\uAC8C\uD55C\uBC88\uC5D0\uB9CE\uC740\uAC8C\uD55C\uC904\uC5D0\uC788\uACE0\uB098\uC11C
-      \uC774\uB2E4\uBA74?"
     IsStop: 1
   - UnitActionType: 2
     ActorNickName: "\uCF00\uC778\uC778\uB2D8"
     SpawnType: 0
     ActionPlace: 4
-    ActionTime: 2
-    SpeechText: "\uC800\uB294 \uD2B8\uC704\uCE58\uC5D0\uC11C \uBC29\uC1A1\uC744 \uD558\uACE0\uC788\uB294"
-    IsStop: 1
-  - UnitActionType: 3
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
-    SpawnType: 0
-    ActionPlace: 4
-    ActionTime: 3
-    SpeechText: "\uCF00\uC778\uC785\uB2C8\uB2E4"
+    ActionTime: 1
+    SpeechText: 
     IsStop: 1
   - UnitActionType: 2
     ActorNickName: "\uCF00\uC778\uC778\uB2D8"
     SpawnType: 0
-    ActionPlace: 5
-    ActionTime: 0.5
-    SpeechText: "\uCD98\uC7A3"
-    IsStop: 1
-  - UnitActionType: 3
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
-    SpawnType: 0
-    ActionPlace: 2
+    ActionPlace: 3
     ActionTime: 1
-    SpeechText: "\uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8
-      \uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8 "
-    IsStop: 1
-  - UnitActionType: 3
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
-    SpawnType: 0
-    ActionPlace: 2
-    ActionTime: 1
-    SpeechText: "\uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8
-      \uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8 "
-    IsStop: 1
-  - UnitActionType: 3
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
-    SpawnType: 0
-    ActionPlace: 2
-    ActionTime: 1
-    SpeechText: "\uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B81"
-    IsStop: 1
-  - UnitActionType: 3
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
-    SpawnType: 0
-    ActionPlace: 2
-    ActionTime: 1
-    SpeechText: "\uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B8 \uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B8\uD14C\uC2A4\uD2B82"
-    IsStop: 1
-  - UnitActionType: 3
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
-    SpawnType: 0
-    ActionPlace: 2
-    ActionTime: 1
-    SpeechText: "\uC774\uC815\uB3C4 \uB744\uC5B4\uC4F0\uAE30 \uD574\uB193\uC73C\uBA74
-      \uB418\uB294\uAC70\uACA0\uC9C0?"
+    SpeechText: 
     IsStop: 1

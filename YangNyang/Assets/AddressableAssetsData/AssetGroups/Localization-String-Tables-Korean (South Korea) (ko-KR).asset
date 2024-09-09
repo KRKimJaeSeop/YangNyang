@@ -17,8 +17,26 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: c87690e7bd4d6c94db9b3284ae90c0d3
   m_SerializeEntries:
+  - m_GUID: 0581542ee5ed639439b1e0c6749bd8f7
+    m_Address: App_ko-KR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko-KR
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2bd07549c62fb0940b07402c0b0f4493
     m_Address: UI_ko-KR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko-KR
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b982d80493021d0409a375527bf4b37f
+    m_Address: Model_ko-KR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-ko-KR
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb2c7e527778ef84f88a9a5feaca5371
+    m_Address: Dialog_ko-KR
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ko-KR

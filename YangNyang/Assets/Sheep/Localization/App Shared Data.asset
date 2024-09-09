@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: App Shared Data
   m_EditorClassIdentifier: 
   m_TableCollectionName: App
-  m_TableCollectionNameGuidString: 00000000000000000000000000000000
+  m_TableCollectionNameGuidString: fad068fc62dba1d47a99ca7ff3445869
   m_Entries: []
   m_Metadata:
     m_Items: []

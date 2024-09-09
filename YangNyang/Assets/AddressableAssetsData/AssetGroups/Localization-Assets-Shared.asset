@@ -17,8 +17,23 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 1d5edb8269140ab48b8f743ace36e99c
   m_SerializeEntries:
+  - m_GUID: 4f6aabc8a61065f47b63493033d98cb3
+    m_Address: Assets/Sheep/Localization/Dialog Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5781d0dde8bd2cd42a9419d32eacebc5
     m_Address: Assets/Sheep/Localization/UI Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 841bc71691ec2454bbace6e94f847a43
+    m_Address: Assets/Sheep/Localization/Model Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fad068fc62dba1d47a99ca7ff3445869
+    m_Address: Assets/Sheep/Localization/App Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

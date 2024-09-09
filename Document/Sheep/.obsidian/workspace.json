@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "작업 일지/2024-09-09.md",
+                "file": "메모.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "작업 일지/2024-09-09.md",
+                "file": "메모.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "작업 일지/2024-09-09.md",
+                "file": "메모.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "작업 일지/2024-09-09.md"
+                "file": "메모.md"
               }
             }
           }
@@ -148,13 +148,13 @@
   },
   "active": "a9db82488c4ff9ae",
   "lastOpenFiles": [
+    "작업 일정/작업 목록.md",
+    "메모.md",
+    "작업 일지/2024-09-09.md",
     "작업 일지/2024-09-03.md",
     "작업 일지/2024-08-22.md",
-    "작업 일정/작업 목록.md",
-    "작업 일지/2024-09-09.md",
     "조사/어드레서블.md",
     "조사/아트 참고.md",
-    "메모.md",
     "작업 일지/2024-09-08.md",
     "작업 일지/2024-08-30.md",
     "작업 일지/2024-08-29.md",
