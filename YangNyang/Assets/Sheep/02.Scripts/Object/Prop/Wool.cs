@@ -32,7 +32,7 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
     public Tween MoveToPosition(Vector2 targetPosition, float moveSpeed, Action callback = null)
     {
         //dotween 실행 후 떨어지기
-        return transform.DOJump(targetPosition, moveSpeed, 1, 1).SetEase(Ease.OutQuad).OnComplete(() => { _isInteractable = true; });
+        return _rb2D.DOJump(targetPosition, moveSpeed, 1, 1).SetEase(Ease.OutQuad).OnComplete(() => { _isInteractable = true; });
     }
 
     public void EnterSingleInteraction()
@@ -48,7 +48,7 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
         if (_isInteractable)
         {
             _isInteractable = false;
-            transform.DOMove(new Vector2(-5.61f, 6.57f), 1).SetEase(Ease.InBack).OnComplete(() =>
+            _rb2D.DOMove(new Vector2(-5.61f, 6.57f), 1).SetEase(Ease.InBack).OnComplete(() =>
             {
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);
                 Despawn();

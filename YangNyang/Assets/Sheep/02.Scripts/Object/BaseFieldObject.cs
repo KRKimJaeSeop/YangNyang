@@ -66,6 +66,8 @@ public class BaseFieldObject : MonoBehaviour
     {
         _cbDisable?.Invoke();
         this.gameObject.SetActive(false);
+
+
     }
 
 }

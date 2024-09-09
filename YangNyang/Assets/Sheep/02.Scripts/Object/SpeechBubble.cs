@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using System.Collections;
+using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class SpeechBubble : MonoBehaviour
 
     private Vector3 _originScale;
     private Vector3 _flipScale;
+
     private void Awake()
     {
         _originScale = transform.localScale;
@@ -34,8 +36,7 @@ public class SpeechBubble : MonoBehaviour
     public void Show(string speechText, float showTime = 2.0f, bool isTypingAnim = false, Action callback = null)
     {
         gameObject.SetActive(true);
-        _text.text = speechText;
-
+        _text.text = AddLineBreaks(speechText, 10);
         if (_showCoroutine != null)
         {
             StopCoroutine(_showCoroutine);
@@ -49,5 +50,25 @@ public class SpeechBubble : MonoBehaviour
         yield return new WaitForSeconds(showTime);
         gameObject.SetActive(false);
         callback?.Invoke();
+    }
+
+    private string AddLineBreaks(string text, int maxLineLength)
+    {
+        string[] words = text.Split(' ');
+        StringBuilder result = new StringBuilder();
+        StringBuilder line = new StringBuilder();
+
+        foreach (string word in words)
+        {
+            if ((line.Length + word.Length) > maxLineLength)
+            {
+                result.AppendLine(line.ToString().TrimEnd());
+                line.Clear();
+            }
+            line.Append(word).Append(" ");
+        }
+
+        result.Append(line.ToString().TrimEnd());
+        return result.ToString();
     }
 }

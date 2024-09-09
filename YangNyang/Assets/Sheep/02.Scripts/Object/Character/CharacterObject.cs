@@ -7,8 +7,9 @@ using UnityEngine;
 /// </summary>
 public abstract class CharacterObject : BaseFieldObject, IMovable
 {
-    #region Animation States
-    public readonly string ANIM_IDLE = "Idle";
+    #region Animation Parameters
+    public readonly string ANIM_IS_WORK = "IsWork";
+    public readonly string ANIM_IS_MOVE = "IsMove";
     #endregion
 
     [SerializeField]
@@ -26,11 +27,11 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
 
     protected virtual void SetAnim_Work(bool isWork)
     {
-        _animator.SetBool("IsWork", isWork);
+        _animator.SetBool(ANIM_IS_WORK, isWork);
     }
     protected virtual void SetAnim_Move(bool isMove)
     {
-        _animator.SetBool("IsMove", isMove);
+        _animator.SetBool(ANIM_IS_MOVE, isMove);
     }
     /// <summary>
     /// 지정된 위치로 지정된 시간동안 걸어가듯 이동시키고 이동 후 콜백이 있다면 실행한다.
@@ -40,7 +41,7 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
     public Tween MoveToPosition(Vector2 targetPosition, float time, Action callback = null)
     {
         SetAnim_Move(true);
-        return transform.DOMove(targetPosition, time).SetEase(Ease.Linear).OnComplete(() =>
+        return _rb2D.DOMove(targetPosition, time).SetEase(Ease.Linear).OnComplete(() =>
         {
             SetAnim_Move(false);
             callback?.Invoke();
@@ -50,7 +51,7 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
     {
         SetAnim_Move(true);
         var position = FieldObjectManager.Instance.Places.GetPlacePosition(placeType);
-        return transform.DOMove(position, time).SetEase(Ease.Linear).OnComplete(() =>
+        return _rb2D.DOMove(position, time).SetEase(Ease.Linear).OnComplete(() =>
         {
             SetAnim_Move(false);
             callback?.Invoke();

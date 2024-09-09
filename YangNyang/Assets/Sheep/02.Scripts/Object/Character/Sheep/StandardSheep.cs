@@ -174,7 +174,7 @@ public class StandardSheep : CharacterObject, IInteractable
             // 해결될때까지 무효
             //yield return new WaitUntil(() => _rb2D.position == spawnPosition);
 
-            _moveTween = transform.DOJump(targetPosition, _jumpPower, 1, _tbUnit.MoveSpeed).SetEase(Ease.Linear).OnComplete(() =>
+            _moveTween = _rb2D.DOJump(targetPosition, _jumpPower, 1, _tbUnit.MoveSpeed).SetEase(Ease.Linear).OnComplete(() =>
             {
                 Despawn();
                 _fsm.ChangeState(SheepState.None);
