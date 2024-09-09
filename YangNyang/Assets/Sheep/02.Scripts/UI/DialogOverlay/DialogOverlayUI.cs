@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,10 +11,15 @@ public class DialogOverlayUI : MonoBehaviour
     [SerializeField]
     private Animator _anim;
 
+    [SerializeField]
+    private TextMeshProUGUI _nextBtnText;
+    private string _nextBtnTextOrigin;
+
     private void Awake()
     {
         _nextBtn.onClick.AddListener(OnClickNextBtn);
         _skipBtn.onClick.AddListener(OnClickSkipBtn);
+        _nextBtnTextOrigin = _nextBtnText.text;
     }
 
 
@@ -27,6 +33,21 @@ public class DialogOverlayUI : MonoBehaviour
     {
         _anim.Play("Exit");
     }
+
+    public void SetActiveNextBtn(bool isActive)
+    {
+        _nextBtn.interactable = isActive;
+        if (isActive)
+        {
+            _nextBtnText.text = _nextBtnTextOrigin;
+
+        }
+        else
+        {
+            _nextBtnText.text = "";
+        }
+    }
+
     public void CloseGameObject()
     {
         gameObject.SetActive(false);
@@ -34,6 +55,7 @@ public class DialogOverlayUI : MonoBehaviour
     private void OnClickNextBtn()
     {
         DialogManager.Instance.OnClickNext();
+        SetActiveNextBtn(false);
     }
     private void OnClickSkipBtn()
     {

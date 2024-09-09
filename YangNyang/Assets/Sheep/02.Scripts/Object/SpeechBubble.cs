@@ -31,7 +31,7 @@ public class SpeechBubble : MonoBehaviour
 
     }
 
-    public void Show(string speechText, float showTime = 2.0f, bool isTypingAnim = false)
+    public void Show(string speechText, float showTime = 2.0f, bool isTypingAnim = false, Action callback = null)
     {
         gameObject.SetActive(true);
         _text.text = speechText;
@@ -41,13 +41,13 @@ public class SpeechBubble : MonoBehaviour
             StopCoroutine(_showCoroutine);
             _showCoroutine = null;
         }
-        _showCoroutine = StartCoroutine(ShowCoroutine(showTime));
+        _showCoroutine = StartCoroutine(ShowCoroutine(showTime, callback));
     }
 
-    private IEnumerator ShowCoroutine(float showTime)
+    private IEnumerator ShowCoroutine(float showTime, Action callback = null)
     {
         yield return new WaitForSeconds(showTime);
         gameObject.SetActive(false);
-
+        callback?.Invoke();
     }
 }

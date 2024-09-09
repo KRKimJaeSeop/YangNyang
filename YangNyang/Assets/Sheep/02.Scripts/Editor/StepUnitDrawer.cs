@@ -1,5 +1,5 @@
-using UnityEditor;
 using UnityEngine;
+using UnityEditor;
 using static DialogTableUnit;
 
 [CustomPropertyDrawer(typeof(StepUnit))]
@@ -9,69 +9,86 @@ public class StepUnitDrawer : PropertyDrawer
     {
         EditorGUI.BeginProperty(position, label, property);
 
-        // 들여쓰기 정도를 변수에 저장
-        int indent = EditorGUI.indentLevel;
-        // 들여쓰기 0으로 초기화
-        EditorGUI.indentLevel = 0;
+        // Calculate rects
+        Rect actionTypeRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+        Rect actorNickNameRect = new Rect(position.x, position.y + EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect spawnTypeRect = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect actionPlaceRect = new Rect(position.x, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect actionTimeRect = new Rect(position.x, position.y + 4 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect speechTextRect = new Rect(position.x, position.y + 5 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect isStopRect = new Rect(position.x, position.y + 6 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
 
-        // 각 필드의 위치 설정
-        float lineHeight = EditorGUIUtility.singleLineHeight;
-        float spacing = EditorGUIUtility.standardVerticalSpacing * 2; // 간격을 더 넓게 설정
+        // Get properties
+        SerializedProperty unitActionType = property.FindPropertyRelative("UnitActionType");
+        SerializedProperty actorNickName = property.FindPropertyRelative("ActorNickName");
+        SerializedProperty spawnType = property.FindPropertyRelative("SpawnType");
+        SerializedProperty actionPlace = property.FindPropertyRelative("ActionPlace");
+        SerializedProperty actionTime = property.FindPropertyRelative("ActionTime");
+        SerializedProperty speechText = property.FindPropertyRelative("SpeechText");
+        SerializedProperty isStop = property.FindPropertyRelative("IsStop");
 
-        Rect actionTypeRect = new Rect(position.x, position.y, position.width, lineHeight);
-        Rect actorNickNameRect = new Rect(position.x, position.y + lineHeight + spacing, position.width, lineHeight);
-        Rect actionPlaceRect = new Rect(position.x, position.y + 2 * (lineHeight + spacing), position.width, lineHeight);
-        Rect speechTextRect = new Rect(position.x, position.y + 2 * (lineHeight + spacing), position.width, lineHeight);
-        Rect isStopRect = new Rect(position.x, position.y + 3 * (lineHeight + spacing), position.width, lineHeight);
+        // Draw fields
+        EditorGUI.PropertyField(actionTypeRect, unitActionType);
 
-        // 각 필드 가져오기
-        var actionType = property.FindPropertyRelative("actionType");
-        var actorNickName = property.FindPropertyRelative("ActorNickName");
-        var actionPlace = property.FindPropertyRelative("ActionPlace");
-        var speechText = property.FindPropertyRelative("SpeechText");
-        var isStop = property.FindPropertyRelative("isStop");
+        StepUnit.ActionType actionType = (StepUnit.ActionType)unitActionType.enumValueIndex;
 
-        // 필드 그리기
-        EditorGUI.PropertyField(actionTypeRect, actionType);
-        EditorGUI.PropertyField(actorNickNameRect, actorNickName);
-
-        // ActionType에 따라 필드 활성화/비활성화
-        switch ((StepUnit.ActionType)actionType.enumValueIndex)
+        int line = 1;
+        if (actionType != StepUnit.ActionType.None)
         {
-            case StepUnit.ActionType.Spawn:
-            case StepUnit.ActionType.Move:
-                EditorGUI.PropertyField(actionPlaceRect, actionPlace);
-                break;
-            case StepUnit.ActionType.Speech:
-                EditorGUI.PropertyField(speechTextRect, speechText);
-                break;
+            EditorGUI.PropertyField(new Rect(position.x, position.y + line * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), actorNickName);
+            line++;
+        }
+        if (actionType == StepUnit.ActionType.Spawn)
+        {
+            EditorGUI.PropertyField(new Rect(position.x, position.y + line * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), spawnType);
+            line++;
+            EditorGUI.PropertyField(new Rect(position.x, position.y + line * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), actionPlace);
+            line++;
+        }
+        if (actionType == StepUnit.ActionType.Move)
+        {
+            EditorGUI.PropertyField(new Rect(position.x, position.y + line * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), actionPlace);
+            line++;
+            EditorGUI.PropertyField(new Rect(position.x, position.y + line * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), actionTime);
+            line++;
+        }
+        if (actionType == StepUnit.ActionType.Speech)
+        {
+            EditorGUI.PropertyField(new Rect(position.x, position.y + line * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), actionTime);
+            line++;
+            EditorGUI.PropertyField(new Rect(position.x, position.y + line * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), speechText);
+            line++;
+        }
+        if (actionType != StepUnit.ActionType.None)
+        {
+            EditorGUI.PropertyField(new Rect(position.x, position.y + line * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), isStop);
+            line++;
         }
 
-        // isStop 필드 항상 표시
-        EditorGUI.PropertyField(isStopRect, isStop);
+        // Add space between steps
+        if (actionType != StepUnit.ActionType.None)
+        {
+            line++;
+        }
 
-        // 들여쓰기 복원
-        EditorGUI.indentLevel = indent;
         EditorGUI.EndProperty();
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        // 기본 높이 계산
-        float lineHeight = EditorGUIUtility.singleLineHeight;
-        float spacing = EditorGUIUtility.standardVerticalSpacing * 5; // 간격을 더 넓게 설정
+        SerializedProperty unitActionType = property.FindPropertyRelative("UnitActionType");
+        StepUnit.ActionType actionType = (StepUnit.ActionType)unitActionType.enumValueIndex;
 
-        // 기본 높이 + 추가 필드 높이
-        var actionType = property.FindPropertyRelative("actionType");
-        switch ((StepUnit.ActionType)actionType.enumValueIndex)
-        {
-            case StepUnit.ActionType.Spawn:
-            case StepUnit.ActionType.Move:
-                return 4 * (lineHeight + spacing);
-            case StepUnit.ActionType.Speech:
-                return 4 * (lineHeight + spacing); // SpeechText가 바로 아래에 나오도록 설정
-            default:
-                return 3 * (lineHeight + spacing);
-        }
+        int lines = 1;
+        if (actionType != StepUnit.ActionType.None) lines++;
+        if (actionType == StepUnit.ActionType.Spawn) lines += 3;
+        if (actionType == StepUnit.ActionType.Move) lines += 2;
+        if (actionType == StepUnit.ActionType.Speech) lines += 2;
+        if (actionType != StepUnit.ActionType.None) lines++;
+
+        // Add space between steps
+        if (actionType != StepUnit.ActionType.None) lines++;
+
+        return lines * EditorGUIUtility.singleLineHeight;
     }
 }

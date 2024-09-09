@@ -57,9 +57,9 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
         });
     }
 
-    public void ShowSpeechBubble(string speechText, float showTime = 2f, bool isTypingAnim = false)
+    public void ShowSpeechBubble(string speechText, float showTime = 2f, bool isTypingAnim = false,Action callback = null)
     {
-        _speechBubble.Show(speechText, showTime, isTypingAnim);
+        _speechBubble.Show(speechText, showTime, isTypingAnim, callback);
     }
 
 }

@@ -1,6 +1,8 @@
 using Dialog;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Type = Dialog.Type;
 
 public class DialogManager : Singleton<DialogManager>
 {
@@ -19,6 +21,7 @@ public class DialogManager : Singleton<DialogManager>
         _tbUnit = GameDataManager.Instance.Tables.Dialog.GetUnit(type);
         ActionStep();
     }
+
     public void OnClickNext()
     {
         stepIndex++;
@@ -38,7 +41,7 @@ public class DialogManager : Singleton<DialogManager>
             ExitDialog();
             return;
         }
-        switch (_tbUnit.Steps[stepIndex].actionType)
+        switch (_tbUnit.Steps[stepIndex].UnitActionType)
         {
             case DialogTableUnit.StepUnit.ActionType.Spawn:
                 ActionSpawn();
@@ -50,10 +53,11 @@ public class DialogManager : Singleton<DialogManager>
                 ActionSpeech();
                 break;
             default:
-                ExitDialog();
+                stepIndex++;
+                ActionStep();
                 break;
         }
-        if (!_tbUnit.Steps[stepIndex].isStop)
+        if (!_tbUnit.Steps[stepIndex].IsStop)
         {
             stepIndex++;
             ActionStep();
@@ -63,59 +67,120 @@ public class DialogManager : Singleton<DialogManager>
     private void ActionSpawn()
     {
         int spawnID = 0;
-        switch (_tbUnit.Steps[stepIndex].spawnType)
+        switch (_tbUnit.Steps[stepIndex].SpawnType)
         {
             case FieldObject.Type.Player:
                 spawnID = FieldObjectManager.Instance.SpawnPlayer(_tbUnit.Steps[stepIndex].ActionPlace).InstanceID;
                 break;
             case FieldObject.Type.WorkableSheep:
-                spawnID = FieldObjectManager.Instance.SpawnSheep(_tbUnit.Steps[stepIndex].ActionPlace,StandardSheep.SheepState.Idle).InstanceID;
+                spawnID = FieldObjectManager.Instance.SpawnSheep(_tbUnit.Steps[stepIndex].ActionPlace, StandardSheep.SheepState.Idle).InstanceID;
                 break;
             default:
-                OnClickNext();
+                Debug.LogError("Wrong SpawnType");
                 break;
         }
         _actors.Add(_tbUnit.Steps[stepIndex].ActorNickName, spawnID);
-        Debug.Log($"{stepIndex}번째 스폰했고");
     }
+
     private void ActionMove()
     {
-        if (_actors.TryGetValue(_tbUnit.Steps[stepIndex].ActorNickName, out int actorID))
+        var characterObject = GetCharacterObject(_tbUnit.Steps[stepIndex].ActorNickName);
+        Action onActionEnd = null;
+        if (_tbUnit.Steps[stepIndex].IsStop)
         {
-            FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID).
-                MoveToPosition(_tbUnit.Steps[stepIndex].ActionPlace, 1);
+            onActionEnd += UIManager.Instance.SetActiveDialogNextBtn;
         }
-        else
-        {
-            Debug.LogError($"Don't Manage [{_tbUnit.Steps[stepIndex].ActorNickName}]");
-            OnClickNext();
-        }
-        Debug.Log($"{stepIndex}번째 이동했고");
+        characterObject.MoveToPosition(_tbUnit.Steps[stepIndex].ActionPlace, _tbUnit.Steps[stepIndex].ActionTime, onActionEnd);
     }
+
     private void ActionSpeech()
     {
+        var characterObject = GetCharacterObject(_tbUnit.Steps[stepIndex].ActorNickName);
+        Action afterActionCallback = null;
+        if (_tbUnit.Steps[stepIndex].IsStop)
+        {
+            afterActionCallback += UIManager.Instance.SetActiveDialogNextBtn;
+        }
+        characterObject.ShowSpeechBubble(_tbUnit.Steps[stepIndex].SpeechText, _tbUnit.Steps[stepIndex].ActionTime, false, afterActionCallback);
+    }
+
+
+    private CharacterObject GetCharacterObject(string actorNickname)
+    {
         if (_actors.TryGetValue(_tbUnit.Steps[stepIndex].ActorNickName, out int actorID))
         {
-            FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID).
-                ShowSpeechBubble(_tbUnit.Steps[stepIndex].SpeechText, 2);
+            return (FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID));
         }
         else
         {
-            Debug.LogError($"Don't Manage [{_tbUnit.Steps[stepIndex].ActorNickName}]");
-            OnClickNext();
+            Debug.LogError($"Don't Manage [{actorNickname}]");
+            return null;
         }
-        Debug.Log($"{stepIndex}번째 얘기했고");
+
     }
 
-    
     public void ExitDialog()
     {
-
         _actors.Clear();
         FieldObjectManager.Instance.DespawnAll();
         UIManager.Instance.CloseDialog();
         FieldObjectManager.Instance.SpawnPlayer();
         FieldObjectManager.Instance.StartSheepSpawn(false);
     }
+
+    //private void ActionMove()
+    //{
+    //    if (_actors.TryGetValue(_tbUnit.Steps[stepIndex].ActorNickName, out int actorID))
+    //    {
+    //        if (!_tbUnit.Steps[stepIndex].isStop)
+    //        {
+    //            FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID).
+    //          MoveToPosition(_tbUnit.Steps[stepIndex].ActionPlace, 1,
+    //          () =>
+    //          {
+    //              Debug.Log("버튼 활성화 하기");
+    //          });
+    //        }
+    //        else
+    //        {
+    //            FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID).
+    //          MoveToPosition(_tbUnit.Steps[stepIndex].ActionPlace, 1);
+    //        }
+
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError($"Don't Manage [{_tbUnit.Steps[stepIndex].ActorNickName}]");
+    //    }
+    //    Debug.Log($"{stepIndex}번째 이동했고");
+    //}
+    //private void ActionSpeech()
+    //{
+
+    //    if (_actors.TryGetValue(_tbUnit.Steps[stepIndex].ActorNickName, out int actorID))
+    //    {
+    //        if (!_tbUnit.Steps[stepIndex].isStop)
+    //        {
+    //            FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID).
+    //                          ShowSpeechBubble(_tbUnit.Steps[stepIndex].SpeechText, 2, false,
+    //                          () =>
+    //                          {
+    //                              Debug.Log("버튼 활성화 하기");
+    //                          });
+    //        }
+    //        else
+    //        {
+    //            FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID).
+    //                        ShowSpeechBubble(_tbUnit.Steps[stepIndex].SpeechText, 2, false);
+    //        }
+
+
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError($"Don't Manage [{_tbUnit.Steps[stepIndex].ActorNickName}]");
+    //    }
+    //    Debug.Log($"{stepIndex}번째 얘기했고");
+    //}
 
 }

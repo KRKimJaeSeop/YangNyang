@@ -206,23 +206,7 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
 
 
             var go = (ObjectPool.Instance.Pop($"{unit.Type}Sheep")).GetComponent<StandardSheep>();
-            if (_managedObjects.ContainsKey(go.InstanceID))
-            {
-                //Debug.Log(go.InstanceID);
-                //Debug.Log("=========");
-                //foreach (var item in _managedObjects.ToList())
-                //{
-                //    Debug.Log(item.Key);
-                //}
-                ////Debug.Break();
-                ////이미 ID가 있을때?
-                // 여기 원인찾기 꼭!
-                return null;
-            }
-            else
-            {
-                _managedObjects.Add(go.InstanceID, go);
-            }
+            _managedObjects.Add(go.InstanceID, go);
             go.Spawn(unit.id, Places.GetPlacePosition(spawnPlace), initState, () =>
             {
                 _managedObjects.Remove(go.InstanceID);

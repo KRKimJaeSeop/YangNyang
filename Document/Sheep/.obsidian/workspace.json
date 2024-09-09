@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "작업 일지/2024-09-08.md",
+                "file": "작업 일지/2024-09-09.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "작업 일지/2024-09-08.md",
+                "file": "작업 일지/2024-09-09.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "작업 일지/2024-09-08.md",
+                "file": "작업 일지/2024-09-09.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "작업 일지/2024-09-08.md"
+                "file": "작업 일지/2024-09-09.md"
               }
             }
           }
@@ -148,6 +148,8 @@
   },
   "active": "a9db82488c4ff9ae",
   "lastOpenFiles": [
+    "작업 일지/2024-09-08.md",
+    "작업 일지/2024-09-09.md",
     "작업 일지/2024-08-30.md",
     "작업 일지/2024-08-29.md",
     "작업 일지/2024-08-28.md",
@@ -157,7 +159,6 @@
     "작업 일지/2024-08-24.md",
     "작업 일지/2024-08-23.md",
     "작업 일지/2024-08-22.md",
-    "작업 일지/2024-09-08.md",
     "메모.md",
     "작업 일정/작업 목록.md",
     "작업 일정/작업 계획.md",
@@ -186,7 +187,6 @@
     "_이미지/~asted image 20240904220626.tmp",
     "_이미지/~asted image 20240904220604.tmp",
     "_이미지/~asted image 20240904220558.tmp",
-    "기획/0.기획서.md",
     "작업 일지",
     "조사",
     "작업 일정",

@@ -14,14 +14,13 @@ public class DialogTableUnit : BaseElementTable
             Move = 2,
             Speech = 3,
         }
-        public ActionType actionType;
-
+        public ActionType UnitActionType;
         public string ActorNickName;
-        public FieldObject.Type spawnType;
+        public FieldObject.Type SpawnType;
         public Place.Type ActionPlace;
+        public float ActionTime;
         public string SpeechText;
-        // Ω∫≈‹ ¿Ã»ƒ ∏ÿ√ﬂ¥¬¡ˆ?
-        public bool isStop;
+        public bool IsStop;
 
     }
 

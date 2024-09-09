@@ -252,18 +252,21 @@ public class UIManager : Singleton<UIManager>
         if (DialogOverlayUI != null)
         {
             DialogOverlayUI.Open();
-                //gameObject.SetActive(true);
-            //FadeInOutAnimator.Play("Enter");
         }
          
+    }
+    public void SetActiveDialogNextBtn()
+    {
+        if (DialogOverlayUI != null)
+        {
+            DialogOverlayUI.SetActiveNextBtn(true);
+        }
     }
     public void CloseDialog()
     {
         if (DialogOverlayUI != null)
         {
             DialogOverlayUI.Close();
-                //gameObject.SetActive(false);
-            //FadeInOutAnimator.Play("Exit");
         }
 
     }
