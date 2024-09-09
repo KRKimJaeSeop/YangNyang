@@ -76,7 +76,7 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         }
     }
 
-    public void DespawnAll()
+    private void DespawnAll()
     {
         foreach (var item in _managedObjects.ToList())
         {

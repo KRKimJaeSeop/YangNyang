@@ -21,6 +21,9 @@ public class UIManager : Singleton<UIManager>
         Collection = 301,
         CollectionDetail = 302,
         Option = 401,
+        Language = 402,
+        Credit = 403,
+        WatchDialog = 404,
         Research = 501,
     }
 
@@ -253,7 +256,7 @@ public class UIManager : Singleton<UIManager>
         {
             DialogOverlayUI.Open();
         }
-         
+
     }
     public void SetActiveDialogNextBtn()
     {
@@ -434,6 +437,71 @@ public class UIManager : Singleton<UIManager>
                  Debug.Log($"{GetType()}::{nameof(OpenOptionPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
              });
         Debug.Log($"{GetType()}::{nameof(OpenOptionPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        return component;
+    }
+
+    public UILanguageSelectPanel OpenLanguageSelectPanel(Action<object> cbClose = null)
+    {
+        // µå·¡±× ÇØÁ¦ÀÎµ¥. ¹¹°¡ ¹®Á¨Áö ¸ô¶ó¼­ ÀÏ´Ü ²¨º¸±â
+        //InputController.Instance.ReleaseInputStates();
+
+        var panelCode = Code.Language;
+        var panelInfo = GetPanelInfo(panelCode);
+        var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
+        var component = go.GetComponent<UILanguageSelectPanel>();
+        var openInfo = AddPanel((int)panelCode, component);
+        component.Open(panelInfo.canvas,
+             (results) =>
+             {
+                 RemovePanel(openInfo);
+                 ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+                 cbClose?.Invoke(results);
+                 Debug.Log($"{GetType()}::{nameof(OpenLanguageSelectPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+             });
+        Debug.Log($"{GetType()}::{nameof(OpenLanguageSelectPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        return component;
+    }
+
+    public UICreditPanel OpenCreditPanel(Action<object> cbClose = null)
+    {
+        // µå·¡±× ÇØÁ¦ÀÎµ¥. ¹¹°¡ ¹®Á¨Áö ¸ô¶ó¼­ ÀÏ´Ü ²¨º¸±â
+        //InputController.Instance.ReleaseInputStates();
+
+        var panelCode = Code.Credit;
+        var panelInfo = GetPanelInfo(panelCode);
+        var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
+        var component = go.GetComponent<UICreditPanel>();
+        var openInfo = AddPanel((int)panelCode, component);
+        component.Open(panelInfo.canvas,
+             (results) =>
+             {
+                 RemovePanel(openInfo);
+                 ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+                 cbClose?.Invoke(results);
+                 Debug.Log($"{GetType()}::{nameof(OpenCreditPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+             });
+        Debug.Log($"{GetType()}::{nameof(OpenCreditPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
+        return component;
+    }
+    public UIWatchDialogPanel OpenWatchDialogPanel(Action<object> cbClose = null)
+    {
+        // µå·¡±× ÇØÁ¦ÀÎµ¥. ¹¹°¡ ¹®Á¨Áö ¸ô¶ó¼­ ÀÏ´Ü ²¨º¸±â
+        //InputController.Instance.ReleaseInputStates();
+
+        var panelCode = Code.WatchDialog;
+        var panelInfo = GetPanelInfo(panelCode);
+        var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
+        var component = go.GetComponent<UIWatchDialogPanel>();
+        var openInfo = AddPanel((int)panelCode, component);
+        component.Open(panelInfo.canvas,
+             (results) =>
+             {
+                 RemovePanel(openInfo);
+                 ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+                 cbClose?.Invoke(results);
+                 Debug.Log($"{GetType()}::{nameof(OpenWatchDialogPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+             });
+        Debug.Log($"{GetType()}::{nameof(OpenWatchDialogPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
         return component;
     }
     #endregion
