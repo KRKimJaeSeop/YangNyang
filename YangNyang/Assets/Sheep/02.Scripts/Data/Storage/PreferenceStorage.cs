@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PreferenceStorage : BaseStorage
@@ -13,8 +11,6 @@ public class PreferenceStorage : BaseStorage
         [Tooltip("언어 코드. 처음 설치시 sting.Empty")]
         public string languageCode = string.Empty;
 
-        [Tooltip("전체 소리크기")]
-        public float masterVolume = 0.5f; // 0.001 ~ 1f
         [Tooltip("배경음 소리크기")]
         public float bgmVolume = 0.5f; // 0.001 ~ 1f
         [Tooltip("효과음 소리크기")]
@@ -24,7 +20,6 @@ public class PreferenceStorage : BaseStorage
         {
             StorageData clone = new StorageData();
             clone.languageCode = string.Copy(this.languageCode);
-            clone.masterVolume = this.masterVolume;
             clone.bgmVolume = this.bgmVolume;
             clone.sfxVolume = this.sfxVolume;
             return clone;
@@ -133,45 +128,37 @@ public class PreferenceStorage : BaseStorage
     }
     #endregion
 
-   
+
     #region Volume
-    //public bool IsMuted(SoundController.MixerGroup mixerGroup)
-    //{
-    //    return (GetVolume(mixerGroup) <= 0.001f);
-    //}
+    public bool IsMuted(AudioManager.MixerGroup mixerGroup)
+    {
+        return (GetVolume(mixerGroup) <= 0.001f);
+    }
 
-    //public float GetVolume(SoundController.MixerGroup mixerGroup)
-    //{
-    //    if (mixerGroup == SoundController.MixerGroup.Master)
-    //    {
-    //        return _data.masterVolume;
-    //    }
-    //    else if (mixerGroup == SoundController.MixerGroup.BGM)
-    //    {
-    //        return _data.bgmVolume;
-    //    }
-    //    else if (mixerGroup == SoundController.MixerGroup.SFXMaster)
-    //    {
-    //        return _data.sfxVolume;
-    //    }
-    //    return 0f;
-    //}
+    public float GetVolume(AudioManager.MixerGroup mixerGroup)
+    {
+        if (mixerGroup == AudioManager.MixerGroup.BGM)
+        {
+            return _data.bgmVolume;
+        }
+        else if (mixerGroup == AudioManager.MixerGroup.SFXMaster)
+        {
+            return _data.sfxVolume;
+        }
+        return 0f;
+    }
 
-    //public void SetVolume(SoundController.MixerGroup mixerGroup, float volume)
-    //{
-    //    if (mixerGroup == SoundController.MixerGroup.Master)
-    //    {
-    //        _data.masterVolume = volume;
-    //    }
-    //    else if (mixerGroup == SoundController.MixerGroup.BGM)
-    //    {
-    //        _data.bgmVolume = volume;
-    //    }
-    //    else if (mixerGroup == SoundController.MixerGroup.SFXMaster)
-    //    {
-    //        _data.sfxVolume = volume;
-    //    }
-    //    SetDirty();
-    //}
+    public void SetVolume(AudioManager.MixerGroup mixerGroup, float volume)
+    {
+        if (mixerGroup == AudioManager.MixerGroup.BGM)
+        {
+            _data.bgmVolume = volume;
+        }
+        else if (mixerGroup == AudioManager.MixerGroup.SFXMaster)
+        {
+            _data.sfxVolume = volume;
+        }
+        SetDirty();
+    }
     #endregion
 }

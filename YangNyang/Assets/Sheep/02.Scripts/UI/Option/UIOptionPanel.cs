@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UIOptionPanel : UIPanel
 {
     [SerializeField]
     private Button _languageBtn;
-    [SerializeField]
-    private Slider _masterVolumeSlier;
     [SerializeField]
     private Slider _bgmVolumeSlier;
     [SerializeField]
@@ -23,7 +22,6 @@ public class UIOptionPanel : UIPanel
     protected override void Awake()
     {
         base.Awake();
-        _masterVolumeSlier.onValueChanged.AddListener(OnMasterValueChanged);
         _bgmVolumeSlier.onValueChanged.AddListener(OnBGMValueChanged);
         _sfxVolumeSlier.onValueChanged.AddListener(OnSFXValueChanged);
         _languageBtn.onClick.AddListener(OnClickLangaugeBtn);
@@ -31,17 +29,25 @@ public class UIOptionPanel : UIPanel
         _creditBtn.onClick.AddListener(OnClickCreditBtn);
         _termsBtn.onClick.AddListener(OnClickTermsBtn);
     }
-    void OnMasterValueChanged(float value)
+
+    public override void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
-        Debug.Log("OnMasterValueChanged Value: " + value);
+        base.Open(canvas, cbClose);
+
+        _bgmVolumeSlier.value = GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM);
+        _sfxVolumeSlier.value = GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster);
+
     }
+  
     void OnBGMValueChanged(float value)
     {
-        Debug.Log("OnBGMValueChanged Value: " + value);
+        AudioManager.Instance.SetVolume(AudioManager.MixerGroup.BGM, value);
+        GameDataManager.Instance.Storages.Preference.SetVolume(AudioManager.MixerGroup.BGM, value);
     }
     void OnSFXValueChanged(float value)
     {
-        Debug.Log("OnSFXValueChanged Value: " + value);
+        AudioManager.Instance.SetVolume(AudioManager.MixerGroup.SFXMaster, value);
+        GameDataManager.Instance.Storages.Preference.SetVolume(AudioManager.MixerGroup.SFXMaster, value);
     }
     void OnClickASD()
     {

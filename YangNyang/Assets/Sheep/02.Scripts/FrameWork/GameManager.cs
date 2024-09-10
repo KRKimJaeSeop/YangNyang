@@ -47,14 +47,21 @@ public class GameManager : Singleton<GameManager>
 
     private void InitializeScene()
     {
+        GameDataManager.Instance.Initialize();
         UIManager.Instance.OpenLoading();
         Application.targetFrameRate = 60;
-        GameDataManager.Instance.Initialize();
         FieldObjectManager.Instance.Initialize();
         UIManager.Instance.Preload();
         FieldObjectManager.Instance.SpawnPlayer();
         UIManager.Instance.OpenMainPanel();
         UIManager.Instance.CloseLoading();
+
+        // Audio
+        AudioManager.Instance.Initialize(
+           GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM),
+           GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
+        AudioManager.Instance.MusicBox.PlayBGM();
+
     }
 
     private EndingType GetEndingType()

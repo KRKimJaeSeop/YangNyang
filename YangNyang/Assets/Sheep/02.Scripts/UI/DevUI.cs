@@ -54,12 +54,16 @@ public class DevUI : MonoBehaviour
         //    Debug.Log(item.Key);
         //}
         //Debug.Break();
-
+        //AudioManager.Instance.Initialize(
+        //   GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM),
+        //   GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
+        //AudioManager.Instance.MusicBox.PlayBGM();
     }
     private void OnClick1()
     {
         //UIManager.Instance.OpenConfirmPanel(textField1.text, textField2.text);
-        FieldObjectManager.Instance.StartSheepSpawn(false);
+        //FieldObjectManager.Instance.StartSheepSpawn(false);
+        AudioManager.Instance.MusicBox.PlaySFX(MusicBox.SfxType.DefaultClick);
     }
     private void OnClick2()
     {
