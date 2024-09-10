@@ -18,11 +18,11 @@ public class GameDataManager : Singleton<GameDataManager>
     }
     private void OnEnable()
     {
-        GameManager.OnGameClear += GameManager_OnGameClear;
+        OnGameClear += GameManager_OnGameClear;
     }
     private void OnDisable()
     {
-        GameManager.OnGameClear -= GameManager_OnGameClear;
+        OnGameClear -= GameManager_OnGameClear;
     }
 
     public virtual bool Initialize()

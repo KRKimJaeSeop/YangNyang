@@ -4,16 +4,34 @@
     "type": "split",
     "children": [
       {
-        "id": "3a4f58b09fd851f6",
+        "id": "e319b8474aeea390",
         "type": "tabs",
         "children": [
           {
-            "id": "a9db82488c4ff9ae",
+            "id": "f974b460e9f0eefe",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "작업 일정/작업 목록.md",
+                "file": "작업 일정/2차/작업 계획.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "4d00ab78646aed90",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c2046b9f235d0d4d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "작업 일정/2차/작업 목록.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "작업 일정/작업 목록.md",
+                "file": "작업 일정/2차/작업 계획.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "작업 일정/작업 목록.md",
+                "file": "작업 일정/2차/작업 계획.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +143,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "작업 일정/작업 목록.md"
+                "file": "작업 일정/2차/작업 계획.md"
               }
             }
           }
@@ -146,40 +164,42 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "a9db82488c4ff9ae",
+  "active": "f974b460e9f0eefe",
   "lastOpenFiles": [
+    "작업 일정/2차/작업 목록.md",
+    "작업 일정/2차/작업 계획.md",
     "메모.md",
-    "작업 일정/작업 목록.md",
+    "작업 일정/1차/작업 계획.md",
+    "작업 일정/1차/작업 목록.md",
     "작업 일지/2024-09-10.md",
+    "작업 일지/2024-09-07.md",
+    "작업 일지/2024-09-08.md",
     "작업 일지/2024-09-09.md",
-    "작업 일정/작업 계획.md",
+    "무제 파일.canvas",
+    "작업 일정/2차",
+    "작업 일정/1차",
+    "작업 일지/2024-08-27.md",
     "작업 일지/2024-09-03.md",
     "작업 일지/2024-08-22.md",
     "조사/어드레서블.md",
     "조사/아트 참고.md",
-    "작업 일지/2024-09-08.md",
     "작업 일지/2024-08-30.md",
     "작업 일지/2024-08-29.md",
     "작업 일지/2024-08-28.md",
-    "작업 일지/2024-08-27.md",
     "작업 일지/2024-08-26.md",
     "작업 일지/2024-08-25.md",
     "작업 일지/2024-08-24.md",
     "작업 일지/2024-08-23.md",
-    "작업 일지/2024-09-07.md",
     "기획/2.게임 스토리.md",
     "_이미지/Pasted image 20240907154523.png",
     "_이미지/Pasted image 20240907054249.png",
     "작업 일지/2024-09-06.md",
     "기획/돌연변이.md",
     "기획/Movement 오브젝트.md",
-    "기획/Tilted 오브젝트.md",
     "_이미지/Pasted image 20240906204512.png",
     "_이미지/Pasted image 20240906204503.png",
     "_이미지/Pasted image 20240906204455.png",
-    "작업 일지/2024-09-05.md",
     "_이미지/Pasted image 20240906023241.png",
-    "작업 일지/2024-09-04.md",
     "_이미지/Pasted image 20240904220621.png",
     "_이미지/Pasted image 20240904220610.png",
     "_이미지/Pasted image 20240904220535.png",
@@ -191,7 +211,6 @@
     "조사",
     "작업 일정",
     "구조",
-    "기획",
-    "_이미지"
+    "기획"
   ]
 }
