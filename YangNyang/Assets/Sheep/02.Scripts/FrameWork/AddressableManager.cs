@@ -52,6 +52,11 @@ public class AddressableManager : Singleton<AddressableManager>
     {
         if (loadedAssets.TryGetValue($"{code}", out var asset))
         {
+            // Teture2D 에셋의 경우 스프라이트로 바로 적용이 안돼서 따로 변환해준다.
+            if (typeof(T) == typeof(Sprite) && asset is Texture2D texture)
+            {
+                return CreateSprite(texture) as T;
+            }
             return asset as T;
         }
         else
@@ -59,5 +64,9 @@ public class AddressableManager : Singleton<AddressableManager>
             Debug.LogError($"Asset not found: {$"{code}"}");
             return null;
         }
+    }
+    private Sprite CreateSprite(Texture2D texture)
+    {
+        return Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
     }
 }

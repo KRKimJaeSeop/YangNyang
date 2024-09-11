@@ -18,6 +18,9 @@ public class GameManager : Singleton<GameManager>
     private long _targetGoldAmount;
     public long TargetGoldAmount { get { return _targetGoldAmount; } }
     private bool isGameClear = false;
+    [SerializeField]
+    private EnvironmentManager _environment;
+
     public delegate void GameClearEvent(EndingType endingType);
     public static event GameClearEvent OnGameClear;
 
@@ -25,6 +28,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         InitializeGame();
     }
     private void OnEnable()
@@ -52,11 +56,16 @@ public class GameManager : Singleton<GameManager>
         // Addressable Load
         await AddressableManager.Instance.LoadAllAssetsAsync();
 
+        // Data
         GameDataManager.Instance.Initialize();
-        Application.targetFrameRate = 60;
+
+        // Field
         FieldObjectManager.Instance.Initialize();
-        UIManager.Instance.Preload();
         FieldObjectManager.Instance.SpawnPlayer();
+        _environment.Initialize();
+
+        // UI
+        UIManager.Instance.Preload();
         UIManager.Instance.OpenMainPanel();
 
         // Audio
@@ -64,6 +73,8 @@ public class GameManager : Singleton<GameManager>
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM),
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
         AudioManager.Instance.MusicBox.PlayBGM(AddressableManager.RemoteAssetCode.BGM);
+
+        // Opened Object Sprite Change
 
         UIManager.Instance.CloseLoading();
     }

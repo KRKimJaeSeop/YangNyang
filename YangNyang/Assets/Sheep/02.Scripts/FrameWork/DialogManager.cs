@@ -9,8 +9,8 @@ public class DialogManager : Singleton<DialogManager>
     private DialogTableUnit _tbUnit;
     private int stepIndex = 0;
 
-    public delegate void DialogEnter(bool isStart);
-    public static event DialogEnter OnDialogEnter;
+    public delegate void DialogEnterEvent(bool isStart);
+    public static event DialogEnterEvent OnDialogEnter;
 
     private Dictionary<string, int> _actors = new();
 

@@ -7,7 +7,20 @@ public class EnvironmentManager : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer _sky;
+    [SerializeField]
+    private SpriteRenderer _grass;
+    [SerializeField]
+    private SpriteRenderer _cloudShadow;
 
+    public void Initialize()
+    {
+        _sky.sprite = 
+            AddressableManager.Instance.GetAsset<Sprite>(AddressableManager.RemoteAssetCode.Sky);
+        _grass.sprite =
+            AddressableManager.Instance.GetAsset<Sprite>(AddressableManager.RemoteAssetCode.Grass);
+        _cloudShadow.sprite =
+            AddressableManager.Instance.GetAsset<Sprite>(AddressableManager.RemoteAssetCode.CloudShadow);
+    }
 
     private void OnEnable()
     {

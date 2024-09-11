@@ -1,4 +1,3 @@
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -60,16 +59,16 @@ public class DevUI : MonoBehaviour
         //   GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM),
         //   GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
         //AudioManager.Instance.MusicBox.PlayBGM();
-        
+
         //나중에 활성화
-        //Addressables.LoadAssetAsync<GameObject>(textField1.text).Completed += OnSpriteLoaded;
+        Addressables.LoadAssetAsync<Sprite>(textField1.text).Completed += OnSpriteLoaded;
     }
-    private void OnSpriteLoaded(AsyncOperationHandle<GameObject> handle)
+    private void OnSpriteLoaded(AsyncOperationHandle<Sprite> handle)
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Debug.Log("Sprite loaded successfully");
-            //img.sprite = handle.Result;
+            img.sprite = handle.Result;
             Instantiate(handle.Result);
         }
         else
@@ -85,7 +84,9 @@ public class DevUI : MonoBehaviour
     }
     private void OnClick2()
     {
-        FieldObjectManager.Instance.StartSheepSpawn(true);
+        //eldObjectManager.Instance.StartSheepSpawn(true);
+        var texture = AddressableManager.Instance.GetAsset<Texture2D>(AddressableManager.RemoteAssetCode.OverlayBranch);
+        img.sprite = Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),Vector2.one*5);
         //UIManager.Instance.OpenNotificationPanel(textField1.text);
     }
     private void OnClick3()

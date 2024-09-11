@@ -14,6 +14,8 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
 
     [SerializeField]
     protected SpeechBubble _speechBubble;
+    [SerializeField]
+    protected SpriteRenderer _dropShadow;
 
     [SerializeField]
     protected Animator _animator;
@@ -24,7 +26,10 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
         base.Awake();
         _originScale = _transform.localScale;
         _flipScale = new Vector3(-(_transform.localScale.x), _transform.localScale.y, _transform.localScale.z);
-
+        _dropShadow.sprite =
+            AddressableManager.Instance.GetAsset<Sprite>(AddressableManager.RemoteAssetCode.DropShadow);
+        //_dropShadow.transform.localScale = Vector3.one;
+        //_dropShadow.transform.localPosition= Vector3.zero;
     }
 
 

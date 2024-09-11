@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIMainPanel : UIPanel
 {
     [Header("Status Bar UI")]
+
     [SerializeField]
     private TextMeshProUGUI _dayText;
     [SerializeField]
@@ -19,7 +20,6 @@ public class UIMainPanel : UIPanel
     private TextMeshProUGUI _goldText;
 
     [Header("Button Bar UI")]
-
     [SerializeField]
     private Button _sellBtn;
     [SerializeField]
@@ -31,6 +31,14 @@ public class UIMainPanel : UIPanel
     [SerializeField]
     private Button _optionBtn;
 
+    [Header("Remote Asset UI")]
+    [SerializeField]
+    private Image _overlayBranch;
+    [SerializeField]
+    private Image _overlayGrass;
+    [SerializeField]
+    private Image[] _docBar;
+
     protected override void Awake()
     {
         base.Awake();
@@ -38,6 +46,7 @@ public class UIMainPanel : UIPanel
         _collectionBtn.onClick.AddListener(OnClickCollectionBtn);
         _optionBtn.onClick.AddListener(OnClickOptionBtn);
         _researchBtn.onClick.AddListener(OnClickResearchBtn);
+        SetEnvironmentUI();
     }
 
     private void OnEnable()
@@ -47,6 +56,7 @@ public class UIMainPanel : UIPanel
         UserStorage.OnUpdateLevel += UserStorage_OnUpdateLevel;
         CurrencyStorage.OnUpdateCurrency += CurrencyStorage_OnUpdateCurrency;
         UnlockSheepStorage.OnUnlockSheep += UnlockSheepStorage_OnUnlockSheep;
+
     }
 
     private void OnDisable()
@@ -56,13 +66,25 @@ public class UIMainPanel : UIPanel
         UserStorage.OnUpdateLevel -= UserStorage_OnUpdateLevel;
         UnlockSheepStorage.OnUnlockSheep -= UnlockSheepStorage_OnUnlockSheep;
     }
+    private void SetEnvironmentUI()
+    {
+        _overlayBranch.sprite =
+            AddressableManager.Instance.GetAsset<Sprite>(AddressableManager.RemoteAssetCode.OverlayBranch);
+        _overlayGrass.sprite =
+            AddressableManager.Instance.GetAsset<Sprite>(AddressableManager.RemoteAssetCode.OverlayGrass);
+        foreach (var item in _docBar)
+        {
+            item.sprite =
+                AddressableManager.Instance.GetAsset<Sprite>(AddressableManager.RemoteAssetCode.DocBar);
+        }
+    }
 
     public override void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
         base.Open();
         SetUI();
     }
-
+  
     private void SetUI()
     {
         var userStorage = GameDataManager.Instance.Storages.User;
