@@ -20,24 +20,6 @@
             }
           }
         ]
-      },
-      {
-        "id": "4d00ab78646aed90",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "c2046b9f235d0d4d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "작업 일정/2차/작업 목록.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          }
-        ]
       }
     ],
     "direction": "vertical"

@@ -27,11 +27,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 41e77e4cb65d2d04c9a7afc8370b22d0
-    m_Address: PlayerAnimation
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 50a27a06cdd978740961caf218a2bb2b
     m_Address: GrassField
     m_ReadOnly: 0

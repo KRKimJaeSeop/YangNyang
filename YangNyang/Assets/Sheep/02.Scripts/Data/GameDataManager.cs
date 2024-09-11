@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using static GameManager;
+using Object = UnityEngine.Object;
 
 public class GameDataManager : Singleton<GameDataManager>
 {
@@ -46,13 +48,14 @@ public class GameDataManager : Singleton<GameDataManager>
         return true;
     }
 
-    public async Task<T> LoadAssetAsync<T>(string assetName) where T : UnityEngine.Object
+    public async Task<T> LoadAssetAsync<T>(string assetName, Action<T> onAssetLoaded) where T : Object
     {
         AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetName);
         await handle.Task;
 
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
+            onAssetLoaded?.Invoke(handle.Result);
             return handle.Result;
         }
         else
@@ -61,6 +64,8 @@ public class GameDataManager : Singleton<GameDataManager>
             return null;
         }
     }
+
+
     private void GameManager_OnGameClear(EndingType type)
     {
         switch (type)
