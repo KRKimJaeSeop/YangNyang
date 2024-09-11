@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class UIPanel : MonoBehaviour
 {
+    [Header("[SafeArea]")]
+    [SerializeField, Tooltip("없다면 미세팅")]
+    protected SafeAreaHandler safeAreaHandler;
 
     [Header("[Open]")]
     [SerializeField, Tooltip("패널 오픈 시 이벤트")]
@@ -34,6 +37,9 @@ public class UIPanel : MonoBehaviour
     public virtual void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
         this.gameObject.SetActive(true);
+        if (canvas != null && safeAreaHandler != null)
+            safeAreaHandler.SetCanvas(canvas);
+
         _cbClose = cbClose;
         _results = null;
 
