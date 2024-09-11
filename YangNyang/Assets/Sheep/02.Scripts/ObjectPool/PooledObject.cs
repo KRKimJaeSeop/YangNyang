@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using static AddressableManager;
 
 public class PooledObject : MonoBehaviour
 {
@@ -32,6 +34,15 @@ public class PooledObject : MonoBehaviour
     {
         _name = poolName;
         _prefab = prefab;
+        _instantiatedNum = 0;
+        IsLoaded = true;
+
+        AddItems(preloadNumber);
+    }
+    public void Initialze(string poolName, RemoteAssetCode code, int preloadNumber)
+    {
+        _name = poolName;
+        _prefab = AddressableManager.Instance.GetAsset<GameObject>(code);
         _instantiatedNum = 0;
         IsLoaded = true;
 
@@ -84,4 +95,6 @@ public class PooledObject : MonoBehaviour
 
         return item;
     }
+ 
+
 }

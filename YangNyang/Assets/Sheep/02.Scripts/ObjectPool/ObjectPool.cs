@@ -1,7 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AddressableManager;
 
 public class ObjectPool : Singleton<ObjectPool>
 {
@@ -96,6 +96,15 @@ public class ObjectPool : Singleton<ObjectPool>
         _dicPool.Add(poolName, pool);
         pool.Initialize(poolName, prefab, preloadNumber);
     }
+    private void CreateAddressablePool(string poolName, RemoteAssetCode code, int preloadNumber)
+    {
+        // pool 생성
+        GameObject goPool = new GameObject(poolName);
+        goPool.transform.SetParent(_transform, false);
+        var pool = goPool.AddComponent<PooledObject>();
+        _dicPool.Add(poolName, pool);
+        pool.Initialze(poolName, code, preloadNumber);
+    }
 
 
     /// <summary>
@@ -123,7 +132,22 @@ public class ObjectPool : Singleton<ObjectPool>
             }
         }
     }
-
+    public void LoadPoolItem(string poolName, RemoteAssetCode code, int preloadNumber, bool isAdditional = false)
+    {
+        if (GetPool(poolName) == null) // pool 이 없다면
+        {
+            // pool 생성
+            CreateAddressablePool(poolName, code, preloadNumber);
+        }
+        else // pool 이 있다면
+        {
+            if (isAdditional == true)
+            {
+                // pool 에 preloadCount 만큼 추가 object 생성
+                _dicPool[poolName].AddItems(preloadNumber);
+            }
+        }
+    }
 
 
     /// <summary>
@@ -142,7 +166,7 @@ public class ObjectPool : Singleton<ObjectPool>
             return false;
         }
 
-       // Debug.Log($"Push [{item.name}]");
+        // Debug.Log($"Push [{item.name}]");
         pool.Push(item, setParent);
         return true;
     }
@@ -161,7 +185,10 @@ public class ObjectPool : Singleton<ObjectPool>
             return null;
         }
 
-      //  Debug.Log($"Pop [{poolName}]");
+        //  Debug.Log($"Pop [{poolName}]");
         return pool.Pop();
     }
+
+
+ 
 }

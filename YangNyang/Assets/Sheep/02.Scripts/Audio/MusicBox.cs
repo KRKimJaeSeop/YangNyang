@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using static AddressableManager;
 
 /// <summary>
 /// 개별효과음 (양,고양이 울음) 등이 아닌 공용 음원을 관리한다.
@@ -66,21 +67,21 @@ public class MusicBox : MonoBehaviour
     #endregion
 
     #region BGM
-    public void PlayBGM(string assetName)
+    public void PlayBGM(RemoteAssetCode code)
     {
         StopBGM();
 
-        var clip = AddressableManager.Instance.GetAsset<AudioClip>(assetName);
+        var clip = AddressableManager.Instance.GetAsset<AudioClip>(code);
         if (clip == null)
         {
-            Debug.LogWarning($"{GetType()}::{nameof(PlayBGM)}: BGM 에셋을 찾을 수 없음. assetName: {assetName}");
+            Debug.LogWarning($"{GetType()}::{nameof(PlayBGM)}: BGM 에셋을 찾을 수 없음. assetName: {$"{code}"}");
             return;
         }
 
         _playBGMCoroutine = StartCoroutine(PlayBGMCoroutine(bgmAudioSource, clip, () =>
         {
             // 정상적으로 음악이 종료되었다면 다음곡 플레이.
-            PlayBGM(assetName);
+            PlayBGM(code);
         }));
     }
 

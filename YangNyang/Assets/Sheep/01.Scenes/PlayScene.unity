@@ -2712,15 +2712,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmAudioSource: {fileID: 241452091}
   goSfx: {fileID: 1085791849}
-  bgmReferences:
-  - m_AssetGUID: a89d45d0d5029b04caeb596e967ec9b9
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
   sfxs:
   - type: 1
     audioClip: {fileID: 8300000, guid: cda3ce6263c769a4b92c76fbea296b61, type: 3}
-  _bgmIndex: -1
   _sfxAudioSources: []
   _skipIndexs: 
 --- !u!1 &992620590
@@ -4648,62 +4642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c95b47f4b26c947b13626436d34557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assetReferences:
-  - m_AssetGUID: a89d45d0d5029b04caeb596e967ec9b9
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  - m_AssetGUID: 3c41f04106281224cbd689fd521f112e
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  - m_AssetGUID: 22b0ff15e8fe9214b9591184cebbdcc4
-    m_SubObjectName: DropShadow
-    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_EditorAssetChanged: 1
-  - m_AssetGUID: 50a27a06cdd978740961caf218a2bb2b
-    m_SubObjectName: Grass
-    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_EditorAssetChanged: 1
-  - m_AssetGUID: 69ed045d90280e24a8e055224bff8b4d
-    m_SubObjectName: Overlay_branch
-    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_EditorAssetChanged: 1
-  - m_AssetGUID: 717a6748b5934124493a9a5af9c076f2
-    m_SubObjectName: Sky
-    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_EditorAssetChanged: 1
-  - m_AssetGUID: 7fec9c7bd5a3fdb4db6a99486c3f21da
-    m_SubObjectName: Overlay_grass
-    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_EditorAssetChanged: 1
-  - m_AssetGUID: b30006df276e5794aa6347816ea5cdc7
-    m_SubObjectName: Doc
-    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_EditorAssetChanged: 1
-  - m_AssetGUID: e659d7502d348b545bc49ae9ef9bcb9e
-    m_SubObjectName: Shadow
-    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_EditorAssetChanged: 1
-  assetNamesString:
-  - BGM
-  - OverlayGrass
-  - OverlayBranch
-  - DocBar
-  - Sky
-  - CloudShadow
-  - Grass
-  - DropShadow
-  - Player
-  assetNamesString2:
-  - DropShadow
 --- !u!1 &1506297194
 GameObject:
   m_ObjectHideFlags: 0
@@ -6008,19 +5946,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f368a86e8845eb24299fd8aec4ebce54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  list:
+  assetList:
   - name: StandardSheep
     prefab: {fileID: 1895252174086673481, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}
-    preloadNum: 1
-  - name: BuffSheep
-    prefab: {fileID: 8236735232467810648, guid: 3811ae678ada36243a532a0be90ebd0b, type: 3}
-    preloadNum: 0
+    preloadNum: 20
   - name: EventSheep
     prefab: {fileID: 8236735232467810648, guid: 8858ef176d09bf242809596e918e2bcd, type: 3}
-    preloadNum: 0
+    preloadNum: 5
+  - name: BuffSheep
+    prefab: {fileID: 8236735232467810648, guid: 3811ae678ada36243a532a0be90ebd0b, type: 3}
+    preloadNum: 5
   - name: Wool
     prefab: {fileID: 6370111236740729137, guid: d24e748bd65e266468b15834b719cf3c, type: 3}
     preloadNum: 500
+  remoteAssetList:
+  - name: Player
+    code: 8
+    preloadNum: 2
 --- !u!1 &2033864234
 GameObject:
   m_ObjectHideFlags: 0

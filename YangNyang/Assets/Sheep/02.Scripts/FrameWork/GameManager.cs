@@ -42,28 +42,30 @@ public class GameManager : Singleton<GameManager>
         if (code == Currency.Type.Gold && _targetGoldAmount <= total)
         {
             GameClear();
+            
         }
     }
 
     private async void InitializeGame()
     {
         UIManager.Instance.OpenLoading();
+        // Addressable Load
         await AddressableManager.Instance.LoadAllAssetsAsync();
 
         GameDataManager.Instance.Initialize();
         Application.targetFrameRate = 60;
         FieldObjectManager.Instance.Initialize();
         UIManager.Instance.Preload();
-       // FieldObjectManager.Instance.SpawnPlayer();
+        FieldObjectManager.Instance.SpawnPlayer();
         UIManager.Instance.OpenMainPanel();
-        UIManager.Instance.CloseLoading();
 
         // Audio
         AudioManager.Instance.Initialize(
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM),
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
-        AudioManager.Instance.MusicBox.PlayBGM("BGM");
+        AudioManager.Instance.MusicBox.PlayBGM(AddressableManager.RemoteAssetCode.BGM);
 
+        UIManager.Instance.CloseLoading();
     }
 
     private EndingType GetEndingType()
