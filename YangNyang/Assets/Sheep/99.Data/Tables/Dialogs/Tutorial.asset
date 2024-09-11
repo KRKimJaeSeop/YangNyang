@@ -26,30 +26,78 @@ MonoBehaviour:
   type: 1
   _steps:
   - UnitActionType: 1
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
+    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
     SpawnType: 1
     ActionPlace: 6
     ActionTime: 0
     SpeechText: 
     IsStop: 0
   - UnitActionType: 2
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
+    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
     SpawnType: 0
     ActionPlace: 5
     ActionTime: 2
     SpeechText: 
     IsStop: 1
-  - UnitActionType: 2
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
+  - UnitActionType: 3
+    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
     SpawnType: 0
-    ActionPlace: 4
-    ActionTime: 1
-    SpeechText: 
+    ActionPlace: 5
+    ActionTime: 2
+    SpeechText: "\uC548\uB155\uD558\uC138\uC694, \uAE40\uC7AC\uC12D\uC785\uB2C8\uB2E4."
     IsStop: 1
-  - UnitActionType: 2
-    ActorNickName: "\uCF00\uC778\uC778\uB2D8"
+  - UnitActionType: 3
+    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
     SpawnType: 0
-    ActionPlace: 3
-    ActionTime: 1
-    SpeechText: 
+    ActionPlace: 5
+    ActionTime: 4
+    SpeechText: "\uC6B0\uC120 \uB3C4\uC640\uC8FC\uC154\uC11C \uB108\uBB34 \uB108\uBB34
+      \uAC10\uC0AC\uD569\uB2C8\uB2E4."
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
+    SpawnType: 0
+    ActionPlace: 5
+    ActionTime: 4
+    SpeechText: "\uCD9C\uC2DC\uD558\uB824\uBA74 20\uBA85\uC774 2\uC8FC \uB3D9\uC548
+      \uD14C\uC2A4\uD2B8\uB97C \uD574\uC57C \uD55C\uB2E4\uACE0 \uD558\uB354\uB77C\uACE0\uC694. "
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
+    SpawnType: 0
+    ActionPlace: 5
+    ActionTime: 4
+    SpeechText: "\uC9C0\uAE08 \uD50C\uB808\uC774\uD558\uC2DC\uB294 \uBC84\uC804\uC5D0\uC11C
+      \uD558\uC2E4 \uC218 \uC788\uB294 \uAC74 \uBCC4\uB85C \uC5C6\uC744 \uAC70\uC608\uC694.  "
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
+    SpawnType: 0
+    ActionPlace: 5
+    ActionTime: 4
+    SpeechText: "\uADF8\uB0E5 \u201C\uC74C, \uC774\uB7F0 \uB290\uB08C\uC774\uAD6C\uB098~\u201D
+      \uD558\uACE0 \uB290\uB07C\uAE30\uB9CC \uD574\uC8FC\uC138\uC694."
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
+    SpawnType: 0
+    ActionPlace: 5
+    ActionTime: 4
+    SpeechText: "\uC544\uBB34\uD2BC \uB3C4\uC640\uC8FC\uC2DC\uB294 \uB355\uBD84\uC5D0
+      \uBBFF\uACE0 \uC800\uB294 \uB098\uBA38\uC9C0 \uAC1C\uBC1C \uC5F4\uC2EC\uD788
+      \uD574\uC11C"
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
+    SpawnType: 0
+    ActionPlace: 5
+    ActionTime: 4
+    SpeechText: "\uBAA9\uD45C \uB0A0\uC9DC\uC5D0 \uC798 \uCD9C\uC2DC\uD574 \uBCF4\uACA0\uC2B5\uB2C8\uB2E4."
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
+    SpawnType: 0
+    ActionPlace: 5
+    ActionTime: 3
+    SpeechText: " \uBAA9\uD45C \uB0A0\uC9DC\uB294 10\uC6D4 1\uC77C\uC774\uC5D0\uC694!!"
     IsStop: 1

@@ -56,6 +56,9 @@ TagManager:
   - name: Interactable
     uniqueID: 3372811513
     locked: 0
+  - name: SpeechBubble
+    uniqueID: 758974283
+    locked: 0
   - name: Joystick
     uniqueID: 3400633903
     locked: 0

@@ -21,6 +21,7 @@ public class AddressableManager : Singleton<AddressableManager>
         DropShadow = 7,
         Player = 8,
         BGM = 9,
+        SpeechBubble = 10,
     }
 
     private Dictionary<string, UnityEngine.Object> loadedAssets = new Dictionary<string, UnityEngine.Object>();

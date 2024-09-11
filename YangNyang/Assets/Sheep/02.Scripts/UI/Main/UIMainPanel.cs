@@ -133,20 +133,24 @@ public class UIMainPanel : UIPanel
     }
     private void OnClickCollectionBtn()
     {
-        UIManager.Instance.OpenCollectionPanel();
-        _redDot.SetActive(false);
+        UIManager.Instance.OpenNotificationPanel("Àá°å¾î¿ä");
+        //UIManager.Instance.OpenCollectionPanel();
+       // _redDot.SetActive(false);
     }
     private void OnClickShopBtn()
     {
-        UIManager.Instance.OpenSellPanel();
+        UIManager.Instance.OpenNotificationPanel("Àá°å¾î¿ä");
+        //UIManager.Instance.OpenSellPanel();
     }
     private void OnClickOptionBtn()
     {
-        UIManager.Instance.OpenOptionPanel();
+        UIManager.Instance.OpenNotificationPanel("Àá°å¾î¿ä");
+        // UIManager.Instance.OpenOptionPanel();
     }
     private void OnClickResearchBtn()
     {
-        UIManager.Instance.OpenResearchPanel();
+        UIManager.Instance.OpenNotificationPanel("Àá°å¾î¿ä");
+        //  UIManager.Instance.OpenResearchPanel();
     }
 
 }
