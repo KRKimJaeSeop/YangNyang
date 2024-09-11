@@ -1,13 +1,15 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 using Random = UnityEngine.Random;
 
 public class Wool : BaseFieldObject, IMovable, IInteractable
 {
     private bool _isInteractable;
     private Vector2 dropPoint;
-
+    [SerializeField]
+    protected SpriteResolver _spriteResolver;
     public override void Spawn(Vector2 startPosition , Action cbDisable = null)
     {
         base.Spawn(startPosition, cbDisable);
@@ -19,7 +21,10 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
         float randomY = Random.Range(FieldObjectManager.Instance.Places.GetPlacePosition
          (Place.Type.WoolDropZone_BottomLeftCorner).y,
          FieldObjectManager.Instance.Places.GetPlacePosition(Place.Type.WoolDropZone_TopRightCorner).y);
-        
+
+        var index = Random.Range(1, 4);
+        _spriteResolver.SetCategoryAndLabel("StandardWool", $"{index}");
+
         dropPoint.Set(randomX, randomY);
         MoveToPosition(dropPoint, 6);
     }

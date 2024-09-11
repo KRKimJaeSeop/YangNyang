@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6788927609649021817}
   - component: {fileID: 2387628759667513901}
   - component: {fileID: 2431642905290955303}
+  - component: {fileID: 5270508951934474132}
+  - component: {fileID: 8063716531922288683}
   m_Layer: 0
   m_Name: Wool
   m_TagString: Untagged
@@ -76,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: -922155783
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.70623255, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0145291c87d7d044b874bacfd816e527, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -162,3 +164,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instanceID: 0
+  _spriteResolver: {fileID: 8063716531922288683}
+--- !u!114 &5270508951934474132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6370111236740729137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: StandardWool
+    m_Hash: 0
+    m_CategoryList:
+    - m_Name: 1
+      m_Hash: 0
+      m_Sprite: {fileID: 21300000, guid: 0145291c87d7d044b874bacfd816e527, type: 3}
+    - m_Name: 2
+      m_Hash: 0
+      m_Sprite: {fileID: 21300000, guid: f5a4d8a258afa504e8e9766f61014e93, type: 3}
+    - m_Name: 3
+      m_Hash: 0
+      m_Sprite: {fileID: 21300000, guid: 7160bd6649302b045bf4d868b386ca7e, type: 3}
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ebf3a4ccd9a0abe48b2d654897485899, type: 3}
+--- !u!114 &8063716531922288683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6370111236740729137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 0
+  m_labelHash: 0
+  m_SpriteKey: 0
+  m_SpriteHash: 130916191
