@@ -103,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "작업 일정/2차/작업 계획.md",
+                "file": "작업 일정/2차/작업 목록.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "작업 일정/2차/작업 계획.md",
+                "file": "작업 일정/2차/작업 목록.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,7 +143,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "작업 일정/2차/작업 계획.md"
+                "file": "작업 일정/2차/작업 목록.md"
               }
             }
           }
@@ -164,15 +164,15 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "c069b25f0b842039",
+  "active": "f974b460e9f0eefe",
   "lastOpenFiles": [
+    "작업 일정/2차/작업 계획.md",
     "작업 일정/2차/작업 목록.md",
     "작업 일지/2024-08-25.md",
     "작업 일지/2024-09-10.md",
     "_이미지/Grapgic_Kr.png",
     "_이미지/Grapgic_Eng.png",
     "_이미지/Icon_216.png",
-    "작업 일정/2차/작업 계획.md",
     "_이미지/Pasted image 20240911002522.png",
     "메모.md",
     "작업 일정/1차/작업 계획.md",

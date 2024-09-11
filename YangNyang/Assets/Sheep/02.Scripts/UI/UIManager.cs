@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -103,28 +102,34 @@ public class UIManager : Singleton<UIManager>
     }
     private void OnAndroidEscape()
     {
-        // ÆË¾÷À» ¸ÕÀú ´Ý¾Æ º» ÈÄ ´ÝÈù ÆË¾÷ÀÌ ÀÖ´Ù¸é Áß´Ü.
-        if (CloseLastOpenedPanel() == true)
-            return;
+        if (!DialogManager.Instance.IsPlaying)
+        {
+            // ÆË¾÷À» ¸ÕÀú ´Ý¾Æ º» ÈÄ ´ÝÈù ÆË¾÷ÀÌ ÀÖ´Ù¸é Áß´Ü.
+            if (CloseLastOpenedPanel() == true)
+                return;
+
+
+            OpenConfirmPanel("¾Û Á¾·á", "QuitText", null,
+                (results) =>
+                {
+                    var confirmResult = results as UIConfirmPanel.Results;
+                    if (confirmResult != null && confirmResult.isConfirm)
+                    {
 
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+                        // Debug.Log("¾Û Á¾·á È®ÀÎµÊ.");
+                        UnityEditor.EditorApplication.isPlaying = false;
 #else
+
         Application.Quit();
+
 #endif
-        // Á¾·á È®ÀÎ ÆË¾÷
-        //OpenConfirm(GameDataManager.Instance.Tables.LocalData.AppShutdown,
-        //    null, null, null, null, (resultObj) =>
-        //    {
-        //        var result = resultObj as UIConfirmPanel.Results;
-        //        if (result != null)
-        //        {
-        //            if (result.isConfirm)
-        //            {
-        //                UtilFunctions.Quit();
-        //            }
-        //        }
-        //    });
+                    }
+                });
+
+        }
+
+
     }
 
     #endregion

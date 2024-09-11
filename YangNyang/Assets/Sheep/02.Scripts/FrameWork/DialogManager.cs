@@ -1,4 +1,3 @@
-using Dialog;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,10 +12,12 @@ public class DialogManager : Singleton<DialogManager>
     public static event DialogEnterEvent OnDialogEnter;
 
     private Dictionary<string, int> _actors = new();
-
+    private bool isPlaying = false;
+    public bool IsPlaying { get { return isPlaying; } }
 
     public void EnterDialog(Type type)
     {
+        isPlaying = true;
         OnDialogEnter?.Invoke(true);
         UIManager.Instance.OpenDialog();
         stepIndex = 0;
@@ -123,6 +124,7 @@ public class DialogManager : Singleton<DialogManager>
 
     public void ExitDialog()
     {
+        isPlaying = false;
         _actors.Clear();
         UIManager.Instance.CloseDialog();
         OnDialogEnter?.Invoke(false);

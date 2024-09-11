@@ -75,7 +75,6 @@ public class GameManager : Singleton<GameManager>
         AudioManager.Instance.MusicBox.PlayBGM(AddressableManager.RemoteAssetCode.BGM);
 
         // Opened Object Sprite Change
-
         UIManager.Instance.CloseLoading();
 
         DialogManager.Instance.EnterDialog(Dialog.Type.Tutorial);
