@@ -1,4 +1,8 @@
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using static GameManager;
 
 public class GameDataManager : Singleton<GameDataManager>
@@ -41,7 +45,22 @@ public class GameDataManager : Singleton<GameDataManager>
         IsInitialized = true;
         return true;
     }
- 
+
+    public async Task<T> LoadAssetAsync<T>(string assetName) where T : UnityEngine.Object
+    {
+        AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetName);
+        await handle.Task;
+
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            return handle.Result;
+        }
+        else
+        {
+            Debug.LogError($"Failed to load asset: {assetName}");
+            return null;
+        }
+    }
     private void GameManager_OnGameClear(EndingType type)
     {
         switch (type)
@@ -60,4 +79,6 @@ public class GameDataManager : Singleton<GameDataManager>
         }
   
     }
+
+
 }

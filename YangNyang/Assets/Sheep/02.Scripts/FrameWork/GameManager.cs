@@ -60,7 +60,7 @@ public class GameManager : Singleton<GameManager>
         AudioManager.Instance.Initialize(
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM),
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
-        AudioManager.Instance.MusicBox.PlayBGM();
+        //AudioManager.Instance.MusicBox.PlayBGM();
 
     }
 
