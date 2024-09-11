@@ -1,6 +1,8 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Button = UnityEngine.UI.Button;
 using Image = UnityEngine.UI.Image;
 
@@ -58,6 +60,22 @@ public class DevUI : MonoBehaviour
         //   GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM),
         //   GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
         //AudioManager.Instance.MusicBox.PlayBGM();
+        
+        //나중에 활성화
+        //Addressables.LoadAssetAsync<GameObject>(textField1.text).Completed += OnSpriteLoaded;
+    }
+    private void OnSpriteLoaded(AsyncOperationHandle<GameObject> handle)
+    {
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            Debug.Log("Sprite loaded successfully");
+            //img.sprite = handle.Result;
+            Instantiate(handle.Result);
+        }
+        else
+        {
+            Debug.LogError("Failed to load sprite: " + handle.OperationException);
+        }
     }
     private void OnClick1()
     {

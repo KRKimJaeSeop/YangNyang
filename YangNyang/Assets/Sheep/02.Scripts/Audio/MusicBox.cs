@@ -10,14 +10,11 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 /// </summary>
 public class MusicBox : MonoBehaviour
 {
-
     public enum SfxType
     {
         None = 0,
-
         DefaultClick, // 기본 클릭음
         OpenPositionableMenu, // 설비 이동 메뉴
-
     }
 
     [Serializable]
@@ -29,24 +26,17 @@ public class MusicBox : MonoBehaviour
         public AudioClip audioClip;
     }
 
-
     [Header("[AudioSources]")]
     [SerializeField]
     private AudioSource bgmAudioSource;
     [SerializeField, Tooltip("SFX전용 AudioSource가 있는 오브젝트")]
     private GameObject goSfx;
-    [Header("[BGM]")]
-    [SerializeField]
-    public List<AssetReferenceT<AudioClip>> bgmReferences;
     [Header("[AudioClips]")]
     [SerializeField] private List<SfxData> sfxs;
 
-
     [Header("[Debug]")]
     [SerializeField, ReadOnly]
-    private int _bgmIndex = -1;
-    [SerializeField, ReadOnly]
-    private List<AudioSource> _sfxAudioSources;//= new List<AudioSource>();
+    private List<AudioSource> _sfxAudioSources;
     private Coroutine _playBGMCoroutine;
     private AsyncOperationHandle<AudioClip> _bgmAssetHandle;
     private bool _isLoadedBGMAssetReference;
@@ -59,11 +49,12 @@ public class MusicBox : MonoBehaviour
         _sfxAudioSources.AddRange(goSfx.GetComponents<AudioSource>());
     }
 
-    #region Addresables
+    #region Addressables
     protected void OnDestroy()
     {
         StopBGM();
     }
+
     private void ReleaseBGMAsset()
     {
         if (_isLoadedBGMAssetReference)
@@ -75,48 +66,24 @@ public class MusicBox : MonoBehaviour
     #endregion
 
     #region BGM
-    //public void PlayBGM(AudioClip clip)
-    //{
-    //    UtilFunctions.PlaySound(bgmAudioSource, clip, true);
-    //}
-    //public void StopBGM()
-    //{
-    //    UtilFunctions.StopSound(bgmAudioSource);
-    //}
-
-    public void PlayBGM()
+    public void PlayBGM(string assetName)
     {
         StopBGM();
 
-        if (bgmReferences.Count <= 0)
+        var clip = AddressableManager.Instance.GetAsset<AudioClip>(assetName);
+        if (clip == null)
         {
-            Debug.LogWarning($"{GetType()}::{nameof(PlayBGM)}: 등록된 BGM 이 없음.");
+            Debug.LogWarning($"{GetType()}::{nameof(PlayBGM)}: BGM 에셋을 찾을 수 없음. assetName: {assetName}");
             return;
         }
 
-        // loop cycle.
-        _bgmIndex++;
-        if (_bgmIndex >= bgmReferences.Count)
-            _bgmIndex = 0;
-
-        // assetReference 가 비어있는지 체크.
-        // https://forum.unity.com/threads/how-to-test-for-empty-assetreference.649999/
-        if (!bgmReferences[_bgmIndex].RuntimeKeyIsValid())
+        _playBGMCoroutine = StartCoroutine(PlayBGMCoroutine(bgmAudioSource, clip, () =>
         {
-            Debug.LogWarning($"{GetType()}::{nameof(PlayBGM)}: 등록된 BGM에 에셋이 없음.");
-            return;
-        }
-
-
-        _playBGMCoroutine = StartCoroutine(LoadAndPlayBGMCoroutine(
-            bgmAudioSource, bgmReferences[_bgmIndex],
-            () =>
-            {
-                // 정상적으로 음악이 종료되었다면 다음곡 플레이.
-                PlayBGM();
-            }));
-
+            // 정상적으로 음악이 종료되었다면 다음곡 플레이.
+            PlayBGM(assetName);
+        }));
     }
+
     public void StopBGM()
     {
         if (_playBGMCoroutine != null)
@@ -127,36 +94,15 @@ public class MusicBox : MonoBehaviour
         ReleaseBGMAsset();
     }
 
-    IEnumerator LoadAndPlayBGMCoroutine(AudioSource audioSource, AssetReferenceT<AudioClip> audioClipReference, Action cbEnd)
+    IEnumerator PlayBGMCoroutine(AudioSource audioSource, AudioClip clip, Action cbEnd)
     {
-        // Get and assign the AudioClips
-        _bgmAssetHandle = Addressables.LoadAssetAsync<AudioClip>(audioClipReference);
+        PlaySound(audioSource, clip, false);
+        Debug.Log($"{GetType()}::{nameof(PlayBGMCoroutine)}: AudioClip({clip.name}) 로딩 성공, length={clip.length}");
 
-        // yielding when already done still waits until the next frame
-        // so don't yield if done.
-        if (!_bgmAssetHandle.IsDone)
-            yield return _bgmAssetHandle;
+        // 곡이 끝날때까지 대기.
+        yield return new WaitForSeconds(clip.length);
 
-        if (_bgmAssetHandle.Status == AsyncOperationStatus.Succeeded)
-        {
-            _isLoadedBGMAssetReference = true;
-            var clip = _bgmAssetHandle.Result;
-            PlaySound(audioSource, clip, false);
-            Debug.Log($"{GetType()}::{nameof(LoadAndPlayBGMCoroutine)}: AudioClip({audioClipReference}) 로딩 성공, length={clip.length}");
-
-            // 곡이 끝날때까지 대기.
-            // yield return new WaitWhile(() => audioSource.isPlaying); <- 매루프에 체크하므로 WaitForSeconds를 사용하는 것으로 하자.
-            yield return new WaitForSeconds(clip.length);
-
-            // Release the AudioClip from memory
-            ReleaseBGMAsset();
-
-            cbEnd?.Invoke();
-        }
-        else
-        {
-            Debug.LogWarning($"{GetType()}::{nameof(LoadAndPlayBGMCoroutine)}: AudioClip({audioClipReference}) 로딩 실패.");
-        }
+        cbEnd?.Invoke();
     }
     #endregion // BGM
 
@@ -170,16 +116,9 @@ public class MusicBox : MonoBehaviour
         }
 
         var audioSource = _sfxAudioSources[GetUsableIndex()];
-
         PlaySound(audioSource, clip, false);
     }
 
-
-    /// <summary>
-    /// 지정한 재생시간이 끝날때까지 재생한다.스킵이 불가능하다.
-    /// </summary>
-    /// <param name="clip">재생할 음원</param>
-    /// <param name="playtime">재생할 시간</param>
     public void PlaySFX(AudioClip clip, float playtime)
     {
         if (_sfxAudioSources.Count <= 0)
@@ -188,30 +127,18 @@ public class MusicBox : MonoBehaviour
             return;
         }
 
-        // cycle
-
         var currentIndex = GetUsableIndex();
-
-
-        //리스트에 현재 위치를 추가
         _skipIndexs.Add(currentIndex);
 
         var audioSource = _sfxAudioSources[currentIndex];
-
         PlaySound(audioSource, clip, false);
         StartCoroutine(WaitForSeconds(playtime, () =>
         {
             StopSound(audioSource);
             _skipIndexs.Remove(currentIndex);
-
         }));
     }
 
-    /// <summary>
-    /// skipIndexs에 포함되지않은 재생가능한 Index를 찾습니다.
-    /// SipIndexs의 크기와_sfxAudioSources의 크기가 같아서 더이상 남은 공간이 없다면, 새 AudioSource를 만듭니다.
-    /// </summary>
-    /// <returns></returns>
     private int GetUsableIndex()
     {
         if (_sfxAudioSources.Count == _skipIndexs.Count)
@@ -238,7 +165,6 @@ public class MusicBox : MonoBehaviour
 
     public void StopAllSFX()
     {
-        //UtilFunctions.StopSound(sfxAudioSource);
         foreach (var audioSource in _sfxAudioSources)
         {
             StopSound(audioSource);
@@ -266,6 +192,7 @@ public class MusicBox : MonoBehaviour
             audio.Play();
         }
     }
+
     private void StopSound(AudioSource audio)
     {
         if (audio != null)

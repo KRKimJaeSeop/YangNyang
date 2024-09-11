@@ -25,7 +25,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        InitializeScene();
+        InitializeGame();
     }
     private void OnEnable()
     {
@@ -45,14 +45,16 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void InitializeScene()
+    private async void InitializeGame()
     {
-        GameDataManager.Instance.Initialize();
         UIManager.Instance.OpenLoading();
+        await AddressableManager.Instance.LoadAllAssetsAsync();
+
+        GameDataManager.Instance.Initialize();
         Application.targetFrameRate = 60;
         FieldObjectManager.Instance.Initialize();
         UIManager.Instance.Preload();
-        FieldObjectManager.Instance.SpawnPlayer();
+       // FieldObjectManager.Instance.SpawnPlayer();
         UIManager.Instance.OpenMainPanel();
         UIManager.Instance.CloseLoading();
 
@@ -60,7 +62,7 @@ public class GameManager : Singleton<GameManager>
         AudioManager.Instance.Initialize(
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM),
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
-        //AudioManager.Instance.MusicBox.PlayBGM();
+        AudioManager.Instance.MusicBox.PlayBGM("BGM");
 
     }
 

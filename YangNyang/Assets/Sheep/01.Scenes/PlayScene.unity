@@ -4545,6 +4545,7 @@ GameObject:
   - component: {fileID: 1487654495}
   - component: {fileID: 1487654498}
   - component: {fileID: 1487654497}
+  - component: {fileID: 1487654499}
   m_Layer: 0
   m_Name: Framework
   m_TagString: Untagged
@@ -4635,6 +4636,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd3d5e36b0131e499a537f02999c447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1487654499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487654493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61c95b47f4b26c947b13626436d34557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assetReferences:
+  - m_AssetGUID: a89d45d0d5029b04caeb596e967ec9b9
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 3c41f04106281224cbd689fd521f112e
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 22b0ff15e8fe9214b9591184cebbdcc4
+    m_SubObjectName: DropShadow
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 1
+  - m_AssetGUID: 50a27a06cdd978740961caf218a2bb2b
+    m_SubObjectName: Grass
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 1
+  - m_AssetGUID: 69ed045d90280e24a8e055224bff8b4d
+    m_SubObjectName: Overlay_branch
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 1
+  - m_AssetGUID: 717a6748b5934124493a9a5af9c076f2
+    m_SubObjectName: Sky
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 1
+  - m_AssetGUID: 7fec9c7bd5a3fdb4db6a99486c3f21da
+    m_SubObjectName: Overlay_grass
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 1
+  - m_AssetGUID: b30006df276e5794aa6347816ea5cdc7
+    m_SubObjectName: Doc
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 1
+  - m_AssetGUID: e659d7502d348b545bc49ae9ef9bcb9e
+    m_SubObjectName: Shadow
+    m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    m_EditorAssetChanged: 1
+  assetNamesString:
+  - BGM
+  - OverlayGrass
+  - OverlayBranch
+  - DocBar
+  - Sky
+  - CloudShadow
+  - Grass
+  - DropShadow
+  - Player
+  assetNamesString2:
+  - DropShadow
 --- !u!1 &1506297194
 GameObject:
   m_ObjectHideFlags: 0
@@ -5122,6 +5191,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545566646}
   m_CullTransparentMesh: 1
+--- !u!1 &1660474891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1660474892}
+  - component: {fileID: 1660474894}
+  - component: {fileID: 1660474893}
+  m_Layer: 0
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1660474892
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660474891}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1965410418}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 500, y: -197}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1660474893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660474891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1660474894
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660474891}
+  m_CullTransparentMesh: 1
 --- !u!1 &1665986641
 GameObject:
   m_ObjectHideFlags: 0
@@ -5291,7 +5435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textField1: {fileID: 1514756627}
   textField2: {fileID: 1437434421}
-  img: {fileID: 0}
+  img: {fileID: 1660474893}
   btn: {fileID: 130722878}
   btn1: {fileID: 386788294}
   btn2: {fileID: 755131866}
@@ -5724,6 +5868,7 @@ RectTransform:
   - {fileID: 1514756626}
   - {fileID: 1437434420}
   - {fileID: 969175}
+  - {fileID: 1660474892}
   m_Father: {fileID: 1671681111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -5818,6 +5963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wallCollider: {fileID: 1457656638}
+  _sky: {fileID: 0}
 --- !u!1 &2003117952
 GameObject:
   m_ObjectHideFlags: 0
@@ -5875,9 +6021,6 @@ MonoBehaviour:
   - name: Wool
     prefab: {fileID: 6370111236740729137, guid: d24e748bd65e266468b15834b719cf3c, type: 3}
     preloadNum: 500
-  - name: Player
-    prefab: {fileID: 505145988207488317, guid: 3c41f04106281224cbd689fd521f112e, type: 3}
-    preloadNum: 1
 --- !u!1 &2033864234
 GameObject:
   m_ObjectHideFlags: 0
@@ -6049,6 +6192,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1991970728}
     m_Modifications:
+    - target: {fileID: 3042462100267276197, guid: 23f1ac219d7e020418664e7f5c149566, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3042462100267276197, guid: 23f1ac219d7e020418664e7f5c149566, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4697524969326351099, guid: 23f1ac219d7e020418664e7f5c149566, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.60693
@@ -6203,6 +6354,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4204498453887581658, guid: 8a7ee171a62645d4e8167802c15def63, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 189.04004
+      objectReference: {fileID: 0}
     - target: {fileID: 8161142745910854690, guid: 8a7ee171a62645d4e8167802c15def63, type: 3}
       propertyPath: m_Name
       value: DialogOverlayUI
@@ -6354,7 +6509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7508826283307100971, guid: 047f3854622f9f14b86c05c3fdb91880, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 585.0033
+      value: 585.00385
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

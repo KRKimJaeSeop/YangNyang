@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: c3f073ba690f45046829885dfac74541
   m_currentHash:
     serializedVersion: 2
-    Hash: fc6273c9b6e67585809fa12e38b0c7f3
+    Hash: c800324cac101d99bb90d00a832904a3
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
@@ -59,34 +59,6 @@ MonoBehaviour:
   m_ProfileSettings:
     m_Profiles:
     - m_InheritedParent: 
-      m_Id: 551ece7c68f2ff248bd08aa42fc690a5
-      m_ProfileName: New Profile
-      m_Values:
-      - m_Id: 04158d3377e8ca74eb091762e66fe483
-        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-      - m_Id: 0e35fa53c11807d48973bfc896e9e3de
-        m_Value: https://9932eded03eda0fc23df87cc836bad4f.r2.cloudflarestorage.com/yangnyang/[BuildTarget]
-      - m_Id: 57fda050d7fe0a6429b779cc93fa7eb3
-        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: 68a1e46a5a6a7a445bf7a88342ed160d
-        m_Value: https://9932eded03eda0fc23df87cc836bad4f.r2.cloudflarestorage.com/yangnyang/[BuildTarget]
-      - m_Id: fdc55ea3e3eed354db5fd5fe5c95dd41
-        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-    - m_InheritedParent: 
-      m_Id: e5d4db5dbb81bd34094faf767fae737e
-      m_ProfileName: New Profile1
-      m_Values:
-      - m_Id: 04158d3377e8ca74eb091762e66fe483
-        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
-      - m_Id: 0e35fa53c11807d48973bfc896e9e3de
-        m_Value: https://9932eded03eda0fc23df87cc836bad4f.r2.cloudflarestorage.com/yangnyang/[BuildTarget]
-      - m_Id: 57fda050d7fe0a6429b779cc93fa7eb3
-        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
-      - m_Id: 68a1e46a5a6a7a445bf7a88342ed160d
-        m_Value: https://9932eded03eda0fc23df87cc836bad4f.r2.cloudflarestorage.com/yangnyang/[BuildTarget]
-      - m_Id: fdc55ea3e3eed354db5fd5fe5c95dd41
-        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
-    - m_InheritedParent: 
       m_Id: e9876b0ebc499064d828fff3659a71f0
       m_ProfileName: Default
       m_Values:
@@ -97,7 +69,7 @@ MonoBehaviour:
       - m_Id: 57fda050d7fe0a6429b779cc93fa7eb3
         m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: 68a1e46a5a6a7a445bf7a88342ed160d
-        m_Value: https://9932eded03eda0fc23df87cc836bad4f.r2.cloudflarestorage.com/yangnyang/[BuildTarget]
+        m_Value: https://pub-06c19a22bc154f078e73efbfb6b3d70f.r2.dev/[BuildTarget]
       - m_Id: fdc55ea3e3eed354db5fd5fe5c95dd41
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
     m_ProfileEntryNames:
