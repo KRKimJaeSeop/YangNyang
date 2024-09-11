@@ -59,6 +59,8 @@ public class PlayerCharacter : CharacterObject
     void OnJoystickMove(Vector2 movementAmount)
     {
         this._movementAmount = movementAmount;
+        _rb2D.velocity = _movementAmount * _controllMoveSpeed;
+
     }
 
     private void Update()
@@ -209,7 +211,7 @@ public class PlayerCharacter : CharacterObject
             Flip(false);
         }
 
-        _rb2D.velocity = _movementAmount * _controllMoveSpeed;
+        //_rb2D.velocity = _movementAmount * _controllMoveSpeed;
     }
 
     private void Move_Exit()
@@ -227,7 +229,7 @@ public class PlayerCharacter : CharacterObject
 
     private void Work_Execute()
     {
-        _rb2D.velocity = _movementAmount * _controllMoveSpeed;
+        //_rb2D.velocity = _movementAmount * _controllMoveSpeed;
     }
 
     private void Work_Exit()
