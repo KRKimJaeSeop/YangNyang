@@ -16,7 +16,9 @@ public class StandardSheep : CharacterObject, IInteractable
     }
 
     [SerializeField]
-    protected SpriteResolver _spriteResolver;
+    protected SpriteResolver _bodySpriteResolver;
+    [SerializeField]
+    protected SpriteResolver _headSpriteResolver;
     private StateMachine<SheepState> _fsm;
     // Idle상태를 한번이라도 했다면  true가 된다.
     private bool _hasBeenIdle = false;
@@ -62,15 +64,20 @@ public class StandardSheep : CharacterObject, IInteractable
     {
         base.Spawn(position, cbDisable);
         _tbUnit = GameDataManager.Instance.Tables.Sheep.GetUnit(id);
-        _spriteResolver.SetCategoryAndLabel("Sheep", $"{_tbUnit.id}");
         _hasBeenIdle = false;
         _isWorkable = true;
         _animator.SetFloat("BlinkSpeed", Random.Range(0.1f, 3f));
+        SetSpriteResolver(_tbUnit.id);
         _jumpPower = Random.Range(-1.0f, 1.0f);
         _fsm.ChangeState(initState);
     }
 
+    private void SetSpriteResolver(int Label)
+    {
+        _headSpriteResolver.SetCategoryAndLabel("EquipWool_Head", $"{Label}");
+        _bodySpriteResolver.SetCategoryAndLabel("EquipWool_Body", $"{Label}");
 
+    }
 
     #region IInteractable
     public InteractObjectInfo GetObjectInfo()
@@ -243,7 +250,7 @@ public class StandardSheep : CharacterObject, IInteractable
         FieldObjectManager.Instance.SpawnWool
             (this.transform.position, Random.Range(_tbUnit.MinWoolAmount, _tbUnit.MaxWoolAmount + 1));
         // 양털 벗은 이미지로 변환한다.
-        _spriteResolver.SetCategoryAndLabel("Sheep", $"0");
+        SetSpriteResolver(0);
         // 스토리지에 등록이 안됐다면 해금.
         if (!GameDataManager.Instance.Storages.UnlockSheep.IsUnlockSheepID(_tbUnit.id))
         {
@@ -261,7 +268,7 @@ public class StandardSheep : CharacterObject, IInteractable
     private void Work_Exit()
     {
         SetAnim_Work(false);
-            
+
         // Work 상태 종료 시 행동
         //_spriteRenderer.color = Color.white;
         _moveTween.Play();

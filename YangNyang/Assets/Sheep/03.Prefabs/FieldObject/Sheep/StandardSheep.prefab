@@ -53,7 +53,8 @@ MonoBehaviour:
   _speechBubble: {fileID: 5934797387791654933}
   _dropShadow: {fileID: 8416000742820657113}
   _animator: {fileID: 1718254337264183459}
-  _spriteResolver: {fileID: 4621066081452142511}
+  _bodySpriteResolver: {fileID: 4621066081452142511}
+  _headSpriteResolver: {fileID: 6654668326379114168}
 --- !u!50 &8107051447903162712
 Rigidbody2D:
   serializedVersion: 4
@@ -200,6 +201,122 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &3842153261154117666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1512187804096512461}
+  - component: {fileID: 7331378109907373857}
+  - component: {fileID: 5036860085897257815}
+  - component: {fileID: 6654668326379114168}
+  m_Layer: 0
+  m_Name: Wool_Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1512187804096512461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842153261154117666}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.9678212, w: -0.2516391}
+  m_LocalPosition: {x: 0.039, y: -0.391, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1681658154009639116}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &7331378109907373857
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842153261154117666}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -922155783
+  m_SortingLayer: 5
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300000, guid: 3bb577608c72b5c469b2d7e060a3864a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.56, y: 2.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &5036860085897257815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842153261154117666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ae5b9c942eb59124c984866295afae22, type: 3}
+--- !u!114 &6654668326379114168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3842153261154117666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 1.769303e-27
+  m_labelHash: 2.3937565e-11
+  m_SpriteKey: 0
+  m_SpriteHash: 417315641
 --- !u!1 &3869663687553897286
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +498,7 @@ GameObject:
   - component: {fileID: 3764965273553509121}
   - component: {fileID: 4621066081452142511}
   m_Layer: 0
-  m_Name: Wool
+  m_Name: Wool_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -443,15 +560,15 @@ SpriteRenderer:
   m_SortingLayerID: -922155783
   m_SortingLayer: 5
   m_SortingOrder: 7
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ec9f6bf96d2f9834facd0569b5622e94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3764965273553509121
@@ -466,31 +583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Library:
-  - m_Name: Sheep
-    m_Hash: 0
-    m_CategoryList:
-    - m_Name: 1
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: 923e54260c449754189ad31a2b8ea6a3, type: 3}
-    - m_Name: 3
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: 898f886a39d714db5b90d2c36676c894, type: 3}
-    - m_Name: 4
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: 4031e443ed973c04e9b055e5653cfe49, type: 3}
-    - m_Name: 5
-      m_Hash: 0
-      m_Sprite: {fileID: -30901059694595086, guid: 30f1ecf3b4a75f641988e755bb48b581, type: 3}
-    - m_Name: 6
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: 3c144b05a9875e84c8d917747898df7a, type: 3}
-    - m_Name: 7
-      m_Hash: 0
-      m_Sprite: {fileID: 21300000, guid: 4c3c953838802724b98781c97610a621, type: 3}
-    - m_Name: 0
-      m_Hash: 0
-      m_Sprite: {fileID: 0}
+  m_Library: []
   m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: ae5b9c942eb59124c984866295afae22, type: 3}
 --- !u!114 &4621066081452142511
 MonoBehaviour:
@@ -504,10 +597,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 5.3073737e-38
+  m_CategoryHash: 1.9628238e-10
   m_labelHash: 0.00000040954276
   m_SpriteKey: 0
-  m_SpriteHash: 970409736
+  m_SpriteHash: 165482837
 --- !u!1001 &2024177780937012461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -662,6 +755,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3279573171084060956, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       insertIndex: 0
       addedObject: {fileID: 2836829728079385047}
+    - targetCorrespondingSourceObject: {fileID: 810966628050078753, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1512187804096512461}
     - targetCorrespondingSourceObject: {fileID: 810966628050078753, guid: 29ff27aa249b5b8468b2f8e16bde8ccb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7891989803302270218}

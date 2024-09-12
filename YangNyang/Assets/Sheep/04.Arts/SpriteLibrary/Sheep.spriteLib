@@ -13,22 +13,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Library:
-  - m_Name: Sheep
-    m_Hash: 26245887
+  - m_Name: EquipWool_Body
+    m_Hash: 794284180
     m_CategoryList: []
     m_OverrideEntries:
+    - m_Name: 0
+      m_Hash: 886824737
+      m_Sprite: {fileID: 21300000, guid: ec9f6bf96d2f9834facd0569b5622e94, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: ec9f6bf96d2f9834facd0569b5622e94, type: 3}
     - m_Name: 1
       m_Hash: 64810935
-      m_Sprite: {fileID: 21300000, guid: b86cec05277278947a47bc3d1c47f26d, type: 3}
+      m_Sprite: {fileID: 21300000, guid: 89e29e3a17681ee4da75156fc70e78eb, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 21300000, guid: b86cec05277278947a47bc3d1c47f26d, type: 3}
+      m_SpriteOverride: {fileID: 21300000, guid: 89e29e3a17681ee4da75156fc70e78eb, type: 3}
     - m_Name: 2
       m_Hash: 450215437
-      m_Sprite: {fileID: 21300000, guid: f245fad03082de748b03bab59423a7fd, type: 3}
+      m_Sprite: {fileID: 21300000, guid: 1d96742e28fc98042b027190edc23875, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 21300000, guid: f245fad03082de748b03bab59423a7fd, type: 3}
+      m_SpriteOverride: {fileID: 21300000, guid: 1d96742e28fc98042b027190edc23875, type: 3}
+    - m_Name: 3
+      m_Hash: 768773787
+      m_Sprite: {fileID: 21300000, guid: a56ef6b1b492fa34fa08a652dd61a6f7, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: a56ef6b1b492fa34fa08a652dd61a6f7, type: 3}
+    - m_Name: 4
+      m_Hash: 867572536
+      m_Sprite: {fileID: 21300000, guid: 1cf8725bbe5615047bf3c9b8148af014, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 1cf8725bbe5615047bf3c9b8148af014, type: 3}
+    - m_Name: 5
+      m_Hash: 78719918
+      m_Sprite: {fileID: 21300000, guid: 0a5647a2b704c4142ad4e991b5978cb1, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 0a5647a2b704c4142ad4e991b5978cb1, type: 3}
     m_FromMain: 0
-    m_EntryOverrideCount: 2
+    m_EntryOverrideCount: 6
+  - m_Name: EquipWool_Head
+    m_Hash: 319565242
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: 0
+      m_Hash: 886824737
+      m_Sprite: {fileID: 21300000, guid: ec9f6bf96d2f9834facd0569b5622e94, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: ec9f6bf96d2f9834facd0569b5622e94, type: 3}
+    - m_Name: 1
+      m_Hash: 64810935
+      m_Sprite: {fileID: 21300000, guid: b64ab90158b28474fb02a4ed3bc3d77c, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: b64ab90158b28474fb02a4ed3bc3d77c, type: 3}
+    - m_Name: 2
+      m_Hash: 450215437
+      m_Sprite: {fileID: 21300000, guid: 2cc4b679e75a9af4181818a21fa6a5be, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 2cc4b679e75a9af4181818a21fa6a5be, type: 3}
+    - m_Name: 3
+      m_Hash: 768773787
+      m_Sprite: {fileID: 21300000, guid: 3bb577608c72b5c469b2d7e060a3864a, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 3bb577608c72b5c469b2d7e060a3864a, type: 3}
+    - m_Name: 4
+      m_Hash: 867572536
+      m_Sprite: {fileID: 21300000, guid: 5f2b1ec9878de144babaed0ddd145083, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 5f2b1ec9878de144babaed0ddd145083, type: 3}
+    - m_Name: 5
+      m_Hash: 78719918
+      m_Sprite: {fileID: 21300000, guid: 1682cc5d759f97446a12622e2ea8da5f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 21300000, guid: 1682cc5d759f97446a12622e2ea8da5f, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638608075033439347
+  m_ModificationHash: 638617748915169830
   m_Version: 1
