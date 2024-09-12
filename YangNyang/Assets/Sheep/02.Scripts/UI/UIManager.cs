@@ -62,7 +62,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField, Tooltip("대기 화면")]
     private GameObject goWaiting;
     [SerializeField, Tooltip("로딩 화면")]
-    private GameObject goLoading;
+    private LoadingUI goLoading;
     [SerializeField, Tooltip("페이드 인 아웃 애니메이션")]
     private DialogOverlayUI DialogOverlayUI;
     [SerializeField]
@@ -102,7 +102,7 @@ public class UIManager : Singleton<UIManager>
     }
     private void OnAndroidEscape()
     {
-        if (!DialogManager.Instance.IsPlaying)
+        if (!DialogManager.Instance.IsPlaying && NumberOpenPanels > 0)
         {
             // 팝업을 먼저 닫아 본 후 닫힌 팝업이 있다면 중단.
             if (CloseLastOpenedPanel() == true)
@@ -248,12 +248,12 @@ public class UIManager : Singleton<UIManager>
     public void OpenLoading()
     {
         if (goLoading != null)
-            goLoading.SetActive(true);
+            goLoading.gameObject.SetActive(true);
     }
     public void CloseLoading()
     {
         if (goLoading != null)
-            goLoading.SetActive(false);
+            goLoading.Close();
     }
     public void OpenDialog()
     {

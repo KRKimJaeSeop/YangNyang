@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System;
 
 /// <summary>
 /// https://www.youtube.com/watch?v=MKnLPA5hnPA&ab_channel=LlamAcademy
@@ -57,18 +58,26 @@ public class FloatingJoystick : MonoBehaviour
     {
         EnableJoystick(false);
     }
+
     private void OnEnable()
     {
+        DialogManager.OnDialogEnter += DialogManager_OnDialogEnter;
         InputController.OnPrimaryContactStart += this.HandleStart;
         InputController.OnPrimaryContactEnd += this.HandleEnd;
         InputController.OnPrimaryMove += this.HandleMove;
     }
 
+
     private void OnDisable()
     {
+        DialogManager.OnDialogEnter -= DialogManager_OnDialogEnter;
         InputController.OnPrimaryContactStart -= this.HandleStart;
         InputController.OnPrimaryContactEnd -= this.HandleEnd;
         InputController.OnPrimaryMove -= this.HandleMove;
+    }
+    private void DialogManager_OnDialogEnter(bool isStart)
+    {
+        gameObject.SetActive(!isStart);
     }
 
     /// <summary>

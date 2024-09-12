@@ -26,7 +26,8 @@ public class AddressableManager : Singleton<AddressableManager>
 
     private Dictionary<string, UnityEngine.Object> loadedAssets = new Dictionary<string, UnityEngine.Object>();
 
-
+    public delegate void ProgressUpdateEvent(float progress);
+    public event ProgressUpdateEvent OnProgressUpdate;
 
     public async Task LoadAllAssetsAsync()
     {
@@ -36,6 +37,13 @@ public class AddressableManager : Singleton<AddressableManager>
                 continue;
 
             var handle = Addressables.LoadAssetAsync<UnityEngine.Object>($"{code}");
+
+            while (!handle.IsDone)
+            {
+                OnProgressUpdate?.Invoke(handle.PercentComplete);
+                await Task.Yield();
+            }
+
             await handle.Task;
 
             if (handle.Status == AsyncOperationStatus.Succeeded)
