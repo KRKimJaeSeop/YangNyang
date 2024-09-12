@@ -61,7 +61,6 @@ public class FloatingJoystick : MonoBehaviour
 
     private void OnEnable()
     {
-        DialogManager.OnDialogEnter += DialogManager_OnDialogEnter;
         InputController.OnPrimaryContactStart += this.HandleStart;
         InputController.OnPrimaryContactEnd += this.HandleEnd;
         InputController.OnPrimaryMove += this.HandleMove;
@@ -70,14 +69,9 @@ public class FloatingJoystick : MonoBehaviour
 
     private void OnDisable()
     {
-        DialogManager.OnDialogEnter -= DialogManager_OnDialogEnter;
         InputController.OnPrimaryContactStart -= this.HandleStart;
         InputController.OnPrimaryContactEnd -= this.HandleEnd;
         InputController.OnPrimaryMove -= this.HandleMove;
-    }
-    private void DialogManager_OnDialogEnter(bool isStart)
-    {
-        gameObject.SetActive(!isStart);
     }
 
     /// <summary>
