@@ -6,10 +6,33 @@
       {
         "id": "f2f5093513a30bdb",
         "type": "tabs",
-        "dimension": 45.09803921568628,
         "children": [
           {
             "id": "77d2079dd84a3873",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "작업 일지/2024-09-10.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "822d023b5bd3ad5d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "작업 일지/2024-09-16.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fd68dfe2f3df900b",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -20,26 +43,8 @@
               }
             }
           }
-        ]
-      },
-      {
-        "id": "e319b8474aeea390",
-        "type": "tabs",
-        "dimension": 54.90196078431373,
-        "children": [
-          {
-            "id": "c069b25f0b842039",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "작업 일정/2차/작업 목록.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -89,7 +94,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 365.5
+    "width": 365.5,
+    "collapsed": true
   },
   "right": {
     "id": "9a01dc14b56177d8",
@@ -166,16 +172,18 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "77d2079dd84a3873",
+  "active": "0b6c8a4f04848fac",
   "lastOpenFiles": [
     "작업 일정/2차/작업 목록.md",
-    "기획/돌연변이.md",
-    "작업 일정/2차/작업 계획.md",
     "작업 일정/1차/작업 목록.md",
-    "작업 일정/1차/작업 계획.md",
+    "작업 일정/2차/작업 계획.md",
     "작업 일지/비공개 테스터 목록.md",
-    "버그.md",
+    "작업 일지/2024-09-17.md",
+    "작업 일지/2024-09-16.md",
+    "작업 일정/1차/작업 계획.md",
     "작업 일지/2024-09-10.md",
+    "기획/돌연변이.md",
+    "버그.md",
     "작업 일지/2024-08-25.md",
     "_이미지/Grapgic_Kr.png",
     "_이미지/Grapgic_Eng.png",
@@ -199,10 +207,8 @@
     "작업 일지/2024-08-26.md",
     "작업 일지/2024-08-24.md",
     "작업 일지/2024-08-23.md",
-    "기획/2.게임 스토리.md",
     "_이미지/Pasted image 20240907154523.png",
     "_이미지/Pasted image 20240907054249.png",
-    "작업 일지/2024-09-06.md",
     "_이미지/Pasted image 20240906204512.png",
     "_이미지/Pasted image 20240906204503.png",
     "_이미지/Pasted image 20240906204455.png",
