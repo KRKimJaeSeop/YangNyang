@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa5690a52a5a40a45adc5865030f000a, type: 3}
+  m_Name: 006_Hellchang
+  m_EditorClassIdentifier: 
+  loadJson: 0
+  pathJson: 
+  lastLoadedTime: 
+  id: 6
+  icon: {fileID: 0}
+  localName:
+    table: 0
+    key: 
+  localDescription:
+    table: 0
+    key: 
+  _type: 3
+  _idleStateRate: 0.5
+  _idleTime: 2
+  _moveSpeed: 1
+  _minWoolAmount: 15
+  _maxWoolAmount: 20

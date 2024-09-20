@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "작업 일정/2차/작업 목록.md",
+                "file": "기획/돌연변이.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "작업 일정/2차/작업 목록.md",
+                "file": "기획/돌연변이.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "작업 일정/2차/작업 목록.md",
+                "file": "기획/돌연변이.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "작업 일정/2차/작업 목록.md"
+                "file": "기획/돌연변이.md"
               }
             }
           }
@@ -148,8 +148,11 @@
   },
   "active": "77d2079dd84a3873",
   "lastOpenFiles": [
-    "작업 일정/2차/작업 계획.md",
+    "작업 일지/2024-09-20.md",
+    "_이미지/Pasted image 20240920215722.png",
+    "기획/돌연변이.md",
     "작업 일정/2차/작업 목록.md",
+    "작업 일정/2차/작업 계획.md",
     "작업 일정/1차/작업 목록.md",
     "작업 일정/1차/작업 계획.md",
     "작업 일지/2024-09-08.md",
@@ -158,8 +161,6 @@
     "작업 일지/2024-09-16.md",
     "작업 일지/2024-09-18.md",
     "작업 일지/2024-09-19.md",
-    "작업 일지/2024-09-20.md",
-    "기획/돌연변이.md",
     "기획/양털조각.md",
     "작업 일지/비공개 테스터 목록.md",
     "버그.md",
@@ -180,13 +181,11 @@
     "조사/어드레서블.md",
     "조사/아트 참고.md",
     "작업 일지/2024-08-30.md",
-    "작업 일지/2024-08-29.md",
     "_이미지/Pasted image 20240907154523.png",
     "_이미지/Pasted image 20240907054249.png",
     "_이미지/Pasted image 20240906204512.png",
     "_이미지/Pasted image 20240906204503.png",
     "_이미지/Pasted image 20240906204455.png",
-    "_이미지/Pasted image 20240906023241.png",
     "_이미지/~asted image 20240904220626.tmp",
     "_이미지/~asted image 20240904220604.tmp",
     "_이미지/~asted image 20240904220558.tmp",
