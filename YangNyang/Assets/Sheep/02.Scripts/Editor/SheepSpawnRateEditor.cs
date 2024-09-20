@@ -1,5 +1,8 @@
+using ExcelDataReader;
 using System;
+using System.Data;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -33,8 +36,7 @@ public class SheepSpawnRateEditor : EditorWindow
     private int _categoryIndex;
 
     private string _createUnitName = string.Empty;
-
-
+    private string excelFilePath = "Assets/SheepSpawnRates.xlsx";
 
     void OnEnable()
     {
@@ -66,6 +68,14 @@ public class SheepSpawnRateEditor : EditorWindow
 
         // window 스크롤 종료
         EditorGUILayout.EndScrollView();
+
+        // 엑셀 파일 경로 입력 및 가져오기 버튼 추가
+        GUILayout.Label("Excel Import", EditorStyles.boldLabel);
+        excelFilePath = EditorGUILayout.TextField("Excel File Path", excelFilePath);
+        if (GUILayout.Button("Import from Excel"))
+        {
+            ImportSheepSpawnRates();
+        }
     }
 
     private void SaveEditorData()
@@ -73,7 +83,6 @@ public class SheepSpawnRateEditor : EditorWindow
         string strData = JsonUtility.ToJson(_editorData);
         EditorPrefs.SetString(EDITORPREFS_SHEEP_SPAWN_RATE_EDITOR, strData);
     }
-
 
     #region File Menu
     bool LoadAsset(string path)
@@ -136,16 +145,10 @@ public class SheepSpawnRateEditor : EditorWindow
     }
     #endregion
 
-
     #region Table
     void SetList(SheepSpawnRateTable table, SerializedObject so)
     {
         SerializedProperty listProperty = so.FindProperty("list");
-        /// <summary>
-        /// ReorderableList 
-        /// - https://unityindepth.tistory.com/56
-        /// - https://m.blog.naver.com/PostView.nhn?blogId=hammerimpact&logNo=220775710045&proxyReferer=https%3A%2F%2Fwww.google.com%2F
-        /// </summary>
         // set ReorderableList
         string listName = "Sheep Spawn Rates List";
         _reorderable = new ReorderableList(so, listProperty, true, true, true, true);
@@ -165,8 +168,8 @@ public class SheepSpawnRateEditor : EditorWindow
                 EditorGUI.LabelField(rect, $"Index {index}");
                 rect.x += rect.width;
                 rect.width = totalWidth - rect.x - 100;
-                EditorGUI.PropertyField(rect, element, GUIContent.none); // GUIContent.none : 앞의 라벨을 붙이지 않는다.
-                if (element.objectReferenceValue != null) // 오브젝트 값이 있다면.
+                EditorGUI.PropertyField(rect, element, GUIContent.none);
+                if (element.objectReferenceValue != null)
                 {
                     var tbUnit = element.objectReferenceValue as SheepSpawnRateTableUnit;
 
@@ -174,7 +177,7 @@ public class SheepSpawnRateEditor : EditorWindow
                     rect.width = 80;
                     if (GUI.Button(rect, "Edit"))
                     {
-                         var unitWindow = CreateWindow<SheepSpawnRateUnitEditor>($"{tbUnit.name}");
+                        var unitWindow = CreateWindow<SheepSpawnRateUnitEditor>($"{tbUnit.name}");
                         unitWindow.Show();
                     }
                 }
@@ -184,7 +187,7 @@ public class SheepSpawnRateEditor : EditorWindow
             {
                 Debug.Log($"{GetType()}::{nameof(SetList)} - onSelectCallback idx={list.index}");
                 var element = _reorderable.serializedProperty.GetArrayElementAtIndex(list.index);
-                if (element.objectReferenceValue != null) // 오브젝트 값이 있다면.
+                if (element.objectReferenceValue != null)
                 {
                     var tbUnit = element.objectReferenceValue as SheepSpawnRateTableUnit;
                 }
@@ -193,11 +196,10 @@ public class SheepSpawnRateEditor : EditorWindow
             (ReorderableList list) =>
             {
                 Debug.Log($"{GetType()}::{nameof(SetList)} - onChangedCallback idx={list.index}, size={_reorderable.serializedProperty.arraySize}");
-                // 리스트 항목을 삭제했을 때 리스트에 아무것도 없다면 에러나므로 사이즈 체크.
                 if (_reorderable.serializedProperty.arraySize > 0)
                 {
                     var element = _reorderable.serializedProperty.GetArrayElementAtIndex(list.index);
-                    if (element.objectReferenceValue != null) // 오브젝트 값이 있다면.
+                    if (element.objectReferenceValue != null)
                     {
                         //// refresh
                     }
@@ -243,7 +245,6 @@ public class SheepSpawnRateEditor : EditorWindow
             }
         }
 
-
         using (var check = new EditorGUI.ChangeCheckScope())
         {
             _reorderable.DoLayoutList();
@@ -253,8 +254,60 @@ public class SheepSpawnRateEditor : EditorWindow
                 EditorUtility.SetDirty(_table);
             }
         }
-
-
     }
     #endregion
+
+    #region Excel Import
+    private void ImportSheepSpawnRates()
+    {
+        if (_table == null)
+        {
+            Debug.LogError("Sheep Spawn Rate Table is not assigned.");
+            return;
+        }
+
+        using (var stream = File.Open(excelFilePath, FileMode.Open, FileAccess.Read))
+        {
+            using (var reader = ExcelReaderFactory.CreateReader(stream))
+            {
+                bool isFirstRow = true;
+                while (reader.Read())
+                {
+                    if (isFirstRow)
+                    {
+                        isFirstRow = false;
+                        continue; // Skip header row
+                    }
+
+                    long level = long.Parse(reader.GetValue(0).ToString());
+
+                    var unit = _table.GetUnit(level);
+                    if (unit == null)
+                    {
+                        unit = _table.AddNewUnit($"Level {level}");
+                    }
+
+                    unit.sheepList = new Sheep.Weight[30];
+                    for (int j = 1; j < reader.FieldCount; j++)
+                    {
+                        int weight = int.Parse(reader.GetValue(j).ToString());
+                        if (weight > 0)
+                        {
+                            unit.sheepList[j - 1] = new Sheep.Weight(j, weight);
+                        }
+                    }
+
+                    EditorUtility.SetDirty(unit);
+                }
+
+                EditorUtility.SetDirty(_table);
+                AssetDatabase.SaveAssets();
+                Debug.Log("Sheep spawn rates imported successfully.");
+            }
+        }
+    }
+
+
+    #endregion
+
 }
