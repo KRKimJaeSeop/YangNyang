@@ -14,7 +14,83 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: UI
   m_TableCollectionNameGuidString: 5781d0dde8bd2cd42a9419d32eacebc5
-  m_Entries: []
+  m_Entries:
+  - m_Id: 4032150412558336
+    m_Key: MAIN_SHOP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032151956062208
+    m_Key: MAIN_RESEARCH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032154086768640
+    m_Key: MAIN_COLLECTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032155735130112
+    m_Key: MAIN_OPTION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032157307994112
+    m_Key: SHOP_SELL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032849598840832
+    m_Key: REASEARCH_REASEARCH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032852585185280
+    m_Key: OPTION_LANGUAGE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032854434873344
+    m_Key: OPTION_DIALOG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032855856742400
+    m_Key: OPTION_CREDIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4033588295467008
+    m_Key: OPTION_TERMS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032146021122048
+    m_Key: NOTI_TITLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4033964327403520
+    m_Key: CONFIRM_YES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4033965518585856
+    m_Key: CONFIRM_NO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4034104811421696
+    m_Key: DIALOG_NEXT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4034174675943424
+    m_Key: DIALOG_SKIP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4034350580858880
+    m_Key: CONFIRM_QUIT_APPLICATION
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4034865989517312
+    m_Key: CONFIRM_CONFIRM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4037209737232384
+    m_Key: COLLECTION_UNKNOWN_NAME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4037244218605568
+    m_Key: COLLECTION_UNKNOWN_DESCRIPTION
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -19,14 +19,20 @@ MonoBehaviour:
   - day: 1
     workSpeed: 3
   - day: 2
-    workSpeed: 2
+    workSpeed: 2.5
   - day: 3
-    workSpeed: 1.5
+    workSpeed: 2
   - day: 4
-    workSpeed: 1.5
+    workSpeed: 2.5
   - day: 5
-    workSpeed: 1
+    workSpeed: 2
   - day: 6
-    workSpeed: 0.5
+    workSpeed: 1.5
   - day: 7
+    workSpeed: 1
+  - day: 8
+    workSpeed: 0.8
+  - day: 9
+    workSpeed: 0.4
+  - day: 10
     workSpeed: 0.2

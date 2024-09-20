@@ -17,7 +17,83 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 5781d0dde8bd2cd42a9419d32eacebc5, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 4032155735130112
+    m_Localized: Option
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032146021122048
+    m_Localized: Noti !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032150412558336
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032151956062208
+    m_Localized: Research
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032154086768640
+    m_Localized: Collection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032157307994112
+    m_Localized: Sell
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032849598840832
+    m_Localized: Reasearch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032852585185280
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032854434873344
+    m_Localized: Dialog Replay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4032855856742400
+    m_Localized: Credit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4033588295467008
+    m_Localized: Privacy Policy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4033964327403520
+    m_Localized: YES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4033965518585856
+    m_Localized: NO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4034104811421696
+    m_Localized: Next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4034174675943424
+    m_Localized: Skip All
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4034350580858880
+    m_Localized: Are you sure you want to close the game?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4034865989517312
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4037209737232384
+    m_Localized: Unknown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4037244218605568
+    m_Localized: I haven't gotten the wool yet. What sheep is it?
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

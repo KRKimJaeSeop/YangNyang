@@ -17,12 +17,62 @@ MonoBehaviour:
   lastLoadedTime: 
   list:
   - Level: 1
-    EXP: 100
+    EXP: 1000
   - Level: 2
-    EXP: 200
+    EXP: 2000
   - Level: 3
-    EXP: 300
+    EXP: 3000
   - Level: 4
-    EXP: 400
+    EXP: 4000
   - Level: 5
-    EXP: 0
+    EXP: 5000
+  - Level: 6
+    EXP: 6000
+  - Level: 7
+    EXP: 7000
+  - Level: 8
+    EXP: 8000
+  - Level: 9
+    EXP: 9000
+  - Level: 10
+    EXP: 10000
+  - Level: 11
+    EXP: 11000
+  - Level: 12
+    EXP: 12000
+  - Level: 13
+    EXP: 13000
+  - Level: 14
+    EXP: 14000
+  - Level: 15
+    EXP: 15000
+  - Level: 16
+    EXP: 16000
+  - Level: 17
+    EXP: 17000
+  - Level: 18
+    EXP: 18000
+  - Level: 19
+    EXP: 19000
+  - Level: 20
+    EXP: 20000
+  - Level: 21
+    EXP: 21000
+  - Level: 22
+    EXP: 22000
+  - Level: 23
+    EXP: 23000
+  - Level: 24
+    EXP: 24000
+  - Level: 25
+    EXP: 25000
+  - Level: 26
+    EXP: 26000
+  - Level: 27
+    EXP: 27000
+  - Level: 28
+    EXP: 28000
+  - Level: 29
+    EXP: 29000
+  - Level: 30
+    EXP: 30000

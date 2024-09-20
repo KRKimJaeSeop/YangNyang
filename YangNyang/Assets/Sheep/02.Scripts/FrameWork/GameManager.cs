@@ -77,7 +77,7 @@ public class GameManager : Singleton<GameManager>
         // Opened Object Sprite Change
         UIManager.Instance.CloseLoading();
 
-        DialogManager.Instance.EnterDialog(Dialog.Type.Tutorial);
+        DialogManager.Instance.EnterDialog(Dialog.Type.FirstTutorial);
     }
 
     private EndingType GetEndingType()
@@ -146,7 +146,7 @@ public class GameManager : Singleton<GameManager>
 
     public void TestEnter()
     {
-        DialogManager.Instance.EnterDialog(Dialog.Type.Tutorial);
+        DialogManager.Instance.EnterDialog(Dialog.Type.FirstTutorial);
     }
     public void TestExit()
     {

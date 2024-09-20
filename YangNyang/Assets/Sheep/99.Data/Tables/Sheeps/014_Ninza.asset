@@ -16,7 +16,7 @@ MonoBehaviour:
   pathJson: 
   lastLoadedTime: 
   id: 14
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 9fa1afdb2c1f292458b78f41f432e73c, type: 3}
   localName:
     table: 0
     key: 
@@ -27,5 +27,5 @@ MonoBehaviour:
   _idleStateRate: 0.5
   _idleTime: 1
   _moveSpeed: 1
-  _minWoolAmount: 20
-  _maxWoolAmount: 25
+  _minWoolAmount: 50
+  _maxWoolAmount: 60
