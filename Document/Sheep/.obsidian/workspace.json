@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "기획/돌연변이.md",
+                "file": "기획/대화.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "기획/돌연변이.md",
+                "file": "기획/대화.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "기획/돌연변이.md",
+                "file": "기획/대화.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "기획/돌연변이.md"
+                "file": "기획/대화.md"
               }
             }
           }
@@ -148,12 +148,12 @@
   },
   "active": "77d2079dd84a3873",
   "lastOpenFiles": [
-    "메모.md",
     "기획/돌연변이.md",
+    "작업 일정/2차/작업 목록.md",
+    "메모.md",
     "기획/양.md",
     "기획/대화.md",
     "기획/2.게임 스토리.md",
-    "작업 일정/2차/작업 목록.md",
     "작업 일정/1차/작업 목록.md",
     "작업 일정/2차/작업 계획.md",
     "작업 일정/1차/작업 계획.md",
