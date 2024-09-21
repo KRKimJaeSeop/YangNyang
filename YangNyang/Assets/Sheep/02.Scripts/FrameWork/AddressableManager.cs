@@ -52,7 +52,23 @@ public class AddressableManager : Singleton<AddressableManager>
             }
             else
             {
-                Debug.LogError($"Failed to load asset: {$"{code}"}");
+                if (Application.internetReachability == NetworkReachability.NotReachable)
+                {
+                    UIManager.Instance.OpenConfirmPanel("임시 인터넷 연결 불량", "임시 게임종료",null,
+                        (cbclose) =>
+                        {
+                            Application.Quit();
+                        });
+                }
+                else
+                {
+                    UIManager.Instance.OpenConfirmPanel("임시 어드레서블 에러", $"error:{code}",null,
+                        (cbclose) =>
+                        {
+                            Application.Quit();
+                        });
+
+                }
             }
         }
     }
