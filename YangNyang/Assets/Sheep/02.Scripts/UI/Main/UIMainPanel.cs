@@ -133,24 +133,29 @@ public class UIMainPanel : UIPanel
     }
     private void OnClickCollectionBtn()
     {
-        //UIManager.Instance.OpenNotificationPanel("Àá°å¾î¿ä");
         UIManager.Instance.OpenCollectionPanel();
         _redDot.SetActive(false);
     }
     private void OnClickShopBtn()
     {
-        //UIManager.Instance.OpenNotificationPanel("Àá°å¾î¿ä");
-        UIManager.Instance.OpenSellPanel();
+        UIManager.Instance.OpenSellPanel(
+            (close) =>
+            {
+                GameDataManager.Instance.Storages.Currency.Save();
+            });
     }
     private void OnClickOptionBtn()
     {
-        //UIManager.Instance.OpenNotificationPanel("Àá°å¾î¿ä");
         UIManager.Instance.OpenOptionPanel();
     }
     private void OnClickResearchBtn()
     {
-        //UIManager.Instance.OpenNotificationPanel("Àá°å¾î¿ä");
-        UIManager.Instance.OpenResearchPanel();
+        UIManager.Instance.OpenResearchPanel(
+             (close) =>
+              {
+                  GameDataManager.Instance.Storages.User.Save();
+                  GameDataManager.Instance.Storages.Currency.Save();
+              });
     }
 
 

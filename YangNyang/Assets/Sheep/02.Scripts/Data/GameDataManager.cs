@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -82,7 +81,8 @@ public class GameDataManager : Singleton<GameDataManager>
                      (Currency.Type.Gold, Storages.Currency.GetAmount(Currency.Type.Gold));
                 break;
         }
-  
+        Storages.Save();
+
     }
 
 

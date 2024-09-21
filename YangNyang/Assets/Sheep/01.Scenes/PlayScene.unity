@@ -4499,6 +4499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetGoldAmount: 1000
   _environment: {fileID: 1991970729}
+  _autoSaveInterval: 300
 --- !u!114 &1487654497
 MonoBehaviour:
   m_ObjectHideFlags: 0

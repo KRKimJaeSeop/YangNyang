@@ -106,7 +106,6 @@ public class UserStorage : BaseStorage
     {
         _data = data.Clone() as StorageData;
         SetDirty();
-        //Save();
     }
 
     public override void Overwrite(string strJson)

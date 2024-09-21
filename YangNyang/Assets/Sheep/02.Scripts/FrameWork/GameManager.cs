@@ -24,7 +24,9 @@ public class GameManager : Singleton<GameManager>
     public delegate void GameClearEvent(EndingType endingType);
     public static event GameClearEvent OnGameClear;
 
-
+    private Coroutine _autoSaveCoroutine;
+    [SerializeField]
+    private float _autoSaveInterval;
 
     private void Awake()
     {
@@ -46,13 +48,13 @@ public class GameManager : Singleton<GameManager>
         if (code == Currency.Type.Gold && _targetGoldAmount <= total)
         {
             GameClear();
-            
         }
     }
 
     private async void InitializeGame()
     {
         UIManager.Instance.OpenLoading();
+
         // Addressable Load
         await AddressableManager.Instance.LoadAllAssetsAsync();
 
@@ -74,10 +76,13 @@ public class GameManager : Singleton<GameManager>
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
         AudioManager.Instance.MusicBox.PlayBGM(AddressableManager.RemoteAssetCode.BGM);
 
-        // Opened Object Sprite Change
+
+        _autoSaveCoroutine = StartCoroutine(AutoSaveCoroutine(_autoSaveInterval));
+
+
+        // End Loading
         UIManager.Instance.CloseLoading();
 
-        DialogManager.Instance.EnterDialog(Dialog.Type.FirstTutorial);
     }
 
     private EndingType GetEndingType()
@@ -151,6 +156,18 @@ public class GameManager : Singleton<GameManager>
     public void TestExit()
     {
         DialogManager.Instance.ExitDialog();
+    }
+
+    private IEnumerator AutoSaveCoroutine(float waitSecond)
+    {
+        var _wfs = new WaitForSeconds(waitSecond);
+
+        while (true)
+        {
+            yield return _wfs;
+            GameDataManager.Instance.Storages.Save();
+        }
+
     }
 
 }

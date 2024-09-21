@@ -203,12 +203,10 @@ public class PlayerCharacter : CharacterObject
             Flip(false);
         }
 
-        //_rb2D.velocity = _movementAmount * _controllMoveSpeed;
     }
 
     private void Move_Exit()
     {
-        //Debug.Log("Exiting Move State");
     }
     #endregion
 
@@ -216,18 +214,15 @@ public class PlayerCharacter : CharacterObject
     private void Work_Enter()
     {
         base.SetAnim_Work(true);
-        //_spriteRenderer.color = Color.red;
     }
 
     private void Work_Execute()
     {
-        //_rb2D.velocity = _movementAmount * _controllMoveSpeed;
     }
 
     private void Work_Exit()
     {
         base.SetAnim_Work(false);
-        //_spriteRenderer.color = Color.white;
     }
 
 
