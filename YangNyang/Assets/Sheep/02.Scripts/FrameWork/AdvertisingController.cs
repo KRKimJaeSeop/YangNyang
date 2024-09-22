@@ -12,6 +12,9 @@ public class AdvertisingController : Singleton<AdvertisingController>
     public delegate void WatchRewardedAdHandler(); // 광고보기 완료
     public static event WatchRewardedAdHandler OnWatchRewardedAd;
 
+    public delegate void BannerActiveHandler(bool isShow); // 광고보기 완료
+    public static event BannerActiveHandler OnBannerActive;
+
     private void Awake()
     {
         // ---- sigleton
@@ -51,16 +54,31 @@ public class AdvertisingController : Singleton<AdvertisingController>
         return false;
     }
 
+    public float GetBannerHeightByPixel()
+    {
+        if (_adapter != null)
+            return _adapter.GetBannerHeightByPixel();
+        return 0;
+    }
+
     public void ShowBanner()
     {
         if (_adapter != null)
+        {
             _adapter.ShowBanner();
+            OnBannerActive?.Invoke(true);
+        }
+  
     }
 
     public void StopBanner()
     {
         if (_adapter != null)
+        {
             _adapter.StopBanner();
+            OnBannerActive?.Invoke(false);
+        }
+           
     }
 
     /// <summary>

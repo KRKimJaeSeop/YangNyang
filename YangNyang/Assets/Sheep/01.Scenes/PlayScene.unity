@@ -1100,8 +1100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a46499440e2d734da34f217d3f7a507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isAutoBanner: 0
   _BannerID: ca-app-pub-3940256099942544/6300978111
-  _bannerPosition: 1
   _interstitialID: ca-app-pub-3940256099942544/1033173712
   _rewardedAdID: ca-app-pub-3940256099942544/5224354917
 --- !u!114 &249435587

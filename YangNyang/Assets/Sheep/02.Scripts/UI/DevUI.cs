@@ -40,39 +40,17 @@ public class DevUI : MonoBehaviour
 
     private void OnClickTestBtn()
     {
-        //var value1= float.Parse(textField1.text);
-        //var value2= float.Parse(textField2.text);
-        //FieldObjectManager.Instance.SheepSpawnBuff(value1, value2);
-        //Addressables.InstantiateAsync(textField1.text,new Vector2(-8,0), Quaternion.identity);
-        //GameDataManager.Instance.Storages.User.IncreaseLevel(int.Parse(textField1.text));
-        //GameManager.Instance.GameClear();
-        //FieldObjectManager.Instance.DespawnByInstanceID(int.Parse(textField1.text));
-        //Debug.LogWarning("=========");
-        //foreach (var item in FieldObjectManager.Instance._managedObjects.ToList())
-        //{
-        //    Debug.Log(item.Key);
-        //}
-        //Debug.Break();
-        //AudioManager.Instance.Initialize(
-        //   GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM),
-        //   GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
-        //AudioManager.Instance.MusicBox.PlayBGM();
-
+     
         //나중에 활성화
         // Addressables.LoadAssetAsync<Sprite>(textField1.text).Completed += OnSpriteLoaded;
         //AdMobAdapter.Instance.LoadRewardedAd();
+        //Debug.Log(AdvertisingController.Instance.GetBannerHeightByPixel());
 
     }
     private void OnClick1()
     {
-        //UIManager.Instance.OpenConfirmPanel(textField1.text, textField2.text);
-        //FieldObjectManager.Instance.StartSheepSpawn(false);
-        //AudioManager.Instance.MusicBox.PlaySFX(MusicBox.SfxType.DefaultClick);
-        //AdMobAdapter.Instance.ShowRewardedAd(
-        //      (error, isSuccess) =>
-        //      {
-        //          Debug.Log($"{error} , {isSuccess}");
-        //      });
+      
+        UIManager.Instance.OpenResultPanel("테스트", $"과연");
 
     }
     private void OnClick2()

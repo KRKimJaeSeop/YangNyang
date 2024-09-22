@@ -81,7 +81,7 @@ public class UIMainPanel : UIPanel
 
     public override void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
-        base.Open();
+        base.Open(canvas, cbClose);
         SetUI();
     }
 

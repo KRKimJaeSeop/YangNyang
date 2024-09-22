@@ -11,6 +11,7 @@ Library: E:\UnityProject\YangNyang\YangNyang\Temp\BurstOutput\tempburstlibs\arme
 --float-mode=Fast
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=E:\UnityProject\YangNyang\YangNyang\Temp\Burst
+--debug=Full
 --key-folder=E:/UnityEditor/2022.3.42f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=E:\UnityProject\YangNyang\YangNyang\Library\Burst
 --output=E:\UnityProject\YangNyang\YangNyang\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
@@ -28,6 +29,7 @@ Library: E:\UnityProject\YangNyang\YangNyang\Temp\BurstOutput\tempburstlibs\arme
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=E:\UnityProject\YangNyang\YangNyang\Temp\Burst
+--debug=Full
 --key-folder=E:/UnityEditor/2022.3.42f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=E:\UnityProject\YangNyang\YangNyang\Library\Burst
 --output=E:\UnityProject\YangNyang\YangNyang\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated

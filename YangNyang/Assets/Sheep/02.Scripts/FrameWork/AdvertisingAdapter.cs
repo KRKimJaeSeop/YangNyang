@@ -12,6 +12,11 @@ public abstract class AdvertisingAdapter : MonoBehaviour
     /// </summary>
     /// <returns></returns>
     public abstract bool IsOnBanner();
+    /// <summary>
+    /// 배너의 높이 반환
+    /// </summary>
+    /// <returns></returns>
+    public abstract float GetBannerHeightByPixel();
     public abstract void ShowBanner();
     public abstract void StopBanner();
     public abstract void ShowInterstitial(Action<string> callbackClosed = null);

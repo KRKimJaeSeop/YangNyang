@@ -7,11 +7,9 @@ using UnityEngine;
 
 public class AdMobAdapter : AdvertisingAdapter
 {
-
+    [SerializeField] private bool _isAutoBanner = false;
     [Header("[Banner]")]
     [SerializeField] private string _BannerID = "ca-app-pub-3940256099942544/6300978111"; // test id
-
-    [SerializeField] private AdPosition _bannerPosition = AdPosition.Bottom;
 
     [Header("[Interstitial]")]
     [SerializeField] private string _interstitialID = "ca-app-pub-3940256099942544/1033173712"; // test id
@@ -42,8 +40,10 @@ public class AdMobAdapter : AdvertisingAdapter
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
             Debug.Log($"{GetType()}::{nameof(Initialize)}: initStatus({initStatus})");
-
-            ShowBanner();
+            if (_isAutoBanner)
+            {
+                ShowBanner();
+            }
             LoadInterstitialAd();
             LoadRewardedAd();
 
@@ -57,7 +57,17 @@ public class AdMobAdapter : AdvertisingAdapter
 
     #region Banner
 
-
+    public override float GetBannerHeightByPixel()
+    {
+        if (_bannerAd != null)
+        {
+            return _bannerAd.GetHeightInPixels();
+        }
+        else
+        {
+            return 0;
+        }
+    }
     public override bool IsOnBanner()
     {
         return (_bannerAd != null);
@@ -77,7 +87,7 @@ public class AdMobAdapter : AdvertisingAdapter
         }
 
         // Create a 320x50 banner at top of the screen
-        _bannerAd = new BannerView(_BannerID, AdSize.Banner, _bannerPosition);
+        _bannerAd = new BannerView(_BannerID, AdSize.Banner, AdPosition.Top);
     }
 
     public override void ShowBanner()
