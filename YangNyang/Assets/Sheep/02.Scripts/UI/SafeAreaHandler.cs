@@ -1,4 +1,3 @@
-using GoogleMobileAds.Api;
 using UnityEngine;
 
 /// <summary>
@@ -56,17 +55,27 @@ public class SafeAreaHandler : MonoBehaviour
     private void AdvertisingController_OnBannerActive(bool isShow)
     {
         Rect safeRect = Screen.safeArea;
+
+#if UNITY_EDITOR
+        if (isShow)
+            ApplySafeArea(safeRect, 150);
+        else
+            ApplySafeArea(safeRect);
+
+#else
         ApplySafeArea(safeRect, GetBannerHeightInCanvasUnits());
+#endif
     }
     float GetBannerHeightInCanvasUnits()
     {
         if (canvas != null)
         {
+
             float bannerHeightInPixels = AdvertisingController.Instance.GetBannerHeightByPixel();
             float canvasScaleFactor = canvas.scaleFactor;
             float bannerHeightInCanvasUnits = bannerHeightInPixels / canvasScaleFactor;
-            Debug.Log($"Banner Height in Canvas Units: {bannerHeightInCanvasUnits}");
             return bannerHeightInCanvasUnits;
+
         }
         return 0;
     }

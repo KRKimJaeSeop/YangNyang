@@ -39,6 +39,9 @@ public class UIMainPanel : UIPanel
     [SerializeField]
     private Image[] _docBar;
 
+    private Vector2 _rectOrigin;
+    private Canvas _canvas;
+
     protected override void Awake()
     {
         base.Awake();
@@ -47,6 +50,7 @@ public class UIMainPanel : UIPanel
         _optionBtn.onClick.AddListener(OnClickOptionBtn);
         _researchBtn.onClick.AddListener(OnClickResearchBtn);
         SetEnvironmentUI();
+        _rectOrigin = _docBar[0].rectTransform.sizeDelta;
     }
 
     private void OnEnable()
@@ -56,8 +60,11 @@ public class UIMainPanel : UIPanel
         UserStorage.OnUpdateLevel += UserStorage_OnUpdateLevel;
         CurrencyStorage.OnUpdateCurrency += CurrencyStorage_OnUpdateCurrency;
         UnlockSheepStorage.OnUnlockSheep += UnlockSheepStorage_OnUnlockSheep;
+        AdvertisingController.OnBannerActive += AdvertisingController_OnBannerActive;
 
     }
+
+
 
     private void OnDisable()
     {
@@ -65,7 +72,11 @@ public class UIMainPanel : UIPanel
         UserStorage.OnUpdateDay -= UserStorage_OnUpdateDay;
         UserStorage.OnUpdateLevel -= UserStorage_OnUpdateLevel;
         UnlockSheepStorage.OnUnlockSheep -= UnlockSheepStorage_OnUnlockSheep;
+        AdvertisingController.OnBannerActive -= AdvertisingController_OnBannerActive;
     }
+
+
+
     private void SetEnvironmentUI()
     {
         _overlayBranch.sprite =
@@ -82,6 +93,7 @@ public class UIMainPanel : UIPanel
     public override void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
         base.Open(canvas, cbClose);
+        _canvas = canvas;
         SetUI();
     }
 
@@ -157,6 +169,47 @@ public class UIMainPanel : UIPanel
                   GameDataManager.Instance.Storages.Currency.Save();
               });
     }
+    private void AdvertisingController_OnBannerActive(bool isShow)
+    {
+        _docBar[0].rectTransform.anchorMin = new Vector2(0, 1);
+        _docBar[0].rectTransform.anchorMax = new Vector2(1, 1);
+        _docBar[0].rectTransform.pivot = new Vector2(0.5f, 1);
 
+        // 높이 설정 (예: 100 픽셀)
+        float newHeight = GetBannerHeightInCanvasUnits(isShow);
+        Debug.Log($"ㅎㅇ {newHeight} , {isShow}");
+        if (isShow)
+        {
+            _docBar[0].rectTransform.sizeDelta += new Vector2(_docBar[0].rectTransform.sizeDelta.x, newHeight);
+        }
+        else
+        {
+            _docBar[0].rectTransform.sizeDelta = _rectOrigin;
+        }
+        // 화면의 맨 위에 배치
+        _docBar[0].rectTransform.anchoredPosition = new Vector2(0, 0);
 
+    }
+
+    float GetBannerHeightInCanvasUnits(bool isShow)
+    {
+        if (isShow)
+        {
+#if UNITY_EDITOR
+
+            return 150;
+
+#else
+            float bannerHeightInPixels = AdvertisingController.Instance.GetBannerHeightByPixel();
+            float canvasScaleFactor = _canvas.scaleFactor;
+            float bannerHeightInCanvasUnits = bannerHeightInPixels / canvasScaleFactor;
+            return bannerHeightInCanvasUnits;
+#endif
+        }
+        else
+        {
+            return 0;
+        }
+
+    }
 }
