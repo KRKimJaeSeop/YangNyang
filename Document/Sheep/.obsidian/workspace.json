@@ -25,14 +25,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "작업 일정/2차/작업 목록.md",
+                "file": "작업 일지/2024-09-21.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "a305c32ab9e36a54",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "버그.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -98,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "작업 일정/2차/작업 목록.md",
+                "file": "버그.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "작업 일정/2차/작업 목록.md",
+                "file": "버그.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "작업 일정/2차/작업 목록.md"
+                "file": "버그.md"
               }
             }
           }
@@ -159,8 +171,9 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "7da5629cf0eebd30",
+  "active": "a305c32ab9e36a54",
   "lastOpenFiles": [
+    "작업 일지/2024-09-22.md",
     "작업 일지/2024-09-21.md",
     "작업 일정/2차/작업 목록.md",
     "작업 일지/비공개 테스터 목록.md",
@@ -194,7 +207,6 @@
     "작업 일정/1차",
     "작업 일지/2024-08-27.md",
     "작업 일지/2024-09-03.md",
-    "작업 일지/2024-08-22.md",
     "_이미지/Pasted image 20240907154523.png",
     "_이미지/Pasted image 20240907054249.png",
     "_이미지/Pasted image 20240906204512.png",

@@ -94,6 +94,13 @@ MonoBehaviour:
     m_Localized: I haven't gotten the wool yet. What sheep is it?
     m_Metadata:
       m_Items: []
+  - m_Id: 4296541531897856
+    m_Localized: 'The network connection is not smooth.
+
+      Please check the
+      connection and restart the game.'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1,7 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using Button = UnityEngine.UI.Button;
 using Image = UnityEngine.UI.Image;
 
@@ -61,37 +59,34 @@ public class DevUI : MonoBehaviour
         //AudioManager.Instance.MusicBox.PlayBGM();
 
         //³ªÁß¿¡ È°¼ºÈ­
-        Addressables.LoadAssetAsync<Sprite>(textField1.text).Completed += OnSpriteLoaded;
-    }
-    private void OnSpriteLoaded(AsyncOperationHandle<Sprite> handle)
-    {
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            Debug.Log("Sprite loaded successfully");
-            img.sprite = handle.Result;
-            Instantiate(handle.Result);
-        }
-        else
-        {
-            Debug.LogError("Failed to load sprite: " + handle.OperationException);
-        }
+        // Addressables.LoadAssetAsync<Sprite>(textField1.text).Completed += OnSpriteLoaded;
+        //AdMobAdapter.Instance.LoadRewardedAd();
+
     }
     private void OnClick1()
     {
         //UIManager.Instance.OpenConfirmPanel(textField1.text, textField2.text);
         //FieldObjectManager.Instance.StartSheepSpawn(false);
-        AudioManager.Instance.MusicBox.PlaySFX(MusicBox.SfxType.DefaultClick);
+        //AudioManager.Instance.MusicBox.PlaySFX(MusicBox.SfxType.DefaultClick);
+        //AdMobAdapter.Instance.ShowRewardedAd(
+        //      (error, isSuccess) =>
+        //      {
+        //          Debug.Log($"{error} , {isSuccess}");
+        //      });
+
     }
     private void OnClick2()
     {
         //eldObjectManager.Instance.StartSheepSpawn(true);
-        var texture = AddressableManager.Instance.GetAsset<Texture2D>(AddressableManager.RemoteAssetCode.OverlayBranch);
-        img.sprite = Sprite.Create(texture,new Rect(0,0,texture.width,texture.height),Vector2.one*5);
-        //UIManager.Instance.OpenNotificationPanel(textField1.text);
+        //var texture = AddressableManager.Instance.GetAsset<Texture2D>(AddressableManager.RemoteAssetCode.OverlayBranch);
+        //img.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 5);
+        AdvertisingController.Instance.ShowBanner();
+        ////UIManager.Instance.OpenNotificationPanel(textField1.text);
     }
     private void OnClick3()
     {
-        FieldObjectManager.Instance.StopSheepSpawn();
+        AdvertisingController.Instance.StopBanner();
+        //FieldObjectManager.Instance.StopSheepSpawn();
         //UIManager.Instance.OpenResultPanel(textField1.text, textField2.text);
     }
     private void OnClick4()
@@ -105,7 +100,9 @@ public class DevUI : MonoBehaviour
         //    UIManager.Instance.CloseLoading();
 
         //}
-        GameManager.Instance.TestEnter();
+        //GameManager.Instance.TestEnter();
+        AdvertisingController.Instance.ShowInterstitial();
+
     }
     private void OnClick5()
     {
@@ -118,7 +115,12 @@ public class DevUI : MonoBehaviour
         //    UIManager.Instance.CloseWaiting();
 
         //}
-        GameManager.Instance.TestExit();
+        //GameManager.Instance.TestExit();
+        AdvertisingController.Instance.ShowRewardedAd(
+            (a, b) =>
+            {
+                UIManager.Instance.OpenResultPanel("±¤°íº½", $"±¤°í Àß³ª¿À³ë {a},{b}");
+            });
 
     }
 

@@ -91,6 +91,10 @@ MonoBehaviour:
     m_Key: COLLECTION_UNKNOWN_DESCRIPTION
     m_Metadata:
       m_Items: []
+  - m_Id: 4296541531897856
+    m_Key: CONFIRM_INTERNET_NOTREACHABLE
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

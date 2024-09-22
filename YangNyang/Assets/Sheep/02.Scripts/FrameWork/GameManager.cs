@@ -76,6 +76,8 @@ public class GameManager : Singleton<GameManager>
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.SFXMaster));
         AudioManager.Instance.MusicBox.PlayBGM(AddressableManager.RemoteAssetCode.BGM);
 
+        //AD
+        AdvertisingController.Instance.Initialize();
 
         _autoSaveCoroutine = StartCoroutine(AutoSaveCoroutine(_autoSaveInterval));
 

@@ -244,7 +244,7 @@ public class StandardSheep : CharacterObject, IInteractable
         //작업 끝날 시 Idle로 전환한다.
         WorkComplete();
     }
-    private void WorkComplete()
+    protected virtual void WorkComplete()
     {
         // 양털 아이템 뽑는다.
         FieldObjectManager.Instance.SpawnWool
@@ -265,7 +265,7 @@ public class StandardSheep : CharacterObject, IInteractable
 
     }
 
-    private void Work_Exit()
+    private  void Work_Exit()
     {
         SetAnim_Work(false);
 

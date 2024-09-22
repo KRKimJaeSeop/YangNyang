@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,12 +9,15 @@ public class LoadingUI : MonoBehaviour
     [SerializeField]
     private Slider _gauge;
 
+    [SerializeField]
+    private TextMeshProUGUI _versionText;
 
 
 
     private void OnEnable()
     {
         AddressableManager.Instance.OnProgressUpdate += UpdateProgressBar;
+        _versionText.text = $"V{Application.version}  ";
     }
 
     private void OnDisable()

@@ -1,14 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class BuffSheep : StandardSheep
 {
-    public override void EnterSingleInteraction()
+    protected override void WorkComplete()
     {
-        base.EnterSingleInteraction();
-        Debug.Log("±¤°í ½ÃÃ»");
+        base.WorkComplete();
+        UIManager.Instance.OpenConfirmPanel("±¤°íº¸±â", "±¤°íº¼·¡¿ä?", null,
+            (result) =>
+            {
+                var confirmResult = result as UIConfirmPanel.Results;
+                if(confirmResult !=null && confirmResult.isConfirm)
+                {
+                    
+                }
+                else
+                {
+
+                }
+
+            });
     }
+
 }
- 
