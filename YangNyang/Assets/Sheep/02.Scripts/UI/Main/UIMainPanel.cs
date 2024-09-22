@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -42,6 +43,13 @@ public class UIMainPanel : UIPanel
     private Vector2 _rectOrigin;
     private Canvas _canvas;
 
+    [SerializeField]
+    private GameObject _buffGaugeParent;
+    [SerializeField]
+    private Image _buffGaugeFillImage;
+
+    private Coroutine _buffSheepSpawn;
+
     protected override void Awake()
     {
         base.Awake();
@@ -65,7 +73,6 @@ public class UIMainPanel : UIPanel
     }
 
 
-
     private void OnDisable()
     {
         UserStorage.OnUpdateExp -= UserStorage_OnUpdateExp;
@@ -74,7 +81,6 @@ public class UIMainPanel : UIPanel
         UnlockSheepStorage.OnUnlockSheep -= UnlockSheepStorage_OnUnlockSheep;
         AdvertisingController.OnBannerActive -= AdvertisingController_OnBannerActive;
     }
-
 
 
     private void SetEnvironmentUI()
@@ -143,6 +149,7 @@ public class UIMainPanel : UIPanel
     {
         _redDot.SetActive(true);
     }
+    #region Buttons
     private void OnClickCollectionBtn()
     {
         UIManager.Instance.OpenCollectionPanel();
@@ -158,7 +165,11 @@ public class UIMainPanel : UIPanel
     }
     private void OnClickOptionBtn()
     {
-        UIManager.Instance.OpenOptionPanel();
+        UIManager.Instance.OpenOptionPanel(
+            (close) =>
+            {
+                GameDataManager.Instance.Storages.Preference.Save();
+            });
     }
     private void OnClickResearchBtn()
     {
@@ -169,6 +180,8 @@ public class UIMainPanel : UIPanel
                   GameDataManager.Instance.Storages.Currency.Save();
               });
     }
+    #endregion
+
     private void AdvertisingController_OnBannerActive(bool isShow)
     {
         _docBar[0].rectTransform.anchorMin = new Vector2(0, 1);
@@ -190,7 +203,6 @@ public class UIMainPanel : UIPanel
         _docBar[0].rectTransform.anchoredPosition = new Vector2(0, 0);
 
     }
-
     float GetBannerHeightInCanvasUnits(bool isShow)
     {
         if (isShow)
@@ -212,4 +224,35 @@ public class UIMainPanel : UIPanel
         }
 
     }
+
+    public void StartBuffCountdown()
+    {
+        _buffGaugeParent.SetActive(true);
+
+        if (_buffSheepSpawn != null)
+        {
+            StopCoroutine(_buffSheepSpawn);
+        }
+
+        _buffGaugeFillImage.fillAmount = 0;
+        _buffSheepSpawn =
+            StartCoroutine(BuffCountdown());
+
+    }
+    private IEnumerator BuffCountdown()
+    {
+        var wfs = new WaitForSeconds(0.1f);
+        float duration = 30f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += 0.1f;
+            _buffGaugeFillImage.fillAmount = Mathf.Lerp(0, 1, elapsedTime / duration);
+            yield return wfs;
+        }
+        _buffGaugeParent.SetActive(false);
+
+    }
+
 }

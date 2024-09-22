@@ -369,6 +369,12 @@ public class UIManager : Singleton<UIManager>
         return null;
     }
 
+    public void StartBuffCountdown()
+    {
+        var panel = GetOpenedPanelInfo((int)Code.Main);
+        (panel.panel as UIMainPanel).StartBuffCountdown();
+    }
+
     #endregion
 
     #region Collection

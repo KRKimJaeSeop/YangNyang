@@ -78,6 +78,7 @@ public class GameManager : Singleton<GameManager>
 
         //AD
         AdvertisingController.Instance.Initialize();
+        AdvertisingController.Instance.ShowBanner();
 
         _autoSaveCoroutine = StartCoroutine(AutoSaveCoroutine(_autoSaveInterval));
 

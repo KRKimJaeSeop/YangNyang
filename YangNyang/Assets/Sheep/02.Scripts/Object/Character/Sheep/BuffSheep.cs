@@ -3,20 +3,9 @@ public class BuffSheep : StandardSheep
     protected override void WorkComplete()
     {
         base.WorkComplete();
-        UIManager.Instance.OpenConfirmPanel("광고보기", "광고볼래요?", null,
-            (result) =>
-            {
-                var confirmResult = result as UIConfirmPanel.Results;
-                if(confirmResult !=null && confirmResult.isConfirm)
-                {
-                    
-                }
-                else
-                {
-
-                }
-
-            });
+        UIManager.Instance.OpenNotificationPanel("임시 30초동안 축복을 받습니다~");
+        FieldObjectManager.Instance.SheepSpawnBuff(60, 30);
+        UIManager.Instance.StartBuffCountdown();
     }
 
 }

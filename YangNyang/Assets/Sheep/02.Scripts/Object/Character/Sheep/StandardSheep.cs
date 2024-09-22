@@ -19,7 +19,7 @@ public class StandardSheep : CharacterObject, IInteractable
     protected SpriteResolver _bodySpriteResolver;
     [SerializeField]
     protected SpriteResolver _headSpriteResolver;
-    private StateMachine<SheepState> _fsm;
+    protected StateMachine<SheepState> _fsm;
     // Idle상태를 한번이라도 했다면  true가 된다.
     private bool _hasBeenIdle = false;
     private Coroutine _IdleCoroutine;
@@ -30,8 +30,8 @@ public class StandardSheep : CharacterObject, IInteractable
     // 작업 코루틴
     private Coroutine _workCoroutine;
     // 작업 중간에 탈출하지않고, 완전히 작업을 완료한 경우에만 false가 된다.
-    private bool _isWorkable;
-    private SheepTableUnit _tbUnit;
+    protected bool _isWorkable;
+    protected SheepTableUnit _tbUnit;
 
     protected override void Awake()
     {
@@ -72,7 +72,7 @@ public class StandardSheep : CharacterObject, IInteractable
         _fsm.ChangeState(initState);
     }
 
-    private void SetSpriteResolver(int Label)
+    protected void SetSpriteResolver(int Label)
     {
         _headSpriteResolver.SetCategoryAndLabel("EquipWool_Head", $"{Label}");
         _bodySpriteResolver.SetCategoryAndLabel("EquipWool_Body", $"{Label}");
