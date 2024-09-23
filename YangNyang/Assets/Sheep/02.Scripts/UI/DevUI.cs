@@ -40,11 +40,13 @@ public class DevUI : MonoBehaviour
 
     private void OnClickTestBtn()
     {
-     
+
         //나중에 활성화
         // Addressables.LoadAssetAsync<Sprite>(textField1.text).Completed += OnSpriteLoaded;
         //AdMobAdapter.Instance.LoadRewardedAd();
         //Debug.Log(AdvertisingController.Instance.GetBannerHeightByPixel());
+        GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Wool, long.Parse(textField1.text));
+        GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, long.Parse(textField2.text));
 
     }
     private void OnClick1()
