@@ -95,6 +95,14 @@ MonoBehaviour:
     m_Key: CONFIRM_INTERNET_NOTREACHABLE
     m_Metadata:
       m_Items: []
+  - m_Id: 5453428528873472
+    m_Key: LANGUAGE_ENGLISH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5453436430942208
+    m_Key: LANGUAGE_KOREAN
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

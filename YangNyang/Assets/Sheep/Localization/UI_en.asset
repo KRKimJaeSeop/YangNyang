@@ -97,8 +97,16 @@ MonoBehaviour:
   - m_Id: 4296541531897856
     m_Localized: 'The network connection is not smooth.
 
-      Please check the
-      connection and restart the game.'
+      Please check the connection
+      and restart the game.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5453428528873472
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5453436430942208
+    m_Localized: Korean
     m_Metadata:
       m_Items: []
   references:

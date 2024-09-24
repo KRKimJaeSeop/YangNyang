@@ -20,6 +20,9 @@ public class StartData : ScriptableObject
     public UnlockSheepStorage.StorageData UnlockSheep { get { return _unlockSheep; } }
 
 
+    [SerializeField]
+    private UnlockDialogStorage.StorageData _unlockDialog;
+    public UnlockDialogStorage.StorageData UnlockDialog { get { return _unlockDialog; } }
 
     public void ExportAll()
     {
@@ -32,6 +35,7 @@ public class StartData : ScriptableObject
             File.WriteAllText($"{folderPath}/{nameof(_user)}.json", JsonUtility.ToJson(_user, true));            
             File.WriteAllText($"{folderPath}/{nameof(_currency)}.json", JsonUtility.ToJson(_currency, true));
             File.WriteAllText($"{folderPath}/{nameof(_unlockSheep)}.json", JsonUtility.ToJson(_unlockSheep, true));
+            File.WriteAllText($"{folderPath}/{nameof(_unlockDialog)}.json", JsonUtility.ToJson(_unlockDialog, true));
         }
 #endif
     }

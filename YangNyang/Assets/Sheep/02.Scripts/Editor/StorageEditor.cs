@@ -14,6 +14,7 @@ public class StorageEditor : EditorWindow
         public bool preferences = true;
         public bool user = true;
         public bool unlockSheep = true;
+        public bool unlockDialog = true;
     }
     [Serializable]
     public class EditorDataProperty
@@ -33,6 +34,7 @@ public class StorageEditor : EditorWindow
     public UserStorage.StorageData cloneUser = null;
     public CurrencyStorage.StorageData cloneCurrency = null;
     public UnlockSheepStorage.StorageData cloneUnlockSheep = null;
+    public UnlockDialogStorage.StorageData cloneUnlockDialog = null;
     // ----
 
     private void OnEnable()
@@ -84,6 +86,8 @@ public class StorageEditor : EditorWindow
         UpdateCurrency();
         CommonEditorUI.DrawSeparator();
         UpdateUnlockSheep();
+        CommonEditorUI.DrawSeparator();
+        UpdateUnlockDialog();
         CommonEditorUI.DrawSeparator();
 
         if (_soTarget != null)
@@ -300,6 +304,53 @@ public class StorageEditor : EditorWindow
         {
             _storageContainer.UnlockSheep.Clear();
             RefreshUnlockSheep();
+        }
+    }
+    #endregion
+    #region UnlockDialog
+    private void RefreshUnlockDialog()
+    {
+        UnlockDialogStorage.StorageData data = _storageContainer.UnlockDialog.Data;
+        cloneUnlockSheep = data.Clone() as UnlockSheepStorage.StorageData;
+        GUI.FocusControl(null);
+    }
+
+    private void UpdateUnlockDialog()
+    {
+        using (var check = new EditorGUI.ChangeCheckScope())
+        {
+            _editorData.show.unlockDialog = GUILayout.Toggle(_editorData.show.unlockDialog, "[UnlockDialog]");
+
+            if (check.changed)
+                SaveEditorData();
+        }
+        if (_editorData.show.unlockDialog == false)
+            return;
+
+        SerializedProperty property = _soTarget.FindProperty("cloneUnlockDialog");
+        if (property == null)
+            return;
+        EditorGUILayout.PropertyField(property, true);
+
+        using (new EditorGUILayout.HorizontalScope())
+        {
+            if (GUILayout.Button("Refresh"))
+            {
+                RefreshUnlockDialog();
+            }
+            if (GUILayout.Button("Apply"))
+            {
+                _storageContainer.UnlockDialog.Overwrite(cloneUnlockDialog);
+            }
+            if (GUILayout.Button("Save"))
+            {
+                _storageContainer.UnlockDialog.Save();
+            }
+        }
+        if (GUILayout.Button("Clear data"))
+        {
+            _storageContainer.UnlockDialog.Clear();
+            RefreshUnlockDialog();
         }
     }
     #endregion
