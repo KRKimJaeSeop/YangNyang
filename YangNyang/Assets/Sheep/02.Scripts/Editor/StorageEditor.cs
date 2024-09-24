@@ -311,7 +311,7 @@ public class StorageEditor : EditorWindow
     private void RefreshUnlockDialog()
     {
         UnlockDialogStorage.StorageData data = _storageContainer.UnlockDialog.Data;
-        cloneUnlockSheep = data.Clone() as UnlockSheepStorage.StorageData;
+        cloneUnlockDialog = data.Clone() as UnlockDialogStorage.StorageData;
         GUI.FocusControl(null);
     }
 

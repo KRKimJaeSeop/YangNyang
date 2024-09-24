@@ -8,6 +8,7 @@ namespace Dialog
         SadEnd = 3,
         CrazyLucky = 4,
         HBD = 5,
+
     }
 
 

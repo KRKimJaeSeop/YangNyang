@@ -17,7 +17,14 @@ public class DialogManager : Singleton<DialogManager>
 
     public void EnterDialog(Type type)
     {
+        var a = GameDataManager.Instance.Storages.UnlockDialog.IsUnlockDialogID(type);
+        // 만약 처음 실행하는 대화라면 스토리지에 해금한다.
+        if (!GameDataManager.Instance.Storages.UnlockDialog.IsUnlockDialogID(type))
+        {
+            GameDataManager.Instance.Storages.UnlockDialog.UnlockDialog(type);
+        }
         isPlaying = true;
+        UIManager.Instance.CloseAll();
         OnDialogEnter?.Invoke(true);
         UIManager.Instance.OpenDialog();
         stepIndex = 0;
