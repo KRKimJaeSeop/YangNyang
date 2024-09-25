@@ -31,11 +31,11 @@ MonoBehaviour:
     ActionPlace: 5
     ActionTime: 0
     SpeechText: 
-    IsStop: 0
+    IsStop: 1
   - UnitActionType: 3
     ActorNickName: "\uD50C\uB808\uC774\uC5B4"
     SpawnType: 1
     ActionPlace: 5
     ActionTime: 1
-    SpeechText: "\uC784\uC2DC"
+    SpeechText: "\uC784\uC2DC\uB7EC\uD0A4"
     IsStop: 1
