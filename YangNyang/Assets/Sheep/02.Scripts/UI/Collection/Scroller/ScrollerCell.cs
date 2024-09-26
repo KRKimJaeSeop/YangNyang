@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,9 @@ namespace CollectionPanel
         private Material _lockSilhouette;
 
         private bool _isUnlock = true;
+        [Header("Feel")]
+        [SerializeField]
+        protected MMF_Player _feedback_pressBtn;
 
         private void Awake()
         {
@@ -49,6 +53,7 @@ namespace CollectionPanel
         private void OnClickBtn()
         {
             UIManager.Instance.OpenCollectionDetailPanel(_data.id, _isUnlock);
+            _feedback_pressBtn.PlayFeedbacks();
         }
     }
 }

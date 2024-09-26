@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 
 public class UIMainPanel : UIPanel
 {
+    [Header("[UIMainPanel]")]
     [Header("Status Bar UI")]
 
     [SerializeField]
@@ -49,6 +51,7 @@ public class UIMainPanel : UIPanel
     private Image _buffGaugeFillImage;
 
     private Coroutine _buffSheepSpawn;
+
 
     protected override void Awake()
     {
@@ -153,10 +156,12 @@ public class UIMainPanel : UIPanel
     private void OnClickCollectionBtn()
     {
         UIManager.Instance.OpenCollectionPanel();
+        _feedback_popSound.PlayFeedbacks(); 
         _redDot.SetActive(false);
     }
     private void OnClickShopBtn()
     {
+        _feedback_popSound.PlayFeedbacks(); 
         UIManager.Instance.OpenSellPanel(
             (close) =>
             {
@@ -165,6 +170,7 @@ public class UIMainPanel : UIPanel
     }
     private void OnClickOptionBtn()
     {
+        _feedback_popSound.PlayFeedbacks(); 
         UIManager.Instance.OpenOptionPanel(
             (close) =>
             {
@@ -173,6 +179,7 @@ public class UIMainPanel : UIPanel
     }
     private void OnClickResearchBtn()
     {
+        _feedback_popSound.PlayFeedbacks(); 
         UIManager.Instance.OpenResearchPanel(
              (close) =>
               {

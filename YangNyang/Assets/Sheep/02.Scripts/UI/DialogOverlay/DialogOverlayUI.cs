@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,9 @@ public class DialogOverlayUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _nextBtnText;
     private string _nextBtnTextOrigin;
+
+    [SerializeField]
+    private MMF_Player _feedback_PressBtn;
 
     private void Awake()
     {
@@ -55,10 +59,12 @@ public class DialogOverlayUI : MonoBehaviour
     private void OnClickNextBtn()
     {
         DialogManager.Instance.OnClickNext();
+        _feedback_PressBtn.PlayFeedbacks();
         SetActiveNextBtn(false);
     }
     private void OnClickSkipBtn()
     {
         DialogManager.Instance.OnClickSkip();
+        _feedback_PressBtn.PlayFeedbacks();
     }
 }

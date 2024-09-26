@@ -57,6 +57,7 @@ public class UISellPanel : UIPanel
                 _cachedWool = GameDataManager.Instance.Storages.Currency.Decrease(Currency.Type.Wool, _cachedWool).value;
                 _cachedGold = GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, remainingWool);
             }
+            _feedback_popSound.PlayFeedbacks();
             SetGauge();
         }
     }

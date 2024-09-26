@@ -19,6 +19,7 @@ public class UIWatchDialogPanel : UIPanel
         public void Play()
         {
             DialogManager.Instance.EnterDialog(_type);
+
         }
 
         public void SetBtn()

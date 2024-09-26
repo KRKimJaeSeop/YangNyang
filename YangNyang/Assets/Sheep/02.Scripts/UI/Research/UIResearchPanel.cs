@@ -84,6 +84,7 @@ public class UIResearchPanel : UIPanel
                 _exp = GameDataManager.Instance.Storages.User.IncreaseExp(remainingWool);
                 _cachedWool = GameDataManager.Instance.Storages.Currency.Decrease(Currency.Type.Wool, _cachedWool).value;
             }
+            _feedback_popSound.PlayFeedbacks();
             SetGauge();
         }
     }

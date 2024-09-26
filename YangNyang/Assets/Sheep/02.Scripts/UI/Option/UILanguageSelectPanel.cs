@@ -20,11 +20,13 @@ public class UILanguageSelectPanel : UIPanel
     private void OnClickEngBtn()
     {
         var locale = LocalizationSettings.AvailableLocales.GetLocale("en");
+        _feedback_popSound.PlayFeedbacks();
         LocalizationSettings.SelectedLocale = locale;
     }
     private void OnClickKorBtn()
     {
         var locale = LocalizationSettings.AvailableLocales.GetLocale("ko-KR");
+        _feedback_popSound.PlayFeedbacks();
         LocalizationSettings.SelectedLocale = locale;
     }
 

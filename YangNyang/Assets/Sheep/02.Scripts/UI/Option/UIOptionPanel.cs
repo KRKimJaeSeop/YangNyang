@@ -49,26 +49,27 @@ public class UIOptionPanel : UIPanel
         AudioManager.Instance.SetVolume(AudioManager.MixerGroup.SFXMaster, value);
         GameDataManager.Instance.Storages.Preference.SetVolume(AudioManager.MixerGroup.SFXMaster, value);
     }
-    void OnClickASD()
-    {
-        Debug.Log("Dl qnqnsdp ");           
-    }
+
     private void OnClickLangaugeBtn()
     {
         UIManager.Instance.OpenLanguageSelectPanel();
+        _feedback_popSound.PlayFeedbacks();
     }
     private void OnClickDialogBtn()
     {
         UIManager.Instance.OpenWatchDialogPanel();
+        _feedback_popSound.PlayFeedbacks();
 
     }
     private void OnClickCreditBtn()
     {
         UIManager.Instance.OpenCreditPanel();
+        _feedback_popSound.PlayFeedbacks();
     }
     private void OnClickTermsBtn()
     {
         UIManager.Instance.OpenNotificationPanel("¾à°ü¶ç¿ì±â.");
+        _feedback_popSound.PlayFeedbacks();
     }
 
 }

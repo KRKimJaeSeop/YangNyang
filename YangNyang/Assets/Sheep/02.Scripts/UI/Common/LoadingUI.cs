@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -13,11 +14,15 @@ public class LoadingUI : MonoBehaviour
     private TextMeshProUGUI _versionText;
 
 
+    [SerializeField]
+    private MMF_Player _feedback_Meow;
 
     private void OnEnable()
     {
+        _feedback_Meow.PlayFeedbacks();
         AddressableManager.Instance.OnProgressUpdate += UpdateProgressBar;
         _versionText.text = $"V{Application.version}  ";
+
     }
 
     private void OnDisable()

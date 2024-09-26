@@ -1,4 +1,3 @@
-using DG.Tweening;
 using MoreMountains.Feedbacks;
 using System;
 using System.Collections;
@@ -12,24 +11,24 @@ public class UIPanel : MonoBehaviour
     [SerializeField, Tooltip("없다면 미세팅")]
     protected SafeAreaHandler safeAreaHandler;
 
-    [Header("[Open]")]
-    [SerializeField, Tooltip("패널 오픈 시 이벤트")]
-    protected UnityEvent onOpen;
+    //[Header("[Open]")]
+    //[SerializeField, Tooltip("패널 오픈 시 이벤트")]
+    //protected UnityEvent onOpen;
 
-    [Header("[Close]")]
-    [SerializeField, Tooltip("패널 닫힐 시 이벤트")]
-    protected UnityEvent onClose;
+    //[Header("[Close]")]
+    //[SerializeField, Tooltip("패널 닫힐 시 이벤트")]
+    //protected UnityEvent onClose;
     [SerializeField, Tooltip("없다면 미세팅")]
     protected Button[] closeButtons;
-
-    [Header("[Effect]")]
-    [SerializeField, Tooltip("없다면 미세팅")]
-    protected MMF_Player _feel;
 
 
     protected UnityAction<object> _cbClose = null;
     protected object _results = null;
-
+    [Header("Feel")]
+    [SerializeField, Tooltip("없다면 미세팅")]
+    protected MMF_Player _feedback_popSound;
+    [SerializeField, Tooltip("없다면 미세팅")]
+    protected MMF_Player _feedback_OnEnable;
 
     protected virtual void Awake()
     {
@@ -44,9 +43,9 @@ public class UIPanel : MonoBehaviour
         this.gameObject.SetActive(true);
         if (canvas != null && safeAreaHandler != null)
             safeAreaHandler.SetCanvas(canvas);
-
         _cbClose = cbClose;
         _results = null;
+        _feedback_OnEnable?.PlayFeedbacks();
         Begin();
     }
 
@@ -54,6 +53,7 @@ public class UIPanel : MonoBehaviour
     {
         if (!isActiveAndEnabled)
             return;
+
         End();
     }
 
@@ -65,15 +65,15 @@ public class UIPanel : MonoBehaviour
 
     private void Begin()
     {
-        onOpen?.Invoke();
+        ///onOpen?.Invoke();
     }
 
     private void End()
     {
         this.gameObject.SetActive(false);
-
+        _feedback_popSound?.PlayFeedbacks();
         _cbClose?.Invoke(_results);
-        onClose?.Invoke();
+        //onClose?.Invoke();
     }
 
     IEnumerator WaitCoroutine(float waitTime, Action cbFinished)

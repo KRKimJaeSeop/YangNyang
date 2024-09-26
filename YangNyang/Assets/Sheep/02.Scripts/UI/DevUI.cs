@@ -47,7 +47,8 @@ public class DevUI : MonoBehaviour
         //Debug.Log(AdvertisingController.Instance.GetBannerHeightByPixel());
         //GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Wool, long.Parse(textField1.text));
         //GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, long.Parse(textField2.text));
-        DialogManager.Instance.EnterDialog(Dialog.Type.HBD);
+        UIManager.Instance.OpenResultPanel("테스트", $"과연");
+
     }
     private void OnClick1()
     {

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UICollectionDetailPanel : UIPanel
 {
+    [Header("UICollectionDetailPanel")]
     [SerializeField]
     private Image _icon;
     [SerializeField]

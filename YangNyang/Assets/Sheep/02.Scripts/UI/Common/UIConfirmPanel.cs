@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System;
 using TMPro;
 using UnityEngine;
@@ -23,6 +24,8 @@ public class UIConfirmPanel : UIPanel
     [SerializeField] protected TextMeshProUGUI _contentText;
     //[SerializeField] protected TextMeshProUGUI _confirmText;
     //[SerializeField] protected TextMeshProUGUI _cancleText;
+
+
 
     protected override void Awake()
     {
