@@ -49,7 +49,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "작업 일지/2024-09-25.md",
+                "file": "메모.md",
                 "mode": "source",
                 "source": false
               }
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "작업 일지/2024-09-25.md",
+                "file": "메모.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "작업 일지/2024-09-25.md",
+                "file": "메모.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "작업 일지/2024-09-25.md"
+                "file": "메모.md"
               }
             }
           }
@@ -185,6 +185,9 @@
   },
   "active": "273fd9f68780ee77",
   "lastOpenFiles": [
+    "버그.md",
+    "작업 일지/2024-09-26.md",
+    "작업 일지/2024-09-25.md",
     "기획/0.기획서.md",
     "기획/1.게임 플레이 플로우.md",
     "작업 일지/2024-08-22.md",
@@ -196,21 +199,18 @@
     "작업 일지/2024-08-26.md",
     "작업 일지/2024-08-25.md",
     "작업 일정/2차/작업 목록.md",
-    "작업 일지/2024-09-25.md",
     "작업 일지/2024-09-24.md",
     "메모.md",
     "작업 일지/2024-09-21.md",
     "작업 일지/2024-09-20.md",
     "작업 일지/2024-09-23.md",
     "작업 일지/2024-09-22.md",
-    "버그.md",
     "기획/대화.md",
     "작업 일지/비공개 테스터 목록.md",
     "작업 일지/2024-09-06.md",
     "작업 일지/2024-09-05.md",
     "작업 일지/2024-09-07.md",
     "작업 일지/2024-09-08.md",
-    "작업 일지/2024-09-10.md",
     "_이미지/Pasted image 20240924202136.png",
     "_이미지/Pasted image 20240924173556.png",
     "_이미지/Pasted image 20240923213158.png",

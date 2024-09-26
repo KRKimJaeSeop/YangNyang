@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using System;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
@@ -10,6 +11,9 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
     private Vector2 dropPoint;
     [SerializeField]
     protected SpriteResolver _spriteResolver;
+    [Header("Feel")]
+    [SerializeField]
+    protected MMF_Player _feedback_walkSound;
     public override void Spawn(Vector2 startPosition , Action cbDisable = null)
     {
         base.Spawn(startPosition, cbDisable);
@@ -53,6 +57,7 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
         if (_isInteractable)
         {
             _isInteractable = false;
+            _feedback_walkSound.PlayFeedbacks();
             _rb2D.DOMove(new Vector2(-5.61f, 6.57f), 1).SetEase(Ease.InBack).OnComplete(() =>
             {
                 ObjectPool.Instance.Push(gameObject.name, this.gameObject);

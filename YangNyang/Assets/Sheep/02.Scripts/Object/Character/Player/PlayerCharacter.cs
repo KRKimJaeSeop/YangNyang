@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System;
 using UnityEngine;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -21,7 +22,9 @@ public class PlayerCharacter : CharacterObject
     [SerializeField, Tooltip("상호작용중인 IInteractable 게임오브젝트의 정보")]
     private InteractObjectInfo currentInteractObjectInfo;
 
-
+    [Header("Feel")]
+    [SerializeField]
+    protected MMF_Player _feedback_walkSound;
     protected override void Awake()
     {
         base.Awake();
@@ -181,6 +184,7 @@ public class PlayerCharacter : CharacterObject
     private void Move_Enter()
     {
         base.SetAnim_Move(true);
+        _feedback_walkSound.PlayFeedbacks();
         //Debug.Log("Entering Move State");
         //GetComponent<Animator>().SetTrigger("Move");
     }
@@ -207,6 +211,7 @@ public class PlayerCharacter : CharacterObject
 
     private void Move_Exit()
     {
+        _feedback_walkSound.StopFeedbacks();
     }
     #endregion
 

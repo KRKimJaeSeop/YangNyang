@@ -14,6 +14,8 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
 
     [SerializeField]
     protected SpeechBubble _speechBubble;
+    [SerializeField,Tooltip("말풍선 부모 트랜스폼.없다면 미세팅")]
+    protected Transform _speechBubbleParent;
     [SerializeField]
     protected SpriteRenderer _dropShadow;
 
@@ -21,15 +23,26 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
     protected Animator _animator;
     private Vector3 _originScale;
     private Vector3 _flipScale;
+
+
     protected override void Awake()
     {
         base.Awake();
         _originScale = _transform.localScale;
         _flipScale = new Vector3(-(_transform.localScale.x), _transform.localScale.y, _transform.localScale.z);
 
-        _speechBubble = Instantiate(
-               AddressableManager.Instance.GetAsset<GameObject>(AddressableManager.RemoteAssetCode.SpeechBubble),this.transform).
+        if (_speechBubbleParent == null)
+        {
+            _speechBubble = Instantiate(
+               AddressableManager.Instance.GetAsset<GameObject>(AddressableManager.RemoteAssetCode.SpeechBubble), this.transform).
                GetComponent<SpeechBubble>();
+        }
+        else
+        {
+            _speechBubble = Instantiate(
+              AddressableManager.Instance.GetAsset<GameObject>(AddressableManager.RemoteAssetCode.SpeechBubble), _speechBubbleParent).
+              GetComponent<SpeechBubble>();
+        }
         _speechBubble.gameObject.SetActive(false);
         _dropShadow.sprite =
             AddressableManager.Instance.GetAsset<Sprite>(AddressableManager.RemoteAssetCode.DropShadow);

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -32,7 +33,15 @@ public class StandardSheep : CharacterObject, IInteractable
     // 작업 중간에 탈출하지않고, 완전히 작업을 완료한 경우에만 false가 된다.
     protected bool _isWorkable;
     protected SheepTableUnit _tbUnit;
-
+    [Header("Feel")]
+    [SerializeField]
+    protected MMF_Player _feedback_workEnter;
+    [SerializeField]
+    protected MMF_Player _feedback_workExit;
+    [SerializeField]
+    protected MMF_Player _feedback_cry;
+    [SerializeField]
+    protected MMF_Player _feedback_lockSheep;
     protected override void Awake()
     {
         base.Awake();
@@ -69,6 +78,13 @@ public class StandardSheep : CharacterObject, IInteractable
         _animator.SetFloat("BlinkSpeed", Random.Range(0.1f, 3f));
         SetSpriteResolver(_tbUnit.id);
         _jumpPower = Random.Range(-1.0f, 1.0f);
+        if (!GameDataManager.Instance.Storages.UnlockSheep.IsUnlockSheepID(id))
+        {
+            _feedback_lockSheep.PlayFeedbacks();
+            _speechBubble.Show("!!",5f);
+            UIManager.Instance.OpenNotificationPanel("임시 레전드양 등장");
+        }
+        //_feedback_workEnter.StopFeedbacks();
         _fsm.ChangeState(initState);
     }
 
@@ -134,6 +150,7 @@ public class StandardSheep : CharacterObject, IInteractable
     #region State.Idle
     private void Idle_Enter()
     {
+        _feedback_cry.PlayFeedbacks();
         _hasBeenIdle = true;
         // 일정 시간 후 Move 상태로 전환한다.
         _IdleCoroutine = StartCoroutine(IdleToMoveCoroutine());
@@ -178,10 +195,8 @@ public class StandardSheep : CharacterObject, IInteractable
         // MoveTween의 중복실행을 막는다.
         if (!_hasBeenIdle)
         {
-            //// rigidBody의 포지션의 계산이 느린것같다. 정확한 원인은 모르겠다.
-            //// SetPosition이 제대로 되기 전에 이부분의함수가 시작돼서, 제 위치로 세팅될때까지 기다렸다가 Move를 시작한다.
-            //// 해결될때까지 무효
-            //yield return new WaitUntil(() => _rb2D.position == spawnPosition);
+            //// 안전한 이동을 위해 위치 이동이 완전히 확인 된 후 move시킨다.
+            yield return new WaitUntil(() => _rb2D.position == spawnPosition);
 
             _moveTween = _rb2D.DOJump(targetPosition, _jumpPower, 1, _tbUnit.MoveSpeed).SetEase(Ease.Linear).OnComplete(() =>
             {
@@ -199,6 +214,7 @@ public class StandardSheep : CharacterObject, IInteractable
         {
             // 0.5초마다 검사
             yield return _idleCheckInterval;
+           
             // 확률적으로 Idle 상태로 전환
             if ((!_hasBeenIdle) && Random.value < _tbUnit.IdleStateRate) // IdleStateRate 확률로 Idle 상태로 전환
             {
@@ -230,8 +246,8 @@ public class StandardSheep : CharacterObject, IInteractable
     #region State.Work
     private void Work_Enter()
     {
-        Debug.Log("일 시작!");
         _moveTween.Pause();
+        _feedback_workEnter.PlayFeedbacks();
         SetAnim_Work(true);
         _workCoroutine = StartCoroutine(WorkProcess());
     }
@@ -257,6 +273,7 @@ public class StandardSheep : CharacterObject, IInteractable
             GameDataManager.Instance.Storages.UnlockSheep.UnlockSheep(_tbUnit.id);
         }
         _isWorkable = false;
+        _feedback_workExit.PlayFeedbacks();
         _fsm.ChangeState(SheepState.Move);
     }
     private void Work_Execute()
@@ -272,11 +289,12 @@ public class StandardSheep : CharacterObject, IInteractable
         // Work 상태 종료 시 행동
         //_spriteRenderer.color = Color.white;
         _moveTween.Play();
+        _feedback_workEnter.StopFeedbacks();
 
         // 코루틴 테스트
         StopCoroutine(_workCoroutine);
         _workCoroutine = null;
-        Debug.Log("일 종료!");
+        //Debug.Log("일 종료!");
 
     }
 

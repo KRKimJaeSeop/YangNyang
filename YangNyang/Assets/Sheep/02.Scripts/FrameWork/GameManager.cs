@@ -61,15 +61,16 @@ public class GameManager : Singleton<GameManager>
         // Data
         GameDataManager.Instance.Initialize();
 
+        // UI
+        UIManager.Instance.Preload();
+        UIManager.Instance.OpenMainPanel();
+
         // Field
         FieldObjectManager.Instance.Initialize();
         FieldObjectManager.Instance.SpawnPlayer();
         _environment.Initialize();
 
-        // UI
-        UIManager.Instance.Preload();
-        UIManager.Instance.OpenMainPanel();
-
+     
         // Audio
         AudioManager.Instance.Initialize(
            GameDataManager.Instance.Storages.Preference.GetVolume(AudioManager.MixerGroup.BGM),
