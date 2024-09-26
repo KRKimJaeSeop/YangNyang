@@ -1,3 +1,4 @@
+using MoreMountains.Feedbacks;
 using System;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class BaseFieldObject : MonoBehaviour
 {
+    [SerializeField]
+    protected MMFeedback _feelAdapter;
     protected Transform _transform;
     protected Rigidbody2D _rb2D;
     protected Collider2D _collider2D;
@@ -27,6 +30,7 @@ public class BaseFieldObject : MonoBehaviour
         _transform = this.transform;
         _rb2D = this.GetComponent<Rigidbody2D>();
         _collider2D = this.GetComponent<Collider2D>();
+        _feelAdapter = this.GetComponent<MMFeedback>();
         InstanceID = this.gameObject.GetInstanceID();
         instanceID = InstanceID;
     }

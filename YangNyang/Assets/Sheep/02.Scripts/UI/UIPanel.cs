@@ -1,4 +1,5 @@
 using DG.Tweening;
+using MoreMountains.Feedbacks;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -21,6 +22,10 @@ public class UIPanel : MonoBehaviour
     [SerializeField, Tooltip("없다면 미세팅")]
     protected Button[] closeButtons;
 
+    [Header("[Effect]")]
+    [SerializeField, Tooltip("없다면 미세팅")]
+    protected MMF_Player _feel;
+
 
     protected UnityAction<object> _cbClose = null;
     protected object _results = null;
@@ -42,12 +47,7 @@ public class UIPanel : MonoBehaviour
 
         _cbClose = cbClose;
         _results = null;
-
         Begin();
-    }
-    public void PunchAnimation(GameObject go)
-    {
-        go.transform.DOPunchScale(Vector3.one * 0.1f, 0.2f);
     }
 
     public virtual void Close()
