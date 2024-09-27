@@ -9,8 +9,6 @@ public class DialogOverlayUI : MonoBehaviour
     private Button _nextBtn;
     [SerializeField]
     private Button _skipBtn;
-    [SerializeField]
-    private Animator _anim;
 
     [SerializeField]
     private TextMeshProUGUI _nextBtnText;
@@ -26,17 +24,6 @@ public class DialogOverlayUI : MonoBehaviour
         _nextBtnTextOrigin = _nextBtnText.text;
     }
 
-
-    public void Open()
-    {
-        gameObject.SetActive(true);
-        _anim.Play("Enter");
-    }
-
-    public void Close()
-    {
-        _anim.Play("Exit");
-    }
 
     public void SetActiveNextBtn(bool isActive)
     {

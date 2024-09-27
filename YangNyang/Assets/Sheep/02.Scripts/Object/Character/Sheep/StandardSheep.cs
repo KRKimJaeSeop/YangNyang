@@ -255,7 +255,6 @@ public class StandardSheep : CharacterObject, IInteractable
     {
         var day = GameDataManager.Instance.Storages.User.Day;
         var speed = GameDataManager.Instance.Tables.DatyStatus.GetWorkTime(day);
-        Debug.Log($"day: {day} / speed : {speed}");
         yield return new WaitForSeconds(speed);
         //작업 끝날 시 Idle로 전환한다.
         WorkComplete();

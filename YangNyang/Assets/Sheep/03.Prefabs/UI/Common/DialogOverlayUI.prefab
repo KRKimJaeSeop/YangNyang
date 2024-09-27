@@ -832,7 +832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -189.04004}
+  m_AnchoredPosition: {x: 0, y: -189}
   m_SizeDelta: {x: 0, y: 378.08008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2027486974714774149
@@ -1285,7 +1285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 189.03998}
+  m_AnchoredPosition: {x: 0, y: 189}
   m_SizeDelta: {x: 0, y: 378.08}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2089213518803829336
@@ -1338,14 +1338,13 @@ GameObject:
   - component: {fileID: 1678629704677414272}
   - component: {fileID: 1460774610581460271}
   - component: {fileID: 8851804850334502599}
-  - component: {fileID: 3342527532892154602}
   m_Layer: 0
   m_Name: DialogOverlayUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1920227641144735725
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1420,27 +1419,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nextBtn: {fileID: 5384943017461006746}
   _skipBtn: {fileID: 3315343892509183170}
-  _anim: {fileID: 3342527532892154602}
   _nextBtnText: {fileID: 2348498055120049371}
   _feedback_PressBtn: {fileID: 151666039138415987}
---- !u!95 &3342527532892154602
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8161142745910854690}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 34a6d8ab55c725249a8f36f4e76c3ea6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

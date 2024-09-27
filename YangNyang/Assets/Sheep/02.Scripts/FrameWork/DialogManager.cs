@@ -26,7 +26,8 @@ public class DialogManager : Singleton<DialogManager>
         isPlaying = true;
         UIManager.Instance.CloseAll();
         OnDialogEnter?.Invoke(true);
-        UIManager.Instance.OpenDialog();
+        UIManager.Instance.FadeOut(UIManager.Instance.OpenDialog);
+        UIManager.Instance.FadeIn();
         stepIndex = 0;
         _tbUnit = GameDataManager.Instance.Tables.Dialog.GetUnit(type);
         ActionStep();
@@ -133,7 +134,8 @@ public class DialogManager : Singleton<DialogManager>
     {
         isPlaying = false;
         _actors.Clear();
-        UIManager.Instance.CloseDialog();
+        UIManager.Instance.FadeOut(UIManager.Instance.CloseDialog);
+        UIManager.Instance.FadeIn();
         OnDialogEnter?.Invoke(false);
     }
 

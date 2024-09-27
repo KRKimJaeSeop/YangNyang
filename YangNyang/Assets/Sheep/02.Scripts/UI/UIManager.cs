@@ -65,6 +65,8 @@ public class UIManager : Singleton<UIManager>
     private LoadingUI goLoading;
     [SerializeField, Tooltip("페이드 인 아웃 애니메이션")]
     private DialogOverlayUI DialogOverlayUI;
+    [SerializeField, Tooltip("페이드 인 아웃 애니메이션")]
+    private UIFadeInOut FadeInOut;
     [SerializeField]
     private List<PanelContainer> panelContainers;
 
@@ -255,29 +257,25 @@ public class UIManager : Singleton<UIManager>
         if (goLoading != null)
             goLoading.Close();
     }
-    public void OpenDialog()
-    {
-        if (DialogOverlayUI != null)
-        {
-            DialogOverlayUI.Open();
-        }
 
-    }
-    public void SetActiveDialogNextBtn()
+    /// <summary>
+    /// 검정->투명.
+    /// </summary>
+    public void FadeIn(Action callback = null)
     {
-        if (DialogOverlayUI != null)
-        {
-            DialogOverlayUI.SetActiveNextBtn(true);
-        }
+        if (FadeInOut != null)
+            FadeInOut.FadeIn(callback);
     }
-    public void CloseDialog()
-    {
-        if (DialogOverlayUI != null)
-        {
-            DialogOverlayUI.Close();
-        }
 
+    /// <summary>
+    /// 투명->검정.
+    /// </summary>
+    public void FadeOut(Action callback = null)
+    {
+        if (FadeInOut != null)
+            FadeInOut.FadeOut(callback);
     }
+
 
 
     public UIConfirmPanel OpenConfirmPanel(string title,
@@ -571,6 +569,32 @@ public class UIManager : Singleton<UIManager>
     }
     #endregion
 
+
+    #region Dialog
+    public void OpenDialog()
+    {
+        if (DialogOverlayUI != null)
+        {
+            DialogOverlayUI.gameObject.SetActive(true);
+        }
+
+    }
+    public void SetActiveDialogNextBtn()
+    {
+        if (DialogOverlayUI != null)
+        {
+            DialogOverlayUI.SetActiveNextBtn(true);
+        }
+    }
+    public void CloseDialog()
+    {
+        if (DialogOverlayUI != null)
+        {
+            DialogOverlayUI.gameObject.SetActive(false);
+        }
+
+    }
+    #endregion
 }
 
 

@@ -68,7 +68,8 @@ public class UIOptionPanel : UIPanel
     }
     private void OnClickTermsBtn()
     {
-        UIManager.Instance.OpenNotificationPanel("距包剁快扁.");
+        Application.OpenURL("https://sites.google.com/view/boogiedev-meowool");
+        //UIManager.Instance.OpenNotificationPanel("距包剁快扁.");
         _feedback_popSound.PlayFeedbacks();
     }
 

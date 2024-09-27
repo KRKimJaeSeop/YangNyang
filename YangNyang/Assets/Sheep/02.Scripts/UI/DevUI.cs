@@ -45,9 +45,8 @@ public class DevUI : MonoBehaviour
         // Addressables.LoadAssetAsync<Sprite>(textField1.text).Completed += OnSpriteLoaded;
         //AdMobAdapter.Instance.LoadRewardedAd();
         //Debug.Log(AdvertisingController.Instance.GetBannerHeightByPixel());
-        //GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Wool, long.Parse(textField1.text));
-        //GameDataManager.Instance.Storages.Currency.Increase(Currency.Type.Gold, long.Parse(textField2.text));
-        UIManager.Instance.OpenResultPanel("테스트", $"과연");
+        //UIManager.Instance.OpenResultPanel("테스트", $"과연");
+        DialogManager.Instance.EnterDialog(Dialog.Type.HappyEnd);
 
     }
     private void OnClick1()
