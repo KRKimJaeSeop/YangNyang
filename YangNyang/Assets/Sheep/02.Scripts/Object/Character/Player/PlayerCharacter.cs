@@ -96,7 +96,13 @@ public class PlayerCharacter : CharacterObject
             StaySingleInteraction(interactableObject.GetObjectInfo());
             interactableObject.StaySingleInteraction();
         }
-
+        // 여러오브젝트와 동시에 충돌 중, 먼저 충돌한 오브젝트가 상호작용이 끝나서
+        // currentInteractObjectInfo 가 비었다면 그 다음으로 충돌중인 오브젝트를 상호작용 시작한다.
+        else if (currentInteractObjectInfo.IsEmpty())
+        {
+            EnterSingleInteract(interactableObject.GetObjectInfo());
+            interactableObject.EnterSingleInteraction();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -108,6 +114,8 @@ public class PlayerCharacter : CharacterObject
             ExitSingleInteraction(interactableObject.GetObjectInfo());
             interactableObject.ExitSingleInteraction();
         }
+       
+
     }
 
 

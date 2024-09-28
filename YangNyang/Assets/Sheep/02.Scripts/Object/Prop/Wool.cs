@@ -69,7 +69,7 @@ public class Wool : BaseFieldObject, IMovable, IInteractable
 
     public void StaySingleInteraction()
     {
-      
+
     }
 
 
