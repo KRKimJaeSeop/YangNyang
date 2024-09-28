@@ -66,7 +66,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField, Tooltip("페이드 인 아웃 애니메이션")]
     private DialogOverlayUI DialogOverlayUI;
     [SerializeField, Tooltip("페이드 인 아웃 애니메이션")]
-    private UIFadeInOut FadeInOut;
+    private UIFade FadeInOut;
     [SerializeField]
     private List<PanelContainer> panelContainers;
 
@@ -259,23 +259,13 @@ public class UIManager : Singleton<UIManager>
     }
 
     /// <summary>
-    /// 검정->투명.
+    /// 투명 -> 검정 -> 투명
     /// </summary>
-    public void FadeIn(Action callback = null)
+    public void OpenFadeOutIn(Action onFadeOut = null, Action onFadeIn = null)
     {
         if (FadeInOut != null)
-            FadeInOut.FadeIn(callback);
+            FadeInOut.OpenFadeOutIn(onFadeOut, onFadeIn);
     }
-
-    /// <summary>
-    /// 투명->검정.
-    /// </summary>
-    public void FadeOut(Action callback = null)
-    {
-        if (FadeInOut != null)
-            FadeInOut.FadeOut(callback);
-    }
-
 
 
     public UIConfirmPanel OpenConfirmPanel(string title,

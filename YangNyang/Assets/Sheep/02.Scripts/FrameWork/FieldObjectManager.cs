@@ -231,10 +231,12 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         }
         return null;
     }
-
     #endregion
 
-    public void SpawnWool(Vector2 startPosition, int amount)
+
+    #region Wool
+
+    public void SpawnWools(Vector2 startPosition, int amount)
     {
         for (int i = 0; i < amount; i++)
         {
@@ -246,4 +248,17 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
             });
         }
     }
+
+    public BaseFieldObject SpawnWool(Vector2 startPosition)
+    {
+        var go = (ObjectPool.Instance.Pop("Wool")).GetComponent<Wool>();
+        _managedObjects.TryAdd(go.InstanceID, go);
+        go.Spawn(startPosition, () =>
+        {
+            _managedObjects.Remove(go.InstanceID);
+        });
+        return go;
+    }
+
+    #endregion
 }

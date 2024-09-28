@@ -6319,6 +6319,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8851804850334502599, guid: 8a7ee171a62645d4e8167802c15def63, type: 3}
+      propertyPath: _nextBtnTextOrigin
+      value: Next
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

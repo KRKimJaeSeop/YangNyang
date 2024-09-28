@@ -12,6 +12,7 @@ public class DialogOverlayUI : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _nextBtnText;
+    [SerializeField]
     private string _nextBtnTextOrigin;
 
     [SerializeField]
@@ -21,9 +22,11 @@ public class DialogOverlayUI : MonoBehaviour
     {
         _nextBtn.onClick.AddListener(OnClickNextBtn);
         _skipBtn.onClick.AddListener(OnClickSkipBtn);
-        _nextBtnTextOrigin = _nextBtnText.text;
     }
-
+    private void OnEnable()
+    {
+        SetActiveNextBtn(true);
+    }
 
     public void SetActiveNextBtn(bool isActive)
     {

@@ -32,10 +32,3 @@ MonoBehaviour:
     ActionTime: 0
     SpeechText: 
     IsStop: 1
-  - UnitActionType: 3
-    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
-    SpawnType: 1
-    ActionPlace: 5
-    ActionTime: 1
-    SpeechText: "\uC784\uC2DC\uD574\uD53C"
-    IsStop: 1

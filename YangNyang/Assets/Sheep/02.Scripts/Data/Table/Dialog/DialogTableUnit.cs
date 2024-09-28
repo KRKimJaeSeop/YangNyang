@@ -13,6 +13,7 @@ public class DialogTableUnit : BaseElementTable
             Spawn = 1,
             Move = 2,
             Speech = 3,
+            Fade = 4,
         }
         public ActionType UnitActionType;
         public string ActorNickName;
@@ -32,6 +33,26 @@ public class DialogTableUnit : BaseElementTable
     public StepUnit[] Steps { get { return _steps; } }
 
 
+    public bool IsValidDialog()
+    {
+        var isValid = false;
+        foreach (var step in _steps)
+        {
+            // step중 isStop이 한개라도 있다면 true.
+            if (step.IsStop)
+            {
+                isValid = true;
+            }
+            // Fade step이 isStop으로 설정되지 않았을 때 false
+            if (step.UnitActionType == StepUnit.ActionType.Fade && !step.IsStop)
+            {
+                isValid = false;
+                break;
+            }
+
+        }
+        return isValid;
+    }
 
 #if UNITY_EDITOR
 

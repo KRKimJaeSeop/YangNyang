@@ -24,13 +24,22 @@ public class DialogManager : Singleton<DialogManager>
             GameDataManager.Instance.Storages.UnlockDialog.UnlockDialog(type);
         }
         isPlaying = true;
-        UIManager.Instance.CloseAll();
-        OnDialogEnter?.Invoke(true);
-        UIManager.Instance.FadeOut(UIManager.Instance.OpenDialog);
-        UIManager.Instance.FadeIn();
-        stepIndex = 0;
         _tbUnit = GameDataManager.Instance.Tables.Dialog.GetUnit(type);
-        ActionStep();
+
+        UIManager.Instance.OpenFadeOutIn(() =>
+            {
+                UIManager.Instance.CloseAll();
+                UIManager.Instance.OpenDialog();
+                OnDialogEnter?.Invoke(true);
+                stepIndex = 0;
+                ActionStep();
+            },
+            () =>
+            {
+       
+
+            });
+
     }
 
     public void OnClickNext()
@@ -63,6 +72,9 @@ public class DialogManager : Singleton<DialogManager>
             case DialogTableUnit.StepUnit.ActionType.Speech:
                 ActionSpeech();
                 break;
+            case DialogTableUnit.StepUnit.ActionType.Fade:
+                ActionFade();
+                break;
             default:
                 stepIndex++;
                 ActionStep();
@@ -86,10 +98,14 @@ public class DialogManager : Singleton<DialogManager>
             case FieldObject.Type.WorkableSheep:
                 spawnID = FieldObjectManager.Instance.SpawnSheep(_tbUnit.Steps[stepIndex].ActionPlace, StandardSheep.SheepState.Idle).InstanceID;
                 break;
+            case FieldObject.Type.Wool:
+                spawnID = FieldObjectManager.Instance.SpawnWool(Vector2.zero).InstanceID;
+                break;
             default:
                 Debug.LogError("Wrong SpawnType");
                 break;
         }
+        //UIManager.Instance.SetActiveDialogNextBtn();
         _actors.Add(_tbUnit.Steps[stepIndex].ActorNickName, spawnID);
     }
 
@@ -114,6 +130,15 @@ public class DialogManager : Singleton<DialogManager>
         }
         characterObject.ShowSpeechBubble(_tbUnit.Steps[stepIndex].SpeechText, _tbUnit.Steps[stepIndex].ActionTime, false, afterActionCallback);
     }
+    private void ActionFade()
+    {
+        Action afterActionCallback = null;
+        if (_tbUnit.Steps[stepIndex].IsStop)
+        {
+            afterActionCallback += UIManager.Instance.SetActiveDialogNextBtn;
+        }
+        UIManager.Instance.OpenFadeOutIn(null, afterActionCallback);
+    }
 
 
     private CharacterObject GetCharacterObject(string actorNickname)
@@ -127,16 +152,23 @@ public class DialogManager : Singleton<DialogManager>
             Debug.LogError($"Don't Manage [{actorNickname}]");
             return null;
         }
-
     }
+
 
     public void ExitDialog()
     {
         isPlaying = false;
         _actors.Clear();
-        UIManager.Instance.FadeOut(UIManager.Instance.CloseDialog);
-        UIManager.Instance.FadeIn();
-        OnDialogEnter?.Invoke(false);
+
+        UIManager.Instance.OpenFadeOutIn(() =>
+
+            {
+                UIManager.Instance.CloseDialog();
+                OnDialogEnter?.Invoke(false);
+            },
+           null);
+
+
     }
 
 }

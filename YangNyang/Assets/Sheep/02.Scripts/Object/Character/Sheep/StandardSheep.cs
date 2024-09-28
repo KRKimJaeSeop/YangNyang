@@ -262,7 +262,7 @@ public class StandardSheep : CharacterObject, IInteractable
     protected virtual void WorkComplete()
     {
         // 양털 아이템 뽑는다.
-        FieldObjectManager.Instance.SpawnWool
+        FieldObjectManager.Instance.SpawnWools
             (this.transform.position, Random.Range(_tbUnit.MinWoolAmount, _tbUnit.MaxWoolAmount + 1));
         // 양털 벗은 이미지로 변환한다.
         SetSpriteResolver(0);

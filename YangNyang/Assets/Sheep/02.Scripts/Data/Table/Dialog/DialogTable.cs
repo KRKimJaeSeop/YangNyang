@@ -44,6 +44,12 @@ public class DialogTable : BaseTable
                 Debug.LogError($"{GetType()}::{nameof(Initialize)} - 중복 id 발견. idx={i}, id={list[i].id}");
                 return false;
             }
+            if (!list[i].IsValidDialog())
+            {
+                Debug.LogError($"{GetType()}::{nameof(Initialize)} - step이 올바르게 세팅되지 않음. idx={i}, id={list[i].id}");
+                return false;
+            }
+
         }
         return true;
     }
