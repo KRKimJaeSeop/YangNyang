@@ -212,12 +212,12 @@ public class PlayerCharacter : CharacterObject
     {
         if (isFlip)
         {
-            _transform.localScale = _originScale;
+            _transform.localScale = _flipScale;
             _speechBubble.Flip(true);
         }
         else
         {
-            _transform.localScale = _flipScale;
+            _transform.localScale = _originScale;
             _speechBubble.Flip(false);
         }
     }
