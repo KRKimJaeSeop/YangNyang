@@ -92,7 +92,7 @@ public class DialogManager : Singleton<DialogManager>
                 spawnID = FieldObjectManager.Instance.SpawnPlayer(_tbUnit.Steps[stepIndex].ActionPlace).InstanceID;
                 break;
             case FieldObject.Type.WorkableSheep:
-                spawnID = FieldObjectManager.Instance.SpawnSheep(_tbUnit.Steps[stepIndex].ActionPlace, StandardSheep.SheepState.Idle).InstanceID;
+                spawnID = FieldObjectManager.Instance.SpawnSheep(1,_tbUnit.Steps[stepIndex].ActionPlace, StandardSheep.SheepState.Idle).InstanceID;
                 break;
             case FieldObject.Type.Wool:
                 spawnID = FieldObjectManager.Instance.SpawnWool(Vector2.zero).InstanceID;

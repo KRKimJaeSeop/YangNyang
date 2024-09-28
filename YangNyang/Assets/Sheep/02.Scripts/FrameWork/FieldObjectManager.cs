@@ -231,6 +231,24 @@ public class FieldObjectManager : Singleton<FieldObjectManager>
         }
         return null;
     }
+    /// <summary>
+    /// 지정된 ID의 양을 스폰한다.
+    /// </summary>
+    public BaseFieldObject SpawnSheep(int id, Place.Type spawnPlace = Place.Type.SheepSpawn, SheepState initState = SheepState.Move)
+    {
+        if (_sheepSpawnCache.tbUnit != null)
+        {
+            var unit = GameDataManager.Instance.Tables.Sheep.GetUnit(id);
+            var go = (ObjectPool.Instance.Pop($"{unit.Type}Sheep")).GetComponent<StandardSheep>();
+            _managedObjects.TryAdd(go.InstanceID, go);
+            go.Spawn(unit.id, Places.GetPlacePosition(spawnPlace), initState, () =>
+            {
+                _managedObjects.Remove(go.InstanceID);
+            });
+            return go;
+        }
+        return null;
+    }
     #endregion
 
 
