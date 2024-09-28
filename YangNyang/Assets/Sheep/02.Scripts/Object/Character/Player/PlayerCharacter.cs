@@ -208,7 +208,19 @@ public class PlayerCharacter : CharacterObject
         }
 
     }
-
+    protected override void Flip(bool isFlip)
+    {
+        if (isFlip)
+        {
+            _transform.localScale = _originScale;
+            _speechBubble.Flip(true);
+        }
+        else
+        {
+            _transform.localScale = _flipScale;
+            _speechBubble.Flip(false);
+        }
+    }
     private void Move_Exit()
     {
         _feedback_walkSound.StopFeedbacks();

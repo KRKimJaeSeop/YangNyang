@@ -49,6 +49,15 @@ public class DialogTableUnit : BaseElementTable
                 isValid = false;
                 break;
             }
+            if (step.UnitActionType ==StepUnit.ActionType.Spawn)
+            {
+                if (step.SpawnType == FieldObject.Type.UnWorkableSheep || step.SpawnType == FieldObject.Type.None)
+                {
+                    isValid = false;
+                    break;
+                }
+            }
+           
 
         }
         return isValid;

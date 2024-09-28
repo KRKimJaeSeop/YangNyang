@@ -228,9 +228,23 @@ public class StandardSheep : CharacterObject, IInteractable
     private void Move_Execute()
     {
         // Move 상태에서의 행동
+     
 
     }
-
+    protected override void Flip(bool isFlip)
+    {
+        if (isFlip)
+        {
+            _transform.localScale = _originScale;
+            _speechBubble.Flip(true);
+        }
+        else
+        {
+            _transform.localScale = _flipScale;
+            _speechBubble.Flip(false);
+        }
+    }
+ 
     private void Move_Exit()
     {
         if (_moveCoroutine != null)

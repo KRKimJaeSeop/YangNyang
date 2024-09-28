@@ -21,8 +21,8 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
 
     [SerializeField]
     protected Animator _animator;
-    private Vector3 _originScale;
-    private Vector3 _flipScale;
+    protected Vector3 _originScale;
+    protected Vector3 _flipScale;
 
 
     protected override void Awake()
@@ -64,20 +64,7 @@ public abstract class CharacterObject : BaseFieldObject, IMovable
     {
         _animator.SetBool(ANIM_IS_MOVE, isMove);
     }
-    protected void Flip(bool isFlip)
-    {
-        if (isFlip)
-        {
-            _transform.localScale = _flipScale;
-            _speechBubble.Flip(true);
-        }
-        else
-        {
-            _transform.localScale = _originScale;
-            _speechBubble.Flip(false);
-        }
-
-    }
+    protected abstract void Flip(bool isFlip);
     /// <summary>
     /// 지정된 위치로 지정된 시간동안 걸어가듯 이동시키고 이동 후 콜백이 있다면 실행한다.
     /// </summary>

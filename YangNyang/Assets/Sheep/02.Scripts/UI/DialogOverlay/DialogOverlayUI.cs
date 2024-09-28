@@ -48,9 +48,9 @@ public class DialogOverlayUI : MonoBehaviour
     }
     private void OnClickNextBtn()
     {
+        SetActiveNextBtn(false);
         DialogManager.Instance.OnClickNext();
         _feedback_PressBtn.PlayFeedbacks();
-        SetActiveNextBtn(false);
     }
     private void OnClickSkipBtn()
     {

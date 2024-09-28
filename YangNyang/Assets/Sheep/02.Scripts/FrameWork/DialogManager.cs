@@ -34,11 +34,7 @@ public class DialogManager : Singleton<DialogManager>
                 stepIndex = 0;
                 ActionStep();
             },
-            () =>
-            {
-       
-
-            });
+            null);
 
     }
 
@@ -105,7 +101,10 @@ public class DialogManager : Singleton<DialogManager>
                 Debug.LogError("Wrong SpawnType");
                 break;
         }
-        //UIManager.Instance.SetActiveDialogNextBtn();
+        if (_tbUnit.Steps[stepIndex].IsStop)
+        {
+            UIManager.Instance.SetActiveDialogNextBtn();
+        }
         _actors.Add(_tbUnit.Steps[stepIndex].ActorNickName, spawnID);
     }
 
