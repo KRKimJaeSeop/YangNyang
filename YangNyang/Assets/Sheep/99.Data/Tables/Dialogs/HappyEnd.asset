@@ -39,24 +39,17 @@ MonoBehaviour:
     ActionTime: 0
     SpeechText: 
     IsStop: 1
-  - UnitActionType: 2
-    ActorNickName: "\uC591"
+  - UnitActionType: 1
+    ActorNickName: "\uC5911"
     SpawnType: 2
     ActionPlace: 3
-    ActionTime: 1
+    ActionTime: 0
     SpeechText: 
     IsStop: 1
-  - UnitActionType: 2
-    ActorNickName: "\uC591"
+  - UnitActionType: 1
+    ActorNickName: "\uC5912"
     SpawnType: 2
-    ActionPlace: 4
-    ActionTime: 1
-    SpeechText: 
-    IsStop: 1
-  - UnitActionType: 2
-    ActorNickName: "\uC591"
-    SpawnType: 2
-    ActionPlace: 3
-    ActionTime: 1
+    ActionPlace: 5
+    ActionTime: 0
     SpeechText: 
     IsStop: 1

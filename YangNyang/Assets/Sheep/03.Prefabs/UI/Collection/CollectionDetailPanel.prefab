@@ -584,6 +584,11 @@ MonoBehaviour:
   safeAreaHandler: {fileID: 2421124275935661603}
   closeButtons:
   - {fileID: 1016884749591631476}
+  _guide:
+    _dialogType: 0
+    closeBtn: {fileID: 0}
+    openBtn: {fileID: 0}
+    _uiGuideObjects: []
   _feedback_popSound: {fileID: 8402278746154940815}
   _feedback_OnEnable: {fileID: 5463789039963341757}
   _icon: {fileID: 6945574481162737948}
@@ -1437,8 +1442,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 235}
-  m_SizeDelta: {x: 179.28, y: 179.28}
+  m_AnchoredPosition: {x: 0, y: 319}
+  m_SizeDelta: {x: 307.9754, y: 307.9754}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3554752340337938501
 CanvasRenderer:

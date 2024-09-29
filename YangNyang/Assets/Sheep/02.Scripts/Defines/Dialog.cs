@@ -8,6 +8,9 @@ namespace Dialog
         SadEnd = 3,
         CrazyLucky = 4,
         HBD = 5,
+        SellUI = 6,
+        ResearchUI = 7,
+        CollectionUI = 8,
 
     }
 
