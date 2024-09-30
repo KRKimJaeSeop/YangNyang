@@ -19,37 +19,23 @@ MonoBehaviour:
   icon: {fileID: 0}
   localName:
     table: 4
-    key: Test
+    key: HAPPY END_NAME
   localDescription:
-    table: 4
+    table: 0
     key: 
   type: 2
   _steps:
   - UnitActionType: 1
-    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
+    ActorNickName: aa
     SpawnType: 1
-    ActionPlace: 5
+    ActionPlace: 1
     ActionTime: 0
     SpeechText: 
     IsStop: 1
-  - UnitActionType: 1
-    ActorNickName: "\uC591"
-    SpawnType: 2
-    ActionPlace: 4
-    ActionTime: 0
-    SpeechText: 
-    IsStop: 1
-  - UnitActionType: 1
-    ActorNickName: "\uC5911"
-    SpawnType: 2
-    ActionPlace: 3
-    ActionTime: 0
-    SpeechText: 
-    IsStop: 1
-  - UnitActionType: 1
-    ActorNickName: "\uC5912"
-    SpawnType: 2
-    ActionPlace: 5
-    ActionTime: 0
+  - UnitActionType: 2
+    ActorNickName: aa
+    SpawnType: 0
+    ActionPlace: 2
+    ActionTime: 1
     SpeechText: 
     IsStop: 1

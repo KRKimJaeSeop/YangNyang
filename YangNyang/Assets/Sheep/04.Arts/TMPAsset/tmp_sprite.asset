@@ -43,26 +43,26 @@ MonoBehaviour:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 0
-    m_Scale: 1
+    m_Scale: 1.5
     m_Name: gold
     m_HashCode: 3668640
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 1
-    m_Scale: 1
+    m_Scale: 1.5
     m_Name: wool
     m_HashCode: 4243803
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
-      m_Width: 124
+      m_Width: 119
       m_Height: 125
       m_HorizontalBearingX: -62
       m_HorizontalBearingY: 62.5
       m_HorizontalAdvance: 124
     m_GlyphRect:
       m_X: 0
-      m_Y: 131
+      m_Y: 132
       m_Width: 124
       m_Height: 125
     m_Scale: 1

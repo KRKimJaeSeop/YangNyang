@@ -119,6 +119,26 @@ MonoBehaviour:
     m_Key: LANGUAGE_KOREAN
     m_Metadata:
       m_Items: []
+  - m_Id: 7544602110558208
+    m_Key: MAIN_LEVEL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544603658256384
+    m_Key: MAIN_EXP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544604346122240
+    m_Key: MAIN_DAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544604882993152
+    m_Key: CURRENCY ICON_GOLD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544608016138240
+    m_Key: CURRENCY ICON_WOOL
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

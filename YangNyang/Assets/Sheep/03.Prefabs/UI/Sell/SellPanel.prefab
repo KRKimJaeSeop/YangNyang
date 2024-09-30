@@ -142,7 +142,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC591\uD138\uAE4E\uB0E5!"
+  m_text: "\uC5EC\uAE30\uC5D0\uC11C \uC591\uD138\uC744 \uAE08\uD654\uB85C \uD310\uB9E4\uD560
+    \uC218 \uC788\uC5B4\uC694.\r\n\uBAA9\uD45C \uAE08\uD654\uB97C \uB2EC\uC131\uD558\uBA74
+    \uAC8C\uC784\uC774 \uD074\uB9AC\uC5B4\uB3FC\uC694.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c80642c163bc4444e9d6b8cf85d29df1, type: 2}
   m_sharedMaterial: {fileID: 6438681259409155692, guid: c80642c163bc4444e9d6b8cf85d29df1, type: 2}
@@ -225,9 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:fad068fc62dba1d47a99ca7ff3445869
+      m_TableCollectionName: GUID:7886d3e1cecc4a54b9ce39aaaef52e1a
     m_TableEntryReference:
-      m_KeyId: 788612614815744
+      m_KeyId: 3568396763136
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -1851,7 +1853,7 @@ GameObject:
   - component: {fileID: 7436078011388369007}
   - component: {fileID: 674371690123560992}
   m_Layer: 0
-  m_Name: goldInfo (1)
+  m_Name: openBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2062,7 +2064,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC591\uD138\uAE4E\uB0E5!"
+  m_text: "\uC774 \uB3C4\uC6C0\uB9D0\uC744 \uB2E4\uC2DC \uC5F4 \uC218 \uC788\uC5B4\uC694."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c80642c163bc4444e9d6b8cf85d29df1, type: 2}
   m_sharedMaterial: {fileID: 6438681259409155692, guid: c80642c163bc4444e9d6b8cf85d29df1, type: 2}
@@ -2145,9 +2147,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:fad068fc62dba1d47a99ca7ff3445869
+      m_TableCollectionName: GUID:7886d3e1cecc4a54b9ce39aaaef52e1a
     m_TableEntryReference:
-      m_KeyId: 788612614815744
+      m_KeyId: 3564798050304
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -2236,10 +2238,10 @@ MonoBehaviour:
   _feedback_OnEnable: {fileID: 5610004351175087857}
   _woolFillGauge: {fileID: 7219661218716253601}
   _currentGoldText: {fileID: 5454800763552888508}
-  _goldCurrent:
-    table: 4
-    key: TUTORIAL_NAME
-  _goldGoal:
+  _goldCurrentLocal:
+    table: 3
+    key: MAIN_SHOP_GOLD_CURRENT
+  _goldGoalLocal:
     table: 3
     key: MAIN_SHOP_GOLD_GOAL
 --- !u!114 &4391843494822729201
@@ -2315,7 +2317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8784314, g: 1, b: 0.7294118, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2702,7 +2704,7 @@ GameObject:
   - component: {fileID: 8096988087317265157}
   - component: {fileID: 7311270653477023613}
   - component: {fileID: 3449314732211171028}
-  - component: {fileID: 8073184177650914755}
+  - component: {fileID: 7404951853238974457}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2757,7 +2759,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: dd
+  m_text: "\uC774 \uB3C4\uC6C0\uB9D0\uC744 \uB2E4\uC2DC \uC5F4 \uC218 \uC788\uC5B4\uC694."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c80642c163bc4444e9d6b8cf85d29df1, type: 2}
   m_sharedMaterial: {fileID: 6438681259409155692, guid: c80642c163bc4444e9d6b8cf85d29df1, type: 2}
@@ -2784,7 +2786,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 31.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2826,7 +2828,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8073184177650914755
+--- !u!114 &7404951853238974457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2840,9 +2842,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:4f6aabc8a61065f47b63493033d98cb3
+      m_TableCollectionName: GUID:7886d3e1cecc4a54b9ce39aaaef52e1a
     m_TableEntryReference:
-      m_KeyId: 19029917696
+      m_KeyId: 3566698070016
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -2850,7 +2852,19 @@ MonoBehaviour:
   m_FormatArguments: []
   m_UpdateString:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3449314732211171028}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
   references:
     version: 2
     RefIds: []

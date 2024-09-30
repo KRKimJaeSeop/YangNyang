@@ -16,9 +16,9 @@ public class UISellPanel : UIPanel
     // 한틱에 판매할 양(현재 양털의 0.01퍼센트)
     private long _sellAmount;
     [SerializeField]
-    private LocalizationData _goldCurrent;
+    private LocalizationData _goldCurrentLocal;
     [SerializeField]
-    private LocalizationData _goldGoal;
+    private LocalizationData _goldGoalLocal;
 
     public override void Open(Canvas canvas = null, UnityAction<object> cbClose = null)
     {
@@ -42,8 +42,8 @@ public class UISellPanel : UIPanel
 
     private void SetGauge()
     {
-        _currentGoldText.text = $"{_goldGoal.GetLocalizedString()} : {GameManager.Instance.TargetGoldAmount}\n" +
-                                  $"{_goldCurrent.GetLocalizedString()} : {_cachedGold}\n" +
+        _currentGoldText.text = $"{_goldGoalLocal.GetLocalizedString()} : {GameManager.Instance.TargetGoldAmount}\n" +
+                                  $"{_goldCurrentLocal.GetLocalizedString()} : {_cachedGold}\n" +
                                   $"{string.Format("{0:D2}",((_cachedGold * 100) /GameManager.Instance.TargetGoldAmount))}%";
         _woolFillGauge.fillAmount = _storageWoolAmount > 0 ? (float)((double)_cachedWool / _storageWoolAmount) : 0;
     }

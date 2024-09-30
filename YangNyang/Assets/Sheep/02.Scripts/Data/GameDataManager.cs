@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Localization.Settings;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using static GameManager;
 using Object = UnityEngine.Object;
@@ -42,6 +43,20 @@ public class GameDataManager : Singleton<GameDataManager>
             return false;
 
         _storage.Initialize();
+
+        var languageCode = Storages.Preference.GetLanguageCode();
+        if (!string.IsNullOrEmpty(languageCode))
+        {
+            var locale = LocalizationSettings.AvailableLocales.GetLocale(languageCode);
+            LocalizationSettings.SelectedLocale = locale;
+        }
+        else
+        {
+            var locale = LocalizationSettings.AvailableLocales.GetLocale("ko-KR");
+            LocalizationSettings.SelectedLocale = locale;
+        }
+
+        //LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.GetLocale(languageCode);
 
         IsInitialized = true;
         return true;

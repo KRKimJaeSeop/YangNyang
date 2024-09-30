@@ -1,3 +1,4 @@
+using Localization;
 using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ public class UIMainPanel : UIPanel
 {
     [Header("[UIMainPanel]")]
     [Header("Status Bar UI")]
-
     [SerializeField]
     private TextMeshProUGUI _dayText;
     [SerializeField]
@@ -21,6 +21,18 @@ public class UIMainPanel : UIPanel
     private TextMeshProUGUI _woolText;
     [SerializeField]
     private TextMeshProUGUI _goldText;
+    [SerializeField]
+    private LocalizationData _researchLocal;
+    [SerializeField]
+    private LocalizationData _levelLocal;
+    [SerializeField]
+    private LocalizationData _expLocal;
+    [SerializeField]
+    private LocalizationData _dayLocal;
+    [SerializeField]
+    private LocalizationData _goldTextLocal;
+    [SerializeField]
+    private LocalizationData _woolTextLocal;
 
     [Header("Button Bar UI")]
     [SerializeField]
@@ -72,8 +84,9 @@ public class UIMainPanel : UIPanel
         CurrencyStorage.OnUpdateCurrency += CurrencyStorage_OnUpdateCurrency;
         UnlockSheepStorage.OnUnlockSheep += UnlockSheepStorage_OnUnlockSheep;
         AdvertisingController.OnBannerActive += AdvertisingController_OnBannerActive;
-
+        PreferenceStorage.OnUpdateLanguage += OnUpdateLanguage;
     }
+
 
 
     private void OnDisable()
@@ -83,6 +96,7 @@ public class UIMainPanel : UIPanel
         UserStorage.OnUpdateLevel -= UserStorage_OnUpdateLevel;
         UnlockSheepStorage.OnUnlockSheep -= UnlockSheepStorage_OnUnlockSheep;
         AdvertisingController.OnBannerActive -= AdvertisingController_OnBannerActive;
+        PreferenceStorage.OnUpdateLanguage -= OnUpdateLanguage;
     }
 
 
@@ -105,7 +119,10 @@ public class UIMainPanel : UIPanel
         _canvas = canvas;
         SetUI();
     }
-
+    private void OnUpdateLanguage(string code)
+    {
+        SetUI();
+    }
     private void SetUI()
     {
         var userStorage = GameDataManager.Instance.Storages.User;
@@ -119,29 +136,37 @@ public class UIMainPanel : UIPanel
         }
 
     }
-
+  
     private void UserStorage_OnUpdateDay(int day)
     {
-        _dayText.text = $"{day}일차";
+        if (GameDataManager.Instance.Storages.Preference.GetLanguageCode() == "ko-KR")
+        {
+            _dayText.text = $"{day} {_dayLocal.GetLocalizedString()}";
+        }
+        else
+        {
+            _dayText.text = $"{_dayLocal.GetLocalizedString()} {day}";
+
+        }
     }
 
     private void UserStorage_OnUpdateLevel(int level)
     {
-        _levelText.text = $"레벨:{level}";
+        _levelText.text = $"{_levelLocal.GetLocalizedString()}:{level}";
     }
     private void UserStorage_OnUpdateExp(long exp, long amount = 0)
     {
-        _expText.text = $"경험치:{exp}";
+        _expText.text = $"{_expLocal.GetLocalizedString()}:{exp}";
     }
     private void CurrencyStorage_OnUpdateCurrency(Currency.Type code, long total, long amount = 0)
     {
         switch (code)
         {
             case Currency.Type.Wool:
-                _woolText.text = $"양털: {total}";
+                _woolText.text = $"{_woolTextLocal.GetLocalizedString()}: {total}";
                 break;
             case Currency.Type.Gold:
-                _goldText.text = $"골드: {total}";
+                _goldText.text = $"{_goldTextLocal.GetLocalizedString()}: {total} ({string.Format("{0:D2}", ((total * 100) / GameManager.Instance.TargetGoldAmount))}%)";
                 break;
             default:
                 break;
@@ -197,7 +222,6 @@ public class UIMainPanel : UIPanel
 
         // 높이 설정 (예: 100 픽셀)
         float newHeight = GetBannerHeightInCanvasUnits(isShow);
-        Debug.Log($"ㅎㅇ {newHeight} , {isShow}");
         if (isShow)
         {
             _docBar[0].rectTransform.sizeDelta += new Vector2(_docBar[0].rectTransform.sizeDelta.x, newHeight);

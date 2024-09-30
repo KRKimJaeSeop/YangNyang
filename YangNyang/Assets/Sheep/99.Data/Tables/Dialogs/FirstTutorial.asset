@@ -15,27 +15,27 @@ MonoBehaviour:
   loadJson: 0
   pathJson: 
   lastLoadedTime: 
-  id: 6
+  id: 1
   icon: {fileID: 0}
   localName:
     table: 4
-    key: Test2
+    key: TUTORIAL_NAME
   localDescription:
-    table: 4
+    table: 0
     key: 
   type: 1
   _steps:
   - UnitActionType: 1
-    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
+    ActorNickName: aa
     SpawnType: 1
-    ActionPlace: 5
+    ActionPlace: 1
     ActionTime: 0
     SpeechText: 
     IsStop: 1
-  - UnitActionType: 3
-    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
-    SpawnType: 1
-    ActionPlace: 5
+  - UnitActionType: 2
+    ActorNickName: aa
+    SpawnType: 0
+    ActionPlace: 2
     ActionTime: 1
-    SpeechText: "\uC784\uC2DC\uCC98\uC74C"
+    SpeechText: 
     IsStop: 1

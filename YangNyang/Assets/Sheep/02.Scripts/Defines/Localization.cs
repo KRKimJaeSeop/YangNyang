@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
@@ -12,7 +10,7 @@ namespace Localization
     public enum LocalizationTable
     {
         None = 0,
-        System = 1, // 시스템 관련.
+        App = 1, // 시스템 관련.
         Model = 2, // 명칭, 설명 테이블
         UI = 3, // UI 관련.
         Dialogue = 4, // 대화창 관련
@@ -30,7 +28,7 @@ namespace Localization
         }
         public string GetLocalizedString(bool includeNewLine = false)
         {
-            if (string.IsNullOrEmpty(_tableName))
+            if (string.IsNullOrEmpty(_tableName) || _tableName != table.ToString())
             {
                 if (table != LocalizationTable.None)
                     _tableName = table.ToString();
@@ -50,6 +48,5 @@ namespace Localization
             return text;
         }
     }
-
-
+   
 }

@@ -273,8 +273,6 @@ public class UIManager : Singleton<UIManager>
         Canvas canvas = null,
         UnityAction<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
 
         var panelCode = Code.Confirm;
         var panelInfo = GetPanelInfo(panelCode);
@@ -295,8 +293,6 @@ public class UIManager : Singleton<UIManager>
 
     public UINotificationPanel OpenNotificationPanel(string content, Action<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
 
         var panelCode = Code.Notification;
         var panelInfo = GetPanelInfo(panelCode);
@@ -318,8 +314,7 @@ public class UIManager : Singleton<UIManager>
     public UIResultPanel OpenResultPanel(string title,
         string content, Action<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
+
 
         var panelCode = Code.Result;
         var panelInfo = GetPanelInfo(panelCode);
@@ -368,8 +363,6 @@ public class UIManager : Singleton<UIManager>
     #region Collection
     public UICollectionPanel OpenCollectionPanel(Action<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
 
         var panelCode = Code.Collection;
         var panelInfo = GetPanelInfo(panelCode);
@@ -390,8 +383,7 @@ public class UIManager : Singleton<UIManager>
 
     public UICollectionDetailPanel OpenCollectionDetailPanel(int id, bool isUnolck, Action<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
+
 
         var panelCode = Code.CollectionDetail;
         var panelInfo = GetPanelInfo(panelCode);
@@ -419,8 +411,7 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     public UIOptionPanel OpenOptionPanel(Action<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
+
 
         var panelCode = Code.Option;
         var panelInfo = GetPanelInfo(panelCode);
@@ -441,8 +432,7 @@ public class UIManager : Singleton<UIManager>
 
     public UILanguageSelectPanel OpenLanguageSelectPanel(Action<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
+
 
         var panelCode = Code.Language;
         var panelInfo = GetPanelInfo(panelCode);
@@ -463,9 +453,6 @@ public class UIManager : Singleton<UIManager>
 
     public UICreditPanel OpenCreditPanel(Action<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
-
         var panelCode = Code.Credit;
         var panelInfo = GetPanelInfo(panelCode);
         var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
@@ -484,8 +471,7 @@ public class UIManager : Singleton<UIManager>
     }
     public UIWatchDialogPanel OpenWatchDialogPanel(Action<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
+
 
         var panelCode = Code.WatchDialog;
         var panelInfo = GetPanelInfo(panelCode);
@@ -511,8 +497,6 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     public UISellPanel OpenSellPanel(Action<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
 
         var panelCode = Code.Sell;
         var panelInfo = GetPanelInfo(panelCode);
@@ -538,9 +522,6 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     public UIResearchPanel OpenResearchPanel(Action<object> cbClose = null)
     {
-        // 드래그 해제인데. 뭐가 문젠지 몰라서 일단 꺼보기
-        //InputController.Instance.ReleaseInputStates();
-
         var panelCode = Code.Research;
         var panelInfo = GetPanelInfo(panelCode);
         var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
@@ -565,6 +546,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (DialogOverlayUI != null)
         {
+            InputController.Instance.ReleaseInputStates();
             DialogOverlayUI.gameObject.SetActive(true);
         }
 

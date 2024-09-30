@@ -47,7 +47,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4032852585185280
-    m_Localized: Language
+    m_Localized: "Language / \uC5B8\uC5B4"
     m_Metadata:
       m_Items: []
   - m_Id: 4032854434873344
@@ -103,11 +103,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5453428528873472
-    m_Localized: English
+    m_Localized: "English / \uC601\uC5B4"
     m_Metadata:
       m_Items: []
   - m_Id: 5453436430942208
-    m_Localized: Korean
+    m_Localized: "Korean / \uD55C\uAD6D"
     m_Metadata:
       m_Items: []
   - m_Id: 7484597348958208
@@ -124,6 +124,26 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 7502826863689728
     m_Localized: SFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544604882993152
+    m_Localized: <sprite name="gold">
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544608016138240
+    m_Localized: <sprite name="wool">
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544602110558208
+    m_Localized: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544603658256384
+    m_Localized: Exp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7544604346122240
+    m_Localized: Day
     m_Metadata:
       m_Items: []
   references:

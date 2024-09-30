@@ -19,23 +19,23 @@ MonoBehaviour:
   icon: {fileID: 0}
   localName:
     table: 4
-    key: Test
+    key: HBD_NAME
   localDescription:
-    table: 4
+    table: 0
     key: 
   type: 5
   _steps:
   - UnitActionType: 1
-    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
+    ActorNickName: aa
     SpawnType: 1
-    ActionPlace: 5
+    ActionPlace: 1
     ActionTime: 0
     SpeechText: 
-    IsStop: 0
-  - UnitActionType: 3
-    ActorNickName: "\uD50C\uB808\uC774\uC5B4"
-    SpawnType: 1
-    ActionPlace: 5
+    IsStop: 1
+  - UnitActionType: 2
+    ActorNickName: aa
+    SpawnType: 0
+    ActionPlace: 2
     ActionTime: 1
-    SpeechText: "\uC784\uC2DC\uC0DD\uC77C"
+    SpeechText: 
     IsStop: 1
