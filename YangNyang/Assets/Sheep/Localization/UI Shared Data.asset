@@ -35,6 +35,14 @@ MonoBehaviour:
     m_Key: SHOP_SELL
     m_Metadata:
       m_Items: []
+  - m_Id: 7484597348958208
+    m_Key: MAIN_SHOP_GOLD_CURRENT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7484721592631296
+    m_Key: MAIN_SHOP_GOLD_GOAL
+    m_Metadata:
+      m_Items: []
   - m_Id: 4032849598840832
     m_Key: REASEARCH_REASEARCH
     m_Metadata:
@@ -53,6 +61,14 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 4033588295467008
     m_Key: OPTION_TERMS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7502823978008576
+    m_Key: OPTION_BGM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7502826863689728
+    m_Key: OPTION_SFX
     m_Metadata:
       m_Items: []
   - m_Id: 4032146021122048

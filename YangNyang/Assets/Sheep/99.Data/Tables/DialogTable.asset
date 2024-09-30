@@ -16,7 +16,6 @@ MonoBehaviour:
   pathJson: 
   lastLoadedTime: 
   list:
-  - {fileID: 11400000, guid: 79d4479f15e8eb946ac1f2b9407e8eb2, type: 2}
   - {fileID: 11400000, guid: d62d02d9e2e446f4a98ff5b42b398b52, type: 2}
   - {fileID: 11400000, guid: 765f2d2537d53f04cb7cefd1a4895a07, type: 2}
   - {fileID: 11400000, guid: a5b205a8928e41a4684a7078d4a694de, type: 2}

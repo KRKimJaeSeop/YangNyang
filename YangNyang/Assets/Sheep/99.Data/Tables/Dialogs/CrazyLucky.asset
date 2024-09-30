@@ -18,10 +18,10 @@ MonoBehaviour:
   id: 4
   icon: {fileID: 0}
   localName:
-    table: 0
-    key: 
+    table: 4
+    key: Test
   localDescription:
-    table: 0
+    table: 4
     key: 
   type: 4
   _steps:

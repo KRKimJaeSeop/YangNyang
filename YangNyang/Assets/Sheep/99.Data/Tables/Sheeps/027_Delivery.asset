@@ -18,11 +18,11 @@ MonoBehaviour:
   id: 27
   icon: {fileID: 21300000, guid: 249e63d0c0c200841932bf369d4122bd, type: 3}
   localName:
-    table: 0
-    key: 
+    table: 2
+    key: SHEEP_27_NAME
   localDescription:
-    table: 0
-    key: 
+    table: 2
+    key: SHEEP_27_DESCRIPTION
   _type: 1
   _idleStateRate: 0.5
   _idleTime: 1

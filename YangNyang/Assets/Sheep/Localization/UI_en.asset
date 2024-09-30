@@ -91,7 +91,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4037244218605568
-    m_Localized: I haven't gotten the wool yet. What sheep is it?
+    m_Localized: "What kind of sheep is this? Conducting research increases the chances
+      of encountering it. Let\u2019s shear its wool and register it in the collection."
     m_Metadata:
       m_Items: []
   - m_Id: 4296541531897856
@@ -107,6 +108,22 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5453436430942208
     m_Localized: Korean
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7484597348958208
+    m_Localized: Current
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7484721592631296
+    m_Localized: Target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7502823978008576
+    m_Localized: BGM
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7502826863689728
+    m_Localized: SFX
     m_Metadata:
       m_Items: []
   references:

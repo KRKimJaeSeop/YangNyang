@@ -83,7 +83,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4027812680138752
-    m_Localized: Wizard Sheep
+    m_Localized: Abracatab Sheep
     m_Metadata:
       m_Items: []
   - m_Id: 4027814584352768
@@ -196,8 +196,8 @@ MonoBehaviour:
   - m_Id: 4026531651616768
     m_Localized: 'Chicken Skewer is such a delicious food.
 
-      I want to try
-      the most delicious chicken skewers in the world.'
+      I want to try the
+      most delicious chicken skewers in the world.'
     m_Metadata:
       m_Items: []
   - m_Id: 4026533027348480
@@ -235,8 +235,8 @@ MonoBehaviour:
   - m_Id: 4027812046798848
     m_Localized: 'I don''t really like octopus bread
 
-      I put it in because
-      I thought it would be cute.
+      I put it in because I
+      thought it would be cute.
 
       But it''s still good.'
     m_Metadata:
@@ -270,8 +270,8 @@ MonoBehaviour:
   - m_Id: 4027819420385280
     m_Localized: 'It is a fruit that a person should never eat.
 
-      However,
-      if you make it well with ketchup, you can enjoy it.'
+      However, if
+      you make it well with ketchup, you can enjoy it.'
     m_Metadata:
       m_Items: []
   - m_Id: 4027820779339776
@@ -298,15 +298,15 @@ MonoBehaviour:
   - m_Id: 4028115164954624
     m_Localized: 'It''s a square sheep.
 
-      I think I should take you to the
-      hotel in the afternoon.'
+      I think I should take you to the hotel
+      in the afternoon.'
     m_Metadata:
       m_Items: []
   - m_Id: 4028125201924096
     m_Localized: 'It''s like delicious ice cream.
 
-      I think we need to eat
-      quickly before it melts!'
+      I think we need to eat quickly
+      before it melts!'
     m_Metadata:
       m_Items: []
   - m_Id: 4028128184074240

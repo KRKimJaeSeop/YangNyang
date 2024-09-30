@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,23 +9,35 @@ public class UIWatchDialogPanel : UIPanel
     public class ReplayButtonInfo
     {
         [SerializeField]
-        private Button btn;
+        private Button _btn;
+        [SerializeField]
+        private TextMeshProUGUI _text;
         [SerializeField]
         private Dialog.Type _type;
 
         public void Initialize()
         {
-            btn.onClick.AddListener(Play);
+            _btn.onClick.AddListener(Play);
         }
         public void Play()
         {
             DialogManager.Instance.EnterDialog(_type);
-
         }
 
         public void SetBtn()
         {
-            btn.interactable = (GameDataManager.Instance.Storages.UnlockDialog.IsUnlockDialogID(_type));
+            if (GameDataManager.Instance.Storages.UnlockDialog.IsUnlockDialogID(_type))
+            {
+                _btn.interactable = true;
+                _text.text = $"# {GameDataManager.Instance.Tables.Dialog.GetUnit(_type).localName.GetLocalizedString()}";
+            }
+            else
+            {
+                _btn.interactable = false;
+                _text.text = $"# ???";
+            }
+
+
         }
     }
 

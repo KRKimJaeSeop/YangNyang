@@ -1,3 +1,4 @@
+using Localization;
 using System;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,11 @@ public class UICollectionDetailPanel : UIPanel
     [SerializeField]
     private Material _lockSilhouette;
 
+        [SerializeField]
+    private LocalizationData _unknownName;
+    [SerializeField]
+    private LocalizationData _unknownDescription;
+
     public void Open(int id, bool isUnlock, Canvas canvas = null, UnityAction<object> cbClose = null)
     {
         base.Open(canvas, cbClose);
@@ -25,14 +31,14 @@ public class UICollectionDetailPanel : UIPanel
         if (isUnlock)
         {
             _icon.material = null;
-            _nameText.text = $"{tbUnit.id}의 이름.";
-            _descriptionText.text = $"{tbUnit.id}의 설명.\n 왜 이렇게 하냐면 로컬라이징을 아직 안해서..";
+            _nameText.text = $"{tbUnit.localName.GetLocalizedString()}";
+            _descriptionText.text = $"{tbUnit.localDescription.GetLocalizedString()}";
         }
         else
         {
             _icon.material = _lockSilhouette;
-            _nameText.text = $"???";
-            _descriptionText.text = $"뭔지 아직 모르겠다..";
+            _nameText.text = $"{_unknownName.GetLocalizedString()}";
+            _descriptionText.text = $"{_unknownDescription.GetLocalizedString()}";
         }
     }
 

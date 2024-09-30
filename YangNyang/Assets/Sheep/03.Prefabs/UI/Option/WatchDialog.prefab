@@ -1456,18 +1456,28 @@ MonoBehaviour:
   safeAreaHandler: {fileID: 3742990012373420319}
   closeButtons:
   - {fileID: 641827374410210196}
+  _guide:
+    _dialogType: 0
+    closeBtn: {fileID: 0}
+    openBtn: {fileID: 0}
+    _uiGuideObjects: []
   _feedback_popSound: {fileID: 5890435588292155116}
   _feedback_OnEnable: {fileID: 6511707229576139993}
   _replayBtns:
-  - btn: {fileID: 1616665666496410531}
+  - _btn: {fileID: 1616665666496410531}
+    _text: {fileID: 6180574743580388472}
     _type: 1
-  - btn: {fileID: 4250521433018738676}
+  - _btn: {fileID: 4250521433018738676}
+    _text: {fileID: 2433282950405663983}
     _type: 3
-  - btn: {fileID: 1096152672332538356}
+  - _btn: {fileID: 1096152672332538356}
+    _text: {fileID: 3835826127559871927}
     _type: 2
-  - btn: {fileID: 4978253960667391234}
+  - _btn: {fileID: 4978253960667391234}
+    _text: {fileID: 5366268930147800558}
     _type: 4
-  - btn: {fileID: 8492467804867712274}
+  - _btn: {fileID: 8492467804867712274}
+    _text: {fileID: 1088813174527471259}
     _type: 5
 --- !u!114 &3742990012373420319
 MonoBehaviour:
@@ -2485,6 +2495,7 @@ GameObject:
   - component: {fileID: 1796208008736814000}
   - component: {fileID: 3993299766350273044}
   - component: {fileID: 1524151099870518270}
+  - component: {fileID: 6503280231060260362}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2506,10 +2517,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 9157469857369358023}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -80.37024}
-  m_SizeDelta: {x: 391.2875, y: 97.8219}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3993299766350273044
 CanvasRenderer:
@@ -2602,9 +2613,49 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 10, y: 10, z: 10, w: 10}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6503280231060260362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8971325937395695388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:5781d0dde8bd2cd42a9419d32eacebc5
+    m_TableEntryReference:
+      m_KeyId: 4032854434873344
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1524151099870518270}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []

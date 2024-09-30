@@ -595,6 +595,12 @@ MonoBehaviour:
   _nameText: {fileID: 8400926595538174962}
   _descriptionText: {fileID: 322334777367399770}
   _lockSilhouette: {fileID: 2100000, guid: 64eb1f519b4c6684da16a73eb4242ecc, type: 2}
+  _unknownName:
+    table: 3
+    key: COLLECTION_UNKNOWN_NAME
+  _unknownDescription:
+    table: 3
+    key: COLLECTION_UNKNOWN_DESCRIPTION
 --- !u!114 &2421124275935661603
 MonoBehaviour:
   m_ObjectHideFlags: 0
