@@ -71,6 +71,143 @@ MonoBehaviour:
       to see detailed information.
     m_Metadata:
       m_Items: []
+  - m_Id: 336147389972480
+    m_Localized: yummy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333984060243968
+    m_Localized: "Hello! You\u2019ve come to help me."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334024212316160
+    m_Localized: Right now, the witch in the forest has played a prank, and the sheep
+      are under a spell that makes their wool grow immensely.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334025940369408
+    m_Localized: "I\u2019m going to sell a lot of wool, quickly earn the target amount,
+      and then go to a resort to live leisurely."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334038527475712
+    m_Localized: Move me to approach the sheep, and I can shear their wool.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334204852600832
+    m_Localized: Shall we start picking up the wool?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334205469163520
+    m_Localized: The wool collected can be converted into gold coins or used for
+      research.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 341520956096512
+    m_Localized: Just up to the target amount!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 334206714871808
+    m_Localized: "Let\u2019s work hard to collect money quickly~"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335208373387264
+    m_Localized: "Finally, we\u2019ve collected it all! Haha."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335217114316800
+    m_Localized: "Thank you for helping me so far. Now, I\u2019m going to sleep and
+      leave this place."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335218804621312
+    m_Localized: Sheep, witch in the forest, thank you!! Haha!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335225133826048
+    m_Localized: Oh no!!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335228849979392
+    m_Localized: "All the money I\u2019ve collected is gone. Where did it go?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335230036967424
+    m_Localized: There must be a thief among the sheep.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335231496585216
+    m_Localized: "\rThere must be a culprit among the sheep that hasn\u2019t been
+      registered in the encyclopedia. Let\u2019s find all the sheep."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335562074849280
+    m_Localized: In the end, there was no culprit among the sheep.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335768015175680
+    m_Localized: Who on earth took it?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335768711430144
+    m_Localized: "Um. I have something to say.\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335769340575744
+    m_Localized: What!! You sheep can talk?!!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335769994887168
+    m_Localized: "You are a cat, yet you can talk, can\u2019t you?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 338369070858240
+    m_Localized: .........
+    m_Metadata:
+      m_Items: []
+  - m_Id: 335770611449856
+    m_Localized: After we were enchanted, we were happy to see you so delighted.
+      But then we realized you would abandon us once you collected all the money.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336146056183808
+    m_Localized: So we ate all the money.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336147901677568
+    m_Localized: Yes, I was too harsh.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 336156080570368
+    m_Localized: "You are sheep I\u2019ve spent my whole life with, but I only saw
+      you as a way to make money\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 337024125337600
+    m_Localized: "I\u2019m sorry, sheep. I don\u2019t need money anymore."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 337024746094592
+    m_Localized: "Let\u2019s live happily together for a long time!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 339797025849344
+    m_Localized: "That\u2019s right. That day is my birthday. Haha."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 340021672771584
+    m_Localized: "That\u2019s it. There\u2019s nothing more."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 339795847249920
+    m_Localized: You seem to be the luckiest person in the world. How did you do
+      this? Seriously.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 339796451229696
+    m_Localized: "Please contact the developer directly\u2026 I\u2019m curious who
+      they are."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -51,22 +51,25 @@ public class DevUI : MonoBehaviour
     }
     private void OnClick1()
     {
-        DialogManager.Instance.EnterDialog(Dialog.Type.HappyEnd);
+        DialogManager.Instance.EnterDialog(Dialog.Type.SadEnd);
 
         //UIManager.Instance.OpenResultPanel("테스트", $"과연");
 
     }
     private void OnClick2()
     {
+        DialogManager.Instance.EnterDialog(Dialog.Type.CrazyLucky);
+
         //eldObjectManager.Instance.StartSheepSpawn(true);
         //var texture = AddressableManager.Instance.GetAsset<Texture2D>(AddressableManager.RemoteAssetCode.OverlayBranch);
         //img.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 5);
-        AdvertisingController.Instance.ShowBanner();
+        //vertisingController.Instance.ShowBanner();
         ////UIManager.Instance.OpenNotificationPanel(textField1.text);
     }
     private void OnClick3()
     {
-        AdvertisingController.Instance.StopBanner();
+        DialogManager.Instance.EnterDialog(Dialog.Type.CrazyLucky);
+        //AdvertisingController.Instance.StopBanner();
         //FieldObjectManager.Instance.StopSheepSpawn();
         //UIManager.Instance.OpenResultPanel(textField1.text, textField2.text);
     }

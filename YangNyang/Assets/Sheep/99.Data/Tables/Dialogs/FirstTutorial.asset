@@ -30,12 +30,16 @@ MonoBehaviour:
     SpawnType: 1
     ActionPlace: 1
     ActionTime: 0
-    SpeechText: 
+    LocalText:
+      table: 0
+      key: 
     IsStop: 1
-  - UnitActionType: 2
+  - UnitActionType: 3
     ActorNickName: aa
     SpawnType: 0
     ActionPlace: 2
     ActionTime: 1
-    SpeechText: 
+    LocalText:
+      table: 0
+      key: 
     IsStop: 1
