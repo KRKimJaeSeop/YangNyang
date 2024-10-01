@@ -139,6 +139,62 @@ MonoBehaviour:
     m_Key: CURRENCY ICON_WOOL
     m_Metadata:
       m_Items: []
+  - m_Id: 7906222473052160
+    m_Key: NOTI_BUFF
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905904414785536
+    m_Key: CONFIRM_AD_TITLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905905836654592
+    m_Key: CONFIRM_AD_CONTENT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905906457411584
+    m_Key: CONFIRM_NO AD
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905907090751488
+    m_Key: CONFIRM_INTERNET ERROR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905907694731264
+    m_Key: CONFIRM_AD FAILED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905908214824960
+    m_Key: CONFIRM_AD DENY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7908950276407296
+    m_Key: NOTI_DIALOG REWATCH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7909435058257920
+    m_Key: NOTI_LOCK SHEEP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7913733934645248
+    m_Key: GAME CLEAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7913739412406272
+    m_Key: GAME CLEAR_CONTENT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7915257075171328
+    m_Key: APP_QUIT_TITLE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7915305519382528
+    m_Key: APP_QUIT_CONTENT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7916296323039232
+    m_Key: CREDIT
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

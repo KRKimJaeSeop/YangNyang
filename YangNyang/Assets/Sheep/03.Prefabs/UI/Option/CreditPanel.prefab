@@ -1041,6 +1041,11 @@ MonoBehaviour:
   safeAreaHandler: {fileID: 2204693604496126682}
   closeButtons:
   - {fileID: 4227207446887580485}
+  _guide:
+    _dialogType: 0
+    closeBtn: {fileID: 0}
+    openBtn: {fileID: 0}
+    _uiGuideObjects: []
   _feedback_popSound: {fileID: 7515041325690868790}
   _feedback_OnEnable: {fileID: 3449419563281562144}
 --- !u!114 &2204693604496126682
@@ -1069,6 +1074,7 @@ GameObject:
   - component: {fileID: 7823711206152766809}
   - component: {fileID: 8216221051197453728}
   - component: {fileID: 4030227066653353411}
+  - component: {fileID: 5393326380847372715}
   m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1123,7 +1129,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "programming \n&\nDesign\n\nby Devboogie"
+  m_text: '
+
+
+    by Devboogie'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c80642c163bc4444e9d6b8cf85d29df1, type: 2}
   m_sharedMaterial: {fileID: 6438681259409155692, guid: c80642c163bc4444e9d6b8cf85d29df1, type: 2}
@@ -1150,14 +1159,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1186,12 +1195,52 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 50, y: 50, z: 50, w: 50}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5393326380847372715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556191467896160379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:5781d0dde8bd2cd42a9419d32eacebc5
+    m_TableEntryReference:
+      m_KeyId: 7916296323039232
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4030227066653353411}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &5700477904532473668
 GameObject:
   m_ObjectHideFlags: 0

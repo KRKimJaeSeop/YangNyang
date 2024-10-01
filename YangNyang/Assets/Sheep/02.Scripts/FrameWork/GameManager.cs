@@ -1,3 +1,4 @@
+using Localization;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -27,7 +28,12 @@ public class GameManager : Singleton<GameManager>
     private Coroutine _autoSaveCoroutine;
     [SerializeField]
     private float _autoSaveInterval;
-
+    [SerializeField]
+    private LocalizationData _replayGuide;
+    [SerializeField]
+    private LocalizationData _gameClearTitleLocal;
+    [SerializeField]
+    private LocalizationData _gameClearContentLocal;
     private void Awake()
     {
         Application.targetFrameRate = 60;
@@ -83,10 +89,17 @@ public class GameManager : Singleton<GameManager>
 
         _autoSaveCoroutine = StartCoroutine(AutoSaveCoroutine(_autoSaveInterval));
 
-
+       
         // End Loading
         UIManager.Instance.CloseLoading();
 
+        if (!GameDataManager.Instance.Storages.UnlockDialog.IsUnlockDialogID(Dialog.Type.FirstTutorial))
+        {
+            DialogManager.Instance.EnterDialog(Dialog.Type.FirstTutorial, () =>
+            {
+                UIManager.Instance.OpenNotificationPanel(_replayGuide.GetLocalizedString());
+            });
+        }
     }
 
     private EndingType GetEndingType()
@@ -134,14 +147,14 @@ public class GameManager : Singleton<GameManager>
         {
             isGameClear = true;
             UIManager.Instance.CloseAll();
-            var endingType = GetEndingType();
-            StartCoroutine(OnGameClearCoroutine(() =>
-            {
-                UIManager.Instance.OpenResultPanel("레벨이 올랐어요!", $"{endingType}로 엔딩봄. \n 능력치 ~~ 올라감~!");
-                isGameClear = false;
+            UIManager.Instance.OpenResultPanel(_gameClearTitleLocal.GetLocalizedString(), _gameClearContentLocal.GetLocalizedString(),
+                (cbClose) =>
+                {
+                    var endingType = GetEndingType();
+                    OnGameClear?.Invoke(endingType);
+                });
 
-            }));
-            OnGameClear?.Invoke(endingType);
+         
         }
     }
 
@@ -153,14 +166,6 @@ public class GameManager : Singleton<GameManager>
         callback?.Invoke();
     }
 
-    public void TestEnter()
-    {
-        DialogManager.Instance.EnterDialog(Dialog.Type.FirstTutorial);
-    }
-    public void TestExit()
-    {
-        DialogManager.Instance.ExitDialog();
-    }
 
     private IEnumerator AutoSaveCoroutine(float waitSecond)
     {

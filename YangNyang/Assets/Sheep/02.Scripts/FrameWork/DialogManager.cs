@@ -1,13 +1,20 @@
+using Localization;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using static GameManager;
 using Type = Dialog.Type;
 
 public class DialogManager : Singleton<DialogManager>
 {
+    [SerializeField]
+    private LocalizationData _replayGuide;
+
     private DialogTableUnit _tbUnit;
     private int stepIndex = 0;
 
+    protected UnityAction _cbClose = null;
     public delegate void DialogEnterEvent(bool isStart);
     public static event DialogEnterEvent OnDialogEnter;
 
@@ -15,28 +22,45 @@ public class DialogManager : Singleton<DialogManager>
     private bool isPlaying = false;
     public bool IsPlaying { get { return isPlaying; } }
 
-    public void EnterDialog(Type type)
+    private void OnEnable()
     {
-        var a = GameDataManager.Instance.Storages.UnlockDialog.IsUnlockDialogID(type);
-        // 만약 처음 실행하는 대화라면 스토리지에 해금한다.
-        if (!GameDataManager.Instance.Storages.UnlockDialog.IsUnlockDialogID(type))
-        {
-            GameDataManager.Instance.Storages.UnlockDialog.UnlockDialog(type);
-        }
-        isPlaying = true;
-        _tbUnit = GameDataManager.Instance.Tables.Dialog.GetUnit(type);
-
-        UIManager.Instance.OpenFadeOutIn(() =>
-            {
-                UIManager.Instance.CloseAll();
-                UIManager.Instance.OpenDialog();
-                OnDialogEnter?.Invoke(true);
-                stepIndex = 0;
-                ActionStep();
-            },
-            null);
+         OnGameClear += GameManager_OnGameClear;
 
     }
+    private void OnDisable()
+    {
+        OnGameClear -= GameManager_OnGameClear;
+
+    }
+    private void GameManager_OnGameClear(EndingType type)
+    {
+        var dialogType = Type.None;
+        switch (type)
+        {
+            case EndingType.CrazyLucky:
+                dialogType = Type.CrazyLucky;
+                break;
+            case EndingType.Birthday:
+                dialogType = Type.HBD;
+                break;
+            case EndingType.Sad:
+                dialogType = Type.SadEnd;
+                break;
+            case EndingType.Happy:
+                dialogType = Type.HappyEnd;
+                break;
+            default:
+                break;
+        }
+        EnterDialog(dialogType,
+            () =>
+            {
+                UIManager.Instance.OpenNotificationPanel(_replayGuide.GetLocalizedString());
+
+            });
+
+    }
+
 
     public void OnClickNext()
     {
@@ -46,6 +70,50 @@ public class DialogManager : Singleton<DialogManager>
     public void OnClickSkip()
     {
         ExitDialog();
+    }
+
+    private CharacterObject GetCharacterObject(string actorNickname)
+    {
+        if (_actors.TryGetValue(_tbUnit.Steps[stepIndex].ActorNickName, out int actorID))
+        {
+            return (FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID));
+        }
+        else
+        {
+            Debug.LogError($"Don't Manage [{actorNickname}]");
+            return null;
+        }
+    }
+    #region Dialog Flow
+    public void EnterDialog(Type type, UnityAction callback = null)
+    {
+        var a = GameDataManager.Instance.Storages.UnlockDialog.IsUnlockDialogID(type);
+        if (callback != null)
+        {
+            _cbClose = callback;
+        }
+        else
+        {
+            _cbClose = null;
+        }
+        // 만약 처음 실행하는 대화라면 스토리지에 해금한다.
+        if (!GameDataManager.Instance.Storages.UnlockDialog.IsUnlockDialogID(type))
+        {
+            GameDataManager.Instance.Storages.UnlockDialog.UnlockDialog(type);
+        }
+        isPlaying = true;
+        _tbUnit = GameDataManager.Instance.Tables.Dialog.GetUnit(type);
+
+        UIManager.Instance.OpenFadeOutIn(() =>
+        {
+            UIManager.Instance.CloseAll();
+            UIManager.Instance.OpenDialog();
+            OnDialogEnter?.Invoke(true);
+            stepIndex = 0;
+            ActionStep();
+        },
+            null);
+
     }
 
     // 하나의 스텝을 실행한다. isStop이 false라면 재귀한다.
@@ -92,7 +160,7 @@ public class DialogManager : Singleton<DialogManager>
                 spawnID = FieldObjectManager.Instance.SpawnPlayer(_tbUnit.Steps[stepIndex].ActionPlace).InstanceID;
                 break;
             case FieldObject.Type.WorkableSheep:
-                spawnID = FieldObjectManager.Instance.SpawnSheep(1,_tbUnit.Steps[stepIndex].ActionPlace, StandardSheep.SheepState.Idle).InstanceID;
+                spawnID = FieldObjectManager.Instance.SpawnSheep(1, _tbUnit.Steps[stepIndex].ActionPlace, StandardSheep.SheepState.Idle).InstanceID;
                 break;
             case FieldObject.Type.Wool:
                 spawnID = FieldObjectManager.Instance.SpawnWool(Vector2.zero).InstanceID;
@@ -139,21 +207,6 @@ public class DialogManager : Singleton<DialogManager>
         UIManager.Instance.OpenFadeOutIn(null, afterActionCallback);
     }
 
-
-    private CharacterObject GetCharacterObject(string actorNickname)
-    {
-        if (_actors.TryGetValue(_tbUnit.Steps[stepIndex].ActorNickName, out int actorID))
-        {
-            return (FieldObjectManager.Instance.GetFieldObject<CharacterObject>(actorID));
-        }
-        else
-        {
-            Debug.LogError($"Don't Manage [{actorNickname}]");
-            return null;
-        }
-    }
-
-
     public void ExitDialog()
     {
         isPlaying = false;
@@ -164,10 +217,13 @@ public class DialogManager : Singleton<DialogManager>
             {
                 UIManager.Instance.CloseDialog();
                 OnDialogEnter?.Invoke(false);
+                _cbClose?.Invoke();
             },
            null);
 
-
     }
+    #endregion
+
+
 
 }

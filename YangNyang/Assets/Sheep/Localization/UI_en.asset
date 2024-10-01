@@ -146,6 +146,67 @@ MonoBehaviour:
     m_Localized: Day
     m_Metadata:
       m_Items: []
+  - m_Id: 7906222473052160
+    m_Localized: Blessed Sheep Found! For a short time, more sheep will appear.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905904414785536
+    m_Localized: Lucky Sheep Found!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905905836654592
+    m_Localized: "If you watch the ad, you\u2019ll get a sheep that gives a huge
+      amount of wool. \nWould you like to watch the ad?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905906457411584
+    m_Localized: Unfortunately, there are no ads available.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905907090751488
+    m_Localized: Please check your internet connection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905907694731264
+    m_Localized: The ad did not play correctly.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7905908214824960
+    m_Localized: The Blessed Sheep got upset and gave only a little wool.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7908950276407296
+    m_Localized: You can view this conversation again in [Options] - [Dialog Replay]
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7909435058257920
+    m_Localized: "A sheep that isn\u2019t in the [collection] has appeared!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7913733934645248
+    m_Localized: Game Clear!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7913739412406272
+    m_Localized: "You\u2019ve achieved the game\u2019s goal! \nThe work speed has
+      increased.\nLet\u2019s move on to see the ending."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7915257075171328
+    m_Localized: Exit Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7915305519382528
+    m_Localized: Would you like to quit the game?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7916296323039232
+    m_Localized: "Planning, Development & Design :  JaeSeop Kim \nDevelopment Period
+      :  40 days (2024.08.23~2024.10.01) \nDevelopment Intent : I wanted to quickly
+      try solo development, \nand since I couldn\u2019t include company code in my
+      portfolio, I created this separately.\n\r\nThank you for playing."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Localization;
 using MoreMountains.Feedbacks;
 using System;
 using System.Collections;
@@ -15,7 +16,8 @@ public class StandardSheep : CharacterObject, IInteractable
         Move,// Spawn되고나서의 기본 상태다. 목적지를향해서 계속 이동하고, 단 한 번 확률적으로 Idle상태가 될 수 있다. 목적지에 도달하면 None으로 전환된다.
         Work,// 플레이어에게 충돌하면 전환된다. 플레이어가 이동해서 충돌에서 빠져나오거나, 정해진 Work시간이 지나면 Move로 전환된다.
     }
-
+    [SerializeField]
+    private LocalizationData _lockedSheepAppear;
     [SerializeField]
     protected SpriteResolver _bodySpriteResolver;
     [SerializeField]
@@ -33,6 +35,7 @@ public class StandardSheep : CharacterObject, IInteractable
     // 작업 중간에 탈출하지않고, 완전히 작업을 완료한 경우에만 false가 된다.
     protected bool _isWorkable;
     protected SheepTableUnit _tbUnit;
+
     [Header("Feel")]
     [SerializeField]
     protected MMF_Player _feedback_workEnter;
@@ -82,7 +85,7 @@ public class StandardSheep : CharacterObject, IInteractable
         {
             _feedback_lockSheep.PlayFeedbacks();
             _speechBubble.Show("!!",5f);
-            UIManager.Instance.OpenNotificationPanel("임시 레전드양 등장");
+            UIManager.Instance.OpenNotificationPanel(_lockedSheepAppear.GetLocalizedString());
         }
         //_feedback_workEnter.StopFeedbacks();
         _fsm.ChangeState(initState);

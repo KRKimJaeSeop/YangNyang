@@ -1185,9 +1185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isAutoBanner: 0
-  _BannerID: ca-app-pub-3940256099942544/6300978111
+  _BannerID: ca-app-pub-8211980681636381/1130279765
   _interstitialID: ca-app-pub-3940256099942544/1033173712
-  _rewardedAdID: ca-app-pub-3940256099942544/5224354917
+  _rewardedAdID: ca-app-pub-8211980681636381/6915563685
 --- !u!114 &249435587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2133,6 +2133,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openedPanelInfos: []
+  _quitTitle:
+    table: 3
+    key: APP_QUIT_TITLE
+  _quitContent:
+    table: 3
+    key: APP_QUIT_CONTENT
   goWaiting: {fileID: 2071835144}
   goLoading: {fileID: 691200825}
   DialogOverlayUI: {fileID: 6439506403937858775}
@@ -2142,40 +2148,28 @@ MonoBehaviour:
     list:
     - code: 1
       prefab: {fileID: 1600894633472345925, guid: 61759bfaec6a0b043bf98d45c1d71452, type: 3}
-      isMultipleOpen: 0
     - code: 2
       prefab: {fileID: 7634938144095296910, guid: 4e7193a33b93de44da20c449e2ae4278, type: 3}
-      isMultipleOpen: 0
     - code: 3
       prefab: {fileID: 3523878632548018832, guid: fd023aa4706e066419184164a0248f4c, type: 3}
-      isMultipleOpen: 0
     - code: 101
       prefab: {fileID: 5445488594869639110, guid: 4660b6c59ba62d64eb7fffc169d3555b, type: 3}
-      isMultipleOpen: 0
     - code: 201
       prefab: {fileID: 6636849863080960283, guid: b244546c7ecc1f546b7c796592741382, type: 3}
-      isMultipleOpen: 0
     - code: 301
       prefab: {fileID: 1333176819910788522, guid: 3d6e48b81cfaa674d82bde09d8fa8aa6, type: 3}
-      isMultipleOpen: 0
     - code: 302
       prefab: {fileID: 3092978901653365892, guid: 1d028ef08f7d3a745b23e31c4e420e15, type: 3}
-      isMultipleOpen: 0
     - code: 501
       prefab: {fileID: 8579756765412125230, guid: 490341b3550f79641a8dfd9363d19f2b, type: 3}
-      isMultipleOpen: 0
     - code: 401
       prefab: {fileID: 959308383515491214, guid: ad470123dcebb394283a3f0f2277d1bd, type: 3}
-      isMultipleOpen: 0
     - code: 402
       prefab: {fileID: 8391266340901048503, guid: 527c48f0f18159c468b16ff071d228a6, type: 3}
-      isMultipleOpen: 0
     - code: 403
       prefab: {fileID: 4490006184757137150, guid: bed07688ecc67dc4f964efa02e1681ae, type: 3}
-      isMultipleOpen: 0
     - code: 404
       prefab: {fileID: 5006047031174468987, guid: 8afb5f5ae3e935548a79649254626930, type: 3}
-      isMultipleOpen: 0
 --- !u!1 &690446138
 GameObject:
   m_ObjectHideFlags: 0
@@ -4834,6 +4828,15 @@ MonoBehaviour:
   _targetGoldAmount: 10000
   _environment: {fileID: 1991970729}
   _autoSaveInterval: 300
+  _replayGuide:
+    table: 3
+    key: NOTI_DIALOG REWATCH
+  _gameClearTitleLocal:
+    table: 3
+    key: GAME CLEAR
+  _gameClearContentLocal:
+    table: 3
+    key: GAME CLEAR_CONTENT
 --- !u!114 &1487654497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4881,6 +4884,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdd3d5e36b0131e499a537f02999c447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _replayGuide:
+    table: 3
+    key: NOTI_DIALOG REWATCH
 --- !u!114 &1487654499
 MonoBehaviour:
   m_ObjectHideFlags: 0

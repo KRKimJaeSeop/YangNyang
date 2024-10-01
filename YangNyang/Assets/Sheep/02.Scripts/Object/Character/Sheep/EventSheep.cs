@@ -1,8 +1,21 @@
+using Localization;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class EventSheep : StandardSheep
 {
+    [SerializeField]
+    private LocalizationData _confirmTitle;
+    [SerializeField]
+    private LocalizationData _confirmContents;
+    [SerializeField]
+    private LocalizationData _NoAmoAD;
+    [SerializeField]
+    private LocalizationData _InterntetError;
+    [SerializeField]
+    private LocalizationData _ADFailed;
+    [SerializeField]
+    private LocalizationData _ADDeny;
     public override void EnterSingleInteraction()
     {
         base.EnterSingleInteraction();
@@ -11,7 +24,7 @@ public class EventSheep : StandardSheep
     protected override void WorkComplete()
     {
         var woolAmount = 5;
-        UIManager.Instance.OpenConfirmPanel("임시 광고보기", "임시 광고보고 엄청많이 받을래요?", null,
+        UIManager.Instance.OpenConfirmPanel(_confirmTitle.GetLocalizedString(), _confirmContents.GetLocalizedString(), null,
             (result) =>
             {
                 var confirmResult = result as UIConfirmPanel.Results;
@@ -19,12 +32,12 @@ public class EventSheep : StandardSheep
                 {
                     if (!AdvertisingController.Instance.IsLoadedRewardedAd())
                     {
-                        UIManager.Instance.OpenNotificationPanel("임시 광고 수량이 없어요");
+                        UIManager.Instance.OpenNotificationPanel(_NoAmoAD.GetLocalizedString());
                         FieldObjectManager.Instance.SpawnWools(this.transform.position, woolAmount);
                     }
                     else if (Application.internetReachability == NetworkReachability.NotReachable)
                     {
-                        UIManager.Instance.OpenNotificationPanel("임시 인터넷 연결 확인~");
+                        UIManager.Instance.OpenNotificationPanel(_InterntetError.GetLocalizedString());
                         FieldObjectManager.Instance.SpawnWools(this.transform.position, woolAmount);
                     }
                     else
@@ -37,7 +50,7 @@ public class EventSheep : StandardSheep
                             }
                             else
                             {
-                                UIManager.Instance.OpenNotificationPanel("임시 광고 시청이 정상적으로 완료되지 않았슴~");
+                                UIManager.Instance.OpenNotificationPanel(_ADFailed.GetLocalizedString());
                             }
                             // 양털 아이템 뽑는다.
                             FieldObjectManager.Instance.SpawnWools(this.transform.position, woolAmount);
@@ -46,7 +59,7 @@ public class EventSheep : StandardSheep
                 }
                 else
                 {
-                    UIManager.Instance.OpenNotificationPanel("광고 안봐줘서 털 조금만주고 갑니다~");
+                    UIManager.Instance.OpenNotificationPanel(_ADDeny.GetLocalizedString());
                     // 양털 아이템 뽑는다.
                     FieldObjectManager.Instance.SpawnWools(this.transform.position, woolAmount);
                 }

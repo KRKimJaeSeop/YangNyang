@@ -52,13 +52,13 @@ public class DevUI : MonoBehaviour
     private void OnClick1()
     {
 
-        DialogManager.Instance.EnterDialog(Dialog.Type.HappyEnd);
+       // DialogManager.Instance.EnterDialog(Dialog.Type.HappyEnd);
         //UIManager.Instance.OpenResultPanel("테스트", $"과연");
 
     }
     private void OnClick2()
     {
-        DialogManager.Instance.EnterDialog(Dialog.Type.SadEnd);
+      //  DialogManager.Instance.EnterDialog(Dialog.Type.SadEnd);
 
         //eldObjectManager.Instance.StartSheepSpawn(true);
         //var texture = AddressableManager.Instance.GetAsset<Texture2D>(AddressableManager.RemoteAssetCode.OverlayBranch);
@@ -68,7 +68,7 @@ public class DevUI : MonoBehaviour
     }
     private void OnClick3()
     {
-        DialogManager.Instance.EnterDialog(Dialog.Type.CrazyLucky);
+      //  DialogManager.Instance.EnterDialog(Dialog.Type.CrazyLucky);
         //AdvertisingController.Instance.StopBanner();
         //FieldObjectManager.Instance.StopSheepSpawn();
         //UIManager.Instance.OpenResultPanel(textField1.text, textField2.text);
@@ -76,7 +76,7 @@ public class DevUI : MonoBehaviour
     private void OnClick4()
     {
         //if (textField1.text == string.Empty)
-        DialogManager.Instance.EnterDialog(Dialog.Type.HBD);
+      //  DialogManager.Instance.EnterDialog(Dialog.Type.HBD);
         //{
         //    UIManager.Instance.OpenLoading();
         //}

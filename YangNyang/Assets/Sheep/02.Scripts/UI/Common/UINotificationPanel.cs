@@ -8,15 +8,20 @@ public class UINotificationPanel : UIPanel
     [SerializeField]
     private TextMeshProUGUI _contentText;
 
+    private Coroutine _showPanelCoroutine;
     public void Open(string content, Canvas canvas = null, UnityAction<object> cbClose = null)
     {
         base.Open(canvas, cbClose);
-        _contentText.text = content;
-        StartCoroutine(CloseCoru());
+        if (_showPanelCoroutine != null)
+        {
+            StopCoroutine(_showPanelCoroutine);
+        }
+        _contentText.text = content;      
+        _showPanelCoroutine =StartCoroutine(ShowPanelCoroutine());
     }
-    IEnumerator CloseCoru()
+    IEnumerator ShowPanelCoroutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         Close();
     }
 

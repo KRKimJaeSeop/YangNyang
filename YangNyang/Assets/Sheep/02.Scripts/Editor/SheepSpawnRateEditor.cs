@@ -36,7 +36,7 @@ public class SheepSpawnRateEditor : EditorWindow
     private int _categoryIndex;
 
     private string _createUnitName = string.Empty;
-    private string excelFilePath = "Assets/SheepSpawnRates.xlsx";
+    private string excelFilePath = "Assets/Sheep/99.Data/Tables/Table_SheepSpawnRate.xlsx";
 
     void OnEnable()
     {

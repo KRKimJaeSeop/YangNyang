@@ -926,6 +926,9 @@ MonoBehaviour:
   _speechBubbleParent: {fileID: 7537027476477697428}
   _dropShadow: {fileID: 8416000742820657113}
   _animator: {fileID: 1718254337264183459}
+  _lockedSheepAppear:
+    table: 3
+    key: NOTI_LOCK SHEEP
   _bodySpriteResolver: {fileID: 4621066081452142511}
   _headSpriteResolver: {fileID: 6654668326379114168}
   _feedback_workEnter: {fileID: 8397270652681332947}

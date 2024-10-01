@@ -134,7 +134,7 @@ public class UIMainPanel : UIPanel
         UserStorage_OnUpdateLevel(userStorage.ResearchLevel);
         UserStorage_OnUpdateExp(userStorage.ResearchExp);
         List<CurrencyStorage.CurrencyData> currencyList = GameDataManager.Instance.Storages.Currency.Data.currencies;
-        _goalGoldText.text = $"{_goalGoldAmountTextLocal.GetLocalizedString()} : {GameManager.Instance.TargetGoldAmount}{_goldTextLocal.GetLocalizedString()}";
+        _goalGoldText.text = $"{_goalGoldAmountTextLocal.GetLocalizedString()} : {GameManager.Instance.TargetGoldAmount}      {_goldTextLocal.GetLocalizedString()}";
         foreach (var currency in currencyList)
         {
             CurrencyStorage_OnUpdateCurrency(currency.code, currency.amount);

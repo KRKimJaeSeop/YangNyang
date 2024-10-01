@@ -48,7 +48,8 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 3568396763136
     m_Localized: "You can sell wool for gold coins here. \r\nAchieve the target gold
-      to clear the game.\r\n"
+      to clear the game.\r\nWhen you clear the game, you can see the ending, and
+      the speed of shearing wool increases."
     m_Metadata:
       m_Items: []
   - m_Id: 3570078679040

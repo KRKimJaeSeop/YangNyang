@@ -1,3 +1,4 @@
+using Localization;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,8 +48,7 @@ public class UIManager : Singleton<UIManager>
     {
         public Code code;
         public GameObject prefab;
-        [SerializeField, Tooltip("여러개가 오픈 되는 패널 여부")]
-        public bool isMultipleOpen;
+      
     }
     [Serializable]
     class PanelContainer
@@ -57,7 +57,10 @@ public class UIManager : Singleton<UIManager>
         public List<PrefabInformation> list;
     }
 
-
+    [SerializeField]
+    private LocalizationData _quitTitle;
+    [SerializeField]
+    private LocalizationData _quitContent;
     [Header("[Settings]")]
     [SerializeField, Tooltip("대기 화면")]
     private GameObject goWaiting;
@@ -111,7 +114,7 @@ public class UIManager : Singleton<UIManager>
                 return;
 
 
-            OpenConfirmPanel("앱 종료", "QuitText", null,
+            OpenConfirmPanel(_quitTitle.GetLocalizedString(), _quitContent.GetLocalizedString(), null,
                 (results) =>
                 {
                     var confirmResult = results as UIConfirmPanel.Results;
@@ -187,6 +190,10 @@ public class UIManager : Singleton<UIManager>
     {
         return _openedPanelInfos.Find(item => item.code == code);
     }
+    //private void CloseOpenedPanel()
+    //{
+    //    if(_openedPanelInfos.Find)
+    //}
     private GameObject GetPanelObject(Canvas canvas, string name)
     {
         var go = ObjectPool.Instance.Pop(name);
@@ -293,20 +300,28 @@ public class UIManager : Singleton<UIManager>
 
     public UINotificationPanel OpenNotificationPanel(string content, Action<object> cbClose = null)
     {
-
         var panelCode = Code.Notification;
+
+        // 이미 열려있다면 닫는다.
+        if (GetOpenedPanelInfo((int)panelCode) != null)
+        {
+            GetOpenedPanelInfo((int)panelCode).panel.Close();
+        }
+
         var panelInfo = GetPanelInfo(panelCode);
+
         var go = GetPanelObject(panelInfo.canvas, panelInfo.prefabInfo.prefab.name);
         var component = go.GetComponent<UINotificationPanel>();
         var openInfo = AddPanel((int)panelCode, component);
+
         component.Open(content, panelInfo.canvas,
-             (results) =>
-             {
-                 RemovePanel(openInfo);
-                 ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
-                 cbClose?.Invoke(results);
-                 Debug.Log($"{GetType()}::{nameof(OpenNotificationPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
-             });
+         (results) =>
+         {
+             RemovePanel(openInfo);
+             ObjectPool.Instance.Push(panelInfo.prefabInfo.prefab.name, go, true);
+             cbClose?.Invoke(results);
+             Debug.Log($"{GetType()}::{nameof(OpenNotificationPanel)}: Closed. _openPanels.Count={_openedPanelInfos.Count}");
+         });
         Debug.Log($"{GetType()}::{nameof(OpenNotificationPanel)}: _openPanels.Count={_openedPanelInfos.Count}");
         return component;
     }

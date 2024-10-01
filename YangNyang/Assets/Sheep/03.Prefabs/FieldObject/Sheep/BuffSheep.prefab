@@ -183,12 +183,18 @@ MonoBehaviour:
   _speechBubbleParent: {fileID: 43747698448724101}
   _dropShadow: {fileID: 2073959132262996680}
   _animator: {fileID: 9213236691734545842}
+  _lockedSheepAppear:
+    table: 3
+    key: NOTI_LOCK SHEEP
   _bodySpriteResolver: {fileID: 2892113450723869374}
   _headSpriteResolver: {fileID: 3772234556939690921}
   _feedback_workEnter: {fileID: 2056618807239837122}
   _feedback_workExit: {fileID: 2470913004955876209}
   _feedback_cry: {fileID: 570256354430770966}
   _feedback_lockSheep: {fileID: 8827365047539673554}
+  _buffText:
+    table: 3
+    key: NOTI_BUFF
 --- !u!114 &8827365047539673554 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1333790615829480643, guid: 8e9f630f9a9054e408391eccb8b36969, type: 3}

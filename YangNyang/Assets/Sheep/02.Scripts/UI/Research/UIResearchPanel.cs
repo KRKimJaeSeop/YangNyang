@@ -13,6 +13,8 @@ public class UIResearchPanel : UIPanel
     private TextMeshProUGUI _currentLevelText;
     [SerializeField]
     private TextMeshProUGUI _expGaugeText;
+    [SerializeField]
+    private GameObject _btnBlockOverlay;
 
     private long _storageWoolAmount;
     private long _cachedWool;
@@ -59,6 +61,8 @@ public class UIResearchPanel : UIPanel
             _researchAmount = _maxExp > 0 ? _maxExp : 1;
         }
         _currentLevelText.text = $"{currentLevel}LV";
+        _btnBlockOverlay.SetActive(currentLevel >= 30);
+
     }
 
     private void SetGauge()
@@ -71,6 +75,7 @@ public class UIResearchPanel : UIPanel
     // 이 함수를 롱버튼의 UnityEvent에 등록한다.
     public void Research()
     {
+
         if (_cachedWool > 0 && _researchAmount > 0)
         {
             if (_cachedWool > _researchAmount)
@@ -87,5 +92,6 @@ public class UIResearchPanel : UIPanel
             _feedback_popSound.PlayFeedbacks();
             SetGauge();
         }
+
     }
 }
