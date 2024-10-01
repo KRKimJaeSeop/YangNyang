@@ -127,7 +127,7 @@ public class DialogManager : Singleton<DialogManager>
         {
             afterActionCallback += UIManager.Instance.SetActiveDialogNextBtn;
         }
-        characterObject.ShowSpeechBubble(_tbUnit.Steps[stepIndex].SpeechText, _tbUnit.Steps[stepIndex].ActionTime, false, afterActionCallback);
+        characterObject.ShowSpeechBubble(_tbUnit.Steps[stepIndex].LocalText.GetLocalizedString(), _tbUnit.Steps[stepIndex].ActionTime, false, afterActionCallback);
     }
     private void ActionFade()
     {

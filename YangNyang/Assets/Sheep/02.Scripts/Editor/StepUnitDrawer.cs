@@ -5,6 +5,8 @@ using static DialogTableUnit;
 [CustomPropertyDrawer(typeof(StepUnit))]
 public class StepUnitDrawer : PropertyDrawer
 {
+    private bool showLocalText = true; // 디폴트로 펼쳐진 상태
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         EditorGUI.BeginProperty(position, label, property);
@@ -15,7 +17,7 @@ public class StepUnitDrawer : PropertyDrawer
         Rect spawnTypeRect = new Rect(position.x, position.y + 2 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
         Rect actionPlaceRect = new Rect(position.x, position.y + 3 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
         Rect actionTimeRect = new Rect(position.x, position.y + 4 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
-        Rect speechTextRect = new Rect(position.x, position.y + 5 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
+        Rect localTextFoldoutRect = new Rect(position.x, position.y + 5 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
         Rect isStopRect = new Rect(position.x, position.y + 6 * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight);
 
         // Get properties
@@ -24,7 +26,7 @@ public class StepUnitDrawer : PropertyDrawer
         SerializedProperty spawnType = property.FindPropertyRelative("SpawnType");
         SerializedProperty actionPlace = property.FindPropertyRelative("ActionPlace");
         SerializedProperty actionTime = property.FindPropertyRelative("ActionTime");
-        SerializedProperty speechText = property.FindPropertyRelative("SpeechText");
+        SerializedProperty localText = property.FindPropertyRelative("LocalText");
         SerializedProperty isStop = property.FindPropertyRelative("IsStop");
 
         // Draw fields
@@ -56,7 +58,12 @@ public class StepUnitDrawer : PropertyDrawer
         {
             EditorGUI.PropertyField(new Rect(position.x, position.y + line * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), actionTime);
             line++;
-            EditorGUI.PropertyField(new Rect(position.x, position.y + line * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), speechText);
+            if (showLocalText)
+            {
+                EditorGUI.PropertyField(new Rect(position.x, position.y + (line) * EditorGUIUtility.singleLineHeight, position.width, EditorGUIUtility.singleLineHeight), localText, true);
+                line += 2;
+            }
+            line++;
             line++;
         }
         if (actionType != StepUnit.ActionType.None)
@@ -83,7 +90,11 @@ public class StepUnitDrawer : PropertyDrawer
         if (actionType != StepUnit.ActionType.None) lines++;
         if (actionType == StepUnit.ActionType.Spawn) lines += 3;
         if (actionType == StepUnit.ActionType.Move) lines += 2;
-        if (actionType == StepUnit.ActionType.Speech) lines += 2;
+        if (actionType == StepUnit.ActionType.Speech)
+        {
+            lines += 2; // 기본 두 줄
+            if (showLocalText) lines += 2; // 펼쳐진 상태일 때 추가 두 줄
+        }
         if (actionType != StepUnit.ActionType.None) lines++;
 
         // Add space between steps

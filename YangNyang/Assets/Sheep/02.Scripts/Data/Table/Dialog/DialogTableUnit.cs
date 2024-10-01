@@ -1,3 +1,4 @@
+using Localization;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class DialogTableUnit : BaseElementTable
         public FieldObject.Type SpawnType;
         public Place.Type ActionPlace;
         public float ActionTime;
-        public string SpeechText;
+        public LocalizationData LocalText;
         public bool IsStop;
 
     }
