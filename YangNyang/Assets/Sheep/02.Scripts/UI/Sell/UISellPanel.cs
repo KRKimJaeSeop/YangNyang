@@ -44,7 +44,7 @@ public class UISellPanel : UIPanel
     {
         _currentGoldText.text = $"{_goldGoalLocal.GetLocalizedString()} : {GameManager.Instance.TargetGoldAmount}\n" +
                                   $"{_goldCurrentLocal.GetLocalizedString()} : {_cachedGold}\n" +
-                                  $"{string.Format("{0:D2}",((_cachedGold * 100) /GameManager.Instance.TargetGoldAmount))}%";
+                                  $"{string.Format("{0:F2}",((double)(_cachedGold * 100) /GameManager.Instance.TargetGoldAmount))}%";
         _woolFillGauge.fillAmount = _storageWoolAmount > 0 ? (float)((double)_cachedWool / _storageWoolAmount) : 0;
     }
 

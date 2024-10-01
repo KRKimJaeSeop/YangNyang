@@ -14,6 +14,8 @@ public class UIMainPanel : UIPanel
     [SerializeField]
     private TextMeshProUGUI _dayText;
     [SerializeField]
+    private TextMeshProUGUI _goalGoldText;
+    [SerializeField]
     private TextMeshProUGUI _levelText;
     [SerializeField]
     private TextMeshProUGUI _expText;
@@ -29,6 +31,8 @@ public class UIMainPanel : UIPanel
     private LocalizationData _expLocal;
     [SerializeField]
     private LocalizationData _dayLocal;
+    [SerializeField]
+    private LocalizationData _goalGoldAmountTextLocal;
     [SerializeField]
     private LocalizationData _goldTextLocal;
     [SerializeField]
@@ -130,6 +134,7 @@ public class UIMainPanel : UIPanel
         UserStorage_OnUpdateLevel(userStorage.ResearchLevel);
         UserStorage_OnUpdateExp(userStorage.ResearchExp);
         List<CurrencyStorage.CurrencyData> currencyList = GameDataManager.Instance.Storages.Currency.Data.currencies;
+        _goalGoldText.text = $"{_goalGoldAmountTextLocal.GetLocalizedString()} : {GameManager.Instance.TargetGoldAmount}{_goldTextLocal.GetLocalizedString()}";
         foreach (var currency in currencyList)
         {
             CurrencyStorage_OnUpdateCurrency(currency.code, currency.amount);
@@ -166,7 +171,7 @@ public class UIMainPanel : UIPanel
                 _woolText.text = $"{_woolTextLocal.GetLocalizedString()}: {total}";
                 break;
             case Currency.Type.Gold:
-                _goldText.text = $"{_goldTextLocal.GetLocalizedString()}: {total} ({string.Format("{0:D2}", ((total * 100) / GameManager.Instance.TargetGoldAmount))}%)";
+                _goldText.text = $"{_goldTextLocal.GetLocalizedString()}: {total} ({string.Format("{0:F2}", ((double)(total * 100) / GameManager.Instance.TargetGoldAmount))}%)";
                 break;
             default:
                 break;

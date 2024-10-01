@@ -9,7 +9,7 @@ public class PreferenceStorage : BaseStorage
     public class StorageData : ICloneable
     {
         [Tooltip("언어 코드. 처음 설치시 sting.Empty")]
-        public string languageCode = string.Empty;
+        public string languageCode = "ko-KR";
 
         [Tooltip("배경음 소리크기")]
         public float bgmVolume = 0.5f; // 0.001 ~ 1f
