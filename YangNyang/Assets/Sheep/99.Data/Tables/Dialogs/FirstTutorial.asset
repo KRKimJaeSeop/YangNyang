@@ -26,20 +26,164 @@ MonoBehaviour:
   type: 1
   _steps:
   - UnitActionType: 1
-    ActorNickName: aa
+    ActorNickName: "\uACE0\uC591\uC774"
     SpawnType: 1
-    ActionPlace: 1
+    ActionPlace: 6
     ActionTime: 0
+    LocalText:
+      table: 0
+      key: 
+    IsStop: 0
+  - UnitActionType: 2
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 1
+    ActionPlace: 5
+    ActionTime: 1
     LocalText:
       table: 0
       key: 
     IsStop: 1
   - UnitActionType: 3
-    ActorNickName: aa
-    SpawnType: 0
-    ActionPlace: 2
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 1
+    ActionPlace: 5
+    ActionTime: 1.5
+    LocalText:
+      table: 4
+      key: TUTORIAL_1
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 1
+    ActionPlace: 5
+    ActionTime: 6
+    LocalText:
+      table: 4
+      key: TUTORIAL_2
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 1
+    ActionPlace: 5
+    ActionTime: 6
+    LocalText:
+      table: 4
+      key: TUTORIAL_3
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 1
+    ActionPlace: 5
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: TUTORIAL_3_1
+    IsStop: 1
+  - UnitActionType: 4
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 1
+    ActionPlace: 5
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: TUTORIAL_3_1
+    IsStop: 1
+  - UnitActionType: 1
+    ActorNickName: "\uC591"
+    SpawnType: 2
+    ActionPlace: 7
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: TUTORIAL_3_1
+    IsStop: 0
+  - UnitActionType: 2
+    ActorNickName: "\uC591"
+    SpawnType: 2
+    ActionPlace: 9
     ActionTime: 1
     LocalText:
-      table: 0
-      key: 
+      table: 4
+      key: TUTORIAL_3_1
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 5
+    LocalText:
+      table: 4
+      key: TUTORIAL_4
+    IsStop: 1
+  - UnitActionType: 2
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 1
+    LocalText:
+      table: 4
+      key: TUTORIAL_4
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 2
+    LocalText:
+      table: 4
+      key: TUTORIAL_5
+    IsStop: 1
+  - UnitActionType: 2
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 8
+    ActionTime: 0.5
+    LocalText:
+      table: 4
+      key: TUTORIAL_5
+    IsStop: 1
+  - UnitActionType: 2
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 11
+    ActionTime: 0.5
+    LocalText:
+      table: 4
+      key: TUTORIAL_5
+    IsStop: 1
+  - UnitActionType: 2
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 10
+    ActionTime: 0.5
+    LocalText:
+      table: 4
+      key: TUTORIAL_5
+    IsStop: 1
+  - UnitActionType: 2
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 5
+    ActionTime: 0.5
+    LocalText:
+      table: 4
+      key: TUTORIAL_8
+    IsStop: 0
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 10
+    ActionTime: 4
+    LocalText:
+      table: 4
+      key: TUTORIAL_6
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 10
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: TUTORIAL_8
     IsStop: 1

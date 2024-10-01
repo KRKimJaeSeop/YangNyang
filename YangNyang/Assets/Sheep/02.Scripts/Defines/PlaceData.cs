@@ -10,6 +10,10 @@ namespace Place
         PlayerSpawn = 5,
         OutSideLeftSpawn = 6,
         OutSideRightSpawn = 7,
+        LeftTop = 8,
+        RightTop = 9,
+        LeftBottom = 10,
+        RightBottom = 11,
     }
 
 }

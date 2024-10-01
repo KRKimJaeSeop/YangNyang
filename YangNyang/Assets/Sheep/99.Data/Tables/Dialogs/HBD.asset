@@ -26,16 +26,29 @@ MonoBehaviour:
   type: 5
   _steps:
   - UnitActionType: 1
-    ActorNickName: aa
+    ActorNickName: "\uACE0\uC591\uC774"
     SpawnType: 1
-    ActionPlace: 1
+    ActionPlace: 5
     ActionTime: 0
-    SpeechText: 
-    IsStop: 1
-  - UnitActionType: 2
-    ActorNickName: aa
+    LocalText:
+      table: 0
+      key: 
+    IsStop: 0
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
     SpawnType: 0
     ActionPlace: 2
-    ActionTime: 1
-    SpeechText: 
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: HBD_1
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 0
+    ActionPlace: 2
+    ActionTime: 2
+    LocalText:
+      table: 4
+      key: HBD_2
     IsStop: 1

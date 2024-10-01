@@ -40,25 +40,25 @@ public class DevUI : MonoBehaviour
 
     private void OnClickTestBtn()
     {
+        DialogManager.Instance.EnterDialog(Dialog.Type.FirstTutorial);
 
         //나중에 활성화
         // Addressables.LoadAssetAsync<Sprite>(textField1.text).Completed += OnSpriteLoaded;
         //AdMobAdapter.Instance.LoadRewardedAd();
         //Debug.Log(AdvertisingController.Instance.GetBannerHeightByPixel());
         //UIManager.Instance.OpenResultPanel("테스트", $"과연");
-        DialogManager.Instance.EnterDialog(Dialog.Type.HappyEnd);
 
     }
     private void OnClick1()
     {
-        DialogManager.Instance.EnterDialog(Dialog.Type.SadEnd);
 
+        DialogManager.Instance.EnterDialog(Dialog.Type.HappyEnd);
         //UIManager.Instance.OpenResultPanel("테스트", $"과연");
 
     }
     private void OnClick2()
     {
-        DialogManager.Instance.EnterDialog(Dialog.Type.CrazyLucky);
+        DialogManager.Instance.EnterDialog(Dialog.Type.SadEnd);
 
         //eldObjectManager.Instance.StartSheepSpawn(true);
         //var texture = AddressableManager.Instance.GetAsset<Texture2D>(AddressableManager.RemoteAssetCode.OverlayBranch);
@@ -76,6 +76,7 @@ public class DevUI : MonoBehaviour
     private void OnClick4()
     {
         //if (textField1.text == string.Empty)
+        DialogManager.Instance.EnterDialog(Dialog.Type.HBD);
         //{
         //    UIManager.Instance.OpenLoading();
         //}
@@ -85,7 +86,7 @@ public class DevUI : MonoBehaviour
 
         //}
         //GameManager.Instance.TestEnter();
-        AdvertisingController.Instance.ShowInterstitial();
+        //AdvertisingController.Instance.ShowInterstitial();
 
     }
     private void OnClick5()

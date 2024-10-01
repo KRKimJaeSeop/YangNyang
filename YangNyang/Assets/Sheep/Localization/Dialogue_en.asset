@@ -165,8 +165,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 335770611449856
-    m_Localized: After we were enchanted, we were happy to see you so delighted.
-      But then we realized you would abandon us once you collected all the money.
+    m_Localized: 'After we were enchanted, we were happy to see you so delighted. '
     m_Metadata:
       m_Items: []
   - m_Id: 336146056183808
@@ -206,6 +205,11 @@ MonoBehaviour:
   - m_Id: 339796451229696
     m_Localized: "Please contact the developer directly\u2026 I\u2019m curious who
       they are."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 354630144196608
+    m_Localized: But then we realized you would abandon us once you collected all
+      the money.
     m_Metadata:
       m_Items: []
   references:

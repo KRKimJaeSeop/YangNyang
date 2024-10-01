@@ -26,20 +26,29 @@ MonoBehaviour:
   type: 4
   _steps:
   - UnitActionType: 1
-    ActorNickName: aa
+    ActorNickName: "\uACE0\uC591\uC774"
     SpawnType: 1
-    ActionPlace: 1
+    ActionPlace: 5
     ActionTime: 0
     LocalText:
       table: 0
       key: 
     IsStop: 1
   - UnitActionType: 3
-    ActorNickName: aa
-    SpawnType: 0
-    ActionPlace: 2
-    ActionTime: 1
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 1
+    ActionPlace: 1
+    ActionTime: 5
     LocalText:
-      table: 0
-      key: 
+      table: 4
+      key: LUCKY_1
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 1
+    ActionPlace: 1
+    ActionTime: 5
+    LocalText:
+      table: 4
+      key: LUCKY_2
     IsStop: 1

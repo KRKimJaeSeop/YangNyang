@@ -26,16 +26,236 @@ MonoBehaviour:
   type: 2
   _steps:
   - UnitActionType: 1
-    ActorNickName: aa
+    ActorNickName: "\uACE0\uC591\uC774"
     SpawnType: 1
-    ActionPlace: 1
+    ActionPlace: 6
     ActionTime: 0
-    SpeechText: 
-    IsStop: 1
+    LocalText:
+      table: 0
+      key: 
+    IsStop: 0
   - UnitActionType: 2
-    ActorNickName: aa
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 8
+    ActionTime: 1
+    LocalText:
+      table: 4
+      key: HAPPY_2
+    IsStop: 0
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
     SpawnType: 0
     ActionPlace: 2
+    ActionTime: 5
+    LocalText:
+      table: 4
+      key: HAPPY_1
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 0
+    ActionPlace: 2
+    ActionTime: 2
+    LocalText:
+      table: 4
+      key: HAPPY_2
+    IsStop: 1
+  - UnitActionType: 1
+    ActorNickName: "\uC5911"
+    SpawnType: 2
+    ActionPlace: 6
+    ActionTime: 2
+    LocalText:
+      table: 4
+      key: HAPPY_2
+    IsStop: 0
+  - UnitActionType: 1
+    ActorNickName: "\uC5912"
+    SpawnType: 2
+    ActionPlace: 7
+    ActionTime: 2
+    LocalText:
+      table: 4
+      key: HAPPY_2
+    IsStop: 0
+  - UnitActionType: 2
+    ActorNickName: "\uC5912"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 2
+    LocalText:
+      table: 4
+      key: HAPPY_2
+    IsStop: 0
+  - UnitActionType: 3
+    ActorNickName: "\uC5912"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 5
+    LocalText:
+      table: 4
+      key: HAPPY_3
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: HAPPY_4
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uC5912"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: HAPPY_5
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uC5912"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: HAPPY_5_1
+    IsStop: 0
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: HAPPY_5_1
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uC5912"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 4
+    LocalText:
+      table: 4
+      key: HAPPY_6
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uC5912"
+    SpawnType: 2
+    ActionPlace: 5
+    ActionTime: 4
+    LocalText:
+      table: 4
+      key: HAPPY_6_1
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uC5912"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: HAPPY_7
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uC5911"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 5
+    LocalText:
+      table: 4
+      key: HAPPY_8
+    IsStop: 0
+  - UnitActionType: 2
+    ActorNickName: "\uC5911"
+    SpawnType: 2
+    ActionPlace: 7
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: HAPPY_8
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 9
     ActionTime: 1
-    SpeechText: 
+    LocalText:
+      table: 4
+      key: HAPPY_5_1
+    IsStop: 0
+  - UnitActionType: 3
+    ActorNickName: "\uC5912"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 1
+    LocalText:
+      table: 4
+      key: HAPPY_5_1
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 9
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: HAPPY_9
+    IsStop: 0
+  - UnitActionType: 2
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 11
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: HAPPY_9
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 11
+    ActionTime: 5
+    LocalText:
+      table: 4
+      key: HAPPY_10
+    IsStop: 0
+  - UnitActionType: 2
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 10
+    ActionTime: 5
+    LocalText:
+      table: 4
+      key: HAPPY_10
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 5
+    ActionTime: 5
+    LocalText:
+      table: 4
+      key: HAPPY_11
+    IsStop: 0
+  - UnitActionType: 2
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 5
+    ActionTime: 5
+    LocalText:
+      table: 4
+      key: HAPPY_10
+    IsStop: 1
+  - UnitActionType: 3
+    ActorNickName: "\uACE0\uC591\uC774"
+    SpawnType: 2
+    ActionPlace: 5
+    ActionTime: 3
+    LocalText:
+      table: 4
+      key: HAPPY_12
     IsStop: 1

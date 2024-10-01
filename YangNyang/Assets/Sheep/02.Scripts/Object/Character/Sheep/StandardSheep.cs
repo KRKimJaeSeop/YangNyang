@@ -236,12 +236,12 @@ public class StandardSheep : CharacterObject, IInteractable
         if (isFlip)
         {
             _transform.localScale = _originScale;
-            _speechBubble.Flip(true);
+            _speechBubble.Flip(false);
         }
         else
         {
             _transform.localScale = _flipScale;
-            _speechBubble.Flip(false);
+            _speechBubble.Flip(true);
         }
     }
  
