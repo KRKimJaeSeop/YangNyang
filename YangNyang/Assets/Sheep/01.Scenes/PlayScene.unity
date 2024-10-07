@@ -488,7 +488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 71.005005, y: -60.06}
+  m_AnchoredPosition: {x: 71.00513, y: -60.06}
   m_SizeDelta: {x: 142.01, y: 120.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &130722878
@@ -1185,9 +1185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isAutoBanner: 0
-  _BannerID: ca-app-pub-3940256099942544/6300978111
+  _BannerID: ca-app-pub-8211980681636381/1130279765
   _interstitialID: ca-app-pub-3940256099942544/1033173712
-  _rewardedAdID: ca-app-pub-3940256099942544/5224354917
+  _rewardedAdID: ca-app-pub-8211980681636381/6915563685
 --- !u!114 &249435587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5673,7 +5673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 971.00507, y: -60.06}
+  m_AnchoredPosition: {x: 971.005, y: -60.06}
   m_SizeDelta: {x: 142.01, y: 120.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1804954463
