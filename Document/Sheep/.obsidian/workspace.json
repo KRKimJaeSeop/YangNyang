@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "작업 일지/2024-09-20.md",
+                "file": "작업 일지/2024-08-22.md",
                 "mode": "source",
                 "source": false
               }
@@ -42,21 +42,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "273fd9f68780ee77",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "작업 일지/2024-10-01.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -122,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "작업 일지/2024-10-01.md",
+                "file": "작업 일지/2024-08-22.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +126,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "작업 일지/2024-10-01.md",
+                "file": "작업 일지/2024-08-22.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "작업 일지/2024-10-01.md"
+                "file": "작업 일지/2024-08-22.md"
               }
             }
           }
@@ -183,15 +170,56 @@
       "command-palette:명령어 팔레트 열기": false
     }
   },
-  "active": "273fd9f68780ee77",
+  "floating": {
+    "id": "07b50bd44e087078",
+    "type": "floating",
+    "children": [
+      {
+        "id": "b2a82bbf6bba95e8",
+        "type": "window",
+        "children": [
+          {
+            "id": "94e8a2b994c2456c",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "273fd9f68780ee77",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "작업 일지/후기.md",
+                    "mode": "source",
+                    "source": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 1224,
+        "y": 87,
+        "width": 954,
+        "height": 1000,
+        "maximize": true,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "77d2079dd84a3873",
   "lastOpenFiles": [
+    "작업 일지/후기.md",
+    "작업 일지/2024-08-22.md",
+    "작업 일지/2024-08-23.md",
+    "작업 일지/2024-09-20.md",
+    "작업 일지/2024-10-01.md",
     "기획/대화.md",
     "_이미지/Pasted image 20240924202136.png",
     "_이미지/Pasted image 20240924173556.png",
     "_이미지/Pasted image 20240923213158.png",
     "_이미지/Pasted image 20240920215722.png",
     "메모.md",
-    "작업 일지/2024-10-01.md",
     "버그.md",
     "기획/돌연변이.md",
     "작업 일정/2차/작업 목록.md",
@@ -203,9 +231,7 @@
     "작업 일지/2024-09-26.md",
     "기획/0.기획서.md",
     "기획/1.게임 플레이 플로우.md",
-    "작업 일지/2024-08-22.md",
     "작업 일지/2024-08-24.md",
-    "작업 일지/2024-08-23.md",
     "작업 일지/2024-08-28.md",
     "작업 일지/2024-08-29.md",
     "작업 일지/2024-08-27.md",
@@ -213,7 +239,6 @@
     "작업 일지/2024-08-25.md",
     "작업 일지/2024-09-24.md",
     "작업 일지/2024-09-21.md",
-    "작업 일지/2024-09-20.md",
     "_이미지/Grapgic_Kr.png",
     "_이미지/Grapgic_Eng.png",
     "_이미지/Icon_216.png",

@@ -144,7 +144,7 @@ public class UIMainPanel : UIPanel
   
     private void UserStorage_OnUpdateDay(int day)
     {
-        if (GameDataManager.Instance.Storages.Preference.GetLanguageCode() == "ko-KR")
+        if (GameDataManager.Instance.Storages.Preference.GetLanguageCode() != "en")
         {
             _dayText.text = $"{day} {_dayLocal.GetLocalizedString()}";
         }
