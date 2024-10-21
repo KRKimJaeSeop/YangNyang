@@ -20,6 +20,18 @@
 ![image](https://github.com/user-attachments/assets/bbfcf32c-b99d-4a9f-8c80-9304be21b2eb)
 <br>
 
+<br>
+
+# [커스텀 에디터 제작](https://github.com/KRKimJaeSeop/YangNyang/blob/main/YangNyang/Assets/Sheep/02.Scripts/Editor/StepUnitDrawer.cs)
+
+프로젝트 내 경로 : 02.Scripts/Editor/StepUnitDrawer.cs
+<br>
+
+다이얼로그 컷씬의 연출을 쉽게 수정하기위해 제작했습니다. 스폰한 오브젝트의 닉네임을 임시로 지정하고, 해당 닉네임의 오브젝트를 찾아서 테이블에 지정된 Action을 실행해줍니다.
+<br>
+
+![image](https://github.com/user-attachments/assets/0d80ecdc-f101-43f7-a5d3-b6b48f1fd7d2)
+
 # [유한 상태 머신(fsm) 제작](https://github.com/KRKimJaeSeop/YangNyang/tree/main/YangNyang/Assets/Sheep/02.Scripts/FSM)
 
 프로젝트 내 경로 : 02.Scripts/FSM
@@ -46,14 +58,7 @@ OnTrigger함수 안이 복잡해지는것을 Interface를 활용해서 개선해
 Dialog가 시작되면 index차례대로 step을 실행합니다. 모든 step을 완료할때까지
 재귀합니다.
 
-<br>
 
-# [커스텀 에디터 제작](https://github.com/KRKimJaeSeop/YangNyang/blob/main/YangNyang/Assets/Sheep/02.Scripts/Editor/StepUnitDrawer.cs)
-
-프로젝트 내 경로 : 02.Scripts/Editor/StepUnitDrawer.cs
-<br>
-
-![image](https://github.com/user-attachments/assets/0d80ecdc-f101-43f7-a5d3-b6b48f1fd7d2)
 
 
 
