@@ -25,7 +25,7 @@ MonoBehaviour:
     key: 
   type: 1
   _steps:
-  - UnitActionType: 1
+  - UnitActionType: 0
     ActorNickName: "\uACE0\uC591\uC774"
     SpawnType: 1
     ActionPlace: 10
@@ -43,7 +43,7 @@ MonoBehaviour:
       table: 4
       key: HBD_1
     IsStop: 0
-  - UnitActionType: 1
+  - UnitActionType: 2
     ActorNickName: "\uC5912"
     SpawnType: 2
     ActionPlace: 7
@@ -61,7 +61,7 @@ MonoBehaviour:
       table: 4
       key: AD_1
     IsStop: 0
-  - UnitActionType: 3
+  - UnitActionType: 4
     ActorNickName: "\uC5911"
     SpawnType: 2
     ActionPlace: 9

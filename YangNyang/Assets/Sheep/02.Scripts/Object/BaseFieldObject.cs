@@ -12,12 +12,7 @@ public class BaseFieldObject : MonoBehaviour
     protected Transform _transform;
     protected Rigidbody2D _rb2D;
     protected Collider2D _collider2D;
-    // 종료시 콜백.
     protected Action _cbDisable;
-
-
-    //[SerializeField]
-    //protected SpriteRenderer[] _spriteRenderers;
 
     [SerializeField]
     private int instanceID;
@@ -44,12 +39,9 @@ public class BaseFieldObject : MonoBehaviour
             else
             {
                 _rb2D.MovePosition(position);
-
             }
-
         }
         else
-        //이부분 콜백하기
         {
             _transform.position = position;
         }
